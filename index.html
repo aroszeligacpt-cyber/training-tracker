@@ -147,11 +147,14 @@ button:disabled{opacity:.38;filter:grayscale(1);box-shadow:none;cursor:not-allow
 .mitem{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px;border:1px solid var(--t3);border-radius:14px;background:var(--t1);min-height:60px}.mitem .mic{font-size:24px}.mitem:active{border-color:var(--ac)}
 .shi{align-items:center;gap:10px}.shq{white-space:nowrap;font-size:13px;color:var(--ac2)}
 .liqck{display:flex;align-items:center;gap:8px;margin-top:10px}.liqck input{width:20px;height:20px;min-height:0}
+.wsteps{padding-left:22px;margin:8px 0 12px}.wsteps li{margin:6px 0}.wpick{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:14px;cursor:pointer;font-weight:800}
+.wprog{height:10px;border-radius:6px;background:var(--t2);margin-top:12px;overflow:hidden}.wprog div{height:100%;background:linear-gradient(90deg,var(--deep),var(--ac),var(--mag));box-shadow:0 0 8px var(--ac);transition:width .2s}
+.wtab{width:100%;font-size:12px}.wtab th,.wtab td{padding:5px 4px;text-align:right;white-space:nowrap}.wtab th:first-child,.wtab td:first-child{text-align:left}#t-watch .g2>div{min-width:0}#wFrom,#wTo{width:100%;min-width:0;max-width:100%;box-sizing:border-box;-webkit-appearance:none}.wline{font-size:12px;color:var(--ac2);margin-top:8px;padding:0 6px}
 </style></head><body>
 <div id="bgl"></div>
 <header><div class="dnav"><button id="prev" aria-label="Previous day">‹</button><div class="d" id="dlbl"></div><button id="next" aria-label="Next day">›</button><button id="today" class="sm">Today</button><span id="svind">✓ Saved</span></div><div class="secbar" id="secbar"></div></header>
 <main class="wrap">
-<section class="tab" id="t-home"></section><section class="tab" id="t-shop"></section>
+<section class="tab" id="t-home"></section><section class="tab" id="t-shop"></section><section class="tab" id="t-watch"></section>
 <section class="tab" id="t-meals"></section>
 <section class="tab" id="t-habits"></section>
 <section class="tab" id="t-workout"></section>
@@ -204,10 +207,10 @@ function evalDay(s){var d=peek(s),t=totals(s),items=[];
  return{items:items,score:Math.round(sc),hits:items.filter(function(i){return i.hit}).length,logged:logged}}
 function bar(p,ok){var c=p>115&&!ok?'over':ok?'ok':'';return'<div class="bar"><i class="'+c+'" style="width:'+Math.min(p,100)+'%"></i></div>'}
 // rendering
-function render(){setTimeout(applyBg,0);if(tab==='diet')tab='meals';if(['home','meals','habits','workout','report','settings','checkin','plan','shop'].indexOf(tab)<0)tab='home';var t=iso(new Date());document.getElementById('dlbl').innerHTML=(cur===t?'Today':cur===add(t,-1)?'Yesterday':fmt(cur,{weekday:'long'}))+'<small>'+fmt(cur,{day:'numeric',month:'short',year:'numeric'})+'</small>';
+function render(){setTimeout(applyBg,0);if(tab==='diet')tab='meals';if(['home','meals','habits','workout','report','settings','checkin','plan','shop','watch'].indexOf(tab)<0)tab='home';var t=iso(new Date());document.getElementById('dlbl').innerHTML=(cur===t?'Today':cur===add(t,-1)?'Yesterday':fmt(cur,{weekday:'long'}))+'<small>'+fmt(cur,{day:'numeric',month:'short',year:'numeric'})+'</small>';
  document.querySelectorAll('.tab').forEach(function(e){e.classList.toggle('act',e.id==='t-'+tab)});
- var sb=document.getElementById('secbar');sb.innerHTML=tab==='home'?'<b class="apptl">TonTon App</b><button class="sm mbtn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>':'<button class="sm" data-go="home">‹ Home</button><b class="apptl">'+({meals:'🍽️ Diet',habits:'✅ Habits',workout:'🏋️ Workout',report:'📊 Report',settings:'⚙️ Settings',checkin:'📸 Check-in',plan:'🧮 Create plan',shop:'🛒 Shopping list'})[tab]+'</b>';
- ({home:rHome,today:rHome,meals:rMeals,habits:rHabits,workout:rWorkout,report:rReport,checkin:rCheckin,plan:rPlan,settings:rSettings,shop:rShop})[tab]();}
+ var sb=document.getElementById('secbar');sb.innerHTML=tab==='home'?'<b class="apptl">TonTon App</b><button class="sm mbtn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>':'<button class="sm" data-go="home">‹ Home</button><b class="apptl">'+({meals:'🍽️ Diet',habits:'✅ Habits',workout:'🏋️ Workout',report:'📊 Report',settings:'⚙️ Settings',checkin:'📸 Check-in',plan:'🧮 Create plan',shop:'🛒 Shopping list',watch:'⌚ Connect iWatch'})[tab]+'</b>';
+ ({home:rHome,today:rHome,meals:rMeals,habits:rHabits,workout:rWorkout,report:rReport,checkin:rCheckin,plan:rPlan,settings:rSettings,shop:rShop,watch:rWatch})[tab]();}
 function habitCtl(h){var v=n(peek(cur).habits[h.id]);
  if(h.type==='bool')return'<button class="tog'+(v?' on':'')+'" data-tog="'+h.id+'">'+(v?'✓ Done':'Not yet')+'</button>';
  return'<div class="stp"><button data-dec="'+h.id+'">−</button><input inputmode="decimal" type="number" step="any" data-hv="'+h.id+'" value="'+(v||'')+'" placeholder="0"><button data-inc="'+h.id+'">+</button></div>'}
@@ -220,7 +223,7 @@ function rToday(){var e=evalDay(cur);document.getElementById('t-today').innerHTM
  '<div class="card"><h3>Habits</h3>'+habitList()+'</div>'+
  '<div class="card full"><div class="row"><button class="pri" data-go="meals">+ Log meal</button><button data-go="report">View report</button></div></div>'}
 function streaksCard(){var hs=S.habits.map(function(hb){var c=0,x=cur;while(n(peek(x).habits[hb.id])>=(hb.type==='bool'?1:n(hb.target))&&n(hb.target||1)){c++;x=add(x,-1)}return'<tr><td>'+esc(hb.name)+'</td><td>'+c+' day'+(c===1?'':'s')+'</td></tr>'}).join('');return'<div class="card"><h3>Streaks</h3><table>'+hs+'</table></div>'}
-function rHabits(){document.getElementById('t-habits').innerHTML='<div class="card"><h2>Log · '+fmt(cur,{day:'numeric',month:'short'})+'</h2>'+habitList()+'</div>'+streaksCard()+habitsEditCard()}
+function rHabits(){document.getElementById('t-habits').innerHTML=(wDay(cur)?'<div class="card">'+wLine(cur)+'</div>':'')+'<div class="card"><h2>Log · '+fmt(cur,{day:'numeric',month:'short'})+'</h2>'+habitList()+'</div>'+streaksCard()+habitsEditCard()}
 function habHit(){var d=peek(cur);return S.habits.filter(function(hb){return n(d.habits[hb.id])>=(hb.type==='bool'?1:n(hb.target))&&(hb.type==='bool'||n(hb.target))}).length}
 
 function gaugeCard(e,t){var g=TG(cur),R=130,cx=195,cy=170,A=Math.PI*R,p=Math.max(0,Math.min(100,e.score)),
@@ -233,7 +236,7 @@ function gaugeCard(e,t){var g=TG(cur),R=130,cx=195,cy=170,A=Math.PI*R,p=Math.max
  '<path d="'+arc+'" fill="none" stroke="var(--t2)" stroke-width="24" stroke-linecap="round"/><path d="'+arc+'" fill="none" stroke="url(#hgg)" stroke-width="24" stroke-linecap="round" pathLength="100" stroke-dasharray="'+(p>0?p:0.01)+' 100" filter="url(#hgl)"/>'+tk+
  '<g class="gneedle" data-deg="'+(p*1.8)+'" style="transform-origin:'+cx+'px '+cy+'px;transform:rotate(0deg)"><line x1="'+cx+'" y1="'+cy+'" x2="'+(cx-R+38)+'" y2="'+cy+'" stroke="var(--tx)" stroke-width="4" stroke-linecap="round" style="filter:drop-shadow(0 0 4px var(--ac))"/></g><circle cx="'+cx+'" cy="'+cy+'" r="9" style="fill:var(--mag)" filter="url(#hgl)"/>'+
  '<text x="'+cx+'" y="'+(cy+50)+'" text-anchor="middle" font-size="40" font-weight="800" style="fill:var(--tx)">'+e.score+'%</text><text x="'+cx+'" y="'+(cy+72)+'" text-anchor="middle" font-size="12" letter-spacing="2" style="fill:var(--ac)">DAILY SCORE · '+e.hits+'/'+e.items.length+' HIT</text></svg></button>'+
- '<div class="gbars">'+B.map(function(b){var q=b[2]?Math.min(100,b[1]/b[2]*100):0,ov=b[2]&&b[1]>b[2]*1.1&&b[0]!=='Protein'&&b[0]!=='Water';return'<div class="gb"><div class="gbh"><b>'+b[0]+'</b><span class="mu">'+nf(b[0]==='Water'?Math.round(b[1]*10)/10:Math.round(b[1]))+' / '+nf(b[2])+b[3]+'</span></div><div class="gtr"><div class="gfl'+(ov?' ov':'')+'" style="width:'+q.toFixed(1)+'%"></div></div></div>'}).join('')+'</div></div>'}
+ '<div class="gbars">'+B.map(function(b){var q=b[2]?Math.min(100,b[1]/b[2]*100):0,ov=b[2]&&b[1]>b[2]*1.1&&b[0]!=='Protein'&&b[0]!=='Water';return'<div class="gb"><div class="gbh"><b>'+b[0]+'</b><span class="mu">'+nf(b[0]==='Water'?Math.round(b[1]*10)/10:Math.round(b[1]))+' / '+nf(b[2])+b[3]+'</span></div><div class="gtr"><div class="gfl'+(ov?' ov':'')+'" style="width:'+q.toFixed(1)+'%"></div></div></div>'}).join('')+'</div>'+wLine(cur)+'</div>'}
 var _rh0;function animNeedle(){var g=document.querySelector('.gneedle');if(!g)return;g.getBoundingClientRect();requestAnimationFrame(function(){requestAnimationFrame(function(){g.style.transform='rotate('+g.dataset.deg+'deg)'})})}
 function rHome(){ensureDietMeals(cur);var e=evalDay(cur),w=wk(cur),t=totals(cur),tg=n(TG(cur).kcal),all=wkAll(w),hit=habHit();
  var ws2=weekScore(),ws=all?wkSets(w)+'/'+all+' sets done':S.routines.length?S.routines.length+' routine'+(S.routines.length===1?'':'s'):'Set up routines';
@@ -260,7 +263,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v26 · 12 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v27 · 12 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -759,6 +762,7 @@ function overview(days){var ev=days.map(function(d){return{d:d,e:evalDay(d),t:to
  var nh=S.habits.length;s+='<div class="card"><h3>Habits hit per day (of '+nh+')</h3>'+svgBars(ev.map(function(x){var d=peek(x.d);return{label:dl(x.d).split('\u00a0')[0],v:S.habits.filter(function(hb){return n(d.habits[hb.id])>=(hb.type==='bool'?1:n(hb.target))&&(hb.type==='bool'||n(hb.target))}).length}}),{max:nh})+'</div>';
  var vols=ev.map(function(x){return wkVol(wk(x.d))}),tv=vols.reduce(function(a,b){return a+b},0),ses=vols.filter(Boolean).length;
  s+='<div class="card"><h3>Workout volume per day · '+ses+' session'+(ses===1?'':'s')+' · '+nf(Math.round(tv))+' kg</h3>'+svgBars(ev.map(function(x,i){return{label:dl(x.d).split('\u00a0')[0],v:Math.round(vols[i])}}))+'</div>';
+ s+=watchCharts(ev);
  // diet totals
  var off=days.reduce(function(a,d){return a+offTot(d).kcal},0);
  s+=bodyReport(days);s+='<div class="card full"><h2>Diet totals</h2><div class="mu">'+fd.length+' day'+(fd.length===1?'':'s')+' with food logged · '+dl(days[0])+' – '+dl(days[days.length-1])+'</div>'+(fd.length?'<table><tr><th></th><th>Total</th><th>Avg/day</th><th>vs target</th></tr>'+MAC.map(function(m){var k=m[0],u=m[2]==='kcal'?' kcal':' g',tot=fd.reduce(function(a,x){return a+x.t[k]},0),diff=tot-n(T[k])*fd.length,over=diff>0;
@@ -1097,10 +1101,86 @@ document.addEventListener('click',function(ev){var b=ev.target.closest('button')
  else if(D.shx==='add'){var nm=(val('shXn')||'').trim();if(!nm){toast('Enter an item');return}o.extras.push({name:nm,qty:(val('shXq')||'').trim(),tick:false});save();rShop()}});
 document.addEventListener('change',function(ev){if(tab!=='shop')return;var e=ev.target,o=shopS();
  if(e.id==='shD'){o.dietId=e.value;o.removed={};save();rShop()}else if(e.id==='shN'){o.days=Math.max(1,Math.round(n(e.value))||7);save();rShop()}else if(e.id==='shP'){o.people=Math.max(1,Math.round(n(e.value))||1);save();rShop()}});
+// ---- Connect iWatch (Apple Health export import) ----
+var wi={busy:false,p:0,res:null,err:'',from:'',to:''};
+function wDays(){return(S.watch&&S.watch.days)||{}}
+function wDay(d){return wDays()[d]||null}
+function wLine(d){var w=wDay(d);if(!w)return'';var a=[];if(w.steps)a.push(nf(w.steps)+' steps');if(w.akcal)a.push(nf(w.akcal)+' active kcal');if(w.sleep)a.push(r1(w.sleep)+' h sleep');if(w.rhr)a.push('RHR '+w.rhr);if(w.wk&&w.wk.length)a.push(w.wk.length+' workout'+(w.wk.length>1?'s':''));return a.length?'<div class="wline">⌚ From watch: '+a.join(' · ')+'</div>':''}
+function zipEntry(file){// minimal ZIP reader: find export.xml via central directory
+ var tail=Math.min(file.size,66000);return file.slice(file.size-tail).arrayBuffer().then(function(b){var v=new DataView(b),i;for(i=b.byteLength-22;i>=0;i--)if(v.getUint32(i,true)===0x06054b50)break;if(i<0)throw new Error('Not a valid ZIP file');
+  var cdSize=v.getUint32(i+12,true),cdOff=v.getUint32(i+16,true);if(cdOff===0xffffffff)throw new Error('This ZIP is in ZIP64 format — please unzip it in Files and choose export.xml instead');
+  return file.slice(cdOff,cdOff+cdSize).arrayBuffer()}).then(function(cd){var v=new DataView(cd),p=0,best=null,td=new TextDecoder();
+  while(p+46<=cd.byteLength&&v.getUint32(p,true)===0x02014b50){var m=v.getUint16(p+10,true),cs=v.getUint32(p+20,true),nl=v.getUint16(p+28,true),el=v.getUint16(p+30,true),cl=v.getUint16(p+32,true),lo=v.getUint32(p+42,true),nm=td.decode(new Uint8Array(cd,p+46,nl));
+   if(/(^|\/)export\.xml$/i.test(nm))best={m:m,cs:cs,lo:lo,nm:nm};p+=46+nl+el+cl}
+  if(!best)throw new Error('export.xml not found inside the ZIP');if(best.cs===0xffffffff||best.lo===0xffffffff)throw new Error('This ZIP is in ZIP64 format — please unzip it in Files and choose export.xml instead');
+  return file.slice(best.lo,best.lo+30).arrayBuffer().then(function(h){var v=new DataView(h);if(v.getUint32(0,true)!==0x04034b50)throw new Error('Bad ZIP entry');var st=best.lo+30+v.getUint16(26,true)+v.getUint16(28,true);return{blob:file.slice(st,st+best.cs),method:best.m}})})}
+function hkAttr(s,k){var i=s.indexOf(' '+k+'="');if(i<0)return'';i+=k.length+3;return s.slice(i,s.indexOf('"',i))}
+function hkParse(file,from,to,onp){
+ var isZip=/\.zip$/i.test(file.name)||file.type==='application/zip';
+ return(isZip?zipEntry(file):Promise.resolve({blob:file,method:0})).then(function(z){
+  var total=z.blob.size,done=0,src=z.blob.stream().pipeThrough(new TransformStream({transform:function(c,ctl){done+=c.byteLength;onp(done/total);ctl.enqueue(c)}}));
+  if(z.method===8){if(typeof DecompressionStream==='undefined')throw new Error('This browser cannot unzip — choose export.xml instead');src=src.pipeThrough(new DecompressionStream('deflate-raw'))}else if(z.method!==0)throw new Error('Unsupported ZIP compression');
+  var rd=src.pipeThrough(new TextDecoderStream()).getReader(),buf='',A={},lw=null,n=0,srcs={};
+  function D(d){return A[d]||(A[d]={st:{},ak:{},sl:{},hr:[0,0],rh:[0,0],kg:null,kgt:'',wk:[]})}
+  function rec(tag,s){n++;if(tag==='WorkoutStatistics'){if(lw&&hkAttr(s,'type')==='HKQuantityTypeIdentifierActiveEnergyBurned'&&!lw.kcal){var u=hkAttr(s,'unit'),v=+hkAttr(s,'sum');lw.kcal=Math.round(/kJ/i.test(u)?v/4.184:v)}return}
+   var sd=hkAttr(s,'startDate'),day=sd.slice(0,10);
+   if(tag==='Workout'){lw=null;if(day<from||day>to)return;var du=+hkAttr(s,'duration'),dun=hkAttr(s,'durationUnit'),e=hkAttr(s,'totalEnergyBurned'),eu=hkAttr(s,'totalEnergyBurnedUnit');lw={type:hkAttr(s,'workoutActivityType').replace('HKWorkoutActivityType','').replace(/([a-z])([A-Z])/g,'$1 $2'),min:Math.round(dun==='hr'?du*60:dun==='s'||dun==='sec'?du/60:du),kcal:e?Math.round(/kJ/i.test(eu)?+e/4.184:+e):0,src:hkAttr(s,'sourceName')};D(day).wk.push(lw);return}
+   var t=hkAttr(s,'type');if(!t)return;var ed=hkAttr(s,'endDate'),sn=hkAttr(s,'sourceName');
+   if(t==='HKCategoryTypeIdentifierSleepAnalysis'){var wd=ed.slice(0,10);if(+ed.slice(11,13)>=15)wd=add(wd,1);if(wd<from||wd>to)return;var val=hkAttr(s,'value');if(!/Asleep/.test(val))return;var h=(hkDate(ed)-hkDate(sd))/3600000;if(h>0&&h<16){var o=D(wd).sl;o[sn]=(o[sn]||0)+h;srcs[sn]=1}return}
+   if(day<from||day>to)return;var v=+hkAttr(s,'value'),u=hkAttr(s,'unit');if(isNaN(v))return;
+   if(t==='HKQuantityTypeIdentifierStepCount'){var o2=D(day).st;o2[sn]=(o2[sn]||0)+v;srcs[sn]=1}
+   else if(t==='HKQuantityTypeIdentifierActiveEnergyBurned'){var o3=D(day).ak;o3[sn]=(o3[sn]||0)+(/kJ/i.test(u)?v/4.184:v)}
+   else if(t==='HKQuantityTypeIdentifierHeartRate'){var q=D(day).hr;q[0]+=v;q[1]++}
+   else if(t==='HKQuantityTypeIdentifierRestingHeartRate'){var q2=D(day).rh;q2[0]+=v;q2[1]++}
+   else if(t==='HKQuantityTypeIdentifierBodyMass'){var x=D(day);if(sd>=x.kgt){x.kgt=sd;x.kg=u==='lb'?v*0.45359237:u==='g'?v/1000:v}}}
+  function scan(final){var re=/<(Record|Workout|WorkoutStatistics)\s([^>]*)>/g,m,last=0;while((m=re.exec(buf))){rec(m[1],' '+m[2]);last=re.lastIndex}
+   var cut=buf.lastIndexOf('<');buf=final?'':(cut>=last?buf.slice(cut):'')}
+  function pump(){return rd.read().then(function(r){if(r.done){scan(true);return fin()}buf+=r.value;if(buf.length>262144)scan(false);return pump()})}
+  function mx(o){var b=0;for(var k in o)if(o[k]>b)b=o[k];return b}
+  function fin(){var out={},ds=Object.keys(A).sort();ds.forEach(function(d){var x=A[d],o={};var st=mx(x.st),ak=mx(x.ak),sl=mx(x.sl);if(st)o.steps=Math.round(st);if(ak)o.akcal=Math.round(ak);if(sl)o.sleep=Math.round(sl*10)/10;if(x.hr[1])o.hr=Math.round(x.hr[0]/x.hr[1]);if(x.rh[1])o.rhr=Math.round(x.rh[0]/x.rh[1]);if(x.kg)o.kg=Math.round(x.kg*10)/10;if(x.wk.length)o.wk=x.wk;if(Object.keys(o).length)out[d]=o});return{days:out,records:n,sources:Object.keys(srcs)}}
+  return pump()})}
+function hkDate(s){var m=/^(\d{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d) ([+-])(\d\d)(\d\d)/.exec(s);if(!m)return NaN;var t=Date.UTC(+m[1],m[2]-1,+m[3],+m[4],+m[5],+m[6]),off=(+m[8]*60+ +m[9])*60000;return m[7]==='+'?t-off:t+off}
+function rWatch(){var el=document.getElementById('t-watch'),t=iso(new Date());if(!wi.from){wi.from=add(t,-29);wi.to=t}var W=S.watch;
+ var h='<div class="card full"><h2>⌚ Connect iWatch</h2><p class="mu">Web apps on iPhone can’t read Apple Watch or Apple Health directly — Apple only allows that for App Store apps. Instead you can import an <b>Apple Health export</b>: it includes your watch’s steps, active calories, heart rate, sleep, weight and workouts. Everything stays on this device.</p>'+
+ '<ol class="wsteps"><li>Open the <b>Health</b> app on your iPhone.</li><li>Tap your <b>profile picture</b> (top right).</li><li>Tap <b>Export All Health Data</b> → <b>Export</b> (it can take a few minutes).</li><li>Choose <b>Save to Files</b> and save <b>export.zip</b>.</li><li>Come back here and tap <b>Choose export file</b>.</li></ol>'+
+ '<div class="g2"><div><label>From</label><input type="date" id="wFrom" value="'+wi.from+'"></div><div><label>To</label><input type="date" id="wTo" value="'+wi.to+'"></div></div>'+
+ '<label class="pri wpick" style="margin-top:12px">📂 Choose export file<input type="file" id="wFile" accept=".zip,.xml,application/zip,text/xml" hidden></label>'+
+ (wi.busy?'<div class="wprog"><div style="width:'+Math.round(wi.p*100)+'%"></div></div><p class="mu" id="wpt">Reading… '+Math.round(wi.p*100)+'%</p>':'')+(wi.err?'<p class="red">⚠️ '+esc(wi.err)+'</p>':'')+'</div>';
+ if(wi.res){var R=wi.res,ds=Object.keys(R.days).sort(),L=ds.map(function(d){return R.days[d]}),av=function(k){var a=L.filter(function(x){return x[k]});return a.length?a.reduce(function(s,x){return s+x[k]},0)/a.length:0},nw=L.reduce(function(s,x){return s+(x.wk?x.wk.length:0)},0);
+  h+='<div class="card full" id="wsum"><h2>Found in your export</h2><p class="mu">'+nf(R.records)+' records · '+ds.length+' days with data ('+dl(wi.from)+' – '+dl(wi.to)+')<br>Sources: '+esc(R.sources.join(', ')||'—')+'</p>'+
+  '<div class="tgrid"><div><small>Steps/day</small><b>'+nf(Math.round(av('steps')))+'</b></div><div><small>Active kcal</small><b>'+nf(Math.round(av('akcal')))+'</b></div><div><small>Sleep</small><b>'+r1(av('sleep'))+'h</b></div><div><small>RHR</small><b>'+Math.round(av('rhr'))+'</b></div><div><small>Workouts</small><b>'+nw+'</b></div></div>'+
+  '<p class="mu" style="font-size:12px">Steps, active kcal and sleep use the highest single source per day (e.g. Apple Watch), so iPhone + Watch aren’t double-counted.</p>'+
+  '<div style="overflow-x:auto"><table class="wtab"><tr><th>Day</th><th>Steps</th><th>kcal</th><th>Sleep</th><th>RHR</th><th>kg</th><th>Wkt</th></tr>'+ds.slice().reverse().slice(0,14).map(function(d){var x=R.days[d];return'<tr><td>'+fmt(d,{day:'numeric',month:'short'})+'</td><td>'+(x.steps?nf(x.steps):'–')+'</td><td>'+(x.akcal||'–')+'</td><td>'+(x.sleep?r1(x.sleep):'–')+'</td><td>'+(x.rhr||'–')+'</td><td>'+(x.kg||'–')+'</td><td>'+(x.wk?x.wk.length:'–')+'</td></tr>'}).join('')+'</table></div>'+(ds.length>14?'<p class="mu" style="font-size:12px">Showing latest 14 of '+ds.length+' days.</p>':'')+
+  '<button class="pri" id="wImport" style="width:100%;margin-top:10px">⬇️ Import '+ds.length+' days</button></div>'}
+ h+='<div class="card full"><h3>Imported data</h3>'+(W&&W.last?'<p>Last imported: <b>'+dl(W.last)+'</b> · '+Object.keys(W.days||{}).length+' days stored</p><p class="mu" style="font-size:13px">Steps fill your Steps habit on days where you hadn’t logged any; weight goes into Check-in only on days without a check-in. Charts appear in Report.</p><button class="dang" id="wRemove">Remove imported data</button>':'<p class="mu">Nothing imported yet.</p>')+'</div>';
+ el.innerHTML=h}
+function wImport(){var R=wi.res;if(!R)return;var W=S.watch=S.watch||{days:{},filled:{steps:{},kg:{}}};W.filled=W.filled||{steps:{},kg:{}};var sh=S.habits.find(function(h){return h.id==='steps'||/steps/i.test(h.name)}),fs=0,fk=0;
+ Object.keys(R.days).forEach(function(d){var x=R.days[d];W.days[d]=x;
+  if(sh&&x.steps){var hd=day(d);if(!n(hd.habits[sh.id])||W.filled.steps[d]){hd.habits[sh.id]=x.steps;W.filled.steps[d]=x.steps;fs++}}
+  if(x.kg){var dd=S.days[d];if(!dd||!dd.ci||W.filled.kg[d]){var c=day(d);c.ci={w:x.kg,bf:'',m:{},f:{},notes:'From Apple Health',photos:{}};W.filled.kg[d]=x.kg;fk++}}});
+ W.last=iso(new Date());save();var nd=Object.keys(R.days).length;wi.res=null;rWatch();toast('Imported '+nd+' days · '+fs+' step logs · '+fk+' weights')}
+function wRemove(){if(!S.watch)return;if(!confirm('Remove all imported watch data? Steps and weights that were filled from the import are removed too; your own logs stay.'))return;var F=S.watch.filled||{steps:{},kg:{}},sh=S.habits.find(function(h){return h.id==='steps'||/steps/i.test(h.name)});
+ Object.keys(F.steps||{}).forEach(function(d){var hd=S.days[d];if(sh&&hd&&n(hd.habits[sh.id])===n(F.steps[d]))delete hd.habits[sh.id]});
+ Object.keys(F.kg||{}).forEach(function(d){var hd=S.days[d];if(hd&&hd.ci&&hd.ci.notes==='From Apple Health'&&n(hd.ci.w)===n(F.kg[d])&&!Object.keys(hd.ci.photos||{}).some(function(k){return hd.ci.photos[k]}))delete hd.ci});
+ delete S.watch;save();rWatch();toast('Imported watch data removed')}
+function watchCharts(ev){var any=ev.some(function(x){return wDay(x.d)});if(!any)return'';var lb=function(x){return dl(x.d).split('\u00a0')[0]},g=function(x,k){var w=wDay(x.d);return w&&w[k]?w[k]:0};
+ var sh=S.habits.find(function(h){return h.id==='steps'}),stt=sh?n(sh.target):0;
+ return'<div class="card"><h3>⌚ Steps per day (watch)</h3>'+svgBars(ev.map(function(x){return{label:lb(x),v:g(x,'steps')}}),stt?{target:stt}:{})+'</div>'+
+ '<div class="card"><h3>⌚ Sleep (hours)</h3>'+svgBars(ev.map(function(x){return{label:lb(x),v:g(x,'sleep'),c:g(x,'sleep')&&g(x,'sleep')<6?'var(--bad)':null}}),{target:8})+'</div>'+
+ '<div class="card"><h3>⌚ Active kcal</h3>'+svgBars(ev.map(function(x){return{label:lb(x),v:g(x,'akcal')}}))+'</div>'+
+ '<div class="card"><h3>⌚ Resting heart rate</h3>'+svgBars(ev.map(function(x){return{label:lb(x),v:g(x,'rhr')}}))+'</div>'}
+document.addEventListener('change',function(ev){var e=ev.target;if(tab!=='watch')return;
+ if(e.id==='wFrom')wi.from=e.value;else if(e.id==='wTo')wi.to=e.value;
+ else if(e.id==='wFile'&&e.files[0]){var f=e.files[0];wi.busy=true;wi.p=0;wi.err='';wi.res=null;rWatch();var lastR=0;
+  hkParse(f,wi.from,wi.to,function(p){wi.p=p;var nw=Date.now();if(nw-lastR>150){lastR=nw;var b=document.querySelector('.wprog div'),t=document.getElementById('wpt');if(b){b.style.width=Math.round(p*100)+'%';t.textContent='Reading… '+Math.round(p*100)+'%'}}})
+  .then(function(R){wi.busy=false;wi.res=R;if(!Object.keys(R.days).length)wi.err='No watch data found in that date range.';rWatch();var s=document.getElementById('wsum');s&&s.scrollIntoView({block:'start'})})
+  .catch(function(x){wi.busy=false;wi.err=x&&x.message||String(x);rWatch()})}});
+document.addEventListener('click',function(ev){if(tab!=='watch')return;var b=ev.target.closest('button');if(!b)return;if(b.id==='wImport')wImport();else if(b.id==='wRemove')wRemove()});
 // ---- home menu (add items here) ----
 var MENU=[
  {ic:'🎨',label:'Settings',sub:'Colour themes, background photo, targets',run:function(){tab='settings';render();scrollTo(0,0)}},
  {ic:'🛒',label:'Shopping list',sub:'Groceries for your diet × days',run:function(){tab='shop';render();scrollTo(0,0)}},
+ {ic:'⌚',label:'Connect iWatch',sub:'Import Apple Watch data via Apple Health',run:function(){tab='watch';render();scrollTo(0,0)}},
  {ic:'🕘',label:'Diet history',sub:'All diets, deleted ones, restore',run:function(){tab='meals';dv='hist';render();scrollTo(0,0)}},
  {ic:'💾',label:'Backup / Export',sub:'Download your data as a file',run:function(){doExport()}}
 ];
