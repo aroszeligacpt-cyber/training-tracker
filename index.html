@@ -262,7 +262,7 @@ function habHit(){var d=peek(cur);return S.habits.filter(function(hb){return n(d
 function gaugeCard(e,t){var g=TG(cur),R=130,cx=195,cy=170,A=Math.PI*R,p=Math.max(0,Math.min(100,e.score)),
  wh=S.habits.find(function(h){return h.type!=='bool'&&(h.id==='water'||/water/i.test(h.name))}),
  B=[['kcal',t.kcal,g.kcal,' kcal'],['Protein',t.protein,g.protein,' g'],['Carbs',t.carbs,g.carbs,' g'],['Fat',t.fat,g.fat,' g']];
- if(wh)B.push(['Water',n(peek(cur).habits[wh.id]),n(wh.target),' '+(wh.unit||'L')]);
+ if(wh)B.push(['Water',n(peek(cur).habits[wh.id]),n(wh.target),' '+(wh.unit||'L')]);B=typeof gBars==='function'?gBars(B,t,g):B;
  var tk='';for(var i=0;i<=4;i++){var a=Math.PI*(1-i/4);tk+='<line x1="'+(cx+(R+18)*Math.cos(a)).toFixed(1)+'" y1="'+(cy-(R+18)*Math.sin(a)).toFixed(1)+'" x2="'+(cx+(R+25)*Math.cos(a)).toFixed(1)+'" y2="'+(cy-(R+25)*Math.sin(a)).toFixed(1)+'" stroke="var(--mu)" stroke-width="2"/>'}
  var arc='M'+(cx-R)+' '+cy+' A'+R+' '+R+' 0 0 1 '+(cx+R)+' '+cy;
  return'<div class="card full gcard"><button class="gbtn" data-go="report" aria-label="Open report"><svg viewBox="0 0 390 250" width="100%"><defs><linearGradient id="hgg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--deep)"/><stop offset=".5" style="stop-color:var(--ac)"/><stop offset="1" style="stop-color:var(--mag)"/></linearGradient><filter id="hgl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'+
@@ -296,7 +296,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v37 · 13 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v38 · 13 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2012,4 +2012,53 @@ window.addEventListener('click',function(ev){var b=ev.target.closest('button');i
   save();xrClose();rWorkout()}},true);
 document.addEventListener('keydown',function(e){if(e.target.id==='xrn'&&e.key==='Enter'){var b=document.querySelector('[data-xrgo="r"]');b&&b.click()}if(XR&&e.key==='Escape')xrClose()});
 
+
+// ---- v38: customisable gauge ----
+function gsel(){return ui().gsel||null}
+function gDefKeys(){return['m:kcal','m:protein','m:carbs','m:fat'].concat(S.habits.map(function(h){return'h:'+h.id}))}
+function gItems(){var L=[['m:kcal','🔥 Calories'],['m:protein','🥩 Protein'],['m:carbs','🍚 Carbs'],['m:fat','🥑 Fat'],['fibre','🥦 Fibre']];
+ S.habits.forEach(function(h){L.push(['h:'+h.id,'✅ '+h.name+(h.type==='bool'?'':' ('+nf(h.target)+' '+(h.unit||'')+')')])});
+ L.push(['wk','🏋️ Workout done'],['cardio','🔥 Cardio done'],['wsteps','⌚ Steps from watch']);return L}
+var _ev38=evalDay;evalDay=function(s){var G=gsel();if(!G)return _ev38(s);var K={};(G.k||[]).forEach(function(k){K[k]=1});
+ var base=_ev38(s),items=[],mm={'Calories':'m:kcal','Protein':'m:protein','Carbs':'m:carbs','Fat':'m:fat'};
+ base.items.forEach(function(it){var k=mm[it.name];if(k){if(K[k])items.push(it);return}var h=S.habits.find(function(x){return x.name===it.name});if(h&&K['h:'+h.id])items.push(it)});
+ var t=totals(s),d=peek(s);
+ if(K.fibre){var ft=fibTarget(n(TG(s).kcal)),fa=n(t.fibre),fp=ft?fa/ft*100:0;if(ft)items.push({name:'Fibre',unit:'g',target:ft,actual:fa,pct:fp,hit:fp>=90,score:Math.min(fp,100)})}
+ if(K.wk){var w=wk(s),all=0,dn=0;w.ex.forEach(function(e){e.sets.forEach(function(z){all++;if(sd(z))dn++})});var rr=all&&dn===all,sc=dn?(rr?100:50+50*dn/all):0;items.push({name:'Workout',unit:'',bool:true,target:1,actual:dn?1:0,pct:sc,hit:dn>0,score:sc})}
+ if(K.cardio){var b=typeof burned==='function'?n(burned(s)):0,cl=typeof cList==='function'?cList(s).length:0,ct=n(G.cardioT);var cp=ct?Math.min(b/ct*100,999):(cl||b?100:0);items.push({name:'Cardio',unit:ct?'kcal':'',bool:!ct,target:ct||1,actual:ct?b:(cl||b?1:0),pct:cp,hit:ct?b>=ct:(cl>0||b>0),score:Math.min(cp,100)})}
+ if(K.wsteps){var wd=wDay(s);if(wd&&wd.steps){var sh=S.habits.find(function(h){return h.id==='steps'||/steps/i.test(h.name)}),stg=n(G.stepsT)||(sh&&n(sh.target))||10000,sp=wd.steps/stg*100;items.push({name:'Watch steps',unit:'steps',target:stg,actual:wd.steps,pct:sp,hit:sp>=100,score:Math.min(sp,100)})}}
+ var sc2=items.length?items.reduce(function(a,i){return a+i.score},0)/items.length:0;return{items:items,score:Math.round(sc2),hits:items.filter(function(i){return i.hit}).length,logged:base.logged,custom:true}};
+function gBarDefs(t,g){var L=[['kcal','kcal',t.kcal,g.kcal,' kcal'],['protein','Protein',t.protein,g.protein,' g'],['carbs','Carbs',t.carbs,g.carbs,' g'],['fat','Fat',t.fat,g.fat,' g'],['fibre','Fibre',n(t.fibre),fibTarget(n(g.kcal)),' g']];
+ S.habits.forEach(function(h){if(h.type==='bool')return;L.push(['h:'+h.id,h.name,n(peek(cur).habits[h.id]),n(h.target),' '+(h.unit||'')])});
+ if(typeof burned==='function')L.push(['burned','Burned',n(burned(cur)),n((gsel()||{}).cardioT)||300,' kcal']);return L}
+function gBars(B,t,g){var G=gsel();if(!G||!G.bars)return B;var D={};gBarDefs(t,g).forEach(function(x){D[x[0]]=x});
+ return G.bars.filter(function(k){return D[k]}).slice(0,5).map(function(k){var x=D[k];return[/^h:/.test(k)&&/water/i.test(x[1])?'Water':x[1],x[2],x[3],x[4]]})}
+var GP=null;
+function gpOpen(){var G=gsel();GP={k:(G?G.k:gDefKeys()).slice(),bars:G&&G.bars?G.bars.slice():['kcal','protein','carbs','fat'].concat((function(){var w=S.habits.find(function(h){return h.type!=='bool'&&(h.id==='water'||/water/i.test(h.name))});return w?['h:'+w.id]:[]})()),cardioT:G?G.cardioT||'':'',stepsT:G?G.stepsT||'':''};gpR()}
+function gpR(){var e=document.getElementById('gpan');if(!e){e=document.createElement('div');e.id='gpan';document.body.appendChild(e);document.body.style.overflow='hidden'}
+ var hasW=Object.keys(wDays()).length>0,BD=gBarDefs(totals(cur),TG(cur)),bn={};BD.forEach(function(x){bn[x[0]]=x[1]});
+ e.innerHTML='<div class="msb"><div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><h2 style="margin:0">⚙ Customise gauge</h2><button class="sm" data-gpx="1" style="flex:0 0 auto;width:auto">✕</button></div>'+
+ '<h3 style="margin-top:10px">What counts towards the score</h3>'+gItems().map(function(x){var on=GP.k.indexOf(x[0])>=0,dis=x[0]==='wsteps'&&!hasW;return'<div class="pacc"><button class="ck'+(on?' on':'')+'" data-gpk="'+x[0]+'"'+(dis?' disabled':'')+'>'+(on?'✓':'')+'</button><span><b>'+esc(x[1])+'</b>'+(x[0]==='wk'?'<br><small class="mu">Any set logged = hit · all of today’s sets done = 100%</small>':x[0]==='cardio'?'<br><small class="mu">Any cardio logged, or burned ≥ target</small>':x[0]==='wsteps'?'<br><small class="mu">'+(hasW?'Uses watch steps when imported':'No watch data yet (Connect iWatch)')+'</small>':x[0]==='fibre'?'<br><small class="mu">Target ≈ 14 g per 1,000 kcal</small>':'')+'</span></div>'+
+  (x[0]==='cardio'&&on?'<div class="row" style="margin:-4px 0 8px 54px"><input type="number" inputmode="numeric" id="gpct" placeholder="Optional target kcal, e.g. 300" value="'+(GP.cardioT||'')+'"></div>':'')}).join('')+
+ '<p class="mu" style="font-size:13px">'+GP.k.length+' selected. Applies to every day, including the daily score history in Reports.</p>'+
+ '<h3 style="margin-top:12px">Bars under the gauge (up to 5)</h3>'+GP.bars.map(function(k,i){return'<div class="row" style="align-items:center;flex-wrap:nowrap;margin:4px 0"><span style="flex:1"><b>'+(i+1)+'.</b> '+esc(bn[k]||k)+'</span><button class="sm" data-gpu="'+i+'" style="flex:0 0 auto"'+(i?'':' disabled')+'>↑</button><button class="sm" data-gpd="'+i+'" style="flex:0 0 auto"'+(i<GP.bars.length-1?'':' disabled')+'>↓</button><button class="sm dang" data-gpr="'+i+'" style="flex:0 0 auto">✕</button></div>'}).join('')+
+ (GP.bars.length<5?'<div class="fsug" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">'+BD.filter(function(x){return GP.bars.indexOf(x[0])<0}).map(function(x){return'<button class="sm" data-gpa="'+x[0]+'" style="flex:0 0 auto">+ '+esc(x[1])+'</button>'}).join('')+'</div>':'')+
+ '<div class="row" style="margin-top:14px"><button class="pri" id="gpsave">Save</button><button id="gpdef">Reset to default</button></div></div>'}
+function gpClose(){GP=null;var e=document.getElementById('gpan');e&&e.remove();document.body.style.overflow=''}
+(function(){var st=document.createElement('style');st.textContent='#gpan{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.7);overflow:auto;padding:12px}#gpan .msb{background:var(--card);border:1px solid var(--t3);border-radius:18px;padding:14px;max-width:560px;margin:0 auto}#gpan .pacc{margin:6px 0}.gcog{position:absolute;top:8px;right:8px;z-index:2;width:auto!important;min-height:34px!important;padding:0 10px!important;font-size:16px!important}.gcard{position:relative}.ghint{text-align:center;margin:-6px 0 8px;font-size:13px}';document.head.appendChild(st)})();
+window.addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;var D=b.dataset,stop=function(){ev.stopImmediatePropagation();ev.preventDefault()};
+ if(D.gcog){stop();gpOpen();return}
+ if(!GP)return;var ct=document.getElementById('gpct');if(ct)GP.cardioT=ct.value;
+ if(D.gpx){stop();gpClose()}
+ else if(D.gpk){stop();var i=GP.k.indexOf(D.gpk);if(i>=0)GP.k.splice(i,1);else GP.k.push(D.gpk);gpR()}
+ else if(D.gpu||D.gpd){stop();var a=+(D.gpu||D.gpd),c=D.gpu?a-1:a+1,t=GP.bars[a];GP.bars[a]=GP.bars[c];GP.bars[c]=t;gpR()}
+ else if(D.gpr){stop();GP.bars.splice(+D.gpr,1);gpR()}
+ else if(D.gpa){stop();if(GP.bars.length<5)GP.bars.push(D.gpa);gpR()}
+ else if(b.id==='gpdef'){stop();delete ui().gsel;save();gpClose();render();toast('Gauge reset to default')}
+ else if(b.id==='gpsave'){stop();ui().gsel={k:GP.k.slice(),bars:GP.bars.slice(),cardioT:n(GP.cardioT)||'',stepsT:GP.stepsT||''};save();gpClose();render();toast('Gauge updated')}},true);
+var _rh38=rHome;rHome=function(){_rh38();var g=document.querySelector('#t-home .gcard');if(!g)return;g.insertAdjacentHTML('afterbegin','<button class="sm gcog" data-gcog="1" aria-label="Customise gauge">⚙</button>');
+ var G=gsel();if(G&&!(G.k||[]).length){var sv=g.querySelector('.gbtn');sv&&sv.insertAdjacentHTML('afterend','<p class="mu ghint">Nothing selected for the score — tap ⚙ to choose what counts.</p>')}};
+var _rs38=rSettings;rSettings=function(){_rs38();var el=document.getElementById('t-settings');if(el){var G=gsel();el.insertAdjacentHTML('afterbegin','<div class="card"><h2>🎯 Daily score gauge</h2><p class="mu">'+(G?'Custom: '+(G.k||[]).length+' item'+((G.k||[]).length===1?'':'s')+' count towards the score':'Default: calories, macros and all habits')+'</p><button data-gcog="1" style="width:100%">⚙ Customise gauge</button></div>')}};
+
+var _rr38=rReport;rReport=function(){_rr38.apply(this,arguments);var G=gsel(),el=document.getElementById('t-report');if(G&&el&&rp.kind!=='train'){var c=el.querySelector('.card');c&&c.insertAdjacentHTML('beforebegin','<p class="mu" style="font-size:13px;margin:8px 2px">🎯 Daily scores use your custom gauge selection ('+(G.k||[]).length+' items) — applied to all days. <button class="sm" data-gcog="1" style="display:inline-flex;width:auto">⚙ Change</button></p>')}};
 </script></body></html>
