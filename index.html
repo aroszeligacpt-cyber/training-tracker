@@ -296,7 +296,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v38 · 13 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v39 · 13 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -603,21 +603,657 @@ Octopus, cooked|164|29.8|4.4|2.1|1 tentacle=60
 Lobster, cooked|89|19|0|0.9|1 tail meat=120
 Fish fingers, oven-baked|277|11|21.7|16.2|1 finger=28
 Breaded/battered fish fillet, cooked|219|13.5|16.9|10.8|1 fillet=150
+Chicken drumstick, skin on, roasted|216|27|0|11.2|1 drumstick=75
+Chicken leg quarter, roasted|232|23.8|0|15|1 leg=200
+Chicken mince, raw|143|17.4|0|8.1|
+Whole roast chicken, meat & skin|239|27.3|0|13.6|
+Chicken nuggets, baked|275|15|16|17|1 nugget=18
+Chicken Kyiv, baked|245|14|13|15.5|1 kyiv=140
+Chicken tikka pieces|150|24|3|4.5|
+Turkey thigh, raw|117|19.5|0|4.3|
+Turkey rashers|100|19|1.5|2|1 rasher=17
+Duck breast, skinless, raw|123|19.9|0|4.3|1 breast=170
+Duck breast, roasted with skin|337|19|0|28.4|
+Beef fillet steak, raw|155|21.5|0|7.5|1 steak=200
+Rump steak, raw|125|22|0|4|1 steak=225
+Beef brisket, cooked|290|28|0|19.5|
+Roast beef, sliced|160|28|0.5|5|1 slice=25
+Corned beef|205|25.9|0.5|10.9|1 slice=30
+Beef burger patty, raw|248|17|1.5|19.5|1 patty=113
+Beef burger, grilled (5% fat)|160|25|1|6|1 burger=100
+Beef jerky|410|33|11|25.6|1 bag=25
+Beef liver, raw|135|20.4|3.9|3.6|
+Lamb chop, grilled|286|26|0|20|1 chop=70
+Lamb shoulder, roasted|276|24|0|20|
+Pork belly, roasted|518|9.3|0|53|
+Pork tenderloin, raw|120|21|0|3.5|1 tenderloin=400
+Pork shoulder, roasted|250|26|0|16|
+Pork ribs, cooked|290|24|1|21|
+Gammon steak, grilled|172|28|0.5|6.5|1 steak=150
+Pork sausages, grilled|300|15|9|23|1 sausage=45
+Chipolatas, grilled|295|14|10|22|1 chipolata=20
+Lean sausages (97% pork), grilled|165|17|8|7|1 sausage=45
+Streaky bacon, grilled|420|25|0|36|1 rasher=12
+Pork liver, raw|134|21|2.5|3.6|
+Venison, raw|120|22.5|0|2.8|
+Rabbit, raw|136|20.1|0|5.6|
+Meatballs, beef, cooked|240|18|6|16|1 meatball=30
+Black pudding, grilled|297|10.3|19|20.5|1 slice=40
+Lamb kofta, cooked|260|18|4|19|1 kofta=50
+Beef mince 12% fat, raw|190|19|0|12.5|
+Chicken breast slices (deli)|105|22|1|1.5|1 slice=15
+Turkey breast slices (deli)|104|21|1.5|1.5|1 slice=15
+Honey roast ham|120|19|3|3.5|1 slice=20
+Parma ham (prosciutto)|250|26|0.3|16|1 slice=15
+Serrano ham|245|30|0|14|1 slice=15
+Salami|405|22|1.5|35|1 slice=8
+Pepperoni|495|20|1.2|45|1 slice=3
+Chorizo|455|24|2|39|1 slice=8
+Pastrami|147|21.8|0.3|6.2|1 slice=20
+Pâté (pork liver)|319|13|1.5|28.5|1 portion=40
+Hot dog sausage (frankfurter)|290|11|2.5|26|1 sausage=45
+Kabanos (Polish pork sausage)|480|26|2|41|1 stick=25
+Kiełbasa (Polish sausage)|300|14|2|26|1 ring=400
+Kiełbasa krakowska|220|19|1|15.5|1 slice=10
+Szynka (Polish ham)|110|19|1.5|3|1 slice=15
+Polędwica sopocka (smoked pork loin)|120|21|1|3.5|1 slice=15
+Boczek (Polish smoked bacon)|380|15|0|35.5|1 slice=15
+Pasztet (Polish pâté)|260|11|5|22|
+Salceson (head cheese)|210|16|1|16|
+Egg, fried|196|13.6|0.8|15.3|1 egg=50
+Egg, scrambled (with milk)|149|10|1.6|11|1 portion=120
+Egg, poached|143|12.5|0.7|9.5|1 egg=50
+Omelette, plain|154|10.6|0.6|11.7|
+Quail eggs|158|13|0.4|11|1 egg=9
+Liquid egg whites (carton)|48|10.5|0.7|0.2|1 serving=100
+Duck egg|185|12.8|1.5|13.8|1 egg=70
+Milk, 1% fat|42|3.4|5|1|1 glass=250
+Milk, lactose-free semi-skimmed|46|3.5|4.8|1.5|1 glass=250
+Chocolate milk|83|3.3|10.5|2.9|1 bottle=500
+Protein milk (high-protein)|56|6.4|4.6|1.2|1 bottle=330
+Buttermilk|40|3.3|4.8|0.9|1 glass=250
+Kefir|52|3.4|4.5|2|1 glass=250
+Kefir, low-fat|40|3.4|4.4|0.9|1 glass=250
+Maślanka (Polish buttermilk)|37|3.2|4.6|0.5|1 glass=250
+Zsiadłe mleko (soured milk)|62|3|4.5|3.5|1 glass=250
+Śmietana 18% (soured cream)|184|2.5|3.6|18|1 tbsp=15
+Śmietana 12% (soured cream)|133|2.7|3.9|12|1 tbsp=15
+Soured cream|193|2.4|4.6|18|1 tbsp=15
+Crème fraîche|292|2.4|2.6|30|1 tbsp=15
+Whipping cream|340|2|3|36|1 tbsp=15
+Clotted cream|586|1.6|2.3|63.5|1 tbsp=15
+Condensed milk, sweetened|321|7.9|54.4|8.7|1 tbsp=20
+Evaporated milk|134|6.8|10|7.6|
+Twaróg chudy (lean quark cheese, twarog)|99|19.8|3.5|0.5|1 pack=250
+Twaróg półtłusty (half-fat quark cheese, twarog)|133|18.7|3.7|4.7|1 pack=250
+Twaróg tłusty (full-fat quark cheese, twarog)|175|17.6|3.5|10.1|1 pack=250
+Serek wiejski (Polish cottage cheese)|97|11|2|5|1 tub=200
+Serek homogenizowany (vanilla)|150|7|17|6|1 tub=150
+Ser żółty Gouda|356|25|2.2|27.4|1 slice=20
+Edam|341|26|1.4|25.4|1 slice=20
+Emmental|380|28.5|0|29.7|1 slice=20
+Gruyère|413|29.8|0.4|32.3|
+Red Leicester|400|24|0.1|33.7|
+Mature cheddar, reduced fat|314|27.9|0.1|22|1 slice=20
+Cheese slices (processed)|300|15|6|24|1 slice=20
+Cheese spread|260|11|5|22|1 portion=20
+Camembert|300|19.8|0.5|24.3|
+Blue cheese (Stilton)|410|23.7|0.1|35|
+Goat's cheese, soft|320|21|1|26|
+Ricotta|150|9.5|3.5|11|1 tbsp=30
+Mascarpone|435|4.6|4.8|44|1 tbsp=30
+Paneer|321|21.4|3.6|25|
+Burrata|300|14|2|26|1 ball=125
+Grana Padano|398|33|0|29|1 tbsp grated=10
+Pecorino Romano|387|31.8|3.6|26.9|
+Manchego|440|26|0.5|37|
+Oscypek (Polish smoked sheep cheese)|340|23|2|27|1 cheese=200
+Dubliner cheese|404|25|0.1|33.6|1 slice=20
+Irish cheddar, mild|405|25|0.1|34|1 slice=20
+Cottage cheese, low fat|72|12.4|3.1|1.0|
+Cream cheese, Philadelphia original|235|5.4|4|22|1 tbsp=30
+Ghee|900|0|0|99.8|1 tsp=5
+Greek yoghurt, 2% fat|73|9.9|3.9|2|1 pot=170
+Skyr, flavoured|72|8.5|8.2|0.2|1 pot=150
+Icelandic skyr, vanilla|78|9|9|0.2|1 pot=150
+Protein yoghurt (high-protein pot)|62|10|4|0.3|1 pot=200
+Coconut yoghurt alternative|110|0.9|6|9|1 pot=125
+Soya yoghurt, plain|50|4|2|2.3|1 pot=125
+Natural yoghurt, full fat|79|5.7|7.8|3|1 pot=125
+Fat-free fruit yoghurt|47|4.5|6.5|0.2|1 pot=125
+Yoghurt drink (probiotic shot)|70|1.8|12|1.4|1 bottle=100
+Ayran (yoghurt drink)|36|1.7|2.5|1.8|1 glass=250
+Jogurt naturalny (Polish natural yoghurt)|60|4.3|6|2|1 pot=180
+Frozen yoghurt|159|4|24|5.5|1 scoop=70
+Rice pudding (canned)|89|3.3|14|2|1 can=400
+Custard (ready-made)|100|2.9|15|3|1 pot=150
+Tofu, silken|55|4.8|2|3|
+Smoked tofu|170|17|3|10|1 block=200
+Seitan|370|75|14|1.9|1 portion=100
+Edamame beans, shelled|121|11.9|8.9|5.2|1 handful=50
+Quorn mince|105|14.5|4.5|2|1 portion=100
+Quorn pieces|103|14|4.5|2.6|
+Soya mince, dry (TVP)|327|51|19|1|1 portion=50
+Falafel|333|13.3|31.8|17.8|1 falafel=17
+Veggie burger, cooked|190|15|12|8.5|1 burger=100
+Plant-based burger (pea protein)|245|17|5|17|1 burger=113
+Vegan sausages, cooked|220|14|10|13|1 sausage=50
+Pea protein powder|380|80|3|6|1 scoop=30
+Lentil pasta, dry|340|25|46|2|1 portion=75
+Chickpea pasta, dry|355|21|52|6|1 portion=75
+Jasmine rice, raw|356|6.7|79|0.6|1 portion=75
+Jasmine rice, cooked|129|2.7|28|0.3|1 portion=180
+Wild rice, cooked|101|4|21.3|0.3|
+Risotto (arborio) rice, raw|350|6.5|79|0.6|1 portion=75
+Sushi rice, cooked|130|2.4|29|0.2|
+Egg fried rice|163|4.2|26|5|1 portion=250
+Rice noodles, dry|364|6|80|0.6|1 nest=60
+Rice noodles, cooked|109|1.8|24|0.2|
+Udon noodles, cooked|105|2.6|21.6|0.4|1 pack=200
+Soba noodles, cooked|99|5.1|21.4|0.1|
+Instant noodles, dry|440|9|61|17|1 packet=85
+Fresh egg pasta (tagliatelle), uncooked|275|11|50|3|1 portion=125
+Gnocchi|133|3.3|29|0.3|1 portion=200
+Tortellini, cheese, fresh|265|11|40|7|1 portion=150
+Ravioli, beef, fresh|245|10|36|6.5|
+Lasagne sheets, dry|354|12.5|71|1.5|1 sheet=20
+Spaghetti, cooked|158|5.8|31|0.9|1 portion=230
+Bulgur wheat, dry|342|12.3|76|1.3|1 portion=60
+Bulgur wheat, cooked|83|3.1|18.6|0.2|
+Pearl barley, dry|352|9.9|77.7|1.2|
+Pearl barley, cooked|123|2.3|28.2|0.4|
+Buckwheat groats (kasza gryczana), dry|343|13.3|71.5|3.4|
+Buckwheat (kasza gryczana), cooked|92|3.4|19.9|0.6|1 portion=180
+Millet (kasza jaglana), dry|378|11|73|4.2|
+Millet (kasza jaglana), cooked|119|3.5|23.7|1|
+Pearl barley groats (kasza jęczmienna), cooked|123|2.3|28|0.4|
+Semolina (kasza manna), dry|360|12.7|72.8|1.1|
+Polenta, cooked|70|1.6|15|0.3|
+Cornmeal, dry|370|8.1|79|3.9|
+Spelt grain, dry|338|14.6|70.2|2.4|
+Freekeh, dry|325|12.6|62|2.5|
+Plain flour|364|10.3|76.3|1|1 tbsp=10
+Wholemeal flour|340|13.2|72|2.5|1 tbsp=10
+Rye flour|325|8.8|76|1.7|
+Oat flour|404|14.7|65.7|9.1|
+Almond flour|590|21|21|50|1 tbsp=8
+Coconut flour|400|17|60|13|
+Cornflour|381|0.3|91.3|0.1|1 tbsp=10
+Breadcrumbs|395|13.4|72|5.3|
+Chleb żytni (rye bread, zytni)|259|8.5|48.3|3.3|1 slice=35
+Chleb żytni razowy (wholegrain rye bread, zytni razowy)|213|5.9|42|1.7|1 slice=40
+Fitness bread|188|5.9|32.6|1.8|1 slice (72 g)=72;thin slice=50
+Pumpernikiel (pumpernickel)|250|8.7|47.5|3.1|1 slice=40
+Chleb pszenny (Polish wheat bread)|245|8|50|1.5|1 slice=35
+Bułka kajzerka (Polish roll)|290|9.5|56|2.5|1 roll=50
+Chałka (Polish sweet braided bread)|330|8.5|56|7.5|1 slice=40
+Irish brown bread (wholemeal soda)|230|8.5|40|4|1 slice=40
+Irish wheaten bread|240|8|42|4.5|1 slice=40
+Batch loaf (white)|245|8.5|47|1.9|1 slice=40
+Seeded batch bread|265|10|40|6.5|1 slice=45
+Granary bread|245|10|42|3|1 slice=40
+Rye bread, light|259|8.5|48.3|3.3|1 slice=30
+Rye crispbread (Ryvita)|350|9|66|1.7|1 slice=10
+Baguette, white|274|10|56|1.8|1 portion=60
+Ciabatta|270|9.5|50|3.8|1 roll=80
+Brioche bun|340|9|50|11|1 bun=50
+Burger bun, white|270|9|48|4.5|1 bun=60
+Hot dog roll|265|9|48|4|1 roll=55
+Wholemeal roll|240|10|43|3.5|1 roll=60
+Naan bread|292|8|47.5|7.5|1 naan=130
+Chapati|240|8|43|5|1 chapati=55
+Pitta bread, wholemeal|265|10|50|2|1 pitta=60
+White wrap / tortilla|300|8.5|50|7|1 wrap=62
+Corn tortilla|218|5.7|44.6|2.9|1 tortilla=26
+English muffin|227|8.9|44|1.8|1 muffin=60
+Croissant|406|8.2|45.8|21|1 croissant=60
+Pain au chocolat|414|7.5|45|22|1 pastry=60
+Scone, plain|360|7.2|53.8|13|1 scone=70
+Bagel, wholemeal|245|10|45|2|1 bagel=85
+Thins / sandwich thins|245|10|43|3|1 thin=43
+Garlic bread|360|7.8|45|16|1 slice=30
+Pancakes (Scotch pancakes)|260|6|45|6|1 pancake=30
+Waffles|291|7.9|33|14|1 waffle=35
+French toast|229|7.7|25|10.8|
+Toast, white|265|9.5|52|2|1 slice=30
+Rice Krispies|383|7|84|1|1 bowl=30
+Special K|379|10|79|1.5|1 bowl=30
+Shredded Wheat|340|11.6|67.8|2.5|1 biscuit=22
+Shreddies|371|10|73|1.9|1 bowl=40
+Cheerios|375|7.8|73|3.8|1 bowl=30
+Crunchy Nut cornflakes|403|6|82|5|1 bowl=30
+Frosties|375|4.5|87|0.6|1 bowl=30
+Coco Pops|387|5|85|2.5|1 bowl=30
+Ready Brek|373|11.8|59|8.7|1 bowl=40
+Instant porridge sachet, plain|370|11|60|8|1 sachet=27
+Oat bran|246|17.3|66.2|7|1 tbsp=10
+Puffed rice|402|6.3|90|1|
+Granola, low sugar|430|11|55|17|1 bowl=45
+Owsianka (Polish porridge oats, górskie)|370|13|60|7|
+Potatoes, roast (in oil)|149|2.9|25.9|4.5|1 portion=150
+Potato wedges, baked|160|2.8|25|5.5|
+New potatoes, boiled|75|1.5|17.8|0.3|1 potato=40
+Sweet potato fries, oven|210|2|30|9|
+Hash browns, oven|210|2.5|25|11|1 hash brown=45
+Potato waffles|200|2.4|25|10|1 waffle=55
+Potato salad|143|1.6|11.8|10|
+Croquettes, potato|210|3.5|25|10.5|1 croquette=30
+Instant mashed potato, made up|85|2|14|2.5|
+Champ (Irish mashed potato with scallions)|115|2.2|15|5|1 portion=200
+Colcannon|105|2.2|13|5|1 portion=200
+Boxty (Irish potato pancake)|180|3.5|27|6.5|1 boxty=90
+Potato farls (Irish)|190|4|38|2|1 farl=60
+Placki ziemniaczane (Polish potato pancakes)|210|4|22|12|1 pancake=60
+Kopytka (Polish potato dumplings)|155|3.7|30|2|
+Lentils, green/brown, dry|352|24.6|63.4|1.1|1 portion=60
+Lentils, puy, cooked|116|9|20|0.4|
+Butter beans, canned (drained)|103|7|18|0.5|
+Cannellini beans, canned (drained)|91|6.7|14|0.4|
+Borlotti beans, canned (drained)|100|7.5|16|0.5|
+Haricot beans, canned (drained)|100|6.6|17|0.5|
+Pinto beans, canned (drained)|114|7|20|0.9|
+Mung beans, cooked|105|7|19|0.4|
+Split peas, dry|341|24.5|60.4|1.2|
+Marrowfat peas, mushy|81|5.5|13.8|0.6|
+Reduced sugar baked beans|72|4.8|11|0.4|1 can=415
+Refried beans|90|5.4|14|1.2|
+Dal (lentil curry)|116|6|15|3.5|1 portion=200
+Chickpeas, dried|378|20.5|63|6|
+Soya beans, cooked|172|18.2|8.4|9|
+Fasolka po bretońsku (Polish baked beans with sausage)|130|7|12|6|1 portion=300
+Spring onion|32|1.8|7.3|0.2|1 onion=15
+Red onion|40|1.2|9.3|0.1|1 onion=150
+Shallots|72|2.5|16.8|0.1|1 shallot=25
+Leek|31|1.6|2.9|0.5|1 leek=150
+Red cabbage|31|1.4|7.4|0.2|
+Savoy cabbage|27|2|6.1|0.1|
+Pak choi|13|1.5|2.2|0.2|1 head=100
+Tenderstem broccoli|35|3.8|3.5|0.6|1 portion=80
+Kale, cooked|28|1.9|5.6|0.4|
+Spinach, cooked|23|3|3.8|0.3|
+Watercress|11|2.3|1.3|0.1|
+Iceberg lettuce|14|0.9|3|0.1|
+Romaine lettuce|17|1.2|3.3|0.3|
+Mixed salad leaves|15|1.4|2.4|0.2|1 bag=120
+Radish|16|0.7|3.4|0.1|1 radish=8
+Beetroot, raw|43|1.6|9.6|0.2|
+Turnip|28|0.9|6.4|0.1|
+Swede|37|1.1|8.6|0.2|
+Celeriac|42|1.5|9.2|0.3|
+Fennel|31|1.2|7.3|0.2|
+Butternut squash|45|1|11.7|0.1|
+Pumpkin|26|1|6.5|0.1|
+Sweet pepper, yellow|27|1|6.3|0.2|1 pepper=160
+Chilli pepper, red|40|1.9|8.8|0.4|1 chilli=15
+Jalapeños, pickled|28|0.9|5|0.9|
+Okra|33|1.9|7.5|0.2|
+Green peas, fresh|81|5.4|14.5|0.4|
+Mangetout|42|2.8|7.6|0.2|
+Sugar snap peas|42|2.8|7.6|0.2|
+Runner beans|23|1.6|4|0.3|
+Broad beans|88|7.9|11.7|0.7|
+Sweetcorn, on the cob|86|3.3|19|1.4|1 cob=120
+Baby corn|26|2.5|3|0.4|
+Bean sprouts|30|3|5.9|0.2|
+Artichoke hearts, canned|47|2.8|6|0.3|
+Mushrooms, chestnut|22|3.1|3.3|0.3|
+Portobello mushroom|22|2.1|3.9|0.4|1 mushroom=85
+Shiitake mushrooms|34|2.2|6.8|0.5|
+Tomatoes, canned (chopped)|21|1.1|3.8|0.1|1 can=400
+Passata|26|1.4|4.6|0.1|1 portion=125
+Tomato purée|76|4.3|14.2|0.4|1 tbsp=15
+Sun-dried tomatoes in oil|213|5.1|23|14|
+Gherkins / pickles|11|0.5|2.3|0.2|1 gherkin=35
+Ogórek kiszony (Polish pickled cucumber)|12|0.6|2|0.1|1 cucumber=60
+Sauerkraut (kapusta kiszona)|19|0.9|4.3|0.1|
+Olives, green|145|1|3.8|15.3|1 olive=4
+Olives, black|115|0.8|6|10.7|1 olive=4
+Coleslaw|155|1|7|13.5|
+Stir-fry vegetable mix|30|1.5|5|0.3|
+Frozen mixed vegetables|60|2.9|11|0.5|
+Ratatouille|60|1|6|3.5|
+Vegetable soup|40|1.5|7|0.8|1 bowl=300
+Tomato soup (canned)|59|0.9|8.5|2.4|1 bowl=300
+Barszcz czerwony (Polish beetroot soup)|30|1|5.5|0.3|1 bowl=300
+Żurek (Polish sour rye soup)|70|3|6|3.8|1 bowl=350
+Rosół (Polish chicken broth)|25|2.5|1|1.2|1 bowl=350
+Leek & potato soup|55|1.4|8|2|1 bowl=300
+Edamame in pods|122|10.3|8.9|5.2|
+Seaweed (nori sheets)|188|41|25|1.8|1 sheet=2.5
+Coriander, fresh|23|2.1|3.7|0.5|
+Parsley, fresh|36|3|6.3|0.8|
+Basil, fresh|23|3.2|2.7|0.6|
+Ginger, fresh|80|1.8|17.8|0.8|1 tsp grated=5
+Dill, fresh|43|3.5|7|1.1|
+Apricot|48|1.4|11.1|0.4|1 apricot=35
+Nectarine|44|1.1|10.6|0.3|1 nectarine=140
+Clementine / satsuma|47|0.9|12|0.2|1 fruit=70
+Grapefruit|42|0.8|10.7|0.1|1 half=130
+Lime|30|0.7|10.5|0.2|1 lime=67
+Lemon|29|1.1|9.3|0.3|1 lemon=60
+Blackberries|43|1.4|9.6|0.5|
+Blackcurrants|63|1.4|15.4|0.4|
+Redcurrants|56|1.4|13.8|0.2|
+Cranberries, fresh|46|0.4|12|0.1|
+Cranberries, dried|308|0.2|82.4|1.4|1 handful=30
+Gooseberries|44|0.9|10.2|0.6|
+Rhubarb, stewed|21|0.9|4.5|0.2|
+Pomegranate seeds|83|1.7|18.7|1.2|1 portion=80
+Papaya|43|0.5|10.8|0.3|
+Passion fruit|97|2.2|23.4|0.7|1 fruit=18
+Lychees|66|0.8|16.5|0.4|
+Figs, fresh|74|0.8|19.2|0.3|1 fig=50
+Figs, dried|249|3.3|63.9|0.9|1 fig=20
+Prunes|240|2.2|63.9|0.4|1 prune=10
+Apricots, dried|241|3.4|62.6|0.5|1 apricot=8
+Sultanas|299|3.1|79|0.5|1 tbsp=15
+Dried mango|319|2.5|78|1.2|
+Banana chips|519|2.3|58.4|33.6|
+Coconut, fresh|354|3.3|15.2|33.5|1 portion=40
+Desiccated coconut|660|6.9|23.7|64.5|1 tbsp=6
+Dragon fruit|60|1.2|13|0|
+Persimmon (Sharon fruit)|70|0.6|18.6|0.2|1 fruit=170
+Guava|68|2.6|14.3|1|
+Plantain, cooked|116|0.8|31.2|0.2|
+Tinned peaches in juice|44|0.6|11.4|0|
+Tinned pineapple in juice|60|0.4|15.7|0.1|
+Fruit cocktail in juice|46|0.4|12|0|
+Apple sauce|68|0.2|17|0.2|
+Stewed apple, unsweetened|33|0.3|8.1|0.1|
+Fruit salad, fresh|55|0.6|13|0.2|
+Frozen raspberries|52|1.2|11.9|0.7|
+Frozen tropical fruit mix|55|0.7|13|0.2|
+Acai purée, unsweetened|70|1|4|5|
+Śliwki suszone (Polish dried plums)|240|2.2|63.9|0.4|
+Pistachios|560|20.2|27.2|45.3|1 handful=30
+Pecans|691|9.2|13.9|72|1 handful=30
+Macadamia nuts|718|7.9|13.8|75.8|1 handful=30
+Hazelnuts|628|15|16.7|60.8|1 handful=30
+Pine nuts|673|13.7|13.1|68.4|1 tbsp=10
+Salted peanuts|599|26|16|50|1 bag=50
+Dry roasted peanuts|585|24|21.5|49.7|1 handful=30
+Honey roasted cashews|565|15|32|42|
+Trail mix|462|13.8|44.9|29.4|1 handful=40
+Sesame seeds|573|17.7|23.5|49.7|1 tbsp=9
+Hemp seeds|553|31.6|8.7|48.8|1 tbsp=10
+Linseed (flaxseed), whole|534|18.3|28.9|42.2|1 tbsp=10
+Mixed seeds|570|25|15|47|1 tbsp=10
+Cashew butter|587|17.6|27.6|49.4|1 tbsp=16
+Peanut butter, smooth (no added sugar)|615|25.8|13|50|1 tbsp=16
+Peanut butter powder (PB2)|410|50|29|12|1 tbsp=6
+Tahini|595|17|21.2|53.8|1 tbsp=15
+Nutella (hazelnut chocolate spread)|539|6.3|57.5|30.9|1 tbsp=15
+Coconut butter|660|6|23|64|
+Sunflower oil|884|0|0|100|1 tbsp=14
+Vegetable oil|884|0|0|100|1 tbsp=14
+Extra virgin olive oil spray (1 spray)|884|0|0|100|1 spray=0.2
+Sesame oil|884|0|0|100|1 tsp=5
+Avocado oil|884|0|0|100|1 tbsp=14
+Lard|898|0|0|99.7|1 tbsp=13
+Salad cream|330|1.5|17|28|1 tbsp=15
+Brown sauce|105|0.9|25|0.2|1 tbsp=15
+BBQ sauce|172|0.8|41|0.6|1 tbsp=17
+Sweet chilli sauce|220|0.4|53|0.3|1 tbsp=15
+Sriracha|93|1.9|19|0.9|1 tsp=5
+Hot sauce (Tabasco style)|12|0.5|0.8|0.8|1 tsp=5
+Mustard, English|165|7.4|9.5|9.8|1 tsp=5
+Dijon mustard|140|7.5|5|10|1 tsp=5
+Musztarda (Polish mustard)|110|5|9|5.5|1 tsp=6
+Horseradish sauce|190|2.5|17|12|1 tbsp=15
+Chrzan (Polish horseradish)|90|1.5|12|4|1 tsp=6
+Mint sauce|101|1.6|21.5|0|1 tbsp=15
+Cranberry sauce|151|0.1|39|0.1|1 tbsp=15
+Apple chutney / mango chutney|190|0.5|47|0.3|1 tbsp=15
+Hummus, reduced fat|240|7.5|15|16.5|1 tbsp=30
+Guacamole|155|1.5|6|14|1 tbsp=30
+Salsa, tomato|36|1.5|7|0.2|1 tbsp=30
+Tzatziki|95|4|4|7|1 tbsp=30
+Garlic mayonnaise (aioli)|650|1|3|71|1 tbsp=15
+Caesar dressing|450|2.5|4|47|1 tbsp=15
+Balsamic vinegar|88|0.5|17|0|1 tbsp=15
+Vinaigrette (French dressing)|430|0.3|7|45|1 tbsp=15
+Light salad dressing|70|0.3|12|2.5|1 tbsp=15
+Teriyaki sauce|89|5.9|15.6|0|1 tbsp=18
+Oyster sauce|51|1.4|10.9|0.3|1 tbsp=18
+Hoisin sauce|220|3.3|44|3.4|1 tbsp=16
+Fish sauce|35|5.1|3.6|0|1 tbsp=18
+Worcestershire sauce|78|0|19.5|0|1 tsp=5
+Pesto, red|330|4|8|30|1 tbsp=15
+Korma sauce (jar)|160|1.8|10|12.5|1 jar=500
+Tikka masala sauce (jar)|105|1.6|9|6.8|1 jar=500
+Sweet & sour sauce (jar)|105|0.4|25|0.3|1 jar=450
+Bolognese sauce (jar)|50|1.6|8|1.2|1 jar=500
+Carbonara sauce (jar)|130|3|5|11|
+Chip shop curry sauce|95|1.7|13|4|1 portion=150
+Stock cube, chicken|255|10|26|12|1 cube=10
+Coconut milk, canned|197|1.6|3|20|1 can=400
+Coconut milk, light (canned)|73|0.7|2|7|1 can=400
+Peanut satay sauce|260|7|16|19|
+Golden syrup|325|0.3|79|0|1 tbsp=20
+Agave syrup|310|0|76|0|1 tbsp=20
+Brown sugar|380|0.1|98|0|1 tsp=4
+Icing sugar|398|0|99.8|0|
+Sweetener (sucralose granules)|386|0|96.5|0|1 tsp=0.5
+Cocoa powder, unsweetened|228|19.6|57.9|13.7|1 tbsp=5
+Lemon curd|283|0.6|62|3.5|1 tbsp=15
+Marmalade|261|0.2|65|0|1 tbsp=15
+Salt|0|0|0|0|1 pinch=0.5
+Tortilla chips|490|7|60|24|1 handful=30
+Pretzels|380|10|79|3|1 bag=40
+Popcorn, sweet & salty|460|6|70|18|1 bag=30
+Popcorn, butter (microwave)|520|8|55|30|1 bag=30
+Pringles original|530|4.1|51|34|1 portion=30
+Hula Hoops|510|3.3|59|29|1 bag=24
+Taytos cheese & onion (Irish crisps)|525|6|52|32|1 bag=25
+Rice crackers|390|7.5|81|3.5|
+Oatcakes|440|11|57|18|1 oatcake=10
+Digestive biscuits|470|7|62|21|1 biscuit=15
+Chocolate digestives|490|6.5|62|24|1 biscuit=17
+Rich tea biscuits|455|7.5|72|15|1 biscuit=8
+Custard creams|480|5.5|68|21|1 biscuit=12
+Jaffa cakes|375|4.5|69|8.3|1 cake=12
+Hobnobs|475|6.5|61|22|1 biscuit=15
+Kimberley biscuits (Irish)|395|4|73|9.5|1 biscuit=19
+Mikado biscuits (Irish)|400|4|72|10.5|1 biscuit=14
+Chocolate chip cookie|490|5.5|65|23|1 cookie=25
+Shortbread|510|6|63|26|1 finger=20
+Flapjack|460|5.5|60|22|1 bar=60
+Brownie|440|5|55|22|1 brownie=50
+Muffin, blueberry|375|5.5|51|16.5|1 muffin=110
+Doughnut, jam|330|5.5|48|13.5|1 doughnut=75
+Doughnut, glazed|420|5|50|22|1 doughnut=60
+Pączek (Polish doughnut)|380|6|48|18|1 pączek=80
+Victoria sponge cake|415|4|52|21.5|1 slice=60
+Carrot cake|400|4.5|48|21|1 slice=100
+Cheesecake|320|5.5|25|22.5|1 slice=100
+Sernik (Polish cheesecake)|285|8|28|16|1 slice=100
+Apple pie|265|2.5|37|12|1 slice=120
+Szarlotka (Polish apple cake)|270|3.5|40|11|1 slice=100
+Barmbrack (Irish fruit loaf)|290|5.5|57|4.5|1 slice=50
+Mince pie|400|4|60|16|1 pie=55
+Ice cream, vanilla|201|3.5|24|10|1 scoop=50
+Ice cream, low-calorie (Halo Top style)|85|5.5|16|2.5|1 tub=473
+Sorbet|125|0.3|31|0.1|1 scoop=60
+Ice lolly|80|0|20|0|1 lolly=70
+Jelly, made up|60|1.2|14|0|1 pot=125
+Jelly sweets / gummies|340|5.5|79|0.2|1 bag=40
+Haribo Starmix|343|6.6|77|0.5|1 bag=35
+Wine gums|330|5|75|0.5|1 bag=40
+Marshmallows|330|3|80|0|1 marshmallow=7
+Boiled sweets|390|0|97|0|
+Dairy Milk chocolate|534|7.3|57|30|1 bar=45
+Galaxy chocolate|546|6.6|56|32|1 bar=42
+Kit Kat|518|6.4|61.5|26.8|1 2-finger=21
+Twix|495|4.6|64|24|1 bar=50
+Mars bar|449|4.2|70|16.8|1 bar=51
+Snickers|488|8.6|58|24|1 bar=48
+Bounty|487|3.7|58|26|1 bar=57
+Maltesers|505|7.7|61|25|1 bag=37
+Crunchie|465|4|72|17.6|1 bar=40
+Twirl|530|7.6|56|30.5|1 bar=43
+Dark chocolate 85%|600|12.5|19|50|1 square=10
+White chocolate|539|5.9|59|32|1 square=10
+Ptasie mleczko (Polish marshmallow chocolates)|450|3.5|62|21|1 piece=10
+Prince Polo (Polish wafer bar)|525|6|59|29|1 bar=35
+Wafer bar|520|6|63|27|1 bar=35
+Cereal bar (Nutri-Grain style)|370|4.5|67|9|1 bar=37
+Nakd bar (fruit & nut)|400|9|48|17|1 bar=35
+Kind bar (nuts & sea salt)|500|16|38|38|1 bar=40
+Grenade Carb Killa protein bar|360|33|31|13|1 bar=60
+Fulfil protein bar|360|33|31|13|1 bar=55
+Quest protein bar|340|33|40|11|1 bar=60
+Misfits vegan protein bar|420|30|33|18|1 bar=45
+Trek protein flapjack|410|17|50|15|1 bar=50
+Oatmeal protein cookie|390|25|45|12|1 cookie=75
+Rice cakes, chocolate|480|7|62|23|1 cake=17
+Protein crisps|410|40|33|12|1 bag=32
+Protein pudding|72|10|5.5|1.3|1 pot=200
+Water|0|0|0|0|1 glass=250
+Sparkling water|0|0|0|0|1 bottle=500
+Coconut water|19|0.7|3.7|0.2|1 carton=330
+Lemonade, regular|46|0|11.5|0|1 can=330
+Lemonade, diet|1|0|0.2|0|1 can=330
+Orange squash, no added sugar (diluted)|2|0|0.4|0|1 glass=250
+Club Orange (Irish orange soda)|48|0|12|0|1 can=330
+7UP / Sprite|40|0|10|0|1 can=330
+Fanta Orange|19|0|4.6|0|1 can=330
+Iced tea, sweetened|30|0|7.5|0|1 bottle=500
+Kompot (Polish fruit drink)|35|0.1|9|0|1 glass=250
+Kvass (kwas chlebowy)|27|0.2|5.2|0|1 bottle=500
+Smoothie, fruit (shop-bought)|55|0.6|12.5|0.2|1 bottle=250
+Apple & orange juice drink|45|0.2|11|0|1 glass=250
+Tomato juice|17|0.9|3.5|0.1|1 glass=200
+Pineapple juice|53|0.4|12.9|0.1|1 glass=250
+Cranberry juice drink|46|0|11.5|0|1 glass=250
+Protein shake, ready-to-drink|60|8|4|1.2|1 bottle=330
+Whey protein shake, made with water|40|8|0.8|0.5|1 shake=300
+Whey protein shake, made with semi-skimmed milk|75|8.3|5.1|2.1|1 shake=330
+Hot chocolate, made with milk|77|3.5|10.6|2.2|1 mug=250
+Mocha|70|3|9|2.6|1 mug=350
+Flat white (whole milk)|55|3|4.4|3|1 cup=220
+Americano|1|0.1|0|0|1 cup=350
+Espresso|2|0.1|0|0.2|1 shot=30
+Iced latte (semi-skimmed)|40|2.6|4|1.4|1 cup=400
+Tea, black, no milk|1|0|0.3|0|1 mug=250
+Green tea|1|0.2|0|0|1 mug=250
+Herbal tea|1|0|0.2|0|1 mug=250
+Energy drink, sugar-free|3|0|0.3|0|1 can=250
+Monster Energy (regular)|47|0|11|0|1 can=500
+Lucozade Sport|28|0|6.4|0|1 bottle=500
+Cider|42|0|4|0|1 pint=568
+Cider, low sugar / dry|35|0|1.5|0|1 pint=568
+Gin & slimline tonic|60|0|0|0|1 glass=250
+Spirits (vodka/gin/whiskey, 40%)|222|0|0|0|1 shot=25
+Prosecco|70|0.1|1.5|0|1 glass=125
+Rosé wine|71|0.1|2|0|1 glass=175
+Low-alcohol beer (0.0%)|20|0.3|4.5|0|1 bottle=330
+Light beer|29|0.2|1.6|0|1 bottle=330
+Polish lager (piwo)|43|0.4|3.2|0|1 bottle=500
+Irish cream liqueur|327|3|19.8|13.6|1 shot=25
+Rice milk|47|0.3|9.2|1|1 glass=250
+Coconut milk drink, unsweetened|20|0.1|0.3|1.9|1 glass=250
+Cashew milk drink, unsweetened|22|0.5|1|1.7|1 glass=250
+Pea milk drink, unsweetened|40|3.3|0.3|2.5|1 glass=250
+Oat milk, barista|61|1|6.6|3|1 glass=250
+Soya milk, sweetened|43|3|2.5|1.8|1 glass=250
+Milkshake, chocolate (fast food)|119|3.4|19|3.4|1 medium=400
+Spice bag (Irish takeaway)|230|11|20|12|1 portion=400
+Chicken curry with rice (takeaway)|160|8|20|5.5|1 portion=600
+Chicken korma|180|12|6|12|1 portion=350
+Chicken tikka masala|155|12|6|9|1 portion=350
+Beef chow mein|135|8|15|5|1 portion=400
+Chicken fried rice|175|7|24|5.5|1 portion=400
+Sweet & sour chicken (battered)|210|9|25|8.5|1 portion=350
+Salt & chilli chicken|240|17|15|12.5|1 portion=300
+Prawn crackers|540|1|60|33|1 bag=30
+Spring roll|220|5|25|11|1 roll=60
+Vegetable samosa|260|5|30|13.5|1 samosa=50
+Onion bhaji|220|5|22|12.5|1 bhaji=45
+Pilau rice|170|3|30|4|1 portion=250
+Pizza, pepperoni|285|12|30|13|1 slice=100
+Pizza, takeaway, cheese|265|11|32|10|1 slice=110
+Garlic chips (cheesy)|260|6|28|14|1 portion=350
+Chips, curry chips|170|2.6|23|7.5|1 portion=400
+Battered sausage|300|9|20|21|1 sausage=120
+Cod in batter (chipper)|230|15|14|13|1 fillet=200
+Big Mac|257|12|20|14|1 burger=215
+Cheeseburger (fast food)|263|13.5|28|11|1 burger=115
+McChicken sandwich|255|10|28|11|1 burger=170
+Chicken nuggets (fast food)|270|15|15|17|1 nugget=17
+Fries (fast food, medium)|312|3.4|41|15|1 medium=115
+Fried chicken, thigh (KFC style)|260|19|8|17|1 piece=125
+Kebab, doner meat|275|15|5|22|1 portion=200
+Kebab wrap (doner, salad, sauce)|215|10|20|11|1 wrap=400
+Chicken burrito|180|9.5|21|6.5|1 burrito=350
+Burrito bowl, chicken|130|9|14|4.5|1 bowl=500
+Sushi, California roll|146|3|20|5.5|1 piece=30
+Sushi, maki (salmon)|150|5.5|26|2.2|1 piece=25
+Ramen (shop)|90|4.5|11|3|1 bowl=600
+Pad thai|160|7.5|20|5.5|1 portion=400
+Lasagne, beef (ready meal)|140|7.5|13|6.5|1 pack=400
+Shepherd's pie|110|6|11|4.5|1 pack=400
+Cottage pie|115|6|11|5|1 pack=400
+Chilli con carne|110|9|8|4.5|1 portion=300
+Spaghetti bolognese|130|6.5|17|4|1 portion=400
+Macaroni cheese|165|7|17|7.5|1 portion=350
+Fish pie|120|7.5|9|5.8|1 pack=400
+Irish stew|90|7|8|3.5|1 bowl=400
+Coddle (Dublin coddle)|120|6|8|7|1 bowl=400
+Beef & Guinness stew|105|9|6|4.5|1 bowl=400
+Bacon & cabbage|155|14|3|9.5|1 portion=300
+Full Irish breakfast (plated)|210|11|11|13.5|1 plate=450
+Breakfast roll (Irish)|255|11|24|13|1 roll=300
+Sausage roll|340|8|26|22|1 roll=100
+Cornish pasty|280|7|26|16.5|1 pasty=230
+Quiche Lorraine|265|10|17|17.5|1 slice=120
+Chicken caesar wrap (shop)|220|11|22|9.5|1 wrap=220
+Meal-deal sandwich, chicken & bacon|230|13|22|10|1 pack=200
+Egg mayo sandwich|215|9|21|10.5|1 pack=170
+Tuna sweetcorn sandwich|190|10|22|6.5|1 pack=190
+Pierogi ruskie (potato & cheese)|190|6|30|5|1 piece=40
+Pierogi z mięsem (meat)|215|9|27|8|1 piece=40
+Pierogi z kapustą i grzybami (sauerkraut & mushroom)|170|4.5|29|4|1 piece=40
+Gołąbki (Polish cabbage rolls)|110|6|9|5.5|1 roll=180
+Bigos (Polish hunter's stew)|135|8|6|9|1 portion=300
+Kotlet schabowy (Polish breaded pork chop)|265|19|11|16.5|1 cutlet=150
+Kotlet mielony (Polish meat patty)|250|15|10|17|1 patty=100
+Naleśniki z serem (pancakes with twaróg)|200|9|25|7|1 pancake=90
+Zapiekanka (Polish baguette pizza)|245|9|30|10|1 half=250
+Krokiety (Polish croquettes)|230|8|24|11|1 piece=100
+Kopytka with butter|180|3.5|29|5.5|
+Leniwe (lazy dumplings)|200|9|29|5|
+Placki with soured cream|200|3.8|20|12|
+Gyros (chicken)|190|20|3|11|1 portion=200
+Halloumi fries|320|18|12|22|1 portion=100
+Nachos with cheese|340|9|36|18|1 portion=200
+Mozzarella sticks|310|13|26|17|1 stick=30
+Onion rings, battered|330|4.4|38|18|1 portion=100
+Hot dog (with bun)|255|10|25|13|1 hot dog=150
+Ham & cheese toastie|290|15|27|13.5|1 toastie=170
+Jacket potato with beans & cheese|130|5.3|19|3.8|1 potato=400
+Jacket potato with tuna mayo|145|7|16|6|1 potato=400
+Chicken & veg stir-fry with noodles|125|9|14|3.8|1 portion=450
+Poke bowl, salmon|145|8|17|5|1 bowl=450
+Protein porridge pot (ready)|100|6|13|2.5|1 pot=250
+Overnight oats pot (shop)|130|5|17|4.5|1 pot=200
+Chicken Caesar salad (shop)|130|10|6|7.5|1 bowl=250
+Pasta salad (shop)|165|5|20|7|1 pot=300
+Soup, chicken & vegetable (fresh)|45|3|6|1.2|1 pot=600
 `;
 // ---- food database (per 100 g; typical values from USDA FoodData Central / McCance & Widdowson) ----
-var LIQ=/^(milk,|oat milk|almond milk|soya milk|coconut milk drink|rice milk|.*juice\b|.*smoothie|.*shake\b|.*protein drink|.*\bdrink\b|kefir|cola\b|lemonade|soda water|soft drink|squash\b|beer|lager|cider|wine\b|coffee|latte|cappuccino|americano|flat white|tea\b|tea with|.*\btea$|soy sauce|olive oil|rapeseed oil|sunflower oil|vegetable oil|.*\boil$|yop\b|.*yogh?urt drink|water\b)/i;
-var FOODS=FOODS_RAW.trim().split('\n').map(function(l,i){var a=l.split('|');return{key:'b'+i,name:a[0],kcal:+a[1],protein:+a[2],carbs:+a[3],fat:+a[4],units:parseUnits(a[5]),liquid:LIQ.test(a[0])&&!/coconut oil/i.test(a[0])}});
-var FIBRE={"Fish fingers, oven-baked": 1.5, "Breaded/battered fish fillet, cooked": 0.9, "Calamari, fried": 0.4, "Porridge oats": 10, "Porridge made with water": 1.4, "Granola": 6, "Cornflakes": 3, "Weetabix": 10, "Bran flakes": 15, "Muesli, no added sugar": 7.5, "White rice, raw": 1.3, "White rice, cooked": 0.4, "Basmati rice, raw": 1.5, "Basmati rice, cooked": 0.5, "Brown rice, raw": 3.5, "Brown rice, cooked": 1.8, "Microwave rice pouch, cooked": 1, "Pasta, dry": 3, "Pasta, cooked": 1.8, "Wholewheat pasta, dry": 9, "Wholewheat pasta, cooked": 4.5, "Egg noodles, dry": 2.5, "Egg noodles, cooked": 1, "Couscous, dry": 5, "Couscous, cooked": 1.4, "Quinoa, raw": 7, "Quinoa, cooked": 2.8, "Potatoes, raw": 2.2, "Potatoes, boiled": 1.8, "Potatoes, baked (with skin)": 2.2, "Mashed potato (with butter & milk)": 1.3, "Oven chips": 2.8, "Chips, chipper": 3, "Sweet potato, raw": 3, "Sweet potato, baked": 3.3, "White bread": 2.7, "Wholemeal bread": 7, "Brown soda bread": 5, "Sourdough bread": 2.4, "Wholemeal wrap / tortilla": 5, "Bagel, plain": 2.3, "Pitta bread, white": 2.2, "Crumpet": 2, "Rice cakes": 3.5, "Crackers (cream crackers)": 3, "Banana": 2.6, "Apple": 2.4, "Orange": 2.4, "Pear": 3.1, "Grapes": 0.9, "Strawberries": 2, "Blueberries": 2.4, "Raspberries": 6.5, "Mixed berries, frozen": 4, "Kiwi": 3, "Mango": 1.6, "Pineapple": 1.4, "Melon": 0.9, "Watermelon": 0.4, "Peach": 1.5, "Plum": 1.4, "Cherries": 2.1, "Avocado": 6.7, "Dates, dried": 8, "Raisins": 3.7, "Lemon juice": 0.3, "Broccoli, raw": 2.6, "Broccoli, boiled": 3.3, "Carrots, raw": 2.8, "Carrots, boiled": 3, "Spinach, raw": 2.2, "Kale, raw": 4.1, "Lettuce": 1.3, "Rocket": 1.6, "Tomato": 1.2, "Cherry tomatoes": 1.2, "Cucumber": 0.5, "Peppers, red": 2.1, "Peppers, green": 1.7, "Onion": 1.7, "Garlic": 2.1, "Mushrooms": 1, "Courgette": 1, "Aubergine": 3, "Cauliflower": 2, "Brussels sprouts": 3.8, "Cabbage": 2.5, "Green beans": 2.7, "Peas, frozen": 5, "Sweetcorn, canned": 2, "Asparagus": 2.1, "Celery": 1.6, "Beetroot, cooked": 2, "Parsnip": 4.9, "Chickpeas, canned (drained)": 6, "Kidney beans, canned (drained)": 6.4, "Black beans, canned (drained)": 8.7, "Lentils, red, dry": 11, "Lentils, cooked": 7.9, "Baked beans": 3.7, "Hummus": 6, "Almonds": 12.5, "Peanuts": 8.5, "Cashews": 3.3, "Walnuts": 6.7, "Brazil nuts": 7.5, "Mixed nuts": 7, "Peanut butter": 6, "Almond butter": 10, "Chia seeds": 34, "Flaxseed, ground": 27, "Pumpkin seeds": 6, "Sunflower seeds": 8.6, "Dark chocolate 70%": 11, "Milk chocolate": 3.4, "Protein bar": 5, "Kellogg's Squares Totally Chocolatey bar": 2, "Barebells Chocolate Dough protein bar": 5, "Jam": 1, "Tomato ketchup": 0.3, "Pesto": 2, "Pasta sauce, tomato (jar)": 1.5, "Curry sauce (jar)": 1.5, "Orange juice": 0.2, "Pizza, margherita": 2.3, "Chicken fillet roll": 1.5, "Sushi, salmon nigiri": 0.5, "Popcorn, plain": 14.5, "Crisps": 4.4, "Tofu, firm": 2.3, "Vegan protein powder": 5, "Mass gainer powder": 2, "Müller Corner Milk Chocolate Digestive yogurt (yoghurt)": 0.5, "Black pudding": 0.5, "White pudding": 0.5, "Irish sausage, pork, grilled": 0.8};FOODS.forEach(function(f){f.fibre=FIBRE[f.name]||0});
+var LIQN=new Set(["7UP / Sprite", "Americano", "Apple & orange juice drink", "Ayran (yoghurt drink)", "Buttermilk", "Cashew milk drink, unsweetened", "Chocolate milk", "Cider", "Cider, low sugar / dry", "Club Orange (Irish orange soda)", "Coconut milk drink, unsweetened", "Coconut water", "Cranberry juice drink", "Energy drink, sugar-free", "Espresso", "Fanta Orange", "Flat white (whole milk)", "Gin & slimline tonic", "Green tea", "Herbal tea", "Hot chocolate, made with milk", "Iced latte (semi-skimmed)", "Iced tea, sweetened", "Irish cream liqueur", "Kefir", "Kefir, low-fat", "Kompot (Polish fruit drink)", "Kvass (kwas chlebowy)", "Lemonade, diet", "Lemonade, regular", "Light beer", "Low-alcohol beer (0.0%)", "Lucozade Sport", "Maślanka (Polish buttermilk)", "Milk, 1% fat", "Milk, lactose-free semi-skimmed", "Milkshake, chocolate (fast food)", "Mocha", "Monster Energy (regular)", "Oat milk, barista", "Orange squash, no added sugar (diluted)", "Pea milk drink, unsweetened", "Pineapple juice", "Polish lager (piwo)", "Prosecco", "Protein milk (high-protein)", "Protein shake, ready-to-drink", "Rice milk", "Rosé wine", "Smoothie, fruit (shop-bought)", "Soya milk, sweetened", "Sparkling water", "Spirits (vodka/gin/whiskey, 40%)", "Tea, black, no milk", "Tomato juice", "Water", "Whey protein shake, made with semi-skimmed milk", "Whey protein shake, made with water", "Zsiadłe mleko (soured milk)"]);LIQ=/^(milk,|oat milk|almond milk|soya milk|coconut milk drink|rice milk|.*juice\b|.*smoothie|.*shake\b|.*protein drink|.*\bdrink\b|kefir|cola\b|lemonade|soda water|soft drink|squash\b|beer|lager|cider|wine\b|coffee|latte|cappuccino|americano|flat white|tea\b|tea with|.*\btea$|soy sauce|olive oil|rapeseed oil|sunflower oil|vegetable oil|.*\boil$|yop\b|.*yogh?urt drink|water\b)/i;
+var FOODS=FOODS_RAW.trim().split('\n').map(function(l,i){var a=l.split('|');return{key:'b'+i,name:a[0],kcal:+a[1],protein:+a[2],carbs:+a[3],fat:+a[4],units:parseUnits(a[5]),liquid:(LIQ.test(a[0])||LIQN.has(a[0]))&&!/coconut oil/i.test(a[0])}});
+var FIBRE={"Chicken nuggets, baked": 1.0, "Chicken Kyiv, baked": 0.8, "Chicken tikka pieces": 0.5, "Beef burger patty, raw": 0.2, "Beef jerky": 1.8, "Pork sausages, grilled": 1.0, "Chipolatas, grilled": 0.8, "Lean sausages (97% pork), grilled": 1.0, "Meatballs, beef, cooked": 0.5, "Black pudding, grilled": 0.5, "Lamb kofta, cooked": 0.5, "Pâté (pork liver)": 0.3, "Pasztet (Polish pâté)": 0.5, "Chocolate milk": 0.5, "Coconut yoghurt alternative": 0.5, "Soya yoghurt, plain": 0.8, "Fat-free fruit yoghurt": 0.2, "Rice pudding (canned)": 0.2, "Tofu, silken": 0.1, "Smoked tofu": 1.0, "Seitan": 0.6, "Edamame beans, shelled": 5.2, "Quorn mince": 5.5, "Quorn pieces": 6.0, "Soya mince, dry (TVP)": 17.0, "Falafel": 4.9, "Veggie burger, cooked": 4.0, "Plant-based burger (pea protein)": 3.0, "Vegan sausages, cooked": 4.0, "Pea protein powder": 1.0, "Lentil pasta, dry": 11.0, "Chickpea pasta, dry": 8.0, "Jasmine rice, raw": 1.0, "Jasmine rice, cooked": 0.4, "Wild rice, cooked": 1.8, "Risotto (arborio) rice, raw": 1.3, "Sushi rice, cooked": 0.3, "Egg fried rice": 1.0, "Rice noodles, dry": 1.6, "Rice noodles, cooked": 0.9, "Udon noodles, cooked": 1.2, "Soba noodles, cooked": 1.5, "Instant noodles, dry": 2.5, "Fresh egg pasta (tagliatelle), uncooked": 2.5, "Gnocchi": 1.8, "Tortellini, cheese, fresh": 2.5, "Ravioli, beef, fresh": 2.0, "Lasagne sheets, dry": 3.0, "Spaghetti, cooked": 1.8, "Bulgur wheat, dry": 12.5, "Bulgur wheat, cooked": 4.5, "Pearl barley, dry": 15.6, "Pearl barley, cooked": 3.8, "Buckwheat groats (kasza gryczana), dry": 10.0, "Buckwheat (kasza gryczana), cooked": 2.7, "Millet (kasza jaglana), dry": 8.5, "Millet (kasza jaglana), cooked": 1.3, "Pearl barley groats (kasza jęczmienna), cooked": 3.8, "Semolina (kasza manna), dry": 3.9, "Polenta, cooked": 1.0, "Cornmeal, dry": 7.3, "Spelt grain, dry": 10.7, "Freekeh, dry": 16.5, "Plain flour": 2.7, "Wholemeal flour": 10.7, "Rye flour": 15.1, "Oat flour": 6.5, "Almond flour": 11.0, "Coconut flour": 38.0, "Cornflour": 0.9, "Breadcrumbs": 4.5, "Chleb żytni (rye bread, zytni)": 5.8, "Chleb żytni razowy (wholegrain rye bread, zytni razowy)": 8.5, "Fitness bread": 9.1, "Pumpernikiel (pumpernickel)": 6.5, "Chleb pszenny (Polish wheat bread)": 2.7, "Bułka kajzerka (Polish roll)": 2.5, "Chałka (Polish sweet braided bread)": 2.0, "Irish brown bread (wholemeal soda)": 6.0, "Irish wheaten bread": 5.0, "Batch loaf (white)": 2.5, "Seeded batch bread": 6.0, "Granary bread": 5.0, "Rye bread, light": 5.8, "Rye crispbread (Ryvita)": 17.0, "Baguette, white": 2.4, "Ciabatta": 2.4, "Brioche bun": 2.0, "Burger bun, white": 2.5, "Hot dog roll": 2.5, "Wholemeal roll": 6.0, "Naan bread": 2.0, "Chapati": 4.0, "Pitta bread, wholemeal": 6.0, "White wrap / tortilla": 2.5, "Corn tortilla": 6.3, "English muffin": 2.6, "Croissant": 2.6, "Pain au chocolat": 2.5, "Scone, plain": 2.0, "Bagel, wholemeal": 6.5, "Thins / sandwich thins": 6.0, "Garlic bread": 2.3, "Pancakes (Scotch pancakes)": 1.4, "Waffles": 1.8, "French toast": 1.0, "Toast, white": 2.3, "Rice Krispies": 2.0, "Special K": 2.5, "Shredded Wheat": 11.8, "Shreddies": 10.0, "Cheerios": 7.6, "Crunchy Nut cornflakes": 2.5, "Frosties": 2.0, "Coco Pops": 3.0, "Ready Brek": 7.9, "Instant porridge sachet, plain": 9.0, "Oat bran": 15.4, "Puffed rice": 1.7, "Granola, low sugar": 8.5, "Owsianka (Polish porridge oats, górskie)": 10.0, "Potatoes, roast (in oil)": 2.2, "Potato wedges, baked": 2.5, "New potatoes, boiled": 1.5, "Sweet potato fries, oven": 3.5, "Hash browns, oven": 2.5, "Potato waffles": 2.3, "Potato salad": 1.0, "Croquettes, potato": 2.0, "Instant mashed potato, made up": 1.1, "Champ (Irish mashed potato with scallions)": 1.6, "Colcannon": 2.2, "Boxty (Irish potato pancake)": 2.0, "Potato farls (Irish)": 2.5, "Placki ziemniaczane (Polish potato pancakes)": 2.0, "Kopytka (Polish potato dumplings)": 1.5, "Lentils, green/brown, dry": 10.7, "Lentils, puy, cooked": 7.9, "Butter beans, canned (drained)": 5.3, "Cannellini beans, canned (drained)": 6.3, "Borlotti beans, canned (drained)": 5.5, "Haricot beans, canned (drained)": 6.0, "Pinto beans, canned (drained)": 5.5, "Mung beans, cooked": 7.6, "Split peas, dry": 25.5, "Marrowfat peas, mushy": 3.5, "Reduced sugar baked beans": 4.4, "Refried beans": 5.0, "Dal (lentil curry)": 4.0, "Chickpeas, dried": 12.2, "Soya beans, cooked": 6.0, "Fasolka po bretońsku (Polish baked beans with sausage)": 4.0, "Spring onion": 2.6, "Red onion": 1.7, "Shallots": 3.2, "Leek": 2.2, "Red cabbage": 2.1, "Savoy cabbage": 3.1, "Pak choi": 1.0, "Tenderstem broccoli": 3.0, "Kale, cooked": 2.0, "Spinach, cooked": 2.4, "Watercress": 0.5, "Iceberg lettuce": 1.2, "Romaine lettuce": 2.1, "Mixed salad leaves": 1.5, "Radish": 1.6, "Beetroot, raw": 2.8, "Turnip": 1.8, "Swede": 2.3, "Celeriac": 1.8, "Fennel": 3.1, "Butternut squash": 2.0, "Pumpkin": 0.5, "Sweet pepper, yellow": 0.9, "Chilli pepper, red": 1.5, "Jalapeños, pickled": 2.8, "Okra": 3.2, "Green peas, fresh": 5.7, "Mangetout": 2.6, "Sugar snap peas": 2.6, "Runner beans": 2.6, "Broad beans": 5.4, "Sweetcorn, on the cob": 2.7, "Baby corn": 1.7, "Bean sprouts": 1.8, "Artichoke hearts, canned": 3.3, "Mushrooms, chestnut": 1.1, "Portobello mushroom": 1.3, "Shiitake mushrooms": 2.5, "Tomatoes, canned (chopped)": 1.0, "Passata": 1.2, "Tomato purée": 3.4, "Sun-dried tomatoes in oil": 5.8, "Gherkins / pickles": 1.2, "Ogórek kiszony (Polish pickled cucumber)": 1.2, "Sauerkraut (kapusta kiszona)": 2.9, "Olives, green": 3.3, "Olives, black": 3.2, "Coleslaw": 1.5, "Stir-fry vegetable mix": 2.0, "Frozen mixed vegetables": 3.5, "Ratatouille": 1.5, "Vegetable soup": 1.5, "Tomato soup (canned)": 0.6, "Barszcz czerwony (Polish beetroot soup)": 1.0, "Żurek (Polish sour rye soup)": 0.5, "Rosół (Polish chicken broth)": 0.2, "Leek & potato soup": 1.0, "Edamame in pods": 5.2, "Seaweed (nori sheets)": 36.0, "Coriander, fresh": 2.8, "Parsley, fresh": 3.3, "Basil, fresh": 1.6, "Ginger, fresh": 2.0, "Dill, fresh": 2.1, "Apricot": 2.0, "Nectarine": 1.7, "Clementine / satsuma": 1.7, "Grapefruit": 1.6, "Lime": 2.8, "Lemon": 2.8, "Blackberries": 5.3, "Blackcurrants": 5.4, "Redcurrants": 4.3, "Cranberries, fresh": 4.6, "Cranberries, dried": 5.3, "Gooseberries": 4.3, "Rhubarb, stewed": 1.8, "Pomegranate seeds": 4.0, "Papaya": 1.7, "Passion fruit": 10.4, "Lychees": 1.3, "Figs, fresh": 2.9, "Figs, dried": 9.8, "Prunes": 7.1, "Apricots, dried": 7.3, "Sultanas": 3.7, "Dried mango": 2.4, "Banana chips": 7.7, "Coconut, fresh": 9.0, "Desiccated coconut": 16.3, "Dragon fruit": 3.0, "Persimmon (Sharon fruit)": 3.6, "Guava": 5.4, "Plantain, cooked": 2.3, "Tinned peaches in juice": 1.0, "Tinned pineapple in juice": 0.8, "Fruit cocktail in juice": 1.0, "Apple sauce": 1.2, "Stewed apple, unsweetened": 1.5, "Fruit salad, fresh": 1.6, "Frozen raspberries": 6.5, "Frozen tropical fruit mix": 1.6, "Acai purée, unsweetened": 3.0, "Śliwki suszone (Polish dried plums)": 7.1, "Pistachios": 10.6, "Pecans": 9.6, "Macadamia nuts": 8.6, "Hazelnuts": 9.7, "Pine nuts": 3.7, "Salted peanuts": 8.5, "Dry roasted peanuts": 8.0, "Honey roasted cashews": 3.0, "Trail mix": 5.0, "Sesame seeds": 11.8, "Hemp seeds": 4.0, "Linseed (flaxseed), whole": 27.3, "Mixed seeds": 9.0, "Cashew butter": 2.0, "Peanut butter, smooth (no added sugar)": 7.0, "Peanut butter powder (PB2)": 8.0, "Tahini": 9.3, "Nutella (hazelnut chocolate spread)": 3.4, "Coconut butter": 16.0, "Salad cream": 0.3, "Brown sauce": 1.0, "BBQ sauce": 0.9, "Sweet chilli sauce": 0.9, "Sriracha": 2.2, "Hot sauce (Tabasco style)": 0.3, "Mustard, English": 2.0, "Dijon mustard": 3.0, "Musztarda (Polish mustard)": 2.0, "Horseradish sauce": 2.0, "Chrzan (Polish horseradish)": 3.0, "Mint sauce": 1.5, "Cranberry sauce": 1.2, "Apple chutney / mango chutney": 1.3, "Hummus, reduced fat": 5.5, "Guacamole": 4.5, "Salsa, tomato": 1.9, "Tzatziki": 0.3, "Vinaigrette (French dressing)": 0.2, "Light salad dressing": 0.3, "Teriyaki sauce": 0.1, "Oyster sauce": 0.3, "Hoisin sauce": 2.8, "Pesto, red": 2.5, "Korma sauce (jar)": 1.5, "Tikka masala sauce (jar)": 1.4, "Sweet & sour sauce (jar)": 0.6, "Bolognese sauce (jar)": 1.4, "Carbonara sauce (jar)": 0.2, "Chip shop curry sauce": 1.2, "Stock cube, chicken": 1.0, "Coconut milk, canned": 0.5, "Coconut milk, light (canned)": 0.3, "Peanut satay sauce": 2.0, "Cocoa powder, unsweetened": 37.0, "Lemon curd": 0.3, "Marmalade": 0.6, "Tortilla chips": 5.0, "Pretzels": 3.0, "Popcorn, sweet & salty": 8.0, "Popcorn, butter (microwave)": 9.0, "Pringles original": 3.3, "Hula Hoops": 2.6, "Taytos cheese & onion (Irish crisps)": 4.5, "Rice crackers": 1.5, "Oatcakes": 8.0, "Digestive biscuits": 3.5, "Chocolate digestives": 3.2, "Rich tea biscuits": 2.6, "Custard creams": 1.5, "Jaffa cakes": 1.5, "Hobnobs": 4.5, "Kimberley biscuits (Irish)": 1.5, "Mikado biscuits (Irish)": 1.2, "Chocolate chip cookie": 2.4, "Shortbread": 2.0, "Flapjack": 3.5, "Brownie": 2.0, "Muffin, blueberry": 1.5, "Doughnut, jam": 1.5, "Doughnut, glazed": 1.3, "Pączek (Polish doughnut)": 1.5, "Victoria sponge cake": 0.8, "Carrot cake": 1.5, "Cheesecake": 0.4, "Sernik (Polish cheesecake)": 0.4, "Apple pie": 1.6, "Szarlotka (Polish apple cake)": 1.5, "Barmbrack (Irish fruit loaf)": 2.5, "Mince pie": 2.0, "Ice cream, vanilla": 0.2, "Ice cream, low-calorie (Halo Top style)": 5.0, "Sorbet": 0.5, "Haribo Starmix": 0.5, "Dairy Milk chocolate": 2.1, "Galaxy chocolate": 1.5, "Kit Kat": 2.0, "Twix": 1.3, "Mars bar": 1.2, "Snickers": 2.4, "Bounty": 3.5, "Maltesers": 1.7, "Crunchie": 0.7, "Twirl": 1.0, "Dark chocolate 85%": 13.0, "Ptasie mleczko (Polish marshmallow chocolates)": 1.0, "Prince Polo (Polish wafer bar)": 2.5, "Wafer bar": 2.5, "Cereal bar (Nutri-Grain style)": 3.0, "Nakd bar (fruit & nut)": 5.5, "Kind bar (nuts & sea salt)": 17.0, "Grenade Carb Killa protein bar": 10.0, "Fulfil protein bar": 10.0, "Quest protein bar": 25.0, "Misfits vegan protein bar": 14.0, "Trek protein flapjack": 5.0, "Oatmeal protein cookie": 7.0, "Rice cakes, chocolate": 3.5, "Protein crisps": 4.0, "Protein pudding": 0.4, "Coconut water": 1.1, "Kompot (Polish fruit drink)": 0.2, "Smoothie, fruit (shop-bought)": 1.0, "Tomato juice": 0.4, "Pineapple juice": 0.2, "Protein shake, ready-to-drink": 0.3, "Hot chocolate, made with milk": 0.5, "Mocha": 0.4, "Rice milk": 0.3, "Coconut milk drink, unsweetened": 0.2, "Cashew milk drink, unsweetened": 0.2, "Oat milk, barista": 0.8, "Soya milk, sweetened": 0.5, "Milkshake, chocolate (fast food)": 0.5, "Spice bag (Irish takeaway)": 2.0, "Chicken curry with rice (takeaway)": 1.2, "Chicken korma": 1.0, "Chicken tikka masala": 1.2, "Beef chow mein": 1.4, "Chicken fried rice": 1.0, "Sweet & sour chicken (battered)": 1.0, "Salt & chilli chicken": 1.2, "Prawn crackers": 0.7, "Spring roll": 2.0, "Vegetable samosa": 3.0, "Onion bhaji": 4.0, "Pilau rice": 0.8, "Pizza, pepperoni": 2.0, "Pizza, takeaway, cheese": 2.0, "Garlic chips (cheesy)": 2.3, "Chips, curry chips": 2.0, "Battered sausage": 1.0, "Cod in batter (chipper)": 0.7, "Big Mac": 1.8, "Cheeseburger (fast food)": 1.5, "McChicken sandwich": 1.7, "Chicken nuggets (fast food)": 1.0, "Fries (fast food, medium)": 3.8, "Fried chicken, thigh (KFC style)": 0.5, "Kebab, doner meat": 0.5, "Kebab wrap (doner, salad, sauce)": 1.5, "Chicken burrito": 2.5, "Burrito bowl, chicken": 3.0, "Sushi, California roll": 1.0, "Sushi, maki (salmon)": 0.7, "Ramen (shop)": 0.8, "Pad thai": 1.5, "Lasagne, beef (ready meal)": 1.0, "Shepherd's pie": 1.3, "Cottage pie": 1.2, "Chilli con carne": 3.0, "Spaghetti bolognese": 1.5, "Macaroni cheese": 0.8, "Fish pie": 0.8, "Irish stew": 1.2, "Coddle (Dublin coddle)": 1.0, "Beef & Guinness stew": 1.0, "Bacon & cabbage": 1.5, "Full Irish breakfast (plated)": 1.4, "Breakfast roll (Irish)": 1.5, "Sausage roll": 1.2, "Cornish pasty": 1.6, "Quiche Lorraine": 0.8, "Chicken caesar wrap (shop)": 1.5, "Meal-deal sandwich, chicken & bacon": 2.0, "Egg mayo sandwich": 2.0, "Tuna sweetcorn sandwich": 2.0, "Pierogi ruskie (potato & cheese)": 1.6, "Pierogi z mięsem (meat)": 1.5, "Pierogi z kapustą i grzybami (sauerkraut & mushroom)": 2.5, "Gołąbki (Polish cabbage rolls)": 1.5, "Bigos (Polish hunter's stew)": 2.5, "Kotlet schabowy (Polish breaded pork chop)": 0.5, "Kotlet mielony (Polish meat patty)": 0.6, "Naleśniki z serem (pancakes with twaróg)": 0.6, "Zapiekanka (Polish baguette pizza)": 2.0, "Krokiety (Polish croquettes)": 1.2, "Kopytka with butter": 1.4, "Leniwe (lazy dumplings)": 0.8, "Placki with soured cream": 1.8, "Gyros (chicken)": 0.5, "Halloumi fries": 0.5, "Nachos with cheese": 3.5, "Mozzarella sticks": 1.2, "Onion rings, battered": 2.3, "Hot dog (with bun)": 1.0, "Ham & cheese toastie": 1.8, "Jacket potato with beans & cheese": 2.7, "Jacket potato with tuna mayo": 1.8, "Chicken & veg stir-fry with noodles": 1.6, "Poke bowl, salmon": 1.6, "Protein porridge pot (ready)": 1.5, "Overnight oats pot (shop)": 2.2, "Chicken Caesar salad (shop)": 1.3, "Pasta salad (shop)": 1.6, "Soup, chicken & vegetable (fresh)": 1.0,"Fish fingers, oven-baked": 1.5, "Breaded/battered fish fillet, cooked": 0.9, "Calamari, fried": 0.4, "Porridge oats": 10, "Porridge made with water": 1.4, "Granola": 6, "Cornflakes": 3, "Weetabix": 10, "Bran flakes": 15, "Muesli, no added sugar": 7.5, "White rice, raw": 1.3, "White rice, cooked": 0.4, "Basmati rice, raw": 1.5, "Basmati rice, cooked": 0.5, "Brown rice, raw": 3.5, "Brown rice, cooked": 1.8, "Microwave rice pouch, cooked": 1, "Pasta, dry": 3, "Pasta, cooked": 1.8, "Wholewheat pasta, dry": 9, "Wholewheat pasta, cooked": 4.5, "Egg noodles, dry": 2.5, "Egg noodles, cooked": 1, "Couscous, dry": 5, "Couscous, cooked": 1.4, "Quinoa, raw": 7, "Quinoa, cooked": 2.8, "Potatoes, raw": 2.2, "Potatoes, boiled": 1.8, "Potatoes, baked (with skin)": 2.2, "Mashed potato (with butter & milk)": 1.3, "Oven chips": 2.8, "Chips, chipper": 3, "Sweet potato, raw": 3, "Sweet potato, baked": 3.3, "White bread": 2.7, "Wholemeal bread": 7, "Brown soda bread": 5, "Sourdough bread": 2.4, "Wholemeal wrap / tortilla": 5, "Bagel, plain": 2.3, "Pitta bread, white": 2.2, "Crumpet": 2, "Rice cakes": 3.5, "Crackers (cream crackers)": 3, "Banana": 2.6, "Apple": 2.4, "Orange": 2.4, "Pear": 3.1, "Grapes": 0.9, "Strawberries": 2, "Blueberries": 2.4, "Raspberries": 6.5, "Mixed berries, frozen": 4, "Kiwi": 3, "Mango": 1.6, "Pineapple": 1.4, "Melon": 0.9, "Watermelon": 0.4, "Peach": 1.5, "Plum": 1.4, "Cherries": 2.1, "Avocado": 6.7, "Dates, dried": 8, "Raisins": 3.7, "Lemon juice": 0.3, "Broccoli, raw": 2.6, "Broccoli, boiled": 3.3, "Carrots, raw": 2.8, "Carrots, boiled": 3, "Spinach, raw": 2.2, "Kale, raw": 4.1, "Lettuce": 1.3, "Rocket": 1.6, "Tomato": 1.2, "Cherry tomatoes": 1.2, "Cucumber": 0.5, "Peppers, red": 2.1, "Peppers, green": 1.7, "Onion": 1.7, "Garlic": 2.1, "Mushrooms": 1, "Courgette": 1, "Aubergine": 3, "Cauliflower": 2, "Brussels sprouts": 3.8, "Cabbage": 2.5, "Green beans": 2.7, "Peas, frozen": 5, "Sweetcorn, canned": 2, "Asparagus": 2.1, "Celery": 1.6, "Beetroot, cooked": 2, "Parsnip": 4.9, "Chickpeas, canned (drained)": 6, "Kidney beans, canned (drained)": 6.4, "Black beans, canned (drained)": 8.7, "Lentils, red, dry": 11, "Lentils, cooked": 7.9, "Baked beans": 3.7, "Hummus": 6, "Almonds": 12.5, "Peanuts": 8.5, "Cashews": 3.3, "Walnuts": 6.7, "Brazil nuts": 7.5, "Mixed nuts": 7, "Peanut butter": 6, "Almond butter": 10, "Chia seeds": 34, "Flaxseed, ground": 27, "Pumpkin seeds": 6, "Sunflower seeds": 8.6, "Dark chocolate 70%": 11, "Milk chocolate": 3.4, "Protein bar": 5, "Kellogg's Squares Totally Chocolatey bar": 2, "Barebells Chocolate Dough protein bar": 5, "Jam": 1, "Tomato ketchup": 0.3, "Pesto": 2, "Pasta sauce, tomato (jar)": 1.5, "Curry sauce (jar)": 1.5, "Orange juice": 0.2, "Pizza, margherita": 2.3, "Chicken fillet roll": 1.5, "Sushi, salmon nigiri": 0.5, "Popcorn, plain": 14.5, "Crisps": 4.4, "Tofu, firm": 2.3, "Vegan protein powder": 5, "Mass gainer powder": 2, "Müller Corner Milk Chocolate Digestive yogurt (yoghurt)": 0.5, "Black pudding": 0.5, "White pudding": 0.5, "Irish sausage, pork, grilled": 0.8};FOODS.forEach(function(f){f.fibre=FIBRE[f.name]||0});
 function liq(x){if(!x)return false;if(x.liquid!=null)return!!x.liquid;var f=x.key&&foodByKey(x.key);if(f&&f!==x)return!!f.liquid;return LIQ.test(x.name||'')}
 function U(x){return liq(x)?'ml':'g'}
 function fibTarget(k){return Math.round(n(k)*14/1000)}
 function parseUnits(s){return(s||'').split(';').filter(Boolean).map(function(u){var p=u.split('=');return{label:p[0],g:+p[1]}})}
 function allFoods(){return S.myFoods.map(function(f){return Object.assign({},f,{key:'m'+f.id,mine:true})}).concat(FOODS)}
 function foodByKey(k){return allFoods().find(function(f){return f.key===k})}
-function norm(s){return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9% ]/g,' ')}
+function norm(s){return String(s).replace(/ł/g,'l').replace(/Ł/g,'L').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9% ]/g,' ')}
 function subseq(q,s){var i=0;for(var j=0;j<s.length&&i<q.length;j++)if(s[j]===q[i])i++;return i===q.length}
 var FFISH=['salmon','cod','haddock','hake','pollock','tuna','mackerel','bass','bream','trout','tilapia','basa','plaice','sole','halibut','monkfish','coley','sardines','anchovies','herring','kippers','swordfish','fish'],FSEA=['prawns','shrimp','crab','mussels','scallops','squid','calamari','octopus','lobster'];
-var FALIAS={shrimp:['prawn'],shrimps:['prawn'],prawn:['shrimp'],calamari:['squid'],coley:['saithe'],saithe:['coley'],pollack:['pollock','coley'],brine:['water'],kipper:['kippers'],basa:['pangasius'],pangasius:['basa'],flounder:['plaice','sole'],seabass:['sea bass'],bream:['sea bream'],fish:FFISH.slice(0,-1),seafood:FSEA,shellfish:FSEA};
+var FALIAS={chleb:['bread'],mestemacher:['fitness'],fitnessbrot:['fitness'],rye:['fitness'],zytni:['rye'],twarog:['quark'],quark:['twarog'],shrimp:['prawn'],shrimps:['prawn'],prawn:['shrimp'],calamari:['squid'],coley:['saithe'],saithe:['coley'],pollack:['pollock','coley'],brine:['water'],kipper:['kippers'],basa:['pangasius'],pangasius:['basa'],flounder:['plaice','sole'],seabass:['sea bass'],bream:['sea bream'],fish:FFISH.slice(0,-1),seafood:FSEA,shellfish:FSEA};
 function searchFoods(q){q=norm(q).trim();var rec=S.recent;var L=allFoods();
  if(!q){return rec.map(foodByKey).filter(Boolean).concat(S.myFoods.length?L.filter(function(f){return f.mine&&rec.indexOf(f.key)<0}):[]).slice(0,10)}
  var toks=q.split(/\s+/);return L.map(function(f){var n=norm(f.name),words=n.split(/\s+/),sc=0;
@@ -1157,12 +1793,12 @@ document.addEventListener('click',function(ev){var b=ev.target.closest('button')
 
 // ---- shopping list ----
 function shopS(){var o=S.shop=S.shop||{};o.days=o.days||7;o.people=o.people||1;o.ticks=o.ticks||{};o.removed=o.removed||{};o.extras=o.extras||[];return o}
-var GRP=[['protein','🥩 Protein',/peanut|almond|cashew|walnut|nut butter/i,null],['dairy','🥛 Dairy & eggs',/milk|yog|cheese|skyr|quark|kefir|cream|butter|m[uü]ller|egg/i,/peanut|almond/i],['protein','🥩 Protein',/chicken|turkey|beef|pork|lamb|mince|steak|fish|salmon|tuna|cod|haddock|prawn|shrimp|pollock|hake|bass|bream|trout|tilapia|basa|pangasius|plaice|sole|halibut|monkfish|coley|saithe|anchov|herring|kipper|swordfish|crab|mussel|scallop|squid|calamari|octopus|lobster|tofu|whey|protein|ham|bacon|sausage|mackerel|sardine|tempeh|seitan/i,null],
- ['carbs','🍞 Carbs & grains',/rice|pasta|oat|porridge|bread|wrap|potato|noodle|cereal|flakes|granola|weetabix|muesli|bagel|couscous|quinoa|cracker|tortilla|crumpet|gnocchi|squares/i,null],
- ['fv','🥦 Fruit & veg',/banana|apple|berr|orange|grape|mango|pear|pineapple|kiwi|melon|peach|plum|cherr|lemon|lime|broccoli|spinach|lettuce|pepper|onion|tomato|carrot|sweetcorn|peas|bean|mushroom|cucumber|avocado|courgette|cabbage|kale|cauliflower|celery|garlic|leek|sprout|asparagus|aubergine|salad|lentil|chickpea|beetroot|parsnip|squash/i,null]];
+var GRP=[['protein','🥩 Protein',/peanut|almond|cashew|walnut|nut butter/i,null],['dairy','🥛 Dairy & eggs',/milk|yog|cheese|skyr|quark|kefir|cream|butter|m[uü]ller|egg|twar[oó]g|serek|\bser\b|gouda|edam|emmental|gruy|leicester|camembert|brie|stilton|feta|halloumi|mozzarella|ricotta|mascarpone|paneer|burrata|parmesan|grana|pecorino|manchego|oscypek|dubliner|cheddar|ghee|[sś]mietan|cr[eè]me|custard|ma[sś]lanka|mleko|ayran|fromage|labneh/i,/peanut|almond|cashew|butter bean|ice cream|liqueur|custard cream|cocoa|egg noodle|eggplant|pierog|pizza|lasagne|macaroni|burger|sandwich|toastie|quesadilla|cake|pasta/i],['protein','🥩 Protein',/chicken|turkey|beef|pork|lamb|mince|steak|fish|salmon|tuna|cod|haddock|prawn|shrimp|pollock|hake|bass|bream|trout|tilapia|basa|pangasius|plaice|sole|halibut|monkfish|coley|saithe|anchov|herring|kipper|swordfish|crab|mussel|scallop|squid|calamari|octopus|lobster|tofu|whey|protein|ham|bacon|sausage|mackerel|sardine|tempeh|seitan|duck|venison|rabbit|goose|liver|kidney|kabanos|kie[lł]bas|szynk|pol[eę]dwic|boczek|pasztet|salceson|salami|pepperoni|chorizo|prosciutto|parma|serrano|pastrami|p[aâ]t[eé]|frankfurt|hot dog|meatball|kofta|gammon|rasher|chipolata|pudding|jerky|patty|quorn|tvp|soya mince|falafel|edamame|veal|bresaola|mortadella|biltong|kebab/i,null],
+ ['carbs','🍞 Carbs & grains',/rice|pasta|oat|porridge|bread|wrap|potato|noodle|cereal|flakes|granola|weetabix|muesli|bagel|couscous|quinoa|cracker|tortilla|crumpet|gnocchi|squares|chleb|bu[lł]k|cha[lł]k|pumpernik|\brye\b|crispbread|baguette|ciabatta|brioche|\bbun|\broll|naan|chapati|pitta|pita|muffin|croissant|scone|thins|waffle|pancake|toast|krispies|special k|shred|cheerios|frosties|coco pops|ready brek|\bbran\b|puffed|owsiank|kasza|buckwheat|millet|barley|bulgur|semolina|polenta|cornmeal|spelt|freekeh|flour|breadcrumb|udon|soba|tagliatelle|tortellini|ravioli|lasagne|spaghetti|macaroni|penne|fusilli|kopytka|farl|boxty|champ|colcannon|hash brown|wedges|\bchips\b|croquette|pierog|amaranth|sorghum|teff|rice cake|matzo|focaccia|soda bread|blaa|barmbrack/i,null],
+ ['fv','🥦 Fruit & veg',/banana|apple|berr|orange|grape|mango|pear|pineapple|kiwi|melon|peach|plum|cherr|lemon|lime|broccoli|spinach|lettuce|pepper|onion|tomato|carrot|sweetcorn|peas|bean|mushroom|cucumber|avocado|courgette|cabbage|kale|cauliflower|celery|garlic|leek|sprout|asparagus|aubergine|salad|lentil|chickpea|beetroot|parsnip|squash|shallot|pak choi|bok choy|watercress|rocket|radish|turnip|swede|celeriac|fennel|pumpkin|chilli|jalape|okra|mangetout|corn\b|artichoke|portobello|shiitake|passata|olive\b|olives|gherkin|og[oó]rek|sauerkraut|kapust|coriander|parsley|basil|ginger|dill|apricot|nectarine|clementine|satsuma|tangerine|grapefruit|currant|cranberr|gooseberr|rhubarb|pomegranate|papaya|passion|lychee|\bfigs?\b|prune|sultana|raisin|coconut|dragon|persimmon|guava|plantain|fruit|acai|[sś]liwk|vegetable|ratatouille|coleslaw|seaweed|split pea|mushy|\bdal\b|dhal|refried|soya bean|mung|haricot|borlotti|cannellini|pinto|lupin|chard|endive|chicory|kohlrabi|samphire|bamboo|water chestnut|yam|cassava|date|quince|kumquat|starfruit|jackfruit|cantaloupe|clementine|mandarin|blackcurrant|bilberr|beans?\b/i,null]];
 var GORD=[['protein','🥩 Protein'],['dairy','🥛 Dairy & eggs'],['carbs','🍞 Carbs & grains'],['fv','🥦 Fruit & veg'],['drinks','🥤 Drinks'],['other','🧂 Other']];
 var FISHRX=/salmon|\bcod\b|haddock|hake|pollock|tuna|mackerel|sea bass|bream|trout|tilapia|basa|pangasius|plaice|sole\b|halibut|monkfish|coley|saithe|sardine|anchov|herring|kipper|swordfish|prawn|shrimp|crab|mussel|scallop|squid|calamari|octopus|lobster|fish/i;
-function shopGrp(nm){if(FISHRX.test(nm)&&!/fish oil|fish sauce/i.test(nm))return'protein';if(/peanut|almond|cashew|walnut|nut butter|oil|honey|sauce|jam|chocolate|bar\b|barebells/i.test(nm))return'other';for(var i=1;i<GRP.length;i++)if(GRP[i][2].test(nm)&&!(GRP[i][3]&&GRP[i][3].test(nm)))return GRP[i][0];return'other'}
+function shopGrp(nm){if(FISHRX.test(nm)&&!/fish oil|fish sauce/i.test(nm))return'protein';if(/peanut|almond|cashew|walnut|nut butter|\boil\b|honey|sauce|jam|chocolate|bar\b|barebells/i.test(nm))return'other';for(var i=1;i<GRP.length;i++)if(GRP[i][2].test(nm)&&!(GRP[i][3]&&GRP[i][3].test(nm)))return GRP[i][0];return'other'}
 function shopDiet(){var o=shopS(),d=o.dietId&&dietById(o.dietId);if(!d){d=activeDiet(cur)||(S.dietDef&&dietById(S.dietDef))||(S.plans||[])[0]||null;if(d)o.dietId=d.id}return d}
 function fmtQ(g,l){g=Math.round(g);return g>=1000?(Math.round(g/10)/100).toLocaleString('en-IE')+(l?' L':' kg'):nf(g)+(l?' ml':' g')}
 function shopItems(){var o=shopS(),d=shopDiet(),M={},L=[];if(!d)return L;var k=n(o.days)*n(o.people);
