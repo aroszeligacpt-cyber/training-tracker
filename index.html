@@ -296,7 +296,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v39 · 13 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v40 · 13 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -1687,7 +1687,7 @@ document.addEventListener('click',function(ev){var b=ev.target.closest('button')
  else if(D.dset){var a=activeDiet(cur),on=a&&a.id===D.dset;S.dietSel[cur]=on?'':D.dset;save();ensureDietMeals(cur);rMeals();toast(on?'No diet for '+dl(cur):'Today’s diet set')}
  else if(D.ddef){S.dietDef=S.dietDef===D.ddef?null:D.ddef;save();ensureDietMeals(cur);rMeals();toast(S.dietDef?'Default diet set':'Default cleared')}
  else if(D.ddel){x=dietById(D.ddel);if(x){dv=null;undoDel('Diet deleted',function(){delDiet(x.id)})}}
- else if(D.dedit&&dietById(D.dedit)&&dietById(D.dedit).kind==='own'){x=dietById(D.dedit);bd={id:x.id,name:x.name,meals:cl(x.mp).map(function(m){return{no:m.no,name:m.name||'',items:m.items}}),tg:cl(x.tg||{}),am:0};pick=null;dv='build';rMeals();scrollTo(0,0)}
+ else if(D.dedit&&dietById(D.dedit)&&dietById(D.dedit).kind==='own'){x=dietById(D.dedit);bd={id:x.id,name:x.name,meals:cl(x.mp).map(function(m){return obCp(m,{no:m.no,name:m.name||'',items:m.items})}),tg:cl(x.tg||{}),am:0};pick=null;dv='build';rMeals();scrollTo(0,0)}
  else if(D.dedit){x=dietById(D.dedit);if(x){S.planIn=cl(x.inputs);pl={res:cl(x.res),mp:cl(x.mp),seed:0,name:x.name,did:x.id,acc:true};save();tab='plan';render();var e=document.getElementById('pres');e&&e.scrollIntoView()}}
  else if(b.id==='dreset'){if(confirm('Reset diet? This deletes ALL logged meals, diets/plans and My foods, and resets targets. Workouts, habits and check-ins stay. This cannot be undone.')){for(var k in S.days)S.days[k].meals=[];S.plans=[];S.myFoods=[];S.dietSel={};S.dietDef=null;S.targets=defaults().targets;pl=null;XP={};dv=null;editMeal=null;draft=null;save();render();toast('Diet reset')}}});
 document.addEventListener('change',function(ev){var e=ev.target;if(e.dataset&&e.dataset.dren){var x=dietById(e.dataset.dren);if(x){x.name=e.value.trim()||x.name;save();toast('Renamed')}}});
@@ -1749,7 +1749,7 @@ function rBuild(el){bdNum();var T=bdSum();
  el.innerHTML=h;if(document.getElementById('fq')){renderRes('');renderPick()}}
 function bdSave(){var nm=(val('bname')||'').trim()||bd.name,T=bdSum();if(!bd.meals.some(function(m){return m.items.length})){toast('Add at least one food');return}
  var res={};['kcal','protein','carbs','fat'].forEach(function(k){res[k]=n(bd.tg[k])||Math.round(n(T[k]))});
- var o={name:nm,kind:'own',res:res,tg:cl(bd.tg),mp:bd.meals.map(function(m,i){return fixM({no:i+1,name:m.name||'',type:'',items:cl(m.items)})})},x=bd.id&&dietById(bd.id);
+ var o={name:nm,kind:'own',res:res,tg:cl(bd.tg),mp:bd.meals.map(function(m,i){return fixM(obCp(m,{no:i+1,name:m.name||'',type:'',items:cl(m.items)}))})},x=bd.id&&dietById(bd.id);
  if(x){Object.assign(x,o);for(var d in S.days){var dd=S.days[d];if(!dd.meals)continue;var b4=dd.meals.length;dd.meals=dd.meals.filter(function(m){return m.dietId!==x.id||!untouched(m)});if(dd.dietSeen===x.id&&!dd.meals.some(function(m){return m.dietId===x.id}))delete dd.dietSeen}}
  else{o.id='d'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);o.date=iso(new Date());S.plans.unshift(o);x=o}
  save();bd=null;pick=null;dv={id:x.id};rMeals();scrollTo(0,0);toast('Diet saved to My diets')}
@@ -2328,7 +2328,7 @@ function todayIso(){return iso(new Date())}
 function oBadge(x){return x.kind==='own'?'✍️ Manual':'🧮 Diet planner'}
 var _gTx=goalTx;goalTx=function(x){return _gTx(x)+(x&&x.edited?' · ✏️ Edited':'')};
 function dEdit(id){var x=dietById(id);if(!x)return;var own=x.kind==='own'&&!Object.keys(x.tg||{}).some(function(k){return n(x.tg[k])});
- bd={id:x.id,ed:true,name:x.name,meals:cl(x.mp).map(function(m){return{no:m.no,name:m.name||'',items:m.items}}),tg:{},res:cl(x.res),sync:own,am:0,sw:null};pick=null;dv='build';tab='meals';render();scrollTo(0,0)}
+ bd={id:x.id,ed:true,name:x.name,meals:cl(x.mp).map(function(m){return obCp(m,{no:m.no,name:m.name||'',items:m.items})}),tg:{},res:cl(x.res),sync:own,am:0,sw:null};pick=null;dv='build';tab='meals';render();scrollTo(0,0)}
 function bdMerge(x){var td=todayIso();
  for(var d in S.days){if(d<td)continue;var dd=S.days[d];if(!dd.meals||!dd.meals.some(function(m){return m.dietId===x.id}))continue;
   if(d>td){dd.meals=dd.meals.filter(function(m){return m.dietId!==x.id||!untouched(m)});if(dd.dietSeen===x.id&&!dd.meals.some(function(m){return m.dietId===x.id}))delete dd.dietSeen;continue}
@@ -2341,7 +2341,7 @@ function bdMerge(x){var td=todayIso();
   sortDay(dd)}}
 function bdSaveEd(){var x=dietById(bd.id);if(!x){bd=null;dv=null;rMeals();return}bd.name=(val('bname')||'').trim()||bd.name;
  if(!bd.meals.some(function(m){return m.items.length})){toast('Add at least one food');return}var T=bdSum();
- x.name=bd.name;x.mp=bd.meals.map(function(m,i){return fixM({no:i+1,name:m.name||'',type:'',items:cl(m.items)})});
+ x.name=bd.name;x.mp=bd.meals.map(function(m,i){return fixM(obCp(m,{no:i+1,name:m.name||'',type:'',items:cl(m.items)}))});
  if(bd.sync){x.res={kcal:Math.round(T.kcal),protein:Math.round(T.protein),carbs:Math.round(T.carbs),fat:Math.round(T.fat)};if(x.kind==='own')x.tg={}}
  x.edited=todayIso();bdMerge(x);save();var id=x.id;bd=null;pick=null;dv={id:id};rMeals();scrollTo(0,0);toast('Diet saved')}
 function bdTgt(){return bd.sync?bdSum():bd.res}
@@ -2697,4 +2697,48 @@ var _rh38=rHome;rHome=function(){_rh38();var g=document.querySelector('#t-home .
 var _rs38=rSettings;rSettings=function(){_rs38();var el=document.getElementById('t-settings');if(el){var G=gsel();el.insertAdjacentHTML('afterbegin','<div class="card"><h2>🎯 Daily score gauge</h2><p class="mu">'+(G?'Custom: '+(G.k||[]).length+' item'+((G.k||[]).length===1?'':'s')+' count towards the score':'Default: calories, macros and all habits')+'</p><button data-gcog="1" style="width:100%">⚙ Customise gauge</button></div>')}};
 
 var _rr38=rReport;rReport=function(){_rr38.apply(this,arguments);var G=gsel(),el=document.getElementById('t-report');if(G&&el&&rp.kind!=='train'){var c=el.querySelector('.card');c&&c.insertAdjacentHTML('beforebegin','<p class="mu" style="font-size:13px;margin:8px 2px">🎯 Daily scores use your custom gauge selection ('+(G.k||[]).length+' items) — applied to all days. <button class="sm" data-gcog="1" style="display:inline-flex;width:auto">⚙ Change</button></p>')}};
+
+// ---- v40: meal Option B, random meal, macro % summary ----
+function obCp(m,o){if(m&&m.oth&&m.oth.items){o.oth=cl(m.oth);o.sel=m.sel||'a'}if(m&&m.alt)o.alt=m.alt;return o}
+var OBH={};function obHas(m){return!!(m&&m.oth&&m.oth.items)}
+function obA(m){return obHas(m)&&m.sel==='b'?m.oth.items:m.items}
+function obSel(m,w){if(!obHas(m)||(m.sel||'a')===w)return;var t=m.items,ta=m.alt;m.items=m.oth.items;if(m.oth.alt)m.alt=m.oth.alt;else delete m.alt;m.oth={items:t};if(ta)m.oth.alt=ta;m.sel=w}
+function obMeal(k){var p=k.split('|');if(p[0]==='x'){var x=dietById(p[1]);return x&&x.mp[+p[2]]}if(p[0]==='p')return pl&&pl.mp&&pl.mp[+p[2]];if(p[0]==='b')return bd&&bd.meals[+p[2]];if(p[0]==='d')return day(cur).meals[+p[2]]}
+function obGen(k,A,excl){var p=k.split('|'),old=MS,L=[];MS={k:p[0],id:p[1],i:+p[2],f:[],seed:1+Math.floor(Math.random()*1e6)};
+ try{var c=msCtx(MS),T=sumItems(A);if(T.kcal>0)L=msGen({items:A,keto:c.keto,fish:c.fish,slot:mslSlot(MS.i,c.all.length,T.kcal,c.dk),f:[],seed:MS.seed})}finally{MS=old}
+ var H=(OBH[k]=OBH[k]||[]),F=L.filter(function(o){return excl.indexOf(o.t.n)<0&&H.indexOf(o.t.n)<0});if(!F.length){H.length=0;F=L.filter(function(o){return excl.indexOf(o.t.n)<0})}if(!F.length)F=L;if(!F.length)return null;F=F.slice(0,Math.min(F.length,10));
+ var o=F[Math.floor(Math.random()*F.length)];H.push(o.t.n);return{items:o.items.map(function(x){return Object.assign({},x)}),alt:o.t.n}}
+function obDone(k,msg){var p=k.split('|');if(p[0]==='x'){var x=dietById(p[1]);x.edited=todayIso();bdMerge(x);save();XP['x'+x.id+'|'+p[2]]=1;rMeals()}
+ else if(p[0]==='p'){if(pl.acc&&pl.did)syncDiet(true);save();rPlan()}else if(p[0]==='b'){rMeals()}else{save();rMeals()}
+ var e=document.querySelector('[data-obk="'+k+'"]');e&&e.scrollIntoView({block:'center'});if(msg)toast(msg)}
+function obNew(k){var m=obMeal(k);if(!m)return;if(obHas(m)){obSel(m,'b');obDone(k);return}var A=m.items;if(!sumItems(A).kcal){toast('Add foods to this meal first');return}
+ var g=obGen(k,A,[m.alt||'']);if(!g){toast('No matching Option B found');return}m.oth={items:g.items,alt:g.alt};m.sel='a';obSel(m,'b');obDone(k,'Option B: '+g.alt)}
+function obRand(k){var m=obMeal(k);if(!m)return;var A=obA(m);if(!sumItems(A).kcal){toast('Add foods to this meal first');return}
+ var ex=[m.alt||''];if(obHas(m)&&m.oth.alt)ex.push(m.oth.alt);var g=obGen(k,cl(A),ex);if(!g){toast('No matching meal found');return}
+ m.items=g.items;m.alt=g.alt;obDone(k,'🎲 '+(obHas(m)?'Option '+(m.sel==='b'?'B':'A')+': ':'')+g.alt)}
+function obDel(k){var m=obMeal(k);if(!m)return;obSel(m,'a');delete m.oth;delete m.sel;obDone(k,'Option B removed')}
+function obBar(k,m,day){var h=obHas(m),b=h&&m.sel==='b';
+ if(day)return h?'<div class="obar" data-obk="'+k+'"><div class="obt"><button class="'+(b?'':'on')+'" data-obs="a|'+k+'">A</button><button class="'+(b?'on':'')+'" data-obs="b|'+k+'">B</button></div><span class="mu obl">Eating option '+(b?'B':'A')+(m.alt?' · '+esc(m.alt):'')+'</span></div>':'';
+ return'<div class="obar" data-obk="'+k+'">'+(h?'<div class="obt"><button class="'+(b?'':'on')+'" data-obs="a|'+k+'">A</button><button class="'+(b?'on':'')+'" data-obs="b|'+k+'">B</button></div>':'<button class="sm" data-obn="'+k+'">＋ Option B</button>')+
+  '<button class="sm" data-obr="'+k+'" aria-label="Random meal">🎲 Random</button>'+(h?'<button class="sm dang" data-obx="'+k+'" aria-label="Remove Option B">✕ B</button>':'')+
+  (h?'<div class="mu obl" style="flex-basis:100%">Eating option '+(b?'B':'A')+(m.alt?' · '+esc(m.alt):'')+'</div>':'')+'</div>'}
+function mPct(T){var P=n(T.protein)*4,C=n(T.carbs)*4,F=n(T.fat)*9,S0=P+C+F,a=0,b=0,c=0;if(S0>0){a=Math.round(P/S0*100);b=Math.round(C/S0*100);c=100-a-b}
+ return'<div class="mpct"><b>Total '+nf(Math.round(n(T.kcal)))+' kcal</b><span>P '+Math.round(n(T.protein))+' g · '+a+'%</span><span>C '+Math.round(n(T.carbs))+' g · '+b+'%</span><span>F '+Math.round(n(T.fat))+' g · '+c+'%</span><small class="mu">P '+a+'% · C '+b+'% · F '+c+'% of kcal</small></div>'}
+(function(){var st=document.createElement('style');st.textContent='.obar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 2px}.obar .sm{flex:0 0 auto;width:auto;min-height:34px}.obt{display:inline-flex;border:1px solid var(--t3,#333);border-radius:999px;overflow:hidden}.obt button{min-height:34px;min-width:44px;padding:2px 12px;border:0;border-radius:0;background:transparent;flex:0 0 auto;font-weight:700}.obt button.on{background:var(--ac);color:#fff}.obl{font-size:12px}.mpct{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;background:var(--card2,#1d1d1d);border-radius:14px;padding:10px 12px;margin-top:10px}.mpct b{flex-basis:100%}.mpct small{flex-basis:100%}';document.head.appendChild(st)})();
+window.addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;var D=b.dataset;if(!(D.obn||D.obr||D.obx||D.obs))return;ev.stopImmediatePropagation();ev.preventDefault();
+ if(dv==='build'&&bd)bd.name=val('bname')||bd.name;
+ if(D.obn)obNew(D.obn);else if(D.obr)obRand(D.obr);else if(D.obx)obDel(D.obx);else{var w=D.obs[0],k=D.obs.slice(2),m=obMeal(k);if(m){obSel(m,w);obDone(k)}}},true);
+var _eDM40=ensureDietMeals;ensureDietMeals=function(s){var b4=peek(s).meals.slice();_eDM40(s);obLink(s,b4)};
+function obLink(s,b4){var d=activeDiet(s);if(!d||!S.days[s])return;S.days[s].meals.forEach(function(m){if(b4.indexOf(m)>=0||m.dietId!==d.id)return;var q=d.mp.filter(function(z){return z.no===m.no})[0];
+ if(q&&obHas(q)){m.oth={items:q.oth.items.map(function(x){var c=Object.assign({},x);c.eaten=false;return c})};if(q.oth.alt)m.oth.alt=q.oth.alt;m.sel=q.sel||'a'}if(q&&q.alt)m.alt=q.alt})}
+var _bM40=bdMerge;bdMerge=function(x){var td=todayIso(),b4={};for(var d in S.days)if(d>=td)b4[d]=(S.days[d].meals||[]).slice();_bM40(x);
+ for(var d2 in b4)if(S.days[d2])S.days[d2].meals.forEach(function(m){if(b4[d2].indexOf(m)>=0||m.dietId!==x.id)return;var q=x.mp.filter(function(z){return z.no===m.no})[0];if(q&&obHas(q)){m.oth={items:q.oth.items.map(function(y){var c=Object.assign({},y);c.eaten=false;return c})};if(q.oth.alt)m.oth.alt=q.oth.alt;m.sel=q.sel||'a'}})};
+var _rM40=rMeals;rMeals=function(){_rM40();var el=document.getElementById('t-meals');if(!el)return;
+ if(dv&&dv.id){var x=dietById(dv.id);if(!x)return;el.querySelectorAll('.pmeal').forEach(function(c,i){var h=c.querySelector('.mhd');if(h&&x.mp[i])h.insertAdjacentHTML('afterend',obBar('x|'+x.id+'|'+i,x.mp[i]))});
+  var t=el.querySelector('.dtot');if(t)t.insertAdjacentHTML('afterend',mPct(planTot(x.mp)));return}
+ if(dv==='build'&&bd){el.querySelectorAll('.bmeal').forEach(function(c,i){var h=c.querySelector('.row');if(h&&bd.meals[i])h.insertAdjacentHTML('afterend',obBar('b||'+i,bd.meals[i]))});
+  var sb=document.getElementById('bsave');if(sb)sb.insertAdjacentHTML('beforebegin',mPct(bdSum()));return}
+ if(!dv){var d=peek(cur);el.querySelectorAll('.meal.mc').forEach(function(c,i){var m=d.meals[i],h=c.querySelector('.mhd');if(m&&h&&obHas(m))h.insertAdjacentHTML('afterend',obBar('d||'+i,m,true))})}};
+var _rP40=rPlan;rPlan=function(){_rP40();if(!pl||!pl.mp)return;document.querySelectorAll('#pmeals .pmeal').forEach(function(c,i){var h=c.querySelector('.mhd');if(h&&pl.mp[i])h.insertAdjacentHTML('afterend',obBar('p||'+i,pl.mp[i]))});
+ var t=document.querySelector('#pmeals .ptot');if(t)t.insertAdjacentHTML('afterend',mPct(planTot(pl.mp)))};
 </script></body></html>
