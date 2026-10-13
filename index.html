@@ -296,7 +296,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v36 · 13 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML=themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v37 · 13 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -1749,7 +1749,7 @@ function rxParse(re){var s=re.rx||'',o={sets:Math.max((re.tpl||[]).length,1),rep
  if((m=s.match(/(\d+)\s*[×x]\s*([^·]+)/)))o.reps=m[2].trim();if((m=s.match(/rest\s*([^·]+)/i)))o.rest=m[1].trim();if((m=s.match(/RIR\s*([^·]+)/i)))o.rir=m[1].trim();
  if(!o.reps&&re.tpl&&re.tpl[0]&&re.tpl[0].r)o.reps=String(re.tpl[0].r);return o}
 function rxBuild(e){if(!e.reps&&!e.rest&&!e.rir)return'';return e.sets+' × '+(e.reps||'?')+(e.rest?' · rest '+e.rest:'')+(e.rir!==''?' · RIR '+e.rir:'')}
-function reOpen(id){var r=S.routines.find(function(x){return x.id===id});if(!r)return;RE={id:id,name:r.name,ex:r.ex.map(function(e){var p=rxParse(e);return{name:e.name,muscle:e.muscle||'',tpl:cl(e.tpl||[]),rx0:e.rx||'',sets:p.sets,reps:p.reps,rest:p.rest,rir:p.rir}}),sw:null,q:''};tab='workout';render();scrollTo(0,0)}
+function reOpen(id){var r=S.routines.find(function(x){return x.id===id});if(!r)return;RE={id:id,name:r.name,ex:r.ex.map(function(e){var p=rxParse(e);return{dn:e.dn,name:e.name,muscle:e.muscle||'',tpl:cl(e.tpl||[]),rx0:e.rx||'',sets:p.sets,reps:p.reps,rest:p.rest,rir:p.rir}}),sw:null,q:''};tab='workout';render();scrollTo(0,0)}
 function reMus(nm){var l=exList().filter(function(x){return x.name===nm})[0];return l?l.muscle:'Other'}
 function rePick(q,mus,act){var L=exList(),ql=(q||'').toLowerCase(),inR={};RE.ex.forEach(function(e){inR[e.name]=1});
  var cur0=act==='rew'&&RE.sw!=null?RE.ex[RE.sw].name:'';var f=L.filter(function(x){return x.name!==cur0&&(!ql||x.name.toLowerCase().indexOf(ql)>=0||x.muscle.toLowerCase().indexOf(ql)>=0)});
@@ -1757,14 +1757,14 @@ function rePick(q,mus,act){var L=exList(),ql=(q||'').toLowerCase(),inR={};RE.ex.
  return f.slice(0,q?40:(mus?12:0)).map(function(x){return'<button class="fr" data-'+act+'="'+esc(x.name)+'"'+(inR[x.name]&&act==='rea'?' disabled':'')+'><span>'+(x.muscle===mus?'⭐ ':'')+esc(x.name)+'</span><small>'+esc(x.muscle)+(inR[x.name]?' · in routine':'')+'</small></button>'}).join('')||(q?'<p class="mu">No matches</p>':'')}
 function rEdit(el){var r=S.routines.find(function(x){return x.id===RE.id}),N=RE.ex.length;
  el.innerHTML='<button class="sm" data-rec="1" style="width:auto">‹ Cancel</button><div class="card full"><h2>✏️ Edit routine <span class="orb">'+(r&&r.plan?'🧠 Training planner':'✍️ Manual')+'</span>'+(r&&r.edited?'<span class="orb edtag">Edited</span>':'')+'</h2><label>Routine name</label><input id="rename" value="'+esc(RE.name)+'"><p class="mu" style="font-size:13px">Changes apply to future sessions only — past logged workouts are not changed.</p></div>'+
- '<div class="card full"><h3>Exercises ('+N+')</h3>'+(RE.ex.map(function(e,k){var sw=RE.sw===k;return'<div class="rei"><div class="row"><span style="flex:1;min-width:0"><b>'+(k+1)+'. '+esc(e.name)+'</b><br><small class="mu">'+esc(e.muscle)+'</small></span><button class="sm" data-reu="'+k+'"'+(k?'':' disabled')+' aria-label="Move up">↑</button><button class="sm" data-red2="'+k+'"'+(k<N-1?'':' disabled')+' aria-label="Move down">↓</button><button class="sm'+(sw?' pri':'')+'" data-res="'+k+'" aria-label="Swap exercise">⇄</button><button class="sm dang" data-rer="'+k+'" aria-label="Remove">✕</button></div>'+
+ '<div class="card full"><h3>Exercises ('+N+')</h3>'+(RE.ex.map(function(e,k){var sw=RE.sw===k;return'<div class="rei"><div class="row"><span style="flex:1;min-width:0"><b>'+(k+1)+'. '+esc(e.dn||exAl(e.name))+'</b> <button class="sm ren" data-xrn="E|'+k+'" aria-label="Rename exercise">✎</button>'+(e.dn||exAl(e.name)!==e.name?'<br><small class="mu">orig: '+esc(e.name)+'</small>':'')+'<br><small class="mu">'+esc(e.muscle)+'</small></span><button class="sm" data-reu="'+k+'"'+(k?'':' disabled')+' aria-label="Move up">↑</button><button class="sm" data-red2="'+k+'"'+(k<N-1?'':' disabled')+' aria-label="Move down">↓</button><button class="sm'+(sw?' pri':'')+'" data-res="'+k+'" aria-label="Swap exercise">⇄</button><button class="sm dang" data-rer="'+k+'" aria-label="Remove">✕</button></div>'+
   '<div class="rxg"><div><label>Sets</label><input type="number" inputmode="numeric" min="1" max="12" data-rf="'+k+'.sets" value="'+e.sets+'"></div><div><label>Reps</label><input data-rf="'+k+'.reps" value="'+esc(e.reps)+'" placeholder="8–12"></div><div><label>Rest</label><input data-rf="'+k+'.rest" value="'+esc(e.rest)+'" placeholder="90 s"></div><div><label>RIR</label><input data-rf="'+k+'.rir" value="'+esc(e.rir)+'" placeholder="2"></div></div>'+
   (sw?'<div class="rsp"><b>⇄ Swap '+esc(e.name)+'</b> <small class="mu">— same muscle ('+esc(e.muscle)+') first</small><input id="rsq" type="search" autocomplete="off" placeholder="Search any exercise…" value="'+esc(RE.q)+'" style="margin-top:6px"><div id="rsr">'+rePick(RE.q,e.muscle,'rew')+'</div><button class="sm" data-rsx="1" style="margin-top:6px">Cancel swap</button></div>':'')+'</div>'}).join('')||'<p class="mu">No exercises — add some below.</p>')+'</div>'+
  '<div class="card full"><label>Add exercise from library</label><input id="raq" type="search" autocomplete="off" placeholder="Search name or muscle…"><div id="rar"></div></div>'+
  '<div class="row svrow"><button class="pri" id="resave" style="min-height:52px">💾 Save changes</button><button id="recancel" style="min-height:52px">Cancel</button></div>'}
 function reSave(){var r=S.routines.find(function(x){return x.id===RE.id});if(!r){RE=null;rWorkout();return}
  r.name=(val('rename')||'').trim()||r.name;r.ex=RE.ex.map(function(e){var ns=Math.max(1,Math.min(12,Math.round(n(e.sets))||1)),t=e.tpl.slice(0,ns),lo=String(e.reps||'').match(/\d+/);while(t.length<ns)t.push(t.length?{w:t[t.length-1].w,r:t[t.length-1].r}:{w:'',r:lo?lo[0]:''});
-  var o={name:e.name,muscle:e.muscle,tpl:t},rx=rxBuild({sets:ns,reps:e.reps,rest:e.rest,rir:e.rir});if(rx)o.rx=rx;else if(e.rx0&&ns===Math.max(e.tpl.length,1))o.rx=e.rx0;return o});
+  var o={name:e.name,muscle:e.muscle,tpl:t};if(e.dn)o.dn=e.dn;var rx=rxBuild({sets:ns,reps:e.reps,rest:e.rest,rir:e.rir});if(rx)o.rx=rx;else if(e.rx0&&ns===Math.max(e.tpl.length,1))o.rx=e.rx0;return o});
  r.edited=todayIso();save();RE=null;wv.r=r.id;wv.e=null;rWorkout();scrollTo(0,0);toast('Routine saved')}
 var _rW=rWorkout;rWorkout=function(){var el=document.getElementById('t-workout');if(RE&&el){rEdit(el);return}_rW();if(!el)return;
  if(!rtn()){el.querySelectorAll('[data-rren]').forEach(function(b){var x=S.routines[+b.dataset.rren];if(x){b.insertAdjacentHTML('beforebegin','<button class="sm edb" data-red="'+x.id+'" aria-label="Edit routine">✏️ Edit</button>');var t=b.closest('.tile'),bb=t&&t.querySelector('.tbtn b');if(bb&&(x.plan||x.edited))bb.insertAdjacentHTML('beforeend',(x.plan?'<span class="orb">🧠 Planner</span>':'')+(x.edited?'<span class="orb edtag">Edited</span>':''))}})}
@@ -1776,7 +1776,7 @@ window.addEventListener('click',function(ev){if(!RE||tab!=='workout')return;var 
  else if(D.rer){stop();RE.ex.splice(+D.rer,1);RE.sw=null;rr()}
  else if(D.res){stop();var k=+D.res;RE.sw=RE.sw===k?null:k;RE.q='';rr();var q=document.getElementById('rsq');q&&q.scrollIntoView({block:'center'})}
  else if(D.rsx){stop();RE.sw=null;rr()}
- else if(D.rew){stop();var e=RE.ex[RE.sw],old=e.name;e.name=D.rew;e.muscle=reMus(D.rew);e.tpl=e.tpl.map(function(z){return{w:'',r:z.r}});RE.sw=null;rr();toast(old+' → '+D.rew)}
+ else if(D.rew){stop();var e=RE.ex[RE.sw],old=e.name;e.name=D.rew;delete e.dn;e.muscle=reMus(D.rew);e.tpl=e.tpl.map(function(z){return{w:'',r:z.r}});RE.sw=null;rr();toast(old+' → '+D.rew)}
  else if(D.rea){stop();var nm=D.rea;RE.ex.push({name:nm,muscle:reMus(nm),tpl:[{w:'',r:''},{w:'',r:''},{w:'',r:''}],rx0:'',sets:3,reps:'',rest:'',rir:''});rr();toast(nm+' added')}},true);
 document.addEventListener('input',function(ev){if(!RE)return;var e=ev.target,D=e.dataset||{};
  if(D.rf){var p=D.rf.split('.');RE.ex[+p[0]][p[1]]=e.value}
@@ -1943,5 +1943,73 @@ window.addEventListener('click',function(ev){var b=ev.target.closest('button');i
  if(D.fsug){ev.stopImmediatePropagation();var p=D.fsug.split('|');fvAdd(p[0],p.slice(1).join('|'))}
  else if(D.fdel){ev.stopImmediatePropagation();var q=D.fdel.split('|');fvList(q[0]).splice(+q[1],1);save();fvRegen(q[0])}
  else if(D.fadd){ev.stopImmediatePropagation();var nm=D.fadd;tab='meals';dv='more';render();var e=document.getElementById('ffname');if(e){e.value=nm.charAt(0).toUpperCase()+nm.slice(1);e.scrollIntoView({block:'center'});e.focus()}toast('Add “'+nm+'” to My foods, then recalculate')}},true);
+
+
+// ---- v37: my exercises + rename exercises ----
+var EQUIP=['Barbell','Dumbbell','Cable','Machine','Bodyweight','Kettlebell','Band','Smith machine','Other'],XTYPE=[['weights','Weights'],['bodyweight','Bodyweight'],['timed','Timed']];
+function migX(){S.customEx=S.customEx||[];S.customEx.forEach(function(c,i){if(!c.id)c.id='x'+Date.now().toString(36)+i+Math.random().toString(36).slice(2,5)});S.exAlias=S.exAlias||{}}
+migX();
+function exAl(nm){return S.exAlias&&S.exAlias[nm]||nm}
+function exAliasMap(){var m={};(S.routines||[]).forEach(function(r){r.ex.forEach(function(e){if(e.dn&&!m[e.name])m[e.name]=e.dn})});for(var k in (S.exAlias||{}))m[k]=S.exAlias[k];return m}
+function exWalk(root,M){var ks=Object.keys(M).filter(function(k){return k&&M[k]&&M[k]!==k}).sort(function(a,b){return b.length-a.length});if(!root||!ks.length)return;
+ var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),t,L=[];while((t=w.nextNode()))L.push(t);
+ L.forEach(function(t){var v=t.nodeValue,o=v;if(t.parentNode&&/^(INPUT|TEXTAREA|SCRIPT|STYLE)$/.test(t.parentNode.nodeName))return;ks.forEach(function(k){if(v.indexOf(k)>=0&&v.indexOf(M[k])<0)v=v.split(k).join(M[k])});if(v!==o)t.nodeValue=v})}
+var _exl37=exList;exList=function(){migX();var L=_exl37();L.forEach(function(x){var c=x.mine&&S.customEx.find(function(z){return z.name===x.name});if(c){x.equip=c.equip;x.type=c.type;x.note=c.note}x.dn=exAl(x.name)});return L};
+// search pickers also match alias
+var _rePick37=rePick;rePick=function(q,mus,act){var h=_rePick37(q,mus,act);if(q){var ql=q.toLowerCase(),inR={};RE.ex.forEach(function(e){inR[e.name]=1});var ex=exList().filter(function(x){return x.dn!==x.name&&x.dn.toLowerCase().indexOf(ql)>=0&&h.indexOf('data-'+act+'="'+esc(x.name)+'"')<0});h=ex.map(function(x){return'<button class="fr" data-'+act+'="'+esc(x.name)+'"><span>'+esc(x.dn)+'</span><small>'+esc(x.muscle)+'</small></button>'}).join('')+h}return h};
+// custom exercise form
+var XF=null; // {i:index|null, name, muscle, equip, type, note}
+function xfHtml(){var f=XF;return'<div class="card full" id="xform"><h2>'+(f.i!=null?'✎ Edit my exercise':'+ Create my own exercise')+'</h2>'+
+ '<label>Name</label><input id="xfn" value="'+esc(f.name||'')+'" placeholder="e.g. Landmine press">'+
+ '<div class="g2"><div><label>Muscle group</label><select id="xfm">'+Object.keys(EXLIB).concat(['Other']).map(function(m){return'<option'+(m===f.muscle?' selected':'')+'>'+m+'</option>'}).join('')+'</select></div>'+
+ '<div><label>Equipment</label><select id="xfe">'+EQUIP.map(function(m){return'<option'+(m===f.equip?' selected':'')+'>'+m+'</option>'}).join('')+'</select></div></div>'+
+ '<label>Type (optional)</label><div class="row" style="gap:6px">'+XTYPE.map(function(t){return'<button class="sm'+(f.type===t[0]?' pri':'')+'" data-xft="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div>'+
+ '<label>Note (optional)</label><input id="xfo" value="'+esc(f.note||'')+'" placeholder="e.g. seat height 4, neutral grip">'+
+ '<div class="row" style="margin-top:12px"><button class="pri" id="xfsave">'+(f.i!=null?'💾 Save':'+ Add exercise')+'</button><button id="xfcan">Cancel</button></div></div>'}
+function xfSync(){if(!XF)return;['name:xfn','muscle:xfm','equip:xfe','note:xfo'].forEach(function(p){var q=p.split(':'),e=document.getElementById(q[1]);if(e)XF[q[0]]=e.value})}
+function myExCard(){migX();var L=S.customEx;return'<div class="card full" id="myex"><div class="row" style="justify-content:space-between;align-items:center"><h2 style="margin:0">⭐ My exercises</h2>'+(XF?'':'<button class="pri sm" data-xfnew="1" style="flex:0 0 auto">+ Create my own exercise</button>')+'</div>'+
+ (L.length?L.map(function(c,i){var dn=exAl(c.name);return'<div class="hab"><div class="n" style="flex:1;min-width:0"><b>'+esc(dn)+'</b><small>'+esc(c.muscle||'')+(c.equip?' · '+esc(c.equip):'')+(c.type?' · '+esc(c.type):'')+(c.note?' · '+esc(c.note):'')+(dn!==c.name?' · orig '+esc(c.name):'')+'</small></div><button class="sm" data-xfed="'+i+'" style="flex:0 0 auto">✎</button><button class="sm dang" data-xfdel="'+i+'" style="flex:0 0 auto" aria-label="Delete">✕</button></div>'}).join(''):'<p class="mu">No exercises of your own yet.</p>')+'</div>'+(XF?xfHtml():'')}
+function xfSave(){xfSync();var nm=(XF.name||'').trim();if(!nm){toast('Enter a name');return}
+ var dup=exList().some(function(x){return x.name.toLowerCase()===nm.toLowerCase()&&!(XF.i!=null&&S.customEx[XF.i].name===x.name)});if(dup){toast('That exercise already exists');return}
+ var o={name:nm,muscle:XF.muscle||'Other',equip:XF.equip||'',type:XF.type||'',note:(XF.note||'').trim()};
+ if(XF.i!=null){var c=S.customEx[XF.i],old=c.name,used=Object.keys(S.days).some(function(d){return wk(d).ex.some(function(e){return e.name===old})});
+  if(nm!==old){if(used){S.exAlias[old]=nm;o.name=old}else{(S.routines||[]).forEach(function(r){r.ex.forEach(function(e){if(e.name===old)e.name=nm})});delete S.exAlias[old]}}
+  Object.assign(c,o);toast('Exercise saved')}else{o.id='x'+Date.now().toString(36);S.customEx.push(o);toast('Exercise added')}
+ XF=null;save();render()}
+document.addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;var D=b.dataset;
+ if(D.xfnew){XF={i:null,muscle:'Chest',equip:'Dumbbell',type:'weights'};render();var e=document.getElementById('xfn');e&&(e.scrollIntoView({block:'center'}),e.focus())}
+ else if(D.xft){xfSync();XF.type=XF.type===D.xft?'':D.xft;render()}
+ else if(b.id==='xfsave')xfSave();
+ else if(b.id==='xfcan'){XF=null;render()}
+ else if(D.xfed!=null){var c=S.customEx[+D.xfed];XF={i:+D.xfed,name:exAl(c.name),muscle:c.muscle,equip:c.equip,type:c.type,note:c.note};render();var e2=document.getElementById('xform');e2&&e2.scrollIntoView({block:'start'})}
+ else if(D.xfdel!=null){var c2=S.customEx[+D.xfdel];undoDel('“'+exAl(c2.name)+'” deleted — history kept',function(){S.customEx.splice(+D.xfdel,1)})}});
+var _rEx37=rExlib;rExlib=function(){_rEx37();var el=document.getElementById('t-exlib');if(!el)return;var c=el.querySelector('.card');if(c)c.insertAdjacentHTML('afterend',myExCard());exWalk(el,exAliasMap())};
+// exercise library search also hits aliases / equipment
+var _rwo37=rWorkout;rWorkout=function(){_rwo37();var el=document.getElementById('t-workout');if(!el)return;var r=rtn();
+ if(!RE){exWalk(el,S.exAlias||{});
+  if(r&&wv.e==null)el.querySelectorAll('[data-oe]').forEach(function(b){var re=r.ex[+b.dataset.oe];if(!re)return;var bb=b.querySelector('b');if(bb){bb.textContent=re.dn||exAl(re.name);bb.insertAdjacentHTML('afterend',(re.dn&&re.dn!==re.name?'<small class="mu">orig: '+esc(re.name)+'</small>':''))}
+   var ta=b.parentNode.querySelector('.tact');if(ta)ta.insertAdjacentHTML('afterbegin','<button class="sm" data-xrn="R|'+b.dataset.oe+'" aria-label="Rename exercise">✎</button>')});
+  if(r&&wv.e!=null&&r.ex[wv.e]){var re=r.ex[wv.e],h=el.querySelector('h2');if(h){h.textContent=re.dn||exAl(re.name);h.insertAdjacentHTML('beforeend',' <button class="sm ren" data-xrn="R|'+wv.e+'" aria-label="Rename exercise">✎</button>')}}
+  if(!r){var cx=el.querySelector('#cxadd');if(cx)cx.insertAdjacentHTML('afterend','<button class="sm" data-go="exlib" style="margin-top:6px;width:100%">⭐ More options (equipment, type, note) in Exercises ›</button>')}}};
+var _rRep37=rReport;rReport=function(){_rRep37.apply(this,arguments);exWalk(document.getElementById('t-report'),exAliasMap())};
+// rename sheet
+var XR=null;
+function xrOpen(k){var p=k.split('|'),i=+p[1],e=p[0]==='E'?RE.ex[i]:rtn().ex[i];if(!e)return;if(p[0]==='E'){var rn=document.getElementById('rename');if(rn)RE.name=rn.value}
+ XR={k:p[0],i:i,orig:e.name};var cur0=e.dn||exAl(e.name),mine=S.customEx.some(function(c){return c.name===e.name});
+ var d=document.createElement('div');d.id='xrs';d.innerHTML='<div class="msb"><h2 style="margin:0 0 6px">✎ Rename exercise</h2><p class="mu" style="font-size:13px;margin:0 0 8px">Original: <b>'+esc(e.name)+'</b>. History, PRs and progress stay linked.</p><input id="xrn" value="'+esc(cur0)+'" maxlength="60">'+
+ '<button class="pri" data-xrgo="r" style="width:100%;margin-top:10px">Rename in this routine</button><button data-xrgo="g" style="width:100%;margin-top:8px">🌐 Rename everywhere'+(mine?' (my exercise)':'')+'</button>'+
+ ((e.dn||exAl(e.name)!==e.name)?'<button class="sm" data-xrgo="x" style="width:100%;margin-top:8px">↺ Reset to original name</button>':'')+'<button class="sm" data-xrgo="c" style="width:100%;margin-top:8px">Cancel</button></div>';document.body.appendChild(d);var q=document.getElementById('xrn');q.focus();q.select()}
+function xrClose(){XR=null;var d=document.getElementById('xrs');d&&d.remove()}
+(function(){var st=document.createElement('style');st.textContent='#xrs{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.7);padding:80px 14px}#xrs .msb{background:var(--card);border:1px solid var(--t3);border-radius:18px;padding:16px;max-width:520px;margin:0 auto}';document.head.appendChild(st)})();
+window.addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;var D=b.dataset;
+ if(D.xrn){ev.stopImmediatePropagation();ev.preventDefault();xrOpen(D.xrn);return}
+ if(D.xrgo&&XR){ev.stopImmediatePropagation();var v=(val('xrn')||'').trim(),R0=XR.k==='E'?null:rtn(),e=XR.k==='E'?RE.ex[XR.i]:R0.ex[XR.i];
+  if(D.xrgo==='c'){xrClose();return}
+  if(D.xrgo==='x'){delete e.dn;if(XR.k!=='E'){delete S.exAlias[e.name];R0.edited=R0.edited||todayIso()}toast('Name reset')}
+  else if(!v){toast('Enter a name');return}
+  else if(D.xrgo==='r'){if(v===e.name)delete e.dn;else e.dn=v;if(R0)R0.edited=todayIso();toast('Renamed in this routine')}
+  else{if(v===e.name)delete S.exAlias[e.name];else S.exAlias[e.name]=v;delete e.dn;(S.routines||[]).forEach(function(r){r.ex.forEach(function(z){if(z.name===e.name&&z.dn===v)delete z.dn})});toast('Renamed everywhere')}
+  save();xrClose();rWorkout()}},true);
+document.addEventListener('keydown',function(e){if(e.target.id==='xrn'&&e.key==='Enter'){var b=document.querySelector('[data-xrgo="r"]');b&&b.click()}if(XR&&e.key==='Escape')xrClose()});
 
 </script></body></html>
