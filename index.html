@@ -305,6 +305,15 @@ body.thx-borange .pri,body.thx-borange .mtog .knob{box-shadow:0 0 14px rgba(255,
 #pcrep .pcwt th,#pcrep .pcwt td{font-size:11.5px;padding:4px 3px;white-space:nowrap}
 .pclan{margin-top:10px}
 @media print{html,body.pcprint{background:#fff!important}body.pcprint{background-image:none!important}body.pcprint *{visibility:hidden}body.pcprint #pcrep,body.pcprint #pcrep *{visibility:visible!important}body.pcprint #pcrep{position:absolute;left:0;top:0;width:100%;background:#fff!important;color:#000!important;border:0!important;box-shadow:none!important}body.pcprint #pcrep .mu,body.pcprint #pcrep small{color:#444!important}body.pcprint #pcrep .ergrid div{background:#f3f3f3!important}body.pcprint #pcrep .ergrid b{color:#000!important}body.pcprint #pcrep .pcrhd{background:#eee!important}body.pcprint #pcrep .noprint{display:none!important}#pcrep *{-webkit-print-color-adjust:exact;print-color-adjust:exact}body.pcprint #pcrep h3{break-after:avoid}}
+/* v57 gut diet creator + weekly plan */
+.gdbdg{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;white-space:nowrap;vertical-align:middle;background:color-mix(in srgb,#22c55e 22%,var(--card));color:var(--tx)}.gdbdg.pmos{background:color-mix(in srgb,#d946ef 24%,var(--card))}
+.gdm{margin-top:10px;padding:10px;border-radius:14px;background:var(--t2);min-width:0}.gdmh{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.gdmh>div{min-width:0}.gdmh .mk{flex:0 0 auto;font-weight:800;color:var(--ac)}
+.gdit{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid color-mix(in srgb,var(--mu) 18%,transparent)}.gdit .ck{width:36px;height:36px;min-width:36px;min-height:36px;font-size:16px}.gdn{flex:1 1 auto;display:block;min-width:0;font-size:13.5px;overflow-wrap:break-word}.gdn small{display:block;font-size:11.5px}.gdtag{font-style:normal;color:#22c55e}
+.gdtg{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:8px 0}.gdtg>div{display:flex;flex-direction:column;align-items:center;padding:6px 2px;border-radius:10px;background:var(--t2);min-width:0}.gdtg b{font-size:15px}.gdtg small{font-size:10px;color:var(--mu)}
+.gdli{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;text-align:left;padding:10px;margin-top:6px;min-height:52px}.gdli>span{min-width:0}.gdli b{display:block;overflow-wrap:anywhere}.gdli small{display:block;font-size:11.5px}
+.wpg{display:flex;flex-direction:column;gap:4px}.wpr{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:10px;background:var(--t2);min-width:0}.wpr>b{flex:0 0 92px;font-size:13px}.wpr>span{min-width:0;font-size:13px;overflow-wrap:anywhere}.wpr select{flex:1;min-width:0;width:auto!important;font-size:14px}.wpr.today{outline:1px solid var(--ac)}
+.wpchips button{min-width:40px;flex:1}
+#gdsw{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center}#gdsw .msb{width:min(480px,100%);max-height:88vh;overflow:auto;background:var(--card);border-radius:18px 18px 0 0;padding:14px;box-sizing:border-box}
 </style></head><body>
 <div id="bgl"></div>
 <header><div class="dnav"><button id="prev" aria-label="Previous day">‹</button><div class="dmid"><div class="d" id="dlbl"></div><div class="dtrow"><button id="today" class="sm" aria-label="Jump to today">Today</button><span id="svind">✓ Saved</span></div></div><button id="next" aria-label="Next day">›</button></div><div class="secbar" id="secbar"></div></header>
@@ -420,7 +429,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v56 · 17 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v57 · 17 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2392,6 +2401,7 @@ function rLegal(){
    A('https://www.who.int/publications/i/item/9789240015128','WHO (2020) — Guidelines on physical activity and sedentary behaviour')+
    A('https://www.verity-pcos.org.uk/','Verity — UK PCOS/PMOS charity')+
    A('https://www.samaritans.org/ireland/how-we-can-help/contact-samaritan/','Samaritans Ireland — 116 123, free, 24/7');
+  h+='<h3>Gut diet creator (IBS · PCOS/PMOS)</h3><p>The Gut diet creator is separate from the normal diet creator and only uses foods that pass the chosen condition’s rules. FODMAP levels come from a built-in tag table for common foods (high / moderate with a serving cap / low), based on published low-FODMAP serving guidance, with a name-based fallback for untagged foods — it can be wrong for brands and recipes, so check labels and the Monash University FODMAP app. IBS rules follow NICE CG61 / NHS first-line advice (regular meals, fresh fruit ≤3 portions and tea/coffee ≤3 cups a day, avoid sorbitol-type sweeteners). PCOS/PMOS diets follow general healthy-eating advice from the 2023 International PCOS Guideline; the lower-GI option is a preference, not a medical rule. Diets are general guidance, not medical advice.</p>';
   h+='<h3>Pregnancy</h3>'+A('https://www2.hse.ie/pregnancy-birth/keeping-well/food-drink/healthy-eating/','HSE — healthy eating in pregnancy')+A('https://www2.hse.ie/pregnancy-birth/keeping-well/food-drink/what-to-avoid/','HSE — foods to avoid')+A('https://www2.hse.ie/medicines/folic-acid/','HSE — folic acid')+A('https://www.nhs.uk/pregnancy/keeping-well/exercise/','NHS — exercise in pregnancy')+A('https://www2.hse.ie/pregnancy-birth/keeping-well/exercise/when-to-stop/','HSE — when to stop exercising');
   h+='<h3>Postpartum</h3>'+A('https://www.nhs.uk/baby/support-and-services/your-6-week-postnatal-check/','NHS — 6-week postnatal check')+A('https://movingmedicine.ac.uk/evidence/goom-t-donnelly-g-brockwell-e-returning-to-running-postnatal-guidelines-for-medical-health-and-fitness-professionals-managing-this-population-march-2019/','Goom, Donnelly &amp; Brockwell 2019 — return to running')+A('https://www2.hse.ie/babies-children/breastfeeding/health-lifestyle/what-to-eat/','HSE — eating while breastfeeding');
   h+='<h3>Menopause</h3>'+A('https://www.nhs.uk/conditions/menopause/things-you-can-do/','NHS — things you can do')+A('https://www2.hse.ie/conditions/menopause/','HSE — menopause')+A('https://www.jeanhailes.org.au/health-a-z/menopause','Jean Hailes — menopause');
@@ -2408,7 +2418,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">TonTon App v56</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">TonTon App v57</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4686,7 +4696,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">TonTon App v56 · Self-recorded data for discussion with a clinician. TonTon does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">TonTon App v57 · Self-recorded data for discussion with a clinician. TonTon does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -4771,72 +4781,290 @@ document.addEventListener('click',function(ev){var b=ev.target.closest('[data-gm
 });
 window.addEventListener('afterprint',function(){document.body.classList.remove('pcprint')});
 
-// ===== v56: condition-aware daily meal planner (IBS · PCOS/PMOS) — uses the existing Diets creator =====
-var CPWHY={},CPC={k:'',s:{}};
-var CP_FRUIT=/\b(apple|banana|orange|pear|berr(y|ies)|blueberr|strawberr|raspberr|blackberr|grape|kiwi|mango|pineapple|melon|peach|plum|cherr|satsuma|clementine|mandarin|nectarine|apricot|figs?\b|dates\b|raisin|sultana|fruit salad|dried fruit|fruit juice|orange juice|apple juice)/i;
-var CP_POLY=/sorbitol|mannitol|xylitol|maltitol|isomalt|sugar[- ]free (gum|mints?|sweets|chewing)|\bsweetener\b/i;
-var CP_HIGI=/white bread|cornflakes|corn flakes|rice cakes?|rice krispies|puffed rice|mashed potato|potatoes, boiled|baked potato|jacket potato|instant (oats|porridge)|crumpet|white rice|jasmine rice|sticky rice|french bread|baguette/i;
-var CP_PROC=/crisps|sweets\b|chocolate bar|biscuit|cookie|cake\b|doughnut|donut|cola\b|fizzy|sausage roll|chipper|takeaway|battered|energy drink|jelly sweets/i;
-var CP_WG=/wholemeal|wholegrain|whole grain|wholewheat|brown rice|brown bread|porridge oats|oats|quinoa|barley|bulgur|rye|lentil|chickpea|bean|pulses|buckwheat|spelt/i;
-function cpFodEx(i){var F=GU.fod||{},ph=F.ph||'off',T=guTolSum(),all=GFOD.map(function(g){return g[0]}),ex={};
- if(!i.lowf)return{ex:{},ph:ph,mode:'off'};
- if(ph==='pers'){all.forEach(function(g){var v=(F.tol||{})[g]||T[g]||'';if(v==='avoid')ex[g]='avoid for now (your personal list)'});return{ex:ex,ph:ph,mode:'pers'}}
- if(ph==='reint'){all.forEach(function(g){if(T[g]!=='ok')ex[g]='not yet tested OK (reintroduction)'});return{ex:ex,ph:ph,mode:'reint'}}
- all.forEach(function(g){ex[g]='high-FODMAP'+(ph==='elim'?' (elimination phase)':'')});return{ex:ex,ph:ph,mode:ph==='elim'?'elim':'filter'}}
-function cpTrig(){try{var tr=guTriggers();return tr&&tr.ready?tr:{L:[],G:[]}}catch(e){return{L:[],G:[]}}}
-function cpFavSet(i){var s={};(i.fav||[]).forEach(function(t){var f=favFood(t);if(f)s[f.name]=1});return s}
-function condAvoid(i){if(!i||!i.cond)return{};var key=[i.cond,i.lowf?1:0,i.trig===false?0:1,i.lgi?1:0,(i.fav||[]).join(','),FOODS.length,JSON.stringify(GU.fod||{}),Object.keys(GU.days||{}).length,guLogDays().slice(-1)[0]||''].join('|');if(CPC.k===key)return CPC.s;
- var s={},why={};
- if(i.cond==='ibs'){var FE=cpFodEx(i),tr=i.trig===false?{L:[],G:[]}:cpTrig(),tl={},tg={};tr.L.forEach(function(t){tl[t.k]=1});tr.G.forEach(function(t){tg[t.k]=1});if(FE.mode==='pers'||FE.mode==='reint'||((GU.fod||{}).ph==='pers')){var T0=guTolSum(),TL=(GU.fod||{}).tol||{};Object.keys(tg).forEach(function(k){if((TL[k]||T0[k])==='ok')delete tg[k]})}
-  FOODS.forEach(function(f){var nm=f.name,r='';if(CP_POLY.test(nm)||(typeof guSweet==='function'&&guSweet(f).length))r='polyol sweetener (sorbitol, xylitol…) — can upset IBS';
-   if(!r&&Object.keys(FE.ex).length){var gs=guGroups(nm);for(var q=0;q<gs.length;q++)if(FE.ex[gs[q]]){r=guGrpName(gs[q])+' — '+FE.ex[gs[q]];break}}
-   if(!r&&tl[guFoodBase(nm)])r='flagged in your trigger finder';
-   if(!r&&Object.keys(tg).length){var g2=guGroups(nm);for(var z=0;z<g2.length;z++)if(tg[g2[z]]){r=guGrpName(g2[z])+' — flagged in your trigger finder';break}if(!r)GTAG.forEach(function(g){if(!r&&tg[g[0]]&&g[2].test(nm))r=g[1]+' — flagged in your trigger finder'})}
-   if(r){s[nm]=1;why[nm]=r}})}
- if(i.cond==='pmos'){var fv=cpFavSet(i);FOODS.forEach(function(f){var nm=f.name;if(fv[nm])return;if(CP_PROC.test(nm)){s[nm]=1;why[nm]='highly processed — planner prefers minimally processed foods'}else if(i.lgi&&CP_HIGI.test(nm)){s[nm]=1;why[nm]='higher-GI carb — your lower-GI preference'}})}
- CPC={k:key,s:s};CPWHY=why;return s}
-var _av56=avoidSet;avoidSet=function(i){var s=_av56(i);if(i&&i.cond){var c=condAvoid(i);if(Object.keys(c).length){s=Object.assign({},s,c)}}return s};
-var _fi56=favInfo;favInfo=function(i,keto){var r=_fi56(i,keto);if(i&&i.cond)r.skip.forEach(function(u){if(u.why==='also on your avoid list'&&CPWHY[u.f.name])u.why='left out by the '+(i.cond==='ibs'?'IBS':'PCOS/PMOS')+' planner: '+CPWHY[u.f.name]});return r};
-function cpPort(x){return Math.max(1,Math.round(n(x.g)/80))}
-function cpCaps(mp){var fr=0,cf=0,caf=GTAG[0][2];mp.forEach(function(m){m.items=m.items.filter(function(x){if(CP_FRUIT.test(x.name)){var p=cpPort(x);if(fr+p>3)return false;fr+=p}if(caf.test(x.name)){if(cf>=3)return false;cf++}return true})});return mp}
-function cpScore(mp,R,i){var T=planTot(mp),dk=Math.abs(T.kcal/R.kcal-1),sc=(dk>0.04?dk*40:dk*5);
- var FN=favInfo(i,R.style&&R.style.id==='keto').used.map(function(u){return u.f.name}),cov=FN.filter(function(nm){return mp.some(function(m){return m.items.some(function(x){return x.name===nm})})}).length;sc-=cov*0.6;
- if(i.cond==='pmos'){var FT=fibTarget(R.kcal);sc+=Math.max(0,FT-T.fibre)*0.12;mp.forEach(function(m){var t=sumItems(m.items);if(t.kcal>250&&t.protein<15)sc+=1;m.items.forEach(function(x){if(CP_WG.test(x.name))sc-=0.25})})}
- if(i.cond==='ibs'){var fr=0;mp.forEach(function(m){m.items.forEach(function(x){if(CP_FRUIT.test(x.name))fr+=cpPort(x)})});if(fr>3)sc+=(fr-3)}
- return{sc:sc,cov:cov,nf:FN.length,dk:dk}}
-var _gm56=genMeals;genMeals=function(R,i,seed){if(!i||!i.cond)return _gm56.apply(null,arguments);var best=null;
- for(var q=0;q<12;q++){var mp=fvGen1(R,i,(seed||0)+q*17);if(i.cond==='ibs')mp=cpCaps(mp);mp.forEach(function(m){fixM(m)});var S2=cpScore(mp,R,i);if(!best||S2.sc<best.sc)best={sc:S2.sc,mp:mp};if(S2.dk<=0.03&&S2.cov===S2.nf&&q>=3)break}
- return best.mp};
-var _mg56=msGen;msGen=function(o){var L=_mg56(o),inp=null;try{if(MS){if(MS.k==='p')inp=plIn();else{var x=dietById(MS.k==='x'?MS.id:bd&&bd.id);inp=x&&x.inputs}}}catch(e){}
- if(!inp||!inp.cond)return L;var AV=avoidSet(inp);L=L.filter(function(r){return!r.items.some(function(x){return AV[x.name]})});
- if(inp.cond==='pmos'){L.forEach(function(r){var t=sumItems(r.items);r.r-=Math.min(12,t.fibre)*0.08+r.items.filter(function(x){return CP_WG.test(x.name)}).length*0.2});L.sort(function(a,b){return a.r-b.r})}
- if(inp.cond==='ibs')L=L.filter(function(r){var fr=0;r.items.forEach(function(x){if(CP_FRUIT.test(x.name))fr+=cpPort(x)});return fr<=2});
- return L};
-var _dn56=dName;dName=function(){var i=plIn();return(i.cond==='ibs'?'IBS-friendly · ':i.cond==='pmos'?'PCOS/PMOS balanced · ':'')+_dn56()};
-function cpRules(c,i){if(c==='ibs'){var FE=cpFodEx(i),tr=cpTrig(),nt=tr.L.length+tr.G.length;
-  return'<ul class="pcul"><li>Regular meals — '+(n(i.meals)||4)+' a day, no skipping, eat slowly (NICE/NHS)</li><li>Fresh fruit capped at 3 portions a day; tea/coffee at 3 cups</li><li>Sugar-free sweeteners with sorbitol, xylitol, mannitol or maltitol left out</li><li>'+(i.trig===false?'Trigger-finder foods not used':nt?nt+' food'+(nt===1?'':'s')+'/group'+(nt===1?'':'s')+' flagged in your trigger finder left out':'No flagged triggers yet (needs 14+ logged days)')+'</li><li>Low-FODMAP filter: <b>'+({off:'off',filter:'on — all high-FODMAP groups left out',elim:'on — elimination phase: high-FODMAP groups left out',reint:'on — reintroduction: only groups you tested OK are used',pers:'on — personalisation: groups you tolerate are back in, “avoid for now” left out'})[FE.mode]+'</b></li></ul>'}
- return'<ul class="pcul"><li>General healthy eating (2023 International Guideline) — there’s no single “PCOS diet”</li><li>High fibre, wholegrains and plenty of veg</li><li>Protein at each meal</li><li>Minimally processed foods, regular meals</li><li>Calories from your goal and TDEE in the planner</li>'+(i.lgi?'<li>Lower-GI carbs preferred — a food preference only, not a medical requirement</li>':'')+'</ul>'}
-function cpToggles(c,i){var T=function(k,on,lab,sub){return'<div class="pacc"><button class="ck'+(on?' on':'')+'" data-gmpt="'+k+'" aria-label="'+lab+'">'+(on?'✓':'')+'</button><span><b>'+lab+'</b><br><small class="mu">'+sub+'</small></span></div>'};
- if(c==='ibs'){var ph=(GU.fod||{}).ph||'off';return T('lowf',!!i.lowf,'Low-FODMAP filter','Follows your FODMAP helper phase'+(ph!=='off'?' ('+({elim:'elimination',reint:'reintroduction',pers:'personalisation'})[ph]+')':' (not started)')+'. Best done with a dietitian.')+T('trig',i.trig!==false,'Leave out my flagged triggers','From the trigger finder — possible patterns, not proven')}
- return T('lgi',!!i.lgi,'Prefer lower-GI carbs','Preference only — e.g. oats, pulses, wholegrains over white bread or mashed potato')}
-function cpDisc(){return'<p class="mu" style="font-size:11.5px;margin-top:6px">General guidance, not medical advice. Check with your GP or a registered dietitian before big changes — especially for low-FODMAP, pregnancy, diabetes or a history of disordered eating.</p>'}
-function cpInp(c){var i=plIn(),j=Object.assign({},i);if(j.cond!==c){j.cond=c;if(c==='ibs'&&j.lowf==null){var ph=(GU.fod||{}).ph;j.lowf=ph&&ph!=='off'}}return j}
-function gmPlanCard(c){var i=cpInp(c),a=activeDiet(cur),on=a&&a.inputs&&a.inputs.cond===c;
- return'<div class="card full hcard gmplan" id="gmplan-'+c+'"><h3>🍽️ Daily meal planner · '+(c==='ibs'?'IBS':'PCOS/PMOS')+'</h3>'+(on?'<p style="font-size:13px;margin:4px 0">Today’s diet: <b>'+esc(a.name)+'</b> · '+nf(a.res.kcal)+' kcal</p>':'')+cpRules(c,i)+cpToggles(c,i)+
- '<div class="row" style="margin-top:8px"><button class="pri" data-gmplan="'+c+'" style="flex:2">'+(on?'Open planner ›':'Plan my meals ›')+'</button>'+(on?'<button data-go="meals" style="flex:1">Today ›</button>':'')+'</div>'+cpDisc()+'</div>'}
-var _guH56=guHome;guHome=function(){return _guH56.apply(this,arguments)+gmPlanCard('ibs')};
-var _pcH56=pcHome;pcHome=function(){var h=_pcH56.apply(this,arguments),k=h.indexOf('<div class="gunav pcnav">');return k>=0?h.slice(0,k)+gmPlanCard('pmos')+h.slice(k):h+gmPlanCard('pmos')};
-function cpBanner(){var i=plIn(),c=i.cond;if(!c)return'';return'<div class="card full hcard gmplan cpban" id="cpban"><div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><h3 style="margin:0">'+(c==='ibs'?'🌿 IBS-friendly planner':'🌸 PCOS/PMOS planner')+'</h3><button class="sm" data-gmpx="1" style="flex:0 0 auto">✕ Standard</button></div>'+cpRules(c,i)+cpToggles(c,i)+'<p class="mu" style="font-size:12px">Pick ❤️ foods you like and 🚫 foods to avoid below — the planner uses them. Each meal has Option A/B, 🎲 Random and 🔄 Swap; tick foods as eaten once it’s Today’s diet.</p>'+cpDisc()+'</div>'}
-var _rp56=rPlan;rPlan=function(){_rp56.apply(this,arguments);var el=document.getElementById('t-plan');if(!el||el.querySelector('.lgate'))return;var b=cpBanner();if(b&&!el.querySelector('#cpban'))el.insertAdjacentHTML('afterbegin',b)};
-var _wn56=whyNote;whyNote=function(R,i){var h=_wn56(R,i);if(!i||!i.cond)return h;var c=condAvoid(i),k=Object.keys(c);var by={};k.forEach(function(nm){var w=(CPWHY[nm]||'').split(' — ')[0];by[w]=(by[w]||0)+1});
- return h+'<p><b>'+(i.cond==='ibs'?'IBS planner':'PCOS/PMOS planner')+'.</b> '+(k.length?k.length+' foods left out: '+Object.keys(by).slice(0,6).map(function(w){return esc(w)+' ('+by[w]+')'}).join(', ')+'.':'No foods left out.')+(i.cond==='ibs'?' Fruit ≤3 portions and tea/coffee ≤3 a day (NICE CG61).':' Scored for fibre, wholegrains and protein at each meal (general healthy eating, 2023 International Guideline).')+' General guidance — check with a dietitian.</p>'};
-function cpRegen(){if(pl&&pl.res&&pl.mp){pl.mp=genMeals(pl.res,plIn(),pl.seed);pl.acc=false}}
-document.addEventListener('click',function(ev){var b=ev.target.closest('[data-gmplan],[data-gmpt],[data-gmpx]');if(!b)return;var D=b.dataset,i=plIn();
- if(D.gmplan){var c=D.gmplan,j=cpInp(c);Object.assign(i,j);if(n(i.meals)<3)i.meals=3;CPC.k='';save();
-  if(!(pl&&pl.res&&pl.mp&&!pl.acc&&pl.cond===c)){if(n(i.age)>0&&n(i.h)>0&&n(i.w)>0){pl={res:calcPlan(i),mp:null,seed:(pl&&pl.seed)||0,name:'',acc:false,cond:c};pl.mp=genMeals(pl.res,i,pl.seed)}else pl={res:null,mp:null,seed:0,name:'',cond:c}}
-  tab='plan';render();scrollTo(0,0);return}
- if(D.gmpt){var k=D.gmpt,c2=tab==='plan'?i.cond:(b.closest('#gmplan-ibs')?'ibs':'pmos');if(i.cond!==c2)Object.assign(i,cpInp(c2));if(k==='trig')i.trig=i.trig===false;else i[k]=!i[k];CPC.k='';save();if(tab==='plan'){cpRegen();rPlan()}else{var sy=scrollY;rGut();scrollTo(0,sy)}toast(({lowf:'Low-FODMAP filter',trig:'Leave out flagged triggers',lgi:'Lower-GI preference'})[k]+((k==='trig'?i.trig!==false:i[k])?' on':' off'));return}
- if(D.gmpx){delete i.cond;CPC.k='';save();cpRegen();rPlan();toast('Standard planner');return}
+// ===== v57: separate Gut diet creator (IBS · PCOS/PMOS) + weekly diet plan =====
+// silent reset of the v56 condition mode in the normal creator; tag v56 condition diets
+(function(){var ch=0,i=S.planIn;if(i&&('cond' in i||'lowf' in i||'lgi' in i||'trig' in i)){delete i.cond;delete i.lowf;delete i.lgi;delete i.trig;ch=1}
+ (S.plans||[]).forEach(function(x){if(x.inputs&&('cond' in x.inputs)){if(x.inputs.cond&&!x.gut)x.gut=x.inputs.cond;delete x.inputs.cond;delete x.inputs.lowf;delete x.inputs.lgi;delete x.inputs.trig;ch=1}});if(ch)save()})();
+// ---- explicit food tag table (FODMAP per Monash-style serving categories, GI band, wholegrain, processed) ----
+// f: H = high-FODMAP at a usual serving · M = OK up to cap g · L = low.  g: FODMAP group.  gi: L/M/H.  wg: wholegrain/pulse.  pr: highly processed.  fr: fruit portion.  caf: caffeine.
+var GDF=[
+ [/lactose[- ]free/i,{f:'L'}],[/garlic[- ]infused/i,{f:'L'}],
+ [/sourdough|^oatcakes|^rice cakes$|^rice crackers/i,{f:'L',gi:'M'}],
+ [/crisps|tortilla chips|pretzels|popcorn|pringles|hula hoops|taytos|biscuit|digestive|rich tea|custard creams|jaffa|hobnobs|kimberley|mikado|cookie|shortbread|flapjack|brownie|muffin|doughnut|pączek|cake|cheesecake|sernik|apple pie|szarlotka|ice lolly|sorbet|jelly|gummies|haribo|wine gums|marshmallow|boiled sweets|chocolate$|kit kat|twix|mars bar|snickers|bounty|maltesers|crunchie|twirl|ptasie|prince polo|wafer|cereal bar|nakd|kind bar|protein bar|carb killa|fulfil|quest|misfits|trek|protein cookie|protein crisps|protein pudding|nutella|squares|barebells|müller/i,{f:'H',g:'fructans',pr:1,gi:'H'}],
+ [/spice bag|takeaway|korma$|tikka masala$|chow mein|fried rice|sweet & sour chicken|salt & chilli|prawn crackers|spring roll|samosa|pilau|pizza|curry chips|battered sausage|cod in batter|big mac|cheeseburger|mcchicken|fast food|kfc|kebab|burrito|ramen|pad thai|ready meal|shepherd|cottage pie|chilli con carne|bolognese$|macaroni|fish pie|irish stew|coddle|guinness stew|bacon & cabbage|full irish|breakfast roll|sausage roll|cornish pasty|quiche|caesar wrap|meal-deal|sandwich|pierogi|gołąbki|bigos|kotlet|naleśniki|zapiekanka|krokiety|kopytka|leniwe|placki|gyros|halloumi fries|nachos|mozzarella sticks|toastie|jacket potato with|stir-fry with noodles|poke bowl|protein porridge pot|overnight oats pot|caesar salad|pasta salad|soup, chicken|tomato soup|barszcz|żurek|rosół|chicken curry|chicken fillet roll|chicken tikka pieces|calamari, fried|boxty|potato farls|potato waffles|hash browns|croquettes|potato salad|chips|fries|egg fried rice|instant noodles|rice cakes, chocolate/i,{f:'H',g:'fructans',pr:1,gi:'H'}],
+ [/^sushi,/i,{f:'M',cap:150,gi:'H'}],[/sweetener \(sucralose/i,{f:'L'}],
+ [/^(garlic|onion|red onion|shallots|leek|spring onion)\b|garlic bread|garlic mayonnaise|champ|colcannon|onion bhaji|onion rings|garlic chips/i,{f:'H',g:'fructans'}],
+ [/\bhoney\b|agave|apple juice|apple & orange|apple sauce|stewed apple|apple chutney|smoothie|fruit cocktail|tropical fruit|dried mango|mango|watermelon|cherries|\bfigs?\b|prunes|raisins|sultanas|dates, dried|apricots?, dried|śliwki|cranberries, dried|persimmon|banana chips|barmbrack|mince pie/i,{f:'H',g:'fructose',fr:1}],
+ [/^apple\b|^pear\b|apricot\b|nectarine|^peach\b|^plum\b|blackberr|tinned peaches/i,{f:'H',g:'polyols',fr:1,gi:'L'}],
+ [/^banana$|^orange$|clementine|satsuma|^kiwi|strawberr|blueberr|raspberr|^grapes|pineapple|^melon|passion fruit|papaya|dragon fruit|rhubarb|redcurrant|gooseberr|guava|frozen raspberries|mixed berries|blackcurrant|lychees?/i,{f:'L',fr:1,gi:'L'}],
+ [/^grapefruit|pomegranate|^coconut, fresh|desiccated coconut/i,{f:'M',cap:40,fr:1}],
+ [/^lemon$|^lime$|lemon juice/i,{f:'L'}],[/cranberries, fresh|acai/i,{f:'L',fr:1}],[/fruit salad/i,{f:'H',g:'fructose',fr:1}],[/coconut flour|coconut butter|sun-dried tomato/i,{f:'M',cap:15}],[/light salad dressing/i,{f:'H',g:'fructans'}],
+ [/orange juice|pineapple juice|tomato juice|cranberry juice/i,{f:'M',cap:125,fr:1,gi:'M'}],
+ // dairy
+ [/^(cheddar|mature cheddar|parmesan|grana padano|pecorino|mozzarella|light mozzarella|feta|brie|camembert|edam|emmental|gruy|ser żółty|red leicester|dubliner|irish cheddar|manchego|blue cheese|goat|halloumi|oscypek|paneer|burrata)/i,{f:'L'}],
+ [/^butter$|^ghee|double cream|whipping cream|clotted cream/i,{f:'L'}],
+ [/^milk, (whole|semi-skimmed|skimmed|1%)|chocolate milk|protein milk|buttermilk|maślanka|zsiadłe|condensed milk|evaporated milk|yoghurt|yogurt|jogurt|skyr|kefir|ayran|quark|twaróg|serek|cottage cheese|ricotta|cream cheese|mascarpone|soured cream|śmietana|single cream|crème fraîche|ice cream|frozen yoghurt|custard|rice pudding|latte|cappuccino|flat white|mocha|hot chocolate|milkshake|milk chocolate|dairy milk|white chocolate|cheese spread|cheese slices/i,{f:'H',g:'lactose'}],
+ [/coconut yoghurt|almond milk|rice milk|coconut milk drink|^coconut milk|macadamia/i,{f:'L'}],
+ [/oat milk/i,{f:'M',cap:100}],[/soya milk|soya yoghurt|pea milk|cashew milk/i,{f:'H',g:'gos'}],
+ // grains & starches
+ [/sourdough|spelt sourdough/i,{f:'L',gi:'M'}],[/corn tortilla|polenta|cornmeal|cornflour|rice noodles|rice crackers|oatcakes|^quinoa|buckwheat|millet|^oat flour|oat bran|porridge made with water/i,{f:'L',gi:'L',wg:1}],
+ [/^rice cakes$|puffed rice|rice krispies/i,{f:'L',gi:'H'}],
+ [/^porridge oats|owsianka/i,{f:'M',cap:60,gi:'L',wg:1}],[/instant porridge|ready brek/i,{f:'L',gi:'H'}],
+ [/^(basmati rice)/i,{f:'L',gi:'M'}],[/^(brown rice|wild rice)/i,{f:'L',gi:'M',wg:1}],[/^(white rice|jasmine rice|sushi rice|risotto|microwave rice)/i,{f:'L',gi:'H'}],
+ [/new potatoes/i,{f:'L',gi:'M'}],[/^potatoes, (boiled|baked|raw)|potato wedges|instant mashed|mashed potato|^potatoes, roast/i,{f:'L',gi:'H'}],
+ [/^sweet potato/i,{f:'M',cap:75,gi:'M'}],[/^(carrots|parsnip|swede|turnip|celeriac|pumpkin|plantain)/i,{f:'L',gi:'L'}],
+ [/wholewheat pasta|wholemeal bread|wholemeal wrap|wholemeal roll|brown soda|irish brown bread|wholegrain rye|chleb żytni razowy|pumpernik|granary|seeded batch|bulgur|pearl barley|kasza jęczmienna|freekeh|spelt grain|rye bread|chleb żytni|ryvita|rye crispbread|pitta bread, wholemeal|bagel, wholemeal|weetabix|shredded wheat|bran flakes|muesli|wholemeal flour|rye flour/i,{f:'H',g:'fructans',gi:'L',wg:1}],
+ [/^pasta|spaghetti|egg noodles|udon|soba|couscous|lasagne sheets|fresh egg pasta|tortellini|ravioli|gnocchi|semolina/i,{f:'H',g:'fructans',gi:'M'}],
+ [/white bread|batch loaf|toast, white|baguette|bagel, plain|crumpet|pitta bread, white|chleb pszenny|kajzerka|ciabatta|brioche|burger bun|hot dog roll|naan|chapati|white wrap|english muffin|thins|crackers|waffles|scone|croissant|pain au|pancakes|french toast|cornflakes|frosties|coco pops|crunchy nut|special k|cheerios|shreddies|granola|plain flour|breadcrumbs|fitness bread|chałka|irish wheaten/i,{f:'H',g:'fructans',gi:'H'}],
+ [/lentil pasta|chickpea pasta/i,{f:'H',g:'gos',gi:'L',wg:1}],
+ // legumes
+ [/lentils, cooked|lentils, puy/i,{f:'M',cap:45,gi:'L',wg:1}],[/chickpeas, canned/i,{f:'M',cap:40,gi:'L',wg:1}],
+ [/edamame/i,{f:'L',gi:'L',wg:1}],[/tofu, firm|smoked tofu|^tempeh/i,{f:'L'}],[/tofu, silken/i,{f:'H',g:'gos'}],
+ [/chickpea|kidney bean|black bean|baked beans|butter beans|cannellini|borlotti|haricot|pinto|split peas|marrowfat|mung|soya beans|refried|hummus|falafel|^dal|lentils|broad beans|fasolka|soya mince/i,{f:'H',g:'gos',gi:'L',wg:1}],
+ [/peas, frozen|green peas|sugar snap|mangetout/i,{f:'H',g:'fructans'}],
+ // vegetables
+ [/cauliflower|mushroom|asparagus|artichoke|savoy cabbage|coleslaw|ratatouille|stir-fry vegetable|frozen mixed vegetables|vegetable soup|leek & potato/i,{f:'H',g:'polyols'}],
+ [/sweetcorn|butternut|brussels|beetroot|celery|fennel|sauerkraut|kapusta kiszona/i,{f:'M',cap:40}],
+ [/^avocado$|guacamole/i,{f:'M',cap:30}],[/^broccoli|tenderstem/i,{f:'M',cap:75}],
+ [/^(spinach|kale|lettuce|iceberg|romaine|rocket|mixed salad|watercress|tomato|cherry tomatoes|tomatoes, canned|passata|tomato purée|cucumber|peppers|sweet pepper|courgette|aubergine|green beans|runner beans|cabbage|red cabbage|pak choi|radish|bean sprouts|okra|baby corn|olives|gherkins|ogórek|chilli pepper|ginger|coriander|parsley|basil|dill|seaweed|jalape)/i,{f:'L',gi:'L'}],
+ // nuts & seeds
+ [/^almonds|almond butter|almond flour/i,{f:'M',cap:15}],[/cashew|pistachio|mixed nuts|trail mix|honey roasted/i,{f:'H',g:'gos'}],[/hazelnuts/i,{f:'M',cap:15}],
+ [/^(walnuts|peanuts|salted peanuts|dry roasted peanuts|pecans|brazil|pine nuts|peanut butter|chia|pumpkin seeds|sunflower seeds|sesame|hemp|mixed seeds|tahini)/i,{f:'L'}],[/flaxseed|linseed/i,{f:'M',cap:15}],
+ // protein foods
+ [/^(chicken (breast|thigh|drumstick|leg|mince)(?!.*(kyiv|nugget|tikka))|turkey (breast|mince|thigh)(?!.*slices)|beef (mince|fillet|stewing)|sirloin|rib-eye|rump steak|pork (loin|chop|mince|tenderloin)|lamb (leg|mince|chop)|duck breast|venison|rabbit|salmon fillet|smoked salmon|cod|haddock|hake|alaska pollock|tuna|mackerel|sardines in olive|trout|sea bass|sea bream|tilapia|basa|plaice|halibut|monkfish|coley|herring|swordfish|prawns|king prawns|crab meat|mussels|scallops|squid|octopus|lobster|anchovies|chicken wings|whole roast chicken|smoked haddock|kippers|pickled herring|beef brisket|roast beef|beef liver|pork liver|lamb shoulder|pork belly|pork shoulder|pork ribs|sardines in tomato|egg|quail eggs|liquid egg|duck egg|omelette)/i,{f:'L'}],
+ [/whey protein powder|casein|protein shake|mass gainer/i,{f:'M',cap:30}],[/pea protein powder|vegan protein powder/i,{f:'L'}],
+ [/sausage|chipolata|pudding|meatballs|kofta|burger|salami|pepperoni|chorizo|pastrami|hot dog|kabanos|kiełbasa|pâté|pasztet|salceson|nuggets|kyiv|fish fingers|battered|breaded|corned beef|beef jerky|quorn|seitan|veggie burger|plant-based burger/i,{f:'H',g:'fructans',pr:1}],
+ [/ham|rashers|bacon|boczek|szynka|polędwica|deli|gammon|parma|serrano/i,{f:'L',pr:1}],
+ // fats, sauces, sweet
+ [/olive oil|rapeseed oil|sunflower oil|vegetable oil|sesame oil|avocado oil|coconut oil|olive oil spray|low-fat spread|lard|mayonnaise(?!.*garlic)|light mayonnaise|soy sauce|fish sauce|mustard|musztarda|vinegar|vinaigrette|^salt$|maple syrup|^sugar$|brown sugar|icing sugar|cocoa powder|dark chocolate|jam|marmalade|sriracha|hot sauce|oyster sauce|worcestershire|lemon curd/i,{f:'L'}],
+ [/ketchup|bbq sauce|brown sauce|sweet chilli|teriyaki|hoisin|cranberry sauce|golden syrup/i,{f:'M',cap:15}],
+ [/pesto|pasta sauce|curry sauce|korma|tikka masala sauce|sweet & sour sauce|bolognese sauce|carbonara|gravy|stock cube|satay|salsa|tzatziki|caesar dressing|horseradish|chrzan|mint sauce|salad cream/i,{f:'H',g:'fructans'}],
+ [/sorbitol|xylitol|mannitol|maltitol|isomalt|sugar[- ]free (gum|mints|sweets)/i,{f:'H',g:'polyols',poly:1}],
+ // drinks
+ [/^coffee|espresso|americano/i,{f:'L',caf:1}],[/^tea, black|green tea|tea with milk/i,{f:'L',caf:1}],[/herbal tea/i,{f:'M'}],
+ [/cola|energy drink|monster|red bull/i,{f:'L',caf:1,pr:1,gi:'H'}],[/lucozade|sports drink|lemonade, regular|7up|fanta|club orange|iced tea|kompot|kvass/i,{f:'H',g:'fructose',pr:1,gi:'H'}],
+ [/^water$|sparkling water|lemonade, diet|orange squash/i,{f:'L'}],[/coconut water/i,{f:'M',cap:100}],
+ [/beer|lager|stout|wine|cider|gin|spirits|prosecco|liqueur|piwo/i,{f:'L',alc:1}],
+ // snacks, takeaway, ready meals
+];
+var GDTC={};
+function gdTag(nm){nm=String(nm||'');if(GDTC[nm])return GDTC[nm];var t=null;for(var i=0;i<GDF.length;i++)if(GDF[i][0].test(nm)){t=Object.assign({src:'table'},GDF[i][1]);break}
+ if(!t){var gs=(typeof guGroups==='function'?guGroups(nm):[]).filter(function(g){return GFOD.some(function(G){return G[0]===g})});t=gs.length?{f:'H',g:gs[0],src:'name'}:{f:'?',src:'none'}}
+ if(t.caf==null&&GTAG[0][2].test(nm))t.caf=1;if(t.fr==null&&!t.src&&/fruit/i.test(nm))t.fr=1;return GDTC[nm]=t}
+// ---- state ----
+var GDKEY='tt_gut_diets_v1',WPKEY='tt_week_diet_v1';
+var GD=(function(){var d={in:{},dr:{}};try{var x=JSON.parse(localStorage.getItem(GDKEY)||'null');if(x&&typeof x==='object'){x.in=x.in||{};x.dr=x.dr||{};return x}}catch(e){}return d})();
+function gdSave(){try{localStorage.setItem(GDKEY,JSON.stringify(GD))}catch(e){toast('Could not save')}try{flashSaved()}catch(e){}}
+var WP=(function(){try{var x=JSON.parse(localStorage.getItem(WPKEY)||'null');if(x&&typeof x==='object'){x.d=x.d||{};return x}}catch(e){}return{d:{}}})();
+function wpSave(){try{localStorage.setItem(WPKEY,JSON.stringify(WP))}catch(e){}try{flashSaved()}catch(e){}}
+var WDN=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+function wpDow(s){return(new Date(s+'T12:00:00').getDay()+6)%7}
+function wpFor(s){var id=WP.d[wpDow(s)];return id&&dietById(id)?id:null}
+var _ad57=activeDiet;activeDiet=function(s){if(S.dietSel&&Object.prototype.hasOwnProperty.call(S.dietSel,s))return _ad57(s);var id=wpFor(s);return id?dietById(id):_ad57(s)};
+function gdIn(c){var p=plIn(),x=GD.in[c];if(!x){x=GD.in[c]={goal:p.goal==='cut'?'cut':p.goal==='muscle'?'muscle':'maint',adj:10,meals:Math.max(3,n(p.meals)||4),sex:p.sex||'f',age:p.age||'',h:p.h||'',w:p.w||'',act:n(p.act)||1.55,fav:[],avoid:[]};if(c==='ibs'){var ph=(GU.fod||{}).ph;x.lowf=!!ph&&ph!=='off';x.trig=true}else x.lgi=false}return x}
+function gdCond(){var c=gmCur();if(GM.mode==='both'&&GDV&&GDV.c)return GDV.c;return c==='pmos'?'pmos':'ibs'}
+var GDV=null;// {c, v:'make'|'list'|'open'|'week', id}
+// ---- rules ----
+function gdFodEx(c,I){var F=GU.fod||{},ph=F.ph||'off',T=guTolSum(),TL=F.tol||{},ex={},all=['fructans','fructose','lactose','polyols','gos'];if(c!=='ibs'||!I.lowf)return{ex:ex,mode:'off'};
+ if(ph==='pers'){all.forEach(function(g){var v=TL[g]||T[g]||'';if(v==='avoid')ex[g]='“avoid for now” on your personal list'});return{ex:ex,mode:'pers'}}
+ if(ph==='reint'){all.forEach(function(g){if(T[g]!=='ok')ex[g]='not yet tested OK (reintroduction)'});return{ex:ex,mode:'reint'}}
+ all.forEach(function(g){ex[g]='high-FODMAP'+(ph==='elim'?' (elimination)':'')});return{ex:ex,mode:ph==='elim'?'elim':'filter'}}
+function gdCtx(c){var I=gdIn(c),FE=gdFodEx(c,I),tl={},tg={},fv={},av=avoidSet({avoid:I.avoid||[]});
+ if(c==='ibs'&&I.trig!==false){try{var tr=guTriggers();if(tr&&tr.ready){tr.L.forEach(function(t){tl[t.k]=1});tr.G.forEach(function(t){tg[t.k]=1})}}catch(e){}var T0=guTolSum(),TL=(GU.fod||{}).tol||{};Object.keys(tg).forEach(function(k){if((TL[k]||T0[k])==='ok')delete tg[k]})}
+ (I.fav||[]).forEach(function(t){var f=favFood(t);if(f)fv[f.name]=1});return{c:c,I:I,FE:FE,tl:tl,tg:tg,fv:fv,av:av,cache:{}}}
+function gdWhy(nm,X){if(X.cache[nm]!=null)return X.cache[nm];var t=gdTag(nm),r='';
+ if(X.av[nm])r='on your avoid list';
+ else if(X.c==='ibs'){if(t.poly||/sorbitol|xylitol|mannitol|maltitol|isomalt/i.test(nm)||(typeof guSweet==='function'&&guSweet({name:nm}).length))r='polyol sweetener';
+  else if(t.alc)r='alcohol';
+  else if(t.f==='H'&&t.g&&X.FE.ex[t.g])r=({fructans:'Fructans',fructose:'Excess fructose',lactose:'Lactose',polyols:'Polyols',gos:'GOS'})[t.g]+' — '+X.FE.ex[t.g];
+  else if(X.tl[guFoodBase(nm)])r='flagged in your trigger finder';
+  else{var gs=[t.g].concat(guGroups(nm));for(var q=0;q<gs.length;q++)if(gs[q]&&X.tg[gs[q]]){r=guGrpName(gs[q])+' — flagged in your trigger finder';break}}}
+ else if(X.c==='pmos'&&!X.fv[nm]){if(t.pr)r='highly processed';else if(X.I.lgi&&t.gi==='H')r='higher-GI (your lower-GI preference)';else if(t.alc)r='alcohol'}
+ return X.cache[nm]=r}
+function gdCap(nm,X){var t=gdTag(nm);return X.c==='ibs'&&X.I.lowf&&t.f==='M'&&t.cap?t.cap:0}
+function gdPort(x){return Math.max(1,Math.round(n(x.g)/80))}
+function gdCnt(items){var fr=0,cf=0;(items||[]).forEach(function(x){var t=gdTag(x.name);if(t.fr)fr+=gdPort(x);if(t.caf)cf++});return{fr:fr,cf:cf}}
+function gdItemsOk(items,X,base){if(!items||!items.length)return false;for(var i=0;i<items.length;i++){var x=items[i];if(gdWhy(x.name,X))return false;var cp=gdCap(x.name,X);if(cp&&x.g>cp)return false;if(x.g>650)return false}
+ if(X.c==='ibs'){var c=gdCnt(items),b=base||{fr:0,cf:0};if(c.fr+b.fr>3||c.cf+b.cf>3)return false}return true}
+// ---- templates (own library) ----
+var GDT=[
+ {n:'Porridge with strawberries & walnuts',sl:'B',it:[['Porridge oats','c'],['Pea protein powder','p'],['Walnuts','f'],['Milk, lactose-free semi-skimmed',200],['Strawberries',80]]},
+ {n:'Eggs on sourdough with spinach & tomatoes',sl:'B',it:[['Sourdough bread','c'],['Egg white','p'],['Butter','f'],['Egg, whole, raw',100],['Spinach, raw',40],['Cherry tomatoes',60]]},
+ {n:'Cheese & pepper omelette with sourdough',sl:'B',it:[['Sourdough bread','c'],['Egg white','p'],['Cheddar cheese','f'],['Egg, whole, raw',100],['Peppers, red',60]]},
+ {n:'Smoked salmon & egg on rice cakes',sl:'B',it:[['Rice cakes','c'],['Smoked salmon','p'],['Butter','f'],['Egg, whole, raw',60],['Cucumber',60]]},
+ {n:'Banana & peanut butter porridge',sl:'B',it:[['Porridge oats','c'],['Pea protein powder','p'],['Peanut butter','f'],['Milk, lactose-free semi-skimmed',200],['Banana',80]]},
+ {n:'Wholemeal toast, eggs & avocado',sl:'B',it:[['Wholemeal bread','c'],['Egg white','p'],['Avocado','f'],['Egg, whole, raw',100],['Cherry tomatoes',60]]},
+ {n:'Greek yoghurt, oats, berries & chia',sl:'B',it:[['Porridge oats','c'],['Greek yoghurt, 0% fat','p'],['Almonds','f'],['Raspberries',80],['Chia seeds',10]]},
+ {n:'Rye toast with cottage cheese & tomato',sl:'B',it:[['Chleb żytni razowy (wholegrain rye bread, zytni razowy)','c'],['Cottage cheese','p'],['Walnuts','f'],['Tomato',80]]},
+ {n:'Chicken, rice, carrots & green beans',sl:'L',it:[['Basmati rice, cooked','c'],['Chicken breast, raw','p'],['Olive oil','f'],['Carrots, boiled',100],['Green beans',75]]},
+ {n:'Tuna & new potato salad',sl:'L',it:[['New potatoes, boiled','c'],['Tuna, canned in water (drained)','p'],['Olive oil','f'],['Cucumber',80],['Lettuce',50],['Cherry tomatoes',60]]},
+ {n:'Salmon quinoa bowl with spinach & peppers',sl:'LD',it:[['Quinoa, cooked','c'],['Salmon fillet, raw','p'],['Olive oil','f'],['Spinach, raw',40],['Peppers, red',80]]},
+ {n:'Turkey sourdough sandwich with salad',sl:'L',it:[['Sourdough bread','c'],['Turkey breast, cooked','p'],['Butter','f'],['Lettuce',30],['Tomato',60],['Cucumber',40]]},
+ {n:'Tofu rice-noodle stir-fry with pak choi',sl:'LD',it:[['Rice noodles, cooked','c'],['Tofu, firm','p'],['Sesame oil','f'],['Pak choi',80],['Carrots, raw',60],['Bean sprouts',40]]},
+ {n:'Brown rice, chicken & roast peppers',sl:'L',it:[['Brown rice, cooked','c'],['Chicken breast, raw','p'],['Olive oil','f'],['Peppers, red',80],['Courgette',60]]},
+ {n:'Chicken, lentil & rocket bowl',sl:'L',it:[['Lentils, cooked','c'],['Chicken breast, raw','p'],['Olive oil','f'],['Rocket',30],['Cherry tomatoes',80]]},
+ {n:'Quinoa, chicken & chickpea salad',sl:'L',it:[['Quinoa, cooked','c'],['Chicken breast, raw','p'],['Olive oil','f'],['Chickpeas, canned (drained)',60],['Cucumber',60]]},
+ {n:'Salmon, new potatoes & green beans',sl:'D',it:[['New potatoes, boiled','c'],['Salmon fillet, raw','p'],['Butter','f'],['Green beans',100]]},
+ {n:'Beef & rice with courgette & tomato',sl:'D',it:[['Basmati rice, cooked','c'],['Beef mince 5% fat, raw','p'],['Olive oil','f'],['Courgette',60],['Tomatoes, canned (chopped)',100]]},
+ {n:'Baked cod with rice, carrots & spinach',sl:'D',it:[['Basmati rice, cooked','c'],['Cod, raw','p'],['Olive oil','f'],['Carrots, boiled',100],['Spinach, raw',40]]},
+ {n:'Chicken thigh traybake with potatoes & peppers',sl:'D',it:[['New potatoes, boiled','c'],['Chicken thigh, skinless, raw','p'],['Olive oil','f'],['Peppers, red',80],['Courgette',60]]},
+ {n:'Pork loin, potatoes, carrots & parsnip',sl:'D',it:[['New potatoes, boiled','c'],['Pork loin, raw','p'],['Rapeseed oil','f'],['Carrots, boiled',80],['Parsnip',60]]},
+ {n:'Prawn & egg rice-noodle stir-fry',sl:'D',it:[['Rice noodles, cooked','c'],['Prawns / shrimp, raw','p'],['Sesame oil','f'],['Egg, whole, raw',50],['Pak choi',80],['Peppers, red',60]]},
+ {n:'Wholewheat pasta with turkey & tomato',sl:'D',it:[['Wholewheat pasta, cooked','c'],['Turkey mince 7% fat, raw','p'],['Olive oil','f'],['Tomatoes, canned (chopped)',120],['Spinach, raw',40]]},
+ {n:'Bean & beef chilli with brown rice',sl:'D',it:[['Brown rice, cooked','c'],['Beef mince 5% fat, raw','p'],['Olive oil','f'],['Kidney beans, canned (drained)',80],['Tomatoes, canned (chopped)',120]]},
+ {n:'Sea bass, bulgur & roast veg',sl:'D',it:[['Bulgur wheat, cooked','c'],['Sea bass, raw','p'],['Olive oil','f'],['Courgette',80],['Peppers, red',60]]},
+ {n:'Oatcakes, cheese & turkey',sl:'S',it:[['Oatcakes','c'],['Turkey breast, cooked','p'],['Cheddar cheese','f']]},
+ {n:'Kiwi, walnuts & boiled egg',sl:'S',it:[['Kiwi','c'],['Egg, boiled','p'],['Walnuts','f']]},
+ {n:'Rice cakes, peanut butter & egg',sl:'S',it:[['Rice cakes','c'],['Egg, boiled','p'],['Peanut butter','f']]},
+ {n:'Orange, pumpkin seeds & cheese',sl:'S',it:[['Orange','c'],['Cheddar cheese','p'],['Pumpkin seeds','f']]},
+ {n:'Apple, Greek yoghurt & almonds',sl:'S',it:[['Apple','c'],['Greek yoghurt, 0% fat','p'],['Almonds','f']]},
+ {n:'Oatcakes, cottage cheese & walnuts',sl:'S',it:[['Oatcakes','c'],['Cottage cheese','p'],['Walnuts','f']]},
+ {n:'Hummus, carrot sticks & egg',sl:'S',it:[['Carrots, raw','c'],['Egg, boiled','p'],['Hummus','f']]}
+];
+var GDPOOL={ibs:{c:['Basmati rice, cooked','New potatoes, boiled','Quinoa, cooked','Rice noodles, cooked','Sourdough bread','Porridge oats','Rice cakes','Oatcakes'],p:['Chicken breast, raw','Turkey breast, cooked','Cod, raw','Salmon fillet, raw','Egg white','Tofu, firm','Prawns / shrimp, raw','Pea protein powder'],f:['Olive oil','Butter','Peanut butter','Walnuts','Rapeseed oil'],v:['Carrots, boiled','Spinach, raw','Courgette','Cucumber','Green beans','Peppers, red'],fr:['Strawberries','Kiwi','Orange','Blueberries']},
+ pmos:{c:['Brown rice, cooked','Quinoa, cooked','Wholewheat pasta, cooked','Porridge oats','Wholemeal bread','New potatoes, boiled','Bulgur wheat, cooked','Oatcakes','Lentils, cooked'],p:['Chicken breast, raw','Salmon fillet, raw','Turkey breast, cooked','Greek yoghurt, 0% fat','Egg white','Tofu, firm','Cod, raw','Cottage cheese'],f:['Olive oil','Walnuts','Almonds','Avocado','Peanut butter'],v:['Spinach, raw','Broccoli, raw','Peppers, red','Tomato','Courgette','Green beans'],fr:['Raspberries','Apple','Blueberries','Orange']}};
+function gdRole(f){var k=n(f.kcal)||1;if(k<70&&f.protein<10)return'v';if(f.carbs>=20&&f.carbs>=f.protein*1.5)return'c';if(f.protein*4/k>=0.4)return'p';if(f.fat*9/k>=0.7)return'f';return k<70?'v':f.carbs*4/k>.5?'c':f.protein*4/k>.3?'p':'f'}
+function gdTpls(sl,c){var L=GDT.filter(function(t){return t.sl.indexOf(sl)>=0}).map(function(t){return{n:t.n,it:t.it,own:1}});try{MLIB.forEach(function(t){if(t.sl.indexOf(sl)>=0&&!t.keto)L.push({n:t.n,it:t.it})})}catch(e){}return L}
+function gdSub(tpl,X,use,rnd,sl){var out=[],hit=[],ns=0,P=Object.assign({},GDPOOL[X.c]);if(sl==='B'||sl==='S'){P.c=X.c==='ibs'?['Porridge oats','Rice cakes','Oatcakes','Sourdough bread','Banana']:['Porridge oats','Oatcakes','Wholemeal bread','Raspberries','Apple'];P.p=X.c==='ibs'?['Egg white','Pea protein powder','Turkey breast, cooked','Smoked salmon','Cheddar cheese']:['Greek yoghurt, 0% fat','Egg white','Cottage cheese','Turkey breast, cooked','Smoked salmon']}favs=Object.keys(X.fv).map(function(nm){var f=fByName(nm);return f?{nm:nm,r:gdRole(f)}:null}).filter(function(u){return u&&!gdWhy(u.nm,X)});
+ for(var i=0;i<tpl.length;i++){var x=tpl[i],f=fByName(x[0]);if(!f)continue;var role=typeof x[1]==='number'?(gdTag(f.name).fr?'fr':'v'):x[1];
+  var cand=favs.filter(function(u){return u.r===role&&!((sl==='B'||sl==='S')&&/chicken|beef|pork|turkey mince|lamb|steak|mince|cod|hake|potato|rice, cooked|pasta|noodle|quinoa|bulgur|couscous|lentil|bean/i.test(u.nm))&&!out.some(function(y){return y[0]===u.nm})});
+  if(cand.length&&role!=='f'&&typeof x[1]!=='number'){cand.sort(function(a,b){return(use[a.nm]||0)-(use[b.nm]||0)||rnd()-.5});var u=cand[0];if((use[u.nm]||0)<2||rnd()<.2){out.push([u.nm,x[1]]);hit.push(u.nm);ns++;continue}}
+  if(X.fv[f.name])hit.push(f.name);
+  if(gdWhy(f.name,X)){var pool=(P[role]||[]).filter(function(nm){return fByName(nm)&&!gdWhy(nm,X)&&!out.some(function(y){return y[0]===nm})});if(!pool.length)continue;var alt=pool[Math.floor(rnd()*Math.min(3,pool.length))];out.push([alt,x[1]]);ns++;continue}
+  out.push(x)}
+ return{it:out,hit:hit,ns:ns}}
+function gdShort(nm){return String(nm).split(/[,(]/)[0].replace(/\s+(raw|cooked|boiled)$/i,'').trim()}
+function gdName(items){var v=items.slice().sort(function(a,b){return b.kcal-a.kcal}).slice(0,3).map(function(x){return gdShort(x.name)});v=v.filter(function(x,i){return v.indexOf(x)===i});v=v.map(function(x,i){return i?x.charAt(0).toLowerCase()+x.slice(1):x});return v.length>1?v.slice(0,-1).join(', ')+' & '+v[v.length-1]:v[0]||'Meal'}
+function gdClamp(items,X,tg,sl){var cut=0;items.forEach(function(x,i){var cp=gdCap(x.name,X);if(cp&&x.g>cp){var f=fByName(x.name)||foodByKey(x.key);if(f){var before=x.carbs;items[i]=calc(f,cp);cut+=before-items[i].carbs}}});
+ if(cut>8){var fill=(sl==='B'||sl==='S')?'Rice cakes':'Basmati rice, cooked';if(X.c==='pmos')fill=(sl==='B'||sl==='S')?'Oatcakes':'Brown rice, cooked';var f2=fByName(fill);if(f2&&!gdWhy(fill,X)){var g=Math.round(cut/(f2.carbs/100)/5)*5;var ex=items.filter(function(y){return y.name===f2.name})[0];if(ex)items[items.indexOf(ex)]=calc(f2,ex.g+g);else items.push(calc(f2,g))}}return items}
+function gdScore(items,tg,X,hit,use){var T=sumItems(items),kt=tg.protein*4+tg.carbs*4+tg.fat*9,err=Math.abs(T.kcal-kt)/kt+Math.max(0,tg.protein-T.protein)/tg.protein*0.6,sc=-err*25+hit.length*1.5+hit.filter(function(h){return!use[h]}).length*1.5;
+ if(X.c==='pmos'){sc+=Math.min(12,T.fibre)*0.25;items.forEach(function(x){if(gdTag(x.name).wg)sc+=0.8});if(kt>300&&T.protein<20)sc-=3}
+ items.forEach(function(x){var lim=(fByName(x.name)||{}).kcal<200?450:350;if(x.g>lim)sc-=(x.g-lim)/100*3});return sc}
+function gdMeal(sl,tg,X,opts){opts=opts||{};var rnd=opts.rnd||Math.random,use=opts.use||{},base=opts.base||{fr:0,cf:0},L=[];
+ gdTpls(sl,X.c).forEach(function(t){if(opts.skip&&opts.skip.indexOf(t.n)>=0)return;var sb=gdSub(t.it,X,use,rnd,sl);if(sb.it.filter(function(x){return typeof x[1]!=='number'&&fByName(x[0])}).length!==3)return;var it=buildMeal(sb.it,tg);if(!it.length)return;it=gdClamp(it,X,tg,sl).filter(function(x){var f=fByName(x.name);return x.g>=10||(f&&f.fat>80)});it.sort(function(a,b){return b.kcal-a.kcal});if(!gdItemsOk(it,X,base))return;
+  L.push({n:(sb.ns||it.length<sb.it.filter(function(x){return fByName(x[0])}).length)?gdName(it):t.n,items:it,sc:gdScore(it,tg,X,sb.hit,use)+(t.own?2.5:0)-sb.ns*2.5+rnd()*1.2,hit:sb.hit})});L.sort(function(a,b){return b.sc-a.sc});var seen={};L=L.filter(function(o){var k=o.items.map(function(x){return x.name}).sort().join('|');if(seen[k]||(opts.skip&&opts.skip.indexOf(o.n)>=0))return false;seen[k]=1;return true});return L}
+function gdRes(c){var I=gdIn(c),i=Object.assign({},plIn(),{sex:I.sex,age:I.age,h:I.h,w:I.w,act:I.act,goal:I.goal,adj:I.adj,meals:I.meals,style:'',fav:[],avoid:[]});return calcPlan(i)}
+function gdGen(c,seed){var X=gdCtx(c),I=X.I,R=gdRes(c),sp=SPLIT[I.meals]||SPLIT[4],rnd=rng((seed||1)*7+3),use={},cnt={fr:0,cf:0},mp=[],used=[];
+ sp.forEach(function(s,ix){var tg={protein:R.protein*s[2],carbs:R.carbs*s[2],fat:R.fat*s[2]},L=gdMeal(s[0],tg,X,{rnd:rnd,use:use,base:cnt,skip:used}),b=L[0];
+  if(!b){var p=GDPOOL[c];var it=buildMeal([[p.c[0],'c'],[p.p[0],'p'],[p.f[0],'f'],[p.v[0],80]].filter(function(x){return!gdWhy(x[0],X)}),tg);b={n:'Simple plate',items:it,hit:[]}}
+  b.hit.forEach(function(h){use[h]=(use[h]||0)+1});used.push(b.n);var k=gdCnt(b.items);cnt.fr+=k.fr;cnt.cf+=k.cf;mp.push(fixM({no:ix+1,name:'',type:s[1],slot:s[0],alt:b.n,items:b.items}))});
+ return{res:R,mp:mp,c:c,seed:seed||1,name:'',id:null,frac:sp.map(function(s){return s[2]})}}
+function gdA(m){return m.items}
+function gdBase(mp,skipI){var b={fr:0,cf:0};mp.forEach(function(m,i){if(i===skipI)return;var k=gdCnt(gdA(m));b.fr+=k.fr;b.cf+=k.cf});return b}
+function gdAlts(D,mi){var X=gdCtx(D.c),m=D.mp[mi],fr=(D.frac||[])[mi]||(1/D.mp.length),tg={protein:D.res.protein*fr,carbs:D.res.carbs*fr,fat:D.res.fat*fr};var cur=[m.alt||''];if(obHas(m))cur.push(m.oth.alt||'');
+ return gdMeal(m.slot||'L',tg,X,{base:gdBase(D.mp,mi),skip:cur})}
+function gdNew(c){var d=gdGen(c,1+Math.floor(Math.random()*1e5));GD.dr[c]=d;gdSave();return d}
+function gdDraft(c){return GD.dr[c]||null}
+function gdDiet(){if(!GDV)return null;if(GDV.v==='open'){var x=dietById(GDV.id);return x?{res:x.res,mp:x.mp,c:x.gut,frac:x.frac,x:x}:null}var d=gdDraft(GDV.c);return d}
+function gdTouch(D){if(D&&D.x){D.x.edited=todayIso();try{bdMerge(D.x)}catch(e){}save()}else gdSave()}
+// ---- weekly plan ----
+function wpHtml(edit){var t=todayIso(),dw=wpDow(t),L=(S.plans||[]),any=Object.keys(WP.d).some(function(k){return WP.d[k]&&dietById(WP.d[k])});
+ return'<div class="card full hcard wpcard" id="wpcard"><div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><h3 style="margin:0">📅 Weekly diet plan</h3>'+(edit?'':'<button class="sm" data-gdwk="1" style="flex:0 0 auto">Edit ›</button>')+'</div><p class="mu" style="font-size:12px;margin:4px 0 6px">Pick a diet for each weekday — it becomes that day’s diet automatically (targets & meals). Choosing a diet for a single day in Diet still wins for that day.</p>'+
+ '<div class="wpg">'+WDN.map(function(nm,i){var id=WP.d[i],x=id&&dietById(id);return'<div class="wpr'+(i===dw?' today':'')+'"><b>'+nm+(i===dw?' · today':'')+'</b>'+(edit?'<select data-wpd="'+i+'" aria-label="Diet for '+nm+'"><option value="">— no diet —</option>'+L.map(function(p){return'<option value="'+p.id+'"'+(p.id===id?' selected':'')+'>'+(p.gut?(p.gut==='ibs'?'🌿 ':'🌸 '):'')+esc(p.name)+'</option>'}).join('')+'</select>':'<span>'+(x?gdBadge(x)+' '+esc(x.name):'<em class="mu">—</em>')+'</span>')+'</div>'}).join('')+'</div>'+
+ (edit&&any?'<button class="sm dang" data-wpclr="1" style="margin-top:8px">Clear weekly plan</button>':'')+'</div>'}
+function gdBadge(x){return x&&x.gut?'<span class="gdbdg '+x.gut+'">'+(x.gut==='ibs'?'🌿 IBS':'🌸 PCOS/PMOS')+'</span>':''}
+// ---- UI ----
+function gdRules(c,I){if(c==='ibs'){var FE=gdFodEx(c,I),nt=0;try{var tr=guTriggers();if(tr.ready)nt=tr.L.length+tr.G.length}catch(e){}
+  return'<ul class="pcul"><li>Regular meals — '+I.meals+' a day, don’t skip, eat slowly (NICE/NHS)</li><li>Fresh fruit ≤3 portions and tea/coffee ≤3 cups a day — also on 🎲 random and 🔄 swap</li><li>No polyol sweeteners (sorbitol, xylitol, mannitol, maltitol)</li><li>'+(I.trig===false?'Trigger-finder foods allowed':nt?nt+' flagged trigger food'+(nt===1?'':'s')+'/group'+(nt===1?'':'s')+' left out':'No flagged triggers yet (needs 14+ logged days)')+'</li><li>Low-FODMAP filter: <b>'+({off:'off',filter:'on — high-FODMAP foods left out',elim:'on — elimination: high-FODMAP foods left out, “moderate” foods capped',reint:'on — reintroduction: only groups you tested OK',pers:'on — personalisation: tolerated groups back in'})[FE.mode]+'</b></li></ul>'}
+ return'<ul class="pcul"><li>General healthy eating (2023 International Guideline) — there’s no single “PCOS diet”</li><li>Fibre, wholegrains/pulses and veg favoured; protein at every meal</li><li>Minimally processed foods, regular meals</li><li>Calories from your goal &amp; TDEE</li>'+(I.lgi?'<li>Lower-GI carbs preferred — a food preference, not a medical rule</li>':'')+'</ul>'}
+function gdToggles(c,I){var T=function(k,on,lab,sub){return'<div class="pacc"><button class="ck'+(on?' on':'')+'" data-gdt="'+k+'" aria-label="'+lab+'">'+(on?'✓':'')+'</button><span><b>'+lab+'</b><br><small class="mu">'+sub+'</small></span></div>'};
+ if(c==='ibs'){var ph=(GU.fod||{}).ph||'off';return T('lowf',!!I.lowf,'Low-FODMAP filter','Follows your FODMAP helper phase'+(ph!=='off'?' ('+({elim:'elimination',reint:'reintroduction',pers:'personalisation'})[ph]+')':' (not started — filters all high-FODMAP foods)')+'. Best with a dietitian.')+T('trig',I.trig!==false,'Leave out my flagged triggers','From the trigger finder — possible patterns, not proven')}
+ return T('lgi',!!I.lgi,'Prefer lower-GI carbs','Preference only — oats, pulses, wholegrains over white bread, rice cakes or mash')}
+function gdDisc(){return'<p class="mu" style="font-size:11.5px;margin-top:6px">General guidance, not medical advice. Check with your GP or a registered dietitian before big changes — especially for low-FODMAP, pregnancy, diabetes or a history of disordered eating.</p>'}
+function gdFvBox(c,k){var I=gdIn(c),L=I[k]||[],fav=k==='fav';return'<div class="fvbox"><label>'+(fav?'❤️ Foods I like':'🚫 Foods to avoid')+'</label><div class="fchips">'+L.map(function(t,j){var f=favFood(t),X=gdCtx(c),w=f&&fav?gdWhy(f.name,X):'';return'<span class="fchip'+(fav?'':' av')+(w?' bad':'')+'"><span><b>'+esc(t)+'</b><small>'+(fav?(f?esc(f.name)+(w?' · not used: '+esc(w):''):'not found'):Object.keys(avoidSet({avoid:[t]})).length+' foods excluded')+'</small></span><button class="sm xb" data-gdfd="'+k+'|'+j+'" aria-label="Remove">✕</button></span>'}).join('')+'</div><div class="row" style="flex-wrap:nowrap"><input id="gdq-'+k+'" placeholder="'+(fav?'e.g. salmon, potatoes, rice':'e.g. pork, mushrooms')+'" autocomplete="off" style="flex:1"><button class="sm" data-gdfa="'+k+'" style="flex:0 0 auto">Add</button></div></div>'}
+function gdHead(c){var I=gdIn(c);return'<div class="card full hcard gdhead" id="gdhead"><h2>'+(c==='ibs'?'🌿 IBS diet creator':'🌸 PCOS/PMOS diet creator')+'</h2>'+(GM.mode==='both'?'<p class="mu" style="font-size:12px;margin:2px 0">Both conditions tracked — pick IBS or PCOS/PMOS with the switch above.</p>':'')+'<p class="mu" style="font-size:12px;margin:2px 0 0">Builds diets only from foods that fit '+(c==='ibs'?'IBS':'PCOS/PMOS')+' rules. Separate from the normal diet creator.</p>'+gdRules(c,I)+gdToggles(c,I)+gdDisc()+'</div>'}
+function gdForm(c){var I=gdIn(c),cut=I.goal==='cut';
+ return'<div class="card full hcard" id="gdform"><h3>Your goal</h3><div class="seg"><button class="'+(I.goal==='muscle'?'on':'')+'" data-gdg="muscle">💪 Build</button><button class="'+(cut?'on':'')+'" data-gdg="cut">🔥 Lose</button><button class="'+(I.goal==='maint'?'on':'')+'" data-gdg="maint">⚖️ Maintain</button></div>'+
+ '<div class="g2" style="margin-top:8px"><div><label>Sex (for formula)</label><select data-gdi="sex"><option value="f"'+(I.sex==='f'?' selected':'')+'>Female</option><option value="m"'+(I.sex==='m'?' selected':'')+'>Male</option></select></div><div><label>Age</label><input type="number" inputmode="numeric" data-gdi="age" value="'+esc(I.age)+'"></div><div><label>Height (cm)</label><input type="number" inputmode="decimal" data-gdi="h" value="'+esc(I.h)+'"></div><div><label>Weight (kg)</label><input type="number" step="0.1" inputmode="decimal" data-gdi="w" value="'+esc(I.w)+'"></div></div>'+
+ '<label>Activity level</label><select data-gdi="act">'+ACT.map(function(a){return'<option value="'+a[0]+'"'+(n(I.act)===a[0]?' selected':'')+'>'+a[1]+' ×'+a[0]+'</option>'}).join('')+'</select>'+
+ '<div class="g2"><div><label>Meals per day</label><select data-gdi="meals">'+[3,4,5].map(function(m){return'<option'+(n(I.meals)===m?' selected':'')+'>'+m+'</option>'}).join('')+'</select></div><div><label>'+(cut?'Deficit':'Surplus')+' %</label><select data-gdi="adj">'+(cut?[10,15,20,25]:[0,5,10,15,20]).map(function(v){return'<option'+(n(I.adj)===v?' selected':'')+'>'+v+'</option>'}).join('')+'</select></div></div>'+
+ gdFvBox(c,'fav')+gdFvBox(c,'avoid')+'<button class="pri" data-gdmk="1" style="width:100%;margin-top:10px;min-height:50px">'+(gdDraft(c)?'↻ Create a new diet':'Create my diet')+'</button></div>'}
+function gdMealsHtml(D,mode){var T=planTot(D.mp.map(function(m){return{items:gdA(m)}})),R=D.res,a=D.x&&activeDiet(cur),isT=!!(a&&D.x&&a.id===D.x.id),dm=isT?peek(cur).meals.filter(function(m){return m.dietId===D.x.id}):[];
+ var h='<div class="card full hcard" id="gdmeals"><div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><h3 style="margin:0">Meal plan</h3>'+(mode==='draft'?'<button class="sm" data-gdre="1" style="flex:0 0 auto">↻ Regenerate</button>':'')+'</div>'+
+ '<div class="tgrid gdtg"><div><small>Target</small><b>'+nf(R.kcal)+'</b><small>kcal</small></div><div><small>TDEE</small><b>'+nf(R.tdee||0)+'</b><small>kcal</small></div><div><small>Protein</small><b>'+R.protein+'</b><small>g</small></div><div><small>Carbs</small><b>'+R.carbs+'</b><small>g</small></div><div><small>Fat</small><b>'+R.fat+'</b><small>g</small></div></div>'+(R.warn?'<p class="amb">⚠️ '+R.warn+'</p>':'');
+ D.mp.forEach(function(m,mi){var it=gdA(m),t=sumItems(it),h2=obHas(m),b=h2&&m.sel==='b',k=mi,dmm=dm.filter(function(z){return z.no===m.no})[0];
+  h+='<div class="gdm"><div class="gdmh"><div><b>'+esc(mlab(m))+'</b><small class="mu"> · '+esc(m.alt||'')+'</small><br><small class="mu">P '+Math.round(t.protein)+' · C '+Math.round(t.carbs)+' · F '+Math.round(t.fat)+' · Fib '+Math.round(t.fibre)+'</small></div><span class="mk">'+nf(Math.round(t.kcal))+'<small> kcal</small></span></div>'+
+   '<div class="obar">'+(h2?'<div class="obt"><button class="'+(b?'':'on')+'" data-gdab="a|'+k+'">A</button><button class="'+(b?'on':'')+'" data-gdab="b|'+k+'">B</button></div>':'<button class="sm" data-gdob="'+k+'">＋ Option B</button>')+'<button class="sm" data-gdrn="'+k+'" aria-label="Random meal">🎲 Random</button><button class="sm" data-gdsw="'+k+'">🔄 Swap</button>'+(h2?'<button class="sm dang" data-gdox="'+k+'" aria-label="Remove Option B">✕ B</button>':'')+'</div>'+
+   it.map(function(x,j){var tg=gdTag(x.name),on=false;if(dmm){var z=(dmm.items||[]).filter(function(q){return q.name===x.name})[0];on=!!(z&&ate(z)&&z.eaten!==false)}return'<div class="gdit">'+(D.x?'<button class="ck'+(on?' on':'')+'" data-gdtk="'+mi+'|'+j+'" aria-label="Eaten '+esc(x.name)+'">'+(on?'✓':'')+'</button>':'')+'<span class="gdn">'+esc(x.name)+'<small class="mu">'+nf(x.g)+(x.liquid?' ml':' g')+' · '+Math.round(x.kcal)+' kcal'+(D.c==='ibs'&&tg.f==='L'?' · <i class="gdtag">low-FODMAP</i>':D.c==='ibs'&&tg.f==='M'?' · <i class="gdtag">moderate ≤'+tg.cap+' g</i>':'')+(D.c==='pmos'&&tg.wg?' · <i class="gdtag">wholegrain</i>':'')+'</small></span></div>'}).join('')+'</div>'});
+ h+=mPct(T)+(D.c==='ibs'?(function(){var c=gdCnt([].concat.apply([],D.mp.map(gdA)));return'<p class="mu" style="font-size:12px;margin-top:6px">🍎 Fruit '+c.fr+'/3 portions · ☕ tea/coffee '+c.cf+'/3</p>'})():'<p class="mu" style="font-size:12px;margin-top:6px">🌾 Fibre '+Math.round(T.fibre)+' g (guide ≈ '+fibTarget(R.kcal)+' g)</p>')+(isT?'<p class="mu" style="font-size:12px">Tick foods as you eat them — they’re logged in today’s Diet.</p>':'');
+ return h+'</div>'}
+function gdSaveBox(D){var x=D.x;if(!x)return'<div class="card full hcard"><label for="gdname">Diet name</label><input id="gdname" value="'+esc(D.name||(D.c==='ibs'?'IBS diet':'PCOS/PMOS diet')+' · '+nf(D.res.kcal)+' kcal')+'"><button class="pri" data-gdsv="1" style="width:100%;margin-top:10px">💾 Save to My diets</button></div>';
+ var a=activeDiet(cur),isT=!!(a&&a.id===x.id);
+ return'<div class="card full hcard" id="gdsaved"><div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><h3 style="margin:0">'+esc(x.name)+'</h3>'+gdBadge(x)+'</div><button class="'+(isT?'':'pri')+'" data-gdtd="'+x.id+'" style="width:100%;margin-top:8px">'+(isT?'✓ Today’s diet (tap to clear)':'📅 Set as Today’s diet')+'</button>'+
+ '<label>Add to weekly plan</label><div class="hsc wpchips">'+WDN.map(function(nm,i){var on=WP.d[i]===x.id;return'<button class="sm'+(on?' on':'')+'" data-gdwd="'+i+'">'+nm+'</button>'}).join('')+'</div><button class="sm" data-gdwall="1">Every day</button> <button class="sm dang" data-gddel="'+x.id+'">Delete diet</button></div>'}
+function gdList(){var L=(S.plans||[]).filter(function(p){return p.gut}),a=activeDiet(cur);
+ return'<div class="card full hcard" id="gdlist"><h3>🍽️ My gut diets</h3>'+(L.length?L.map(function(x){var on=a&&a.id===x.id,wd=WDN.filter(function(nm,i){return WP.d[i]===x.id});return'<button class="gdli" data-gdop="'+x.id+'"><span><b>'+esc(x.name)+'</b><small class="mu">'+nf(x.res.kcal)+' kcal · '+x.mp.length+' meals'+(on?' · Today’s diet':'')+(wd.length?' · 📅 '+wd.join(', '):'')+'</small></span>'+gdBadge(x)+'</button>'}).join(''):'<p class="mu">No gut diets yet.</p>')+'</div>'}
+function gdHtml(){var c=GDV.c,v=GDV.v,back='<button class="sm noprint" data-gdx="1" style="width:auto;margin-bottom:8px">‹ '+(c==='ibs'?'Gut':'PCOS/PMOS')+'</button>';
+ if(v==='week')return back+wpHtml(true)+gdList()+Lfoot();
+ if(v==='list')return back+gdList()+wpHtml(false)+Lfoot();
+ if(v==='open'){var D=gdDiet();if(!D){GDV.v='list';return gdHtml()}GDV.c=D.c;return back+gdSaveBox(D)+gdMealsHtml(D,'saved')+gdDisc()+Lfoot()}
+ var d=gdDraft(c);return back+gdHead(c)+gdForm(c)+(d?gdMealsHtml(d,'draft')+gdSaveBox(d):'')+gdList()+Lfoot()}
+function gdCard(c){var L=(S.plans||[]).filter(function(p){return p.gut===c}),a=activeDiet(cur),on=a&&a.gut===c;
+ return'<div class="card full hcard gdcard" id="gdcard-'+c+'"><h3>🍽️ '+(c==='ibs'?'IBS':'PCOS/PMOS')+' diet creator</h3><p style="font-size:13px;margin:4px 0">'+(c==='ibs'?'Daily diets built only from IBS-friendly foods: regular meals, low-FODMAP phase filter, your triggers left out, no polyols, fruit &amp; caffeine caps.':'Daily diets built for general healthy eating: fibre, wholegrains, protein at every meal, minimally processed — optional lower-GI preference.')+'</p>'+(on?'<p style="font-size:13px;margin:4px 0">Today’s diet: '+gdBadge(a)+' <b>'+esc(a.name)+'</b></p>':'')+
+ '<div class="row"><button class="pri" data-gdgo="'+c+'|make" style="flex:2">Create a diet ›</button><button data-gdgo="'+c+'|list" style="flex:1">My diets ('+L.length+')</button></div><button class="sm" data-gdgo="'+c+'|week" style="margin-top:6px">📅 Weekly plan</button>'+gdDisc()+'</div>'}
+var _guH57=guHome;guHome=function(){return _guH57.apply(this,arguments)+gdCard('ibs')};
+var _pcH57=pcHome;pcHome=function(){var h=_pcH57.apply(this,arguments),k=h.indexOf('<div class="gunav pcnav">');return k>=0?h.slice(0,k)+gdCard('pmos')+h.slice(k):h+gdCard('pmos')};
+var _rGut57=rGut;rGut=function(){if(GDV&&GM.on&&GM.mode&&Lok('gut')&&!GMV){var el=document.getElementById('t-gut');if(el){if(GM.mode==='both'){var gc=gmCur()==='pmos'?'pmos':'ibs';if(GDV.c!==gc){if(GDV.v==='open')GDV={c:gc,v:'make'};else GDV.c=gc}}else if(GM.mode==='ibs'||GM.mode==='pmos')GDV.c=GM.mode;if(GDV.c==='pmos'&&!PCX.consent)GDV.c='ibs';el.innerHTML=gmChip()+gdHtml();return}}return _rGut57.apply(this,arguments)};
+var _gmT57=gmTitle;gmTitle=function(){try{if(GDV)return'🍽️ Gut diet creator'}catch(e){}return _gmT57()};
+// ---- normal app integration: My diets badges, Diet screen weekly plan, keep gut diets out of the normal creator ----
+var _gt57=goalTx;goalTx=function(x){if(x&&x.gut)return(x.gut==='ibs'?'IBS diet creator':'PCOS/PMOS diet creator')+' · '+(x.inputs&&x.inputs.goal==='cut'?'Lose weight':x.inputs&&x.inputs.goal==='muscle'?'Build muscle':'Maintain');return _gt57(x)};
+var _rM57=rMeals;rMeals=function(){_rM57.apply(this,arguments);var el=document.getElementById('t-meals');if(!el||dv==='more')return;
+ [].forEach.call(el.querySelectorAll('[data-dopen]'),function(b){var x=dietById(b.dataset.dopen);if(x&&x.gut&&!b.querySelector('.gdbdg')){var t=b.querySelector('.dnm,b');t&&t.insertAdjacentHTML('afterend',' '+gdBadge(x))}});
+ [].forEach.call(el.querySelectorAll('[data-v5rp],[data-dedit]'),function(b){var x=dietById(b.dataset.v5rp||b.dataset.dedit);if(x&&x.gut)b.remove()});
+ [].forEach.call(el.querySelectorAll('.dname'),function(t){var a=activeDiet(cur);if(a&&a.gut&&!t.querySelector('.gdbdg'))t.insertAdjacentHTML('beforeend',' '+gdBadge(a))});
+ if(!dv&&!el.querySelector('#wpcard')){var cards=el.querySelectorAll(':scope > .card');var after=cards[0];var w=wpHtml(false).replace('data-gdwk="1"','data-wpedit="1"');if(after)after.insertAdjacentHTML('afterend',w);else el.insertAdjacentHTML('afterbegin',w)}};
+var WPE=false;
+function gdRoute(x){if(GM.mode==='both'){GM.cur=x.gut;gmSave()}GDV={c:x.gut,v:'open',id:x.id};dv=null;tab='gut';render();scrollTo(0,0)}
+var _dE57=dEdit;dEdit=function(id){var x=dietById(id);if(x&&x.gut&&GM.on&&GM.mode){gdRoute(x);return}return _dE57.apply(this,arguments)};
+var _rp57=rPlan;rPlan=function(){_rp57.apply(this,arguments);[].forEach.call(document.querySelectorAll('#t-plan [data-popen]'),function(b){var x=S.plans[+b.dataset.popen];if(x&&x.gut){var t=b.closest('.tile');(t||b).remove()}})};
+// gut diets opened anywhere route to the Gut creator (condition rules), and swap/random on their day meals stay condition-safe
+window.addEventListener('click',function(ev){var b=ev.target.closest('[data-dopen],[data-ded],[data-dedit],[data-v5rp]');if(!b)return;var D1=b.dataset,x=dietById(D1.dopen||D1.ded||D1.dedit||D1.v5rp);if(!x||!x.gut||!GM.on||!GM.mode)return;ev.stopImmediatePropagation();ev.preventDefault();gdRoute(x)},true);
+var _mg57=msGen;msGen=function(o){var L=_mg57(o),x=null;try{if(MS){if(MS.k==='x')x=dietById(MS.id);else if(MS.k==='d'){var m=day(cur).meals[MS.i];x=m&&dietById(m.dietId)}}}catch(e){}
+ if(!x||!x.gut)return L;var X=gdCtx(x.gut),base={fr:0,cf:0};try{var dm=MS.k==='d'?day(cur).meals:x.mp;dm.forEach(function(m,i){if(i===MS.i)return;var k=gdCnt(MS.k==='d'?m.items:gdA(m));base.fr+=k.fr;base.cf+=k.cf})}catch(e){}
+ return L.filter(function(r){return gdItemsOk(r.items,X,base)})};
+// ---- events ----
+function gdRe(){var sy=scrollY;rGut();scrollTo(0,sy)}
+function gdSwapModal(D,mi){var L=gdAlts(D,mi),pg=0;window._gdSW={D:D,mi:mi,L:L,pg:0};gdSwapR()}
+function gdSwapR(){var S0=window._gdSW;if(!S0)return;var sh=S0.L.slice(S0.pg*3,S0.pg*3+3),m=S0.D.mp[S0.mi],T=sumItems(gdA(m));var e=document.getElementById('gdsw');if(!e){e=document.createElement('div');e.id='gdsw';document.body.appendChild(e);document.body.style.overflow='hidden'}
+ e.innerHTML='<div class="msb"><div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><h2 style="margin:0">🔄 Swap '+esc(mlab(m))+'</h2><button class="sm" data-gdswx="1" aria-label="Close" style="flex:0 0 auto;width:auto">✕</button></div><p class="mu" style="font-size:13px;margin:4px 0 8px">Now: '+nf(Math.round(T.kcal))+' kcal · only '+(S0.D.c==='ibs'?'IBS':'PCOS/PMOS')+'-rule meals shown</p>'+
+ (sh.length?sh.map(function(o,q){var t=sumItems(o.items);return'<div class="mopt"><b>'+esc(o.n)+'</b><div class="mu" style="font-size:13px;margin:4px 0">'+o.items.map(function(x){return esc(x.name)+' '+nf(x.g)+(x.liquid?'ml':'g')}).join(' · ')+'</div><div class="mcmp"><span><b>'+nf(Math.round(t.kcal))+'</b> kcal</span><span>P <b>'+Math.round(t.protein)+'</b></span><span>C <b>'+Math.round(t.carbs)+'</b></span><span>F <b>'+Math.round(t.fat)+'</b></span></div><button class="pri sm" data-gdsu="'+(S0.pg*3+q)+'" style="width:100%;margin-top:6px">Use this</button></div>'}).join(''):'<p class="mu">No other meals fit the rules at this size.</p>')+
+ (S0.L.length>3?'<button data-gdsm="1" style="width:100%;margin-top:8px">↻ Show more</button>':'')+'</div>'}
+function gdSwapClose(){window._gdSW=null;var e=document.getElementById('gdsw');e&&e.remove();document.body.style.overflow=''}
+function gdSetItems(m,o){m.items=o.items.map(function(x){return Object.assign({},x)});m.alt=o.n}
+document.addEventListener('change',function(ev){var e=ev.target;if(e.dataset&&e.dataset.gdi&&GDV){var I=gdIn(GDV.c),k=e.dataset.gdi;I[k]=k==='sex'?e.value:n(e.value);gdSave();return}
+ if(e.dataset&&e.dataset.wpd!=null){WP.d[e.dataset.wpd]=e.value||'';if(!e.value)delete WP.d[e.dataset.wpd];wpSave();var t=todayIso();try{ensureDietMeals(t)}catch(x){}toast('Weekly plan updated');if(tab==='gut')gdRe();else render()}});
+document.addEventListener('keydown',function(ev){var e=ev.target;if(e&&e.id&&/^gdq-/.test(e.id)&&ev.key==='Enter'){ev.preventDefault();var b=document.querySelector('[data-gdfa="'+e.id.slice(4)+'"]');b&&b.click()}});
+document.addEventListener('click',function(ev){var b=ev.target.closest('[data-gdgo],[data-gdx],[data-gdc],[data-gdt],[data-gdg],[data-gdfa],[data-gdfd],[data-gdmk],[data-gdre],[data-gdab],[data-gdob],[data-gdox],[data-gdrn],[data-gdsw],[data-gdsu],[data-gdsm],[data-gdswx],[data-gdsv],[data-gdtd],[data-gdwd],[data-gdwall],[data-gddel],[data-gdop],[data-gdtk],[data-gdwk],[data-wpclr],[data-wpedit]');if(!b)return;var D0=b.dataset;
+ if(D0.gdgo){var p=D0.gdgo.split('|');GDV={c:p[0],v:p[1]};tab='gut';render();scrollTo(0,0);return}
+ if(D0.gdx){GDV=null;render();scrollTo(0,0);return}
+ if(D0.gdwk||D0.wpedit){GDV={c:gdCond(),v:'week'};if(!GM.on||!GM.mode){WPE=!WPE;var c0=document.getElementById('wpcard');if(c0)c0.outerHTML=wpHtml(true);return}tab='gut';render();scrollTo(0,0);return}
+ if(D0.wpclr){if(!confirm('Clear the weekly diet plan? Saved diets are kept.'))return;WP.d={};wpSave();gdRe();return}
+ if(D0.gdc){GDV.c=D0.gdc;GDV.v='make';gdRe();return}
+ if(!GDV)return;var c=GDV.c,I=gdIn(c);
+ if(D0.gdt){var k=D0.gdt;if(k==='trig')I.trig=I.trig===false;else I[k]=!I[k];gdSave();if(gdDraft(c)){GD.dr[c]=gdGen(c,gdDraft(c).seed+1);gdSave()}toast(({lowf:'Low-FODMAP filter',trig:'Leave out flagged triggers',lgi:'Lower-GI preference'})[k]+((k==='trig'?I.trig!==false:I[k])?' on':' off'));gdRe();return}
+ if(D0.gdg){I.goal=D0.gdg;I.adj=D0.gdg==='cut'?20:10;gdSave();gdRe();return}
+ if(D0.gdfa){var k2=D0.gdfa,inp=document.getElementById('gdq-'+k2),v=(inp&&inp.value||'').split(',').map(function(s){return s.trim()}).filter(Boolean);I[k2]=I[k2]||[];v.forEach(function(t){if(!I[k2].some(function(x){return x.toLowerCase()===t.toLowerCase()}))I[k2].push(t)});gdSave();if(gdDraft(c)){GD.dr[c]=gdGen(c,gdDraft(c).seed);gdSave()}gdRe();var e2=document.getElementById('gdq-'+k2);e2&&e2.focus();return}
+ if(D0.gdfd){var q=D0.gdfd.split('|');I[q[0]].splice(+q[1],1);gdSave();if(gdDraft(c)){GD.dr[c]=gdGen(c,gdDraft(c).seed);gdSave()}gdRe();return}
+ if(D0.gdmk){if(!(n(I.age)>0&&n(I.h)>0&&n(I.w)>0)){toast('Enter age, height and weight');return}gdNew(c);gdRe();var m0=document.getElementById('gdmeals');m0&&m0.scrollIntoView();return}
+ if(D0.gdre){var d=gdDraft(c);GD.dr[c]=gdGen(c,(d?d.seed:0)+1);gdSave();gdRe();return}
+ var Dd=gdDiet();
+ if(D0.gdab&&Dd){var q2=D0.gdab.split('|');obSel(Dd.mp[+q2[1]],q2[0]);gdTouch(Dd);gdRe();return}
+ if(D0.gdob!=null&&Dd){var mi=+D0.gdob,m=Dd.mp[mi],L=gdAlts(Dd,mi);if(!L.length){toast('No other meal fits the rules');return}m.oth={items:L[0].items,alt:L[0].n};m.sel='a';obSel(m,'b');gdTouch(Dd);gdRe();toast('Option B: '+L[0].n);return}
+ if(D0.gdox!=null&&Dd){var m2=Dd.mp[+D0.gdox];delete m2.oth;delete m2.sel;gdTouch(Dd);gdRe();return}
+ if(D0.gdrn!=null&&Dd){var mi2=+D0.gdrn,L2=gdAlts(Dd,mi2);if(!L2.length){toast('No other meal fits the rules');return}var o=L2[Math.floor(Math.random()*Math.min(6,L2.length))];gdSetItems(Dd.mp[mi2],o);gdTouch(Dd);gdRe();toast('🎲 '+o.n);return}
+ if(D0.gdsw!=null&&Dd){gdSwapModal(Dd,+D0.gdsw);return}
+ if(D0.gdsm){var S1=window._gdSW;if(S1){S1.pg=(S1.pg+1)%Math.ceil(S1.L.length/3);gdSwapR()}return}
+ if(D0.gdswx){gdSwapClose();return}
+ if(D0.gdsu!=null){var S2=window._gdSW;if(S2){var o2=S2.L[+D0.gdsu];gdSetItems(S2.D.mp[S2.mi],o2);gdTouch(S2.D);gdSwapClose();gdRe();toast('Swapped: '+o2.n)}return}
+ if(D0.gdsv&&Dd&&!Dd.x){var nm=(document.getElementById('gdname')||{}).value||'';nm=nm.trim()||((c==='ibs'?'IBS diet':'PCOS/PMOS diet')+' · '+nf(Dd.res.kcal)+' kcal');var o3={id:'g'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),name:nm,kind:'gut',gut:c,date:iso(new Date()),res:cl(Dd.res),mp:cl(Dd.mp),frac:Dd.frac,inputs:Object.assign(cl(I),{gut:c})};S.plans=S.plans||[];S.plans.unshift(o3);delete GD.dr[c];gdSave();save();GDV={c:c,v:'open',id:o3.id};gdRe();scrollTo(0,0);toast('Saved to My diets');return}
+ if(D0.gdtd){var id=D0.gdtd,a=activeDiet(cur),on=a&&a.id===id;S.dietSel[cur]=on?'':id;save();ensureDietMeals(cur);toast(on?'No diet for '+dl(cur):'Today’s diet set · targets & meals loaded');gdRe();return}
+ if(D0.gdwd!=null&&Dd&&Dd.x){var i=+D0.gdwd;if(WP.d[i]===Dd.x.id)delete WP.d[i];else WP.d[i]=Dd.x.id;wpSave();try{ensureDietMeals(todayIso())}catch(e){}gdRe();toast('Weekly plan updated');return}
+ if(D0.gdwall&&Dd&&Dd.x){for(var w=0;w<7;w++)WP.d[w]=Dd.x.id;wpSave();try{ensureDietMeals(todayIso())}catch(e){}gdRe();toast('Set for every day');return}
+ if(D0.gddel){if(!confirm('Delete this diet? Logged meals you’ve eaten are kept.'))return;var id2=D0.gddel;for(var k3 in WP.d)if(WP.d[k3]===id2)delete WP.d[k3];wpSave();delDiet(id2);GDV={c:c,v:'list'};gdRe();toast('Diet deleted');return}
+ if(D0.gdop){var x=dietById(D0.gdop);if(GM.mode==='both'&&GM.cur!==x.gut){GM.cur=x.gut;gmSave()}GDV={c:x.gut,v:'open',id:x.id};gdRe();scrollTo(0,0);return}
+ if(D0.gdtk&&Dd&&Dd.x){var q3=D0.gdtk.split('|'),mi3=+q3[0],j=+q3[1],xx=Dd.x,mm=xx.mp[mi3],nmI=(gdA(mm)[j]||{}).name;var a2=activeDiet(cur);if(!a2||a2.id!==xx.id){S.dietSel[cur]=xx.id;ensureDietMeals(cur)}
+  var dd=day(cur),dm=dd.meals.filter(function(z){return z.dietId===xx.id&&z.no===mm.no})[0];if(!dm){v5Tick(xx.id,mi3,null);dm=dd.meals.filter(function(z){return z.dietId===xx.id&&z.no===mm.no})[0];if(dm){dm.eaten=false;(dm.items||[]).forEach(function(z){z.eaten=false})}}
+  if(dm){var z=(dm.items||[]).filter(function(y){return y.name===nmI})[0];if(z){var now=!(ate(z)&&z.eaten!==false);z.eaten=now;dm.eaten=dm.items.every(function(y){return y.eaten!==false&&ate(y)})}}save();gdRe();return}
 });
 
 </script></body></html>
