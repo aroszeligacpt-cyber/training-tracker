@@ -315,6 +315,20 @@ body.thx-borange .pri,body.thx-borange .mtog .knob{box-shadow:0 0 14px rgba(255,
 .wpchips button{min-width:40px;flex:1}
 #gdsw{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center}#gdsw .msb{width:min(480px,100%);max-height:88vh;overflow:auto;background:var(--card);border-radius:18px 18px 0 0;padding:14px;box-sizing:border-box}
 .gdtag.hi{color:#f97316;font-weight:700}.gdtag.md{color:#eab308}.gdtag.uk{color:var(--mu)}
+
+/* v59 compact home tiles: 4 per row on phones */
+@media(max-width:899px){
+.tiles{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.htile{aspect-ratio:1/1;min-height:72px;padding:8px 7px 7px;border-radius:14px;gap:1px;min-width:0;overflow:hidden;align-items:flex-start;justify-content:flex-end}
+.htile .ic{font-size:21px;line-height:1;margin-bottom:auto}
+.htile b{font-size:10.5px;line-height:1.15;letter-spacing:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal;word-break:normal;hyphens:none;max-width:100%}
+.htile small{font-size:9px;line-height:1.2;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.htile small.lg{display:none}
+.htile .bar{height:4px;margin-top:2px}
+.htile.tpl,.htile.wide{order:99;grid-column:1/-1;aspect-ratio:auto;min-height:52px;padding:8px 14px;column-gap:12px}
+.htile.tpl .ic,.htile.wide .ic{font-size:24px}.htile.tpl b,.htile.wide b{font-size:12px;-webkit-line-clamp:1}.htile.tpl small,.htile.wide small{font-size:11px}
+}
+@media(max-width:369px){.tiles{gap:6px}.htile{padding:7px 6px 6px}.htile b{font-size:10px;letter-spacing:0}.htile .ic{font-size:19px}}
 </style></head><body>
 <div id="bgl"></div>
 <header><div class="dnav"><button id="prev" aria-label="Previous day">‹</button><div class="dmid"><div class="d" id="dlbl"></div><div class="dtrow"><button id="today" class="sm" aria-label="Jump to today">Today</button><span id="svind">✓ Saved</span></div></div><button id="next" aria-label="Next day">›</button></div><div class="secbar" id="secbar"></div></header>
@@ -430,7 +444,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v58 · 17 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v59 · 17 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2420,7 +2434,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">TonTon App v58</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">TonTon App v59</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4698,7 +4712,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">TonTon App v58 · Self-recorded data for discussion with a clinician. TonTon does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">TonTon App v59 · Self-recorded data for discussion with a clinician. TonTon does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -5163,4 +5177,12 @@ document.addEventListener('click',function(ev){var b=ev.target.closest('[data-gd
   if(dm){var z=(dm.items||[]).filter(function(y){return y.name===nmI})[0];if(z){var now=!(ate(z)&&z.eaten!==false);z.eaten=now;dm.eaten=dm.items.every(function(y){return y.eaten!==false&&ate(y)})}}save();gdRe();return}
 });
 
+
+/* v59 compact home tiles: shorter titles, hide subtitles that don't fit */
+var HT59={'CREATE DIET PLAN':'DIET PLAN','TRAINING REPORT':'TRAINING REPORT','SHOPPING LIST':'SHOPPING','DIET REPORT':'DIET REPORT'};
+var _tH59=tilesHtml;tilesHtml=function(m){var h=_tH59.apply(this,arguments),w=document.createElement('div');w.innerHTML=h;[].forEach.call(w.querySelectorAll('.htile'),function(b){var t=b.querySelector('b'),sm=b.querySelector('small');if(!t)return;var full=t.textContent;b.setAttribute('aria-label',full+(sm?' — '+sm.textContent:''));if(sm)b.title=full+' — '+sm.textContent;if(!b.classList.contains('tpl')&&!b.classList.contains('wide')&&HT59[full]&&innerWidth<900)t.textContent=HT59[full]});return w.innerHTML};
+function ht59Fit(){if(innerWidth>=900)return;[].forEach.call(document.querySelectorAll('#htiles .htile small'),function(sm){var b=sm.parentNode;if(b.classList.contains('tpl')||b.classList.contains('wide'))return;sm.classList.remove('lg');if(sm.scrollWidth>sm.clientWidth+1)sm.classList.add('lg')})}
+var _rn59=render;render=function(){var r=_rn59.apply(this,arguments);try{ht59Fit()}catch(e){}return r};
+var _sm59=setMode;setMode=function(){var r=_sm59.apply(this,arguments);try{ht59Fit()}catch(e){}return r};var _rh59=rHome;rHome=function(){var r=_rh59.apply(this,arguments);try{ht59Fit()}catch(e){}return r};
+addEventListener('resize',function(){try{ht59Fit()}catch(e){}});
 </script></body></html>
