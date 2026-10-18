@@ -370,6 +370,25 @@ a[data-go="legal"]{display:inline-block;padding:10px 6px}
 html body .cwrap .cact button,html body .cwrap .cph button,html body .cwrap .cdot,html body .cwrap .cfol{min-height:36px!important}
 #today{position:relative}#today::after{content:'';position:absolute;left:-4px;right:-4px;top:-9px;bottom:-9px}
 html body .cwrap .cli .lnk{display:inline-block;padding:10px 4px!important;margin:-10px 0!important}
+.c61g{align-items:end}.c61g>div{min-width:0}.c61g label{display:block;font-size:12.5px;line-height:1.25;margin-bottom:3px;overflow-wrap:anywhere}
+.c61g input{width:100%;min-width:0;box-sizing:border-box}
+.c61g .c61full{grid-column:1/-1}
+.c61lab{display:block;font-size:12.5px;margin-bottom:4px;opacity:.85}
+.c61ch{display:flex;flex-wrap:wrap;gap:6px}
+.c61c{min-height:38px;padding:6px 11px;border-radius:19px;font-size:13px;border:1.5px solid color-mix(in srgb,var(--ac) 30%,transparent);background:transparent;white-space:nowrap;max-width:100%}
+.c61c.on{border:2px solid var(--ac);background:var(--t3);font-weight:700}
+.c61tw{display:flex;align-items:center;gap:6px}.c61tw input{flex:1 1 0;min-width:0}.c61tw span{font-size:12.5px;opacity:.8;flex:0 0 auto}
+.c61ol{display:flex;flex-direction:column;gap:5px;margin-top:6px;max-height:260px;overflow-y:auto}
+.c61o{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;min-height:42px;padding:6px 10px;border-radius:10px;border:1px solid var(--t2);background:transparent;width:100%}
+.c61o span{flex:1;min-width:0;overflow-wrap:anywhere;font-size:13.5px}.c61o small{flex:0 0 auto;opacity:.75;font-size:11.5px}
+.c61o.on{border:2px solid var(--ac);background:var(--t3)}
+.c61h{display:block;font-size:11.5px;opacity:.8;margin-top:6px}
+.c61more{margin-top:10px;width:100%;min-height:40px;font-size:13px;background:transparent;border:1px dashed var(--t2)}
+.cest .c61m,.cest .c61s,.cest .c61w{font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.cest .c61s{opacity:.9}.c61w{color:#fb923c}.cest .c61wl{font-size:11px}
+.crow.c61r{align-items:center}.c61rt{flex:1;min-width:0;overflow-wrap:anywhere}.c61hd{font-weight:600;opacity:.9}
+.c61b{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:9px;background:color-mix(in srgb,var(--ac) 18%,transparent);white-space:nowrap}
+.c61net{display:block;margin-top:6px;font-size:11.5px}
 </style></head><body>
 <div id="bgl"></div>
 <header><div class="dnav"><button id="prev" aria-label="Previous day">‹</button><div class="dmid"><div class="d" id="dlbl"></div><div class="dtrow"><button id="today" class="sm" aria-label="Jump to today">Today</button><span id="svind">✓ Saved</span></div></div><button id="next" aria-label="Next day">›</button></div><div class="secbar" id="secbar"></div></header>
@@ -485,7 +504,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br><small class="mu">Off by default: targets stay fixed and Eaten · Burned · Net is shown for information.</small></span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v60 · 17 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v61 · 18 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2467,6 +2486,7 @@ function rLegal(){
   h+='<h3>Endometriosis</h3>'+A('https://www2.hse.ie/conditions/endometriosis/','HSE — endometriosis')+A('https://www.nhs.uk/conditions/endometriosis/','NHS — endometriosis')+A('https://www.nhs.uk/conditions/heavy-periods/','NHS — heavy periods')+A('https://www.nice.org.uk/guidance/ng73','NICE NG73 — endometriosis')+A('https://www.eshre.eu/Guidelines-and-Legal/Guidelines/Endometriosis-guideline','ESHRE 2022 — endometriosis guideline');
   h+='<h3>Calorie / TDEE formulas</h3>'+A('https://pubmed.ncbi.nlm.nih.gov/2305711/','Mifflin–St Jeor 1990 — resting energy expenditure equation');
   h+='<h3>Exercise / cardio METs</h3>'+A('https://pacompendium.com/','Compendium of Physical Activities')+A('https://pubmed.ncbi.nlm.nih.gov/38242596/','Herrmann et al. 2024 — Adult Compendium update');
+  h+='<h3>Cardio calorie estimates</h3>'+'<p style="font-size:13px;line-height:1.5">The cardio logger estimates calories for general wellness, not as a medical measurement. <b>Burned</b> shows active (net) calories: the estimate minus 1 kcal per kg per hour of resting energy. Methods, in order of preference: your watch or machine reading; rower (Concept2) or bike power formulas; ACSM treadmill equations; heart rate (Keytel 2005); 2024 Compendium METs from speed, pace, steps/min or stroke; and Compendium METs from effort. Cycling assumes 24% efficiency. Stair steps/min, swim interpolation, gait thresholds and the RPE mapping are estimates.</p>'+A('https://pmc.ncbi.nlm.nih.gov/articles/PMC10818145/','Herrmann et al. 2024 — 2024 Adult Compendium of Physical Activities (J Sport Health Sci)')+A('https://pacompendium.com/wp-content/uploads/2024/03/1_2024-adult-compendium_1_2024.pdf','2024 Adult Compendium — full code list (PDF)')+A('https://journals.lww.com/acsm-healthfitness/fulltext/2023/03000/metabolic_calculations_cases.4.aspx','ACSM Health &amp; Fitness Journal 2023 — Metabolic calculations (walking/running equations)')+A('https://pacompendium.com/unite-conversions/','Compendium — unit conversions &amp; ACSM metabolic equations')+A('https://concept2help.zendesk.com/hc/en-us/articles/7841880824845-METs-formulas','Concept2 — METs formulas')+A('https://www.concept2.com/training/watts-calculator','Concept2 — watts calculator')+A('https://www.concept2.com/training/calorie-calculator','Concept2 — calorie calculator (79.5 kg monitor basis)')+A('https://pubmed.ncbi.nlm.nih.gov/15966347/','Keytel et al. 2005 — energy expenditure from heart rate (J Sports Sci)')+A('https://pubmed.ncbi.nlm.nih.gov/19229554/','Ettema &amp; Lorås 2009 — efficiency in cycling: a review')+A('https://www.trainerroad.com/blog/calories-and-power/','TrainerRoad — kJ to calories (industry source)')+A('https://trainright.com/energy-expenditure-calories-kilojoules-and-power-in-cycling/','CTS — kilojoules and power in cycling (industry source)')+A('https://doi.org/10.1249/mss.0b013e31828e18e6','Med Sci Sports Exerc 2013 — energy expenditure from power-meter cycling')+A('https://pubmed.ncbi.nlm.nih.gov/15831804/','Byrne et al. 2005 — Metabolic equivalent: one size does not fit all')+A('https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/activeenergyburned','Apple HealthKit — activeEnergyBurned (active energy)')+A('https://fitnesssuperstore.info/pdfs/StairMaster%208Gx%20Product%20Sheet%20new.pdf','StairMaster 8Gx product sheet (20 cm step, 24–162 steps/min)')+A('https://doi.org/10.1249/01.mss.0000486320.33850.ca','Med Sci Sports Exerc 2016 — elliptical trainer energy overestimation (abstract)')+A('https://doi.org/10.26644/em.2018.008','Exercise Medicine 2018 — elliptical machine vs indirect calorimetry')+A('https://www.mdpi.com/2075-4426/7/2/3','Shcherbina et al. 2017 — accuracy of wrist-worn heart rate &amp; energy expenditure');
   h+='</div>';
   h+='<div class="card full"><h2>📖 Further reading — trusted experts &amp; books</h2>';
   h+='<div class="lbook"><b>ROAR</b> — Dr Stacy Sims with Selene Yeager (2016)<br><span class="mu">Exercise physiologist; female athlete nutrition &amp; training.</span><br>'+A('https://openlibrary.org/works/OL24471193W','Open Library')+' · '+A('https://www.drstacysims.com/about','drstacysims.com')+'</div>';
@@ -2476,7 +2496,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">TonTon App v60</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">TonTon App v61</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4754,7 +4774,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">TonTon App v60 · Self-recorded data for discussion with a clinician. TonTon does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">TonTon App v61 · Self-recorded data for discussion with a clinician. TonTon does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -5238,4 +5258,196 @@ function wk60(){var el=document.getElementById('t-workout');if(!el)return;
  [].forEach.call(el.querySelectorAll('.tile'),function(t){var a=t.querySelector(':scope>.tact');if(!a)return;if(a.querySelector('[data-rdel]'))t.classList.add('rt');else if(a.querySelector('[data-erm]'))t.classList.add('xt')});
  [].forEach.call(el.querySelectorAll('.tact [data-rdel],.tact [data-erm]'),function(b){b.title=b.dataset.rdel!=null?'Delete routine':'Remove exercise';b.setAttribute('aria-label',b.title)})}
 var _rw60=rWorkout;rWorkout=function(){var r=_rw60.apply(this,arguments);try{wk60()}catch(e){}return r};
+
+// ---- v61 per-type cardio logger (2024 Compendium · ACSM · Concept2 · power · Keytel) ----
+var C61={
+ run:[[6.6,6.5,'12028'],[7.3,7.8,'12029'],[8.2,8.5,'12030'],[9.1,9.0,'12045'],[9.9,9.3,'12050'],[10.8,10.5,'12060'],[11.3,11.0,'12070'],[12.1,11.8,'12080'],[12.9,12.0,'12090'],[13.8,12.5,'12100'],[14.5,13.0,'12110'],[15.2,14.8,'12115'],[16.1,14.8,'12120'],[17.7,16.8,'12130'],[19.3,18.5,'12132'],[20.9,19.8,'12134'],[22.5,23.0,'12135']],
+ walk:[[3.2,2.3,'17151'],[4.0,2.8,'17152'],[4.5,3.0,'17170'],[5.6,3.8,'17190'],[6.4,4.8,'17200'],[7.2,5.5,'17220'],[8.0,7.0,'17230'],[1e9,8.5,'17231']],
+ hill:{h1:[5.3,'17034','hills 1–5%'],h2:[7.0,'17035','hills 6–10%'],h3:[8.8,'17036','hills 11–20%']},
+ bikeOut:[[16,4.0,'01010'],[19,6.8,'01020'],[22.5,8.0,'01030'],[25.7,10.0,'01040'],[32,12.0,'01050'],[1e9,16.8,'01060']],
+ bikeIn:{light:[4.0,'01214','Light (~50 W)'],mod:[6.0,'01220','Moderate (~100 W)'],vig:[8.0,'01228','Vigorous (~150 W)'],hard:[10.8,'01236','Very hard (~200 W)'],max:[12.5,'01240','Max (~250 W)'],spin:[9.0,'01270','Spin class']},
+ bikeOutI:{easy:[4.3,'01015','Easy'],mod:[7.0,'01016','Moderate'],vig:[9.0,'01017','Vigorous'],mtb:[8.5,'01009','Mountain bike']},
+ rowI:{light:[5.0,'02071','Light (<100 W)'],mod:[7.5,'02072','Moderate (100–149 W)'],vig:[11.0,'02073','Vigorous (150–199 W)'],max:[14.0,'02074','Very hard (200 W+)']},
+ ell:{mod:[5.0,'02048','Moderate'],vig:[9.0,'02049','Vigorous']},
+ swimF:[[41,5.8],[46,8.0],[69,10.5],[82,14.5]],swimFcode:['18292','18290','18280','18294'],
+ swimS:{free:['Freestyle',[5.8,'18240'],[9.8,'18230']],breast:['Breaststroke',[5.3,'18265'],[10.3,'18260']],back:['Backstroke',[4.8,'18255'],[9.5,'18250']],fly:['Butterfly',[13.8,'18270'],[13.8,'18270']],side:['Sidestroke',[7.0,'18320'],[7.0,'18320']],leis:['Leisurely',[6.0,'18310'],[6.0,'18310']]},
+ hiit:{hiit:['HIIT / Tabata',{mod:[7.0,'02210'],vig:[11.0,'02214']}],bike:['Bike HIIT',{mod:[8.8,'01305'],vig:[8.8,'01305']}],row:['Rower HIIT',{mod:[7.0,'02210'],vig:[11.0,'02214']}],circ:['Weights circuit',{mod:[5.0,'02035'],vig:[7.5,'02040']}],bw:['Bodyweight circuit',{mod:[6.0,'02032'],vig:[6.0,'02032']}]},
+ rpe:{r1:[2.5,'RPE 1–3'],r2:[4.5,'RPE 4–6'],r3:[7.0,'RPE 7–8'],r4:[9.0,'RPE 9–10']},
+ other:[['15675',6.8,'Tennis, moderate'],['15676',8.0,'Tennis, competitive'],['15030',5.5,'Badminton, social'],['15650',12.0,'Squash'],['15660',4.0,'Table tennis'],['15610',7.0,'Football (soccer), casual'],['15605',9.5,'Football (soccer), competitive'],['15605',9.5,'Gaelic football (nearest code: soccer, competitive)'],['15350',7.8,'Hurling / camogie (nearest code: field hockey)'],['15560',8.3,'Rugby union'],['15040',8.0,'Basketball, game'],['15710',4.0,'Volleyball'],['15265',4.3,'Golf, walking & carrying clubs'],['17080',6.0,'Hiking, cross country'],['17082',5.3,'Hill walking, normal pace'],['17304',5.3,'Nordic walking'],['02150',2.3,'Yoga, Hatha'],['02160',4.0,'Yoga, Power'],['02105',2.8,'Pilates'],['02310',6.5,'Zumba class'],['02000',7.3,'Aerobics, general'],['03030',5.5,'Ballroom dancing, fast'],['03031',9.8,'Dancing, vigorous (club, Irish step)'],['15110',5.8,'Boxing, punching bag'],['15120',7.8,'Boxing, sparring'],['15457',7.3,'Kickboxing'],['15430',10.3,'Martial arts, moderate pace'],['02068',11.0,'Skipping / jump rope'],['02080',6.8,'Ski machine / ski erg'],['15534',8.8,'Bouldering'],['15533',8.0,'Rock climbing'],['18100',5.0,'Kayaking, moderate'],['19090',8.5,'Cross-country skiing, moderate'],['15591',7.5,'In-line skating, recreational'],['15700',6.3,'Trampoline'],['15250',8.0,'Ultimate frisbee'],['15370',5.5,'Horse riding'],['02020',7.5,'Calisthenics, vigorous'],['02054',3.5,'Weight training, multiple exercises']],
+ def:{tread:{spd:'8',inc:'1',gait:'auto'},run:{},walk:{terr:'flat'},bike:{indoor:'out',bint:'mod',oint:'mod'},row:{rint:'mod'},ell:{eint:'mod'},stair:{},swim:{pool:'25',stroke:'free',seff:'rec'},hiit:{fmt:'hiit',eff:'vig'},other:{}},
+ keep:{tread:['spd','inc','gait','min'],run:['min'],walk:['terr','min'],bike:['indoor','bint','oint','min'],row:['rint','min'],ell:['eint','lvl','min'],stair:['lvl','min'],swim:['pool','poolc','stroke','seff','restI','min'],hiit:['fmt','eff','rounds','work','rest','min'],other:['oth','min']},
+ hrT:{tread:1,run:1,walk:1,bike:1,row:1,ell:1,stair:1},
+ fields:['spd','inc','gait','sec','dist','pace','elev','steps','terr','indoor','watts','bspd','bint','oint','lvl','rpm','cw','split','spm','rint','eint','floors','pool','poolc','lengths','stroke','seff','restI','rounds','work','rest','fmt','eff','rpe','oth','q','cmet','rpeb','hr','name','man']
+};
+function c61li(T,x){if(x<=T[0][0])return T[0][1];for(var i=1;i<T.length;i++)if(x<=T[i][0]){var a=T[i-1],b=T[i];return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0])}return T[T.length-1][1]}
+function c61near(T,x){var b=T[0];T.forEach(function(r){if(Math.abs(r[0]-x)<Math.abs(b[0]-x))b=r});return b}
+function c61band(T,x){for(var i=0;i<T.length;i++)if(x<T[i][0])return T[i];return T[T.length-1]}
+// "205" -> 125 s, "2:05" -> 125 s, "1:05:00" -> 3900 s
+function c61mmss(v){v=String(v==null?'':v).trim();if(!v)return 0;if(v.indexOf(':')>=0){var p=v.split(':').map(function(x){return n(x)});return p.length>2?p[0]*3600+p[1]*60+p[2]:p[0]*60+p[1]}
+ var d=v.replace(/\D/g,'');if(!d)return 0;if(d.length<=2)return n(d)*60;return n(d.slice(0,-2))*60+n(d.slice(-2))}
+function c61fmt(s){s=Math.round(s);if(!(s>0))return'–';var h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return(h?h+':'+(m<10?'0':''):'')+m+':'+(x<10?'0':'')+x}
+function c61km(m){return m>=1000||m%1000===0?(Math.round(m/10)/100).toLocaleString('en-IE',{maximumFractionDigits:2})+' km':Math.round(m).toLocaleString('en-IE')+' m'}
+function c61prof(){var p=plIn();return{age:n(p.age),sex:p.sex==='f'?'f':p.sex==='m'?'m':'',h:n(p.h)}}
+function c61keytel(hr,kg,age,sex){if(!(hr>=90&&kg&&age&&sex))return 0;var kj=sex==='m'?-55.0969+0.6309*hr+0.1988*kg+0.2017*age:-20.4022+0.4472*hr-0.1263*kg+0.074*age;return kj>0?kj/4.184:0}
+function c61concept2(W,kg){return 4*W/1.1639+1.714*kg*2.20462}
+function c61tmin(c){return n(c.min)+n(c.sec)/60}
+// Core calculation. c = form state (strings ok), kg = body weight. Returns {gross,net,met,method,badge,code,line,stats,hint,need,save:{...}}
+function c61Calc(c,kg,prof){prof=prof||c61prof();var t=c61tmin(c),h=t/60,act=c.act,R={act:act,t:t,kg:kg,save:{},stats:[],hint:''},S=R.save,met=0,gross=0,rank=6;
+ function M(m,code,label,rk){met=m;R.code=code||'';R.line=label;R.badge='MET';rank=rk||5}
+ function G(g,label,badge,rk){gross=g;R.line=label;R.badge=badge;rank=rk;R.code=R.code||''}
+ if(act==='tread'){var s=n(c.spd),dk=n(c.dist);if(!s&&dk&&t)s=dk/h;var g=n(c.inc)/100,gait=c.gait&&c.gait!=='auto'?c.gait:(s<6.5?'walk':s>8?'run':(g>=0.05?'walk':'run'));
+  if(s){var S1=s*1000/60,vo=gait==='walk'?3.5+0.1*S1+1.8*S1*g:3.5+0.2*S1+0.9*S1*g;M(vo/3.5,'','ACSM treadmill equation ('+(gait==='walk'?'walking':'running')+') · '+r1(s)+' km/h · '+r1(g*100)+'% incline',3);R.badge='ACSM';
+   var dm=dk?dk*1000:s*h*1000;S.spd=r1(s);S.inc=r1(g*100);S.gait=gait;S.dist_m=Math.round(dm);S.pace_s_km=dm?Math.round(t*60/(dm/1000)):null;
+   R.stats=[c61km(dm),S.pace_s_km?c61fmt(S.pace_s_km)+' /km':'',g?r1(g*100)+'% incline':''];
+   if(s>=6.5&&s<=8&&(!c.gait||c.gait==='auto'))R.hint='6.5–8 km/h: tap Walk or Jog if the guess ('+gait+') is wrong.';else R.hint='Holding the rails? The estimate will be high.'}
+  else R.need='Enter speed (km/h)'}
+ else if(act==='run'){var dm=n(c.dist)*1000,ps=c61mmss(c.pace);if(!dm&&ps&&t)dm=t*60/ps*1000;
+  if(dm&&t){var s=dm/1000/h,base=s<6.6?Math.max(3.3,6.5*s/6.6):c61li(C61.run,s),nr=c61near(C61.run,s),em=n(c.elev),add=em>0?0.9*(s*1000/60)*(em/dm)/3.5:0;
+   M(base+add,nr[2],'2024 Compendium running by speed · '+r1(s)+' km/h'+(add?' + hill add-on ('+Math.round(em)+' m gain)':''),5);S.dist_m=Math.round(dm);S.pace_s_km=Math.round(t*60/(dm/1000));S.spd=r1(s);S.elev_m=em||null;
+   R.stats=[c61km(dm),c61fmt(t*60),c61fmt(S.pace_s_km)+' /km',em?'+'+Math.round(em)+' m':'']}
+  else{M(10.5,'12145','2024 Compendium: running, self-selected pace (add distance for a better estimate)',6);R.hint='Add distance (or pace) for a pace-based estimate.'}}
+ else if(act==='walk'){var dm=n(c.dist)*1000,st=n(c.steps),rough='';if(!dm&&n(c.spd)&&t)dm=n(c.spd)*h*1000;if(!dm&&st){var hc=prof.h||170;dm=st*0.41*hc/100;rough=' (distance from steps · rough)'}
+  var sm=0,sc='',sl='',hm=0,hc2='',hl='',em=n(c.elev);
+  if(dm&&t){var s=dm/1000/h,b=c61band(C61.walk,s);sm=b[1];sc=b[2];sl=r1(s)+' km/h'+rough;S.dist_m=Math.round(dm);S.pace_s_km=Math.round(t*60/(dm/1000));S.spd=r1(s)}
+  var gr=em&&dm?em/dm*100:0,hk=gr>=11?'h3':gr>=6?'h2':gr>=1?'h1':(!em&&c.terr&&c.terr!=='flat'?c.terr:'');if(hk){hm=C61.hill[hk][0];hc2=C61.hill[hk][1];hl=C61.hill[hk][2]+(gr?' ('+r1(gr)+'% avg)':'')}
+  if(sm||hm){if(hm>sm)M(hm,hc2,'2024 Compendium walking · '+hl+(sl?' · '+sl:''),5);else M(sm,sc,'2024 Compendium walking by speed · '+sl,5)}
+  else{M(4.0,'17255','2024 Compendium: walking, self-selected speed (add distance for a better estimate)',6);R.hint='Add distance or steps for a speed-based estimate.'}
+  S.steps=st||null;S.terr=c.terr||'flat';S.elev_m=em||null;R.stats=[S.dist_m?c61km(S.dist_m):'',S.pace_s_km?c61fmt(S.pace_s_km)+' /km':'',st?st.toLocaleString('en-IE')+' steps':'',hl]}
+ else if(act==='bike'){var W=n(c.watts),ind=c.indoor==='in';S.indoor=ind;
+  if(W&&t){var kj=W*t*60/1000;G(kj/4.184/0.24,'Power formula · '+Math.round(W)+' W · '+Math.round(kj)+' kJ ÷ 4.184 ÷ 24% efficiency','power',2);S.watts=Math.round(W);S.kj=Math.round(kj);R.code=ind?'01200':'01014'}
+  if(!ind){var dk=n(c.dist),s=n(c.bspd);if(!s&&dk&&t)s=dk/h;if(s){S.spd=r1(s);S.dist_m=dk?Math.round(dk*1000):Math.round(s*h*1000)}
+   if(!gross){if(s){var b=c61band(C61.bikeOut,s);M(b[1],b[2],'2024 Compendium cycling by speed · '+r1(s)+' km/h',5)}else{var o=C61.bikeOutI[c.oint||'mod'];M(o[0],o[1],'2024 Compendium cycling · '+o[2].toLowerCase()+' effort (add speed or watts for a better estimate)',6)}}}
+  else{S.lvl=n(c.lvl)||null;S.rpm=n(c.rpm)||null;if(!gross){var o=C61.bikeIn[c.bint||'mod'];M(o[0],o[1],'2024 Compendium stationary bike · '+o[2],o[2]==='Spin class'?5:6)}}
+  R.stats=[S.dist_m?c61km(S.dist_m):'',S.spd?r1(S.spd)+' km/h':'',S.watts?S.watts+' W':'',S.kj?S.kj+' kJ':'',ind?'indoor':'outdoor']}
+ else if(act==='row'){var sp=c61mmss(c.split),W=n(c.watts),dm=n(c.dist);if(!sp&&W)sp=500*Math.pow(2.8/W,1/3);if(!sp&&dm&&t)sp=t*60/(dm/500);
+  if(sp&&t){W=2.8/Math.pow(sp/500,3);var ch=c61concept2(W,kg||0);G(ch*h,'Concept2 formula · '+c61fmt(sp)+' /500 m · '+Math.round(W)+' W'+(kg?' · adjusted for '+nf(kg)+' kg':''),'Concept2',2);R.code='02070';
+   S.split_s500=Math.round(sp);S.watts=Math.round(W);S.dist_m=dm?Math.round(dm):Math.round(t*60/sp*500)}
+  else{var o=C61.rowI[c.rint||'mod'];M(o[0],o[1],'2024 Compendium rowing · '+o[2]+' (add split, watts or distance for the Concept2 formula)',6)}
+  S.spm=n(c.spm)||null;R.stats=[S.dist_m?c61km(S.dist_m):'',S.split_s500?c61fmt(S.split_s500)+' /500 m':'',S.watts?S.watts+' W':'',S.spm?S.spm+' spm':''];R.hint='Rower monitor calories assume a 79.5 kg (175 lb) rower; this estimate adjusts for your weight.'}
+ else if(act==='ell'){var o=C61.ell[c.eint||'mod'];M(o[0],o[1],'2024 Compendium elliptical · '+o[2].toLowerCase(),6);S.eint=c.eint||'mod';S.lvl=n(c.lvl)||null;S.rpm=n(c.rpm)||null;S.cw=n(c.cw)||null;
+  R.stats=[o[2],S.lvl?'Level '+S.lvl:'',S.rpm?S.rpm+' RPM':'',S.cw?S.cw+' W (console)':'']}
+ else if(act==='stair'){var spm=n(c.spm),lv=n(c.lvl),fl=n(c.floors),how='';
+  if(spm)how=Math.round(spm)+' steps/min';else if(lv){lv=Math.max(1,Math.min(20,lv));spm=24+(lv-1)*138/19;how='level '+lv+' ≈ '+Math.round(spm)+' steps/min (StairMaster-type scale)'}else if(fl&&t){spm=fl*16/t;how=fl+' floors × 16 steps ≈ '+Math.round(spm)+' steps/min (rough)'}
+  if(spm){var m=Math.max(4.5,Math.min(15,(3.5+1.8*spm*0.20)/3.5));M(m,'02065','Stair estimate · '+how+' · 20 cm steps',5);S.spm=Math.round(spm)}else M(9.3,'02065','2024 Compendium stair treadmill, general (add steps/min or level)',6);
+  S.lvl=n(c.lvl)||null;S.floors=fl||null;R.stats=[fl?fl+' floors':'',S.spm?S.spm+' SPM':'',fl?'~'+Math.round(fl*16*0.2)+' m vertical':''];R.hint='Estimate only. Leaning on the rails lowers the real cost.'}
+ else if(act==='swim'){var pm=c.pool==='c'?n(c.poolc):n(c.pool||25),L=n(c.lengths),st=C61.swimS[c.stroke||'free']||C61.swimS.free,dm=pm*L,ri=!!c.restI;S.pool_m=pm||null;S.lengths=L||null;S.stroke=c.stroke||'free';
+  if(dm&&t){var v=dm/t;S.dist_m=Math.round(dm);S.pace_s_100=Math.round(t*60/(dm/100))}
+  if((c.stroke||'free')==='free'&&v){var T=ri?[[41,5.8],[46,5.8],[69,8.0],[82,10.5]]:C61.swimF,m=c61li(T,v),ci=0;C61.swimF.forEach(function(a,i){if(Math.abs(a[0]-v)<Math.abs(C61.swimF[ci][0]-v))ci=i});
+   M(m,C61.swimFcode[ci],'2024 Compendium freestyle by speed · '+Math.round(v)+' m/min'+(ri?' · one level lower (time includes rests)':''),5)}
+  else{var tr=c.seff==='train'&&!ri,o=tr?st[2]:st[1];M(o[0],o[1],'2024 Compendium swimming · '+st[0].toLowerCase()+(st[1][0]!==st[2][0]?(tr?', training':', recreational'):''),v?5:6)}
+  R.stats=[S.dist_m?c61km(S.dist_m):'',L?L+' × '+pm+' m':'',S.pace_s_100?c61fmt(S.pace_s_100)+' /100 m':'',st[0].toLowerCase()];if(!L)R.hint='Add pool lengths for distance and pace.'}
+ else if(act==='hiit'){var f=C61.hiit[c.fmt||'hiit']||C61.hiit.hiit,e=c.eff==='mod'?'mod':'vig',W=n(c.watts),rd=n(c.rounds),ws=n(c.work),rs=n(c.rest);S.fmt=c.fmt||'hiit';S.eff=e;S.rounds=rd||null;S.work_s=ws||null;S.rest_s=rs||null;S.rpe=n(c.rpe)||null;
+  if(W&&t&&(c.fmt==='bike'||c.fmt==='row')){if(c.fmt==='bike'){var kj=W*t*60/1000;G(kj/4.184/0.24,'Power formula · '+Math.round(W)+' W avg · '+Math.round(kj)+' kJ','power',2);S.kj=Math.round(kj)}else G(c61concept2(W,kg||0)*h,'Concept2 formula · '+Math.round(W)+' W avg'+(kg?' · adjusted for '+nf(kg)+' kg':''),'Concept2',2);S.watts=Math.round(W)}
+  else{var o=f[1][e];M(o[0],o[1],'2024 Compendium · '+f[0]+(f[1].mod[0]!==f[1].vig[0]?', '+(e==='mod'?'moderate':'vigorous'):'')+' · whole session incl. rest',6)}
+  R.stats=[rd&&ws?rd+' × '+ws+'/'+rs+' s':'',f[0],S.rpe?'RPE '+S.rpe:'']}
+ else if(act==='other'){var it=null;C61.other.forEach(function(o,i){if(c.oth===String(i))it=o});
+  if(it){M(it[1],it[0],'2024 Compendium · '+it[2]+' · code '+it[0],5);R.name=it[2]}
+  else if(n(c.cmet)){M(Math.min(25,n(c.cmet)),'','Custom MET '+r1(n(c.cmet)),5);R.name=(c.name||'').trim()}
+  else if(c.rpeb&&C61.rpe[c.rpeb]){M(C61.rpe[c.rpeb][0],'','Effort '+C61.rpe[c.rpeb][1]+' → MET (rough)',6);R.name=(c.name||'').trim()}
+  else{R.need='Pick an activity, enter a MET or effort, or type kcal';R.name=(c.name||'').trim()}
+  R.stats=[R.code?'Code '+R.code:'',met?r1(met)+' MET':'']}
+ // Heart rate (Keytel 2005) only above MET-from-inputs in priority, steady aerobic types
+ var hr=n(c.hr);S.hr=hr||null;
+ if(hr&&C61.hrT[act]){var kc=c61keytel(hr,kg,prof.age,prof.sex);if(kc&&rank>4){gross=kc*t;met=0;R.line='Heart-rate formula (Keytel 2005) · avg '+Math.round(hr)+' bpm · '+(prof.sex==='m'?'male':'female')+', '+prof.age+' y';R.badge='HR';rank=4}
+  else if(!kc)R.hrNote=hr<90?'Heart rate below 90 bpm isn’t used.':!prof.age?'Add your age (and sex) in the diet planner to use heart rate.':!kg?'':'';else R.hrNote='Heart rate saved; the '+R.badge+' method is more precise here.'}
+ if(met&&!gross&&kg&&t)gross=met*kg*h;
+ if(gross&&!met&&kg&&h)met=gross/(kg*h);
+ R.met=Math.round(met*10)/10;R.gross=kg&&t?Math.round(gross):0;R.net=kg&&t?Math.max(0,Math.round(gross-kg*h)):0;R.rank=rank;
+ R.stats=R.stats.filter(function(x){return x});return R}
+function c61head(e){var d=e.dist_m,tt=c61fmt(n(e.min)*60),mn=Math.round(n(e.min))+' min';
+ switch(e.act){case'tread':case'run':case'walk':return d?c61km(d)+' · '+(e.act==='run'?tt:mn):mn;
+  case'bike':return mn+(e.watts?' · '+e.watts+' W':d?' · '+c61km(d):'');case'row':return d?c61km(d)+' · '+tt:mn;
+  case'stair':return e.floors?e.floors+' floors · '+mn:mn;case'swim':return d?c61km(d)+' · '+(e.lengths?e.lengths+' × '+e.pool_m+' m':tt):mn;
+  case'hiit':return e.rounds&&e.work_s?e.rounds+' × '+e.work_s+'/'+n(e.rest_s)+' s':mn;default:return mn}}
+function c61sec(e){var a=[];switch(e.act){
+  case'tread':a=[e.pace_s_km?c61fmt(e.pace_s_km)+' /km':'',e.inc?e.inc+'% incline':'',e.spd?e.spd+' km/h':''];break;
+  case'run':a=[e.pace_s_km?c61fmt(e.pace_s_km)+' /km':'',e.elev_m?'+'+e.elev_m+' m':''];break;
+  case'walk':a=[e.pace_s_km?c61fmt(e.pace_s_km)+' /km':'',e.steps?n(e.steps).toLocaleString('en-IE')+' steps':''];break;
+  case'bike':a=[e.kj?e.kj+' kJ':'',e.spd?e.spd+' km/h':'',e.indoor?'indoor':'outdoor'];break;
+  case'row':a=[e.split_s500?c61fmt(e.split_s500)+' /500 m':'',e.watts?e.watts+' W':'',e.spm?e.spm+' spm':''];break;
+  case'ell':a=[e.eint==='vig'?'Vigorous':'Moderate',e.lvl?'Level '+e.lvl:'',e.rpm?e.rpm+' RPM':''];break;
+  case'stair':a=[e.spm?e.spm+' SPM':'',e.floors?'~'+Math.round(e.floors*3.2)+' m vertical':''];break;
+  case'swim':a=[e.pace_s_100?c61fmt(e.pace_s_100)+' /100 m':'',(C61.swimS[e.stroke]||C61.swimS.free)[0].toLowerCase()];break;
+  case'hiit':a=[(C61.hiit[e.fmt]||C61.hiit.hiit)[0],e.rpe?'RPE '+e.rpe:''];break;
+  case'other':a=[e.code?'Code '+e.code:'',e.met?e.met+' MET':''];break}
+ if(e.hr)a.push(e.hr+' bpm');return a.filter(function(x){return x}).join(' · ')}
+function c61badge(e){return e.man!=null&&e.man!==''?'your reading':e.method||'MET'}
+// ---- overrides of v28 functions ----
+var _c61cMet=cMet;cMet=function(e){return e&&e.v===61?n(e.met):_c61cMet(e)};
+var _c61cGroup=cGroup;cGroup=function(e){return e&&e.v===61&&e.act==='tread'?(e.gait==='walk'?'walk':'run'):_c61cGroup(e)};
+var _c61burnRows=burnRows;burnRows=function(d){var M=cList(d),R=_c61burnRows(d);R.forEach(function(x){if(x.src==='Apple Watch'||x.i==null)return;var e=M[x.i];if(!e||e.v!==61)return;
+  var a=cAct(e.act);x.v61=1;x.name=e.act==='other'&&e.name?e.name:a[2];x.head=c61head(e);x.sec=c61sec(e);x.badge=c61badge(e);x.gross=e.kcalGross;
+  x.src='manual · '+x.badge+(x.sec?' · '+x.sec:'')});return R};
+function c61kg(){var bw=bodyW();return bw?bw.kg:n(cv.w)}
+function c61load(act){var d=C61.def[act]||{},u=(ui().cdef||{})[act]||{};C61.fields.forEach(function(k){cv[k]=''});cv.act=act;cv.min=cv.min||'30';
+ Object.keys(d).forEach(function(k){cv[k]=d[k]});Object.keys(u).forEach(function(k){if(u[k]!=null&&u[k]!=='')cv[k]=String(u[k])})}
+function c61fld(k,lab,o){o=o||{};return'<div'+(o.full?' class="c61full"':'')+'><label for="c61_'+k+'">'+lab+'</label><input id="c61_'+k+'" '+(o.text?'type="text" inputmode="'+(o.im||'numeric')+'"':'type="number" inputmode="'+(o.im||'decimal')+'" min="0"')+' data-cf="'+k+'" value="'+esc(cv[k]==null?'':cv[k])+'"'+(o.ph?' placeholder="'+esc(o.ph)+'"':'')+(o.auto?' autocomplete="off"':'')+'></div>'}
+function c61chips(k,L,lab){return'<div class="c61full"><span class="c61lab">'+lab+'</span><div class="c61ch" role="group" aria-label="'+esc(lab)+'">'+L.map(function(x){var on=String(cv[k]||'')===String(x[0]);return'<button type="button" class="c61c'+(on?' on':'')+'" data-cset="'+k+'|'+x[0]+'" aria-pressed="'+on+'">'+x[1]+'</button>'}).join('')+'</div></div>'}
+function c61time(lab){return'<div class="c61full c61tm"><label for="c61_min">'+(lab||'Time')+'</label><div class="c61tw"><input id="c61_min" type="number" inputmode="numeric" min="0" data-cf="min" value="'+esc(cv.min)+'" aria-label="Minutes"><span>min</span><input type="number" inputmode="numeric" min="0" max="59" data-cf="sec" value="'+esc(cv.sec)+'" placeholder="0" aria-label="Seconds"><span>sec</span></div></div>'}
+function c61othList(){var q=String(cv.q||'').toLowerCase().trim(),L=C61.other.map(function(o,i){return[o,i]}).filter(function(x){return!q||x[0][2].toLowerCase().indexOf(q)>=0||x[0][0].indexOf(q)>=0});
+ if(!q){L=cv.oth!==''?L.filter(function(x){return String(x[1])===cv.oth}):L.slice(0,8)}
+ return L.length?L.map(function(x){var on=cv.oth===String(x[1]);return'<button type="button" class="c61o'+(on?' on':'')+'" data-cset="oth|'+(on?'':x[1])+'" aria-pressed="'+on+'"><span>'+esc(x[0][2])+'</span><small>'+x[0][1]+' MET · '+x[0][0]+'</small></button>'}).join('')+(!q&&cv.oth===''?'<small class="mu">Type to search '+C61.other.length+' activities…</small>':''):'<small class="mu">No match — use custom MET, effort or kcal below.</small>'}
+cForm=function(){var a=cv.act,kg=c61kg(),bw=bodyW(),h='<div class="cpick" role="group" aria-label="Cardio type">'+CACT.map(function(x){var on=a===x[0];return'<button class="cpk'+(on?' on':'')+'" data-cact="'+x[0]+'" aria-pressed="'+on+'" title="'+esc(x[2])+'" aria-label="'+esc(x[2])+'"><span class="ci" aria-hidden="true">'+x[1]+'</span><span class="cl">'+(CSHORT[x[0]]||x[2])+'</span></button>'}).join('')+'</div><div class="g2 c61g" data-c61="'+a+'">',more=!!cv.more||!!cv.hr;
+ var ovH={tread:'Machine screens often overestimate.',ell:'Machine screens often overestimate.',stair:'Machine screens often overestimate.',bike:cv.indoor==='in'?'Machine screens often overestimate.':'',row:'Rower monitors assume 79.5 kg.'}[a]||'';
+ if(a==='tread'){h+=c61fld('spd','Speed (km/h)')+c61fld('inc','Incline %',{ph:'0'})+c61chips('gait',[['auto','Auto'],['walk','Walk'],['run','Jog/run']],'Gait')+c61time('Time')+c61fld('dist','Distance (km) · optional',{ph:'from console'})}
+ else if(a==='run'){h+=c61fld('dist','Distance (km)',{ph:'e.g. 5'})+c61time('Time')+c61fld('pace','or pace /km (mm:ss)',{text:1,ph:'e.g. 530 = 5:30',auto:1})+c61fld('elev','Elevation gain (m) · optional',{ph:'0'})}
+ else if(a==='walk'){h+=c61fld('dist','Distance (km)',{ph:'e.g. 4'})+c61fld('min','Duration (min)',{im:'numeric'})+c61fld('steps','or steps',{im:'numeric',ph:'rough'})+c61fld('spd','or speed (km/h)',{ph:'e.g. 5'})+c61chips('terr',[['flat','Flat'],['h1','Hilly 1–5%'],['h2','Hilly 6–10%'],['h3','Steep 11–20%']],'Terrain')+(more?c61fld('elev','Elevation gain (m)',{ph:'replaces terrain'}):'')}
+ else if(a==='bike'){var ind=cv.indoor==='in';h+=c61chips('indoor',[['out','Outdoor'],['in','Indoor']],'Where')+c61fld('min','Duration (min)',{im:'numeric'})+c61fld('watts','Avg watts · if shown',{im:'numeric',ph:'best'});
+  if(!ind)h+=c61fld('dist','Distance (km)',{ph:'or speed →'})+c61fld('bspd','Avg speed (km/h)',{ph:'optional'})+c61chips('oint',[['easy','Easy'],['mod','Moderate'],['vig','Vigorous'],['mtb','MTB']],'If no watts or speed');
+  else h+=c61chips('bint',[['light','~50 W'],['mod','~100 W'],['vig','~150 W'],['hard','~200 W'],['max','250 W+'],['spin','Spin class']],'If no watts — effort')+(more?c61fld('lvl','Level',{im:'numeric'})+c61fld('rpm','RPM',{im:'numeric'}):'')}
+ else if(a==='row'){h+=c61time('Time')+c61fld('split','Avg split /500 m',{text:1,ph:'e.g. 205 = 2:05',auto:1})+c61fld('watts','or avg watts',{im:'numeric'})+c61fld('dist','or distance (m)',{im:'numeric',ph:'e.g. 6000'})+c61fld('spm','Stroke rate (spm)',{im:'numeric',ph:'optional'})+c61chips('rint',[['light','Light'],['mod','Moderate'],['vig','Vigorous'],['max','Very hard']],'If no monitor numbers')}
+ else if(a==='ell'){h+=c61chips('eint',[['mod','Moderate · 5.0'],['vig','Vigorous · 9.0']],'Effort')+c61fld('min','Duration (min)',{im:'numeric'})+c61fld('lvl','Level · optional',{im:'numeric'})+(more?c61fld('rpm','RPM / strides',{im:'numeric'})+c61fld('cw','Console watts (saved only)',{im:'numeric'}):'')}
+ else if(a==='stair'){h+=c61fld('min','Duration (min)',{im:'numeric'})+c61fld('spm','Avg steps/min',{im:'numeric',ph:'from console'})+c61fld('lvl','or level (1–20)',{im:'numeric'})+c61fld('floors','Floors',{im:'numeric',ph:'for history'})}
+ else if(a==='swim'){h+=c61chips('pool',[['25','25 m'],['50','50 m'],['c','Custom']],'Pool')+(cv.pool==='c'?c61fld('poolc','Pool length (m)',{im:'numeric'}):'')+c61fld('lengths','Lengths',{im:'numeric',ph:'e.g. 40'})+c61time('Swim time')+c61chips('stroke',[['free','Freestyle'],['breast','Breast'],['back','Back'],['fly','Fly'],['leis','Leisurely']],'Stroke')+
+  ((cv.stroke==='leis'||cv.stroke==='fly')?'':c61chips('seff',[['rec','Recreational'],['train','Training']],(cv.stroke||'free')==='free'?'Effort (if no lengths)':'Effort'))+c61chips('restI',[['','Swim time'],['1','Incl. wall rests']],'Time is')}
+ else if(a==='hiit'){h+=c61chips('fmt',[['hiit','HIIT / Tabata'],['bike','Bike'],['row','Rower'],['circ','Weights circuit'],['bw','Bodyweight circuit']],'Format')+((cv.fmt==='bike'||cv.fmt==='bw')?'':c61chips('eff',[['mod','Moderate'],['vig','Vigorous']],'Effort'))+
+  '<div class="c61full"><span class="c61lab">Presets</span><div class="c61ch"><button type="button" class="c61c" data-chp="8|20|10">Tabata 8×20/10</button><button type="button" class="c61c" data-chp="10|30|30">10×30/30</button><button type="button" class="c61c" data-chp="10|40|20">10×40/20</button></div></div>'+
+  c61fld('rounds','Rounds',{im:'numeric'})+c61fld('work','Work (s)',{im:'numeric'})+c61fld('rest','Rest (s)',{im:'numeric'})+c61fld('min','Total min (incl. rest)',{im:'decimal'})+((cv.fmt==='bike'||cv.fmt==='row')?c61fld('watts','Avg watts · optional',{im:'numeric'}):'')+c61fld('rpe','RPE 1–10 · optional',{im:'numeric'})}
+ else if(a==='other'){h+='<div class="c61full"><label for="c61_q">Activity (2024 Compendium)</label><input id="c61_q" type="search" data-cf="q" value="'+esc(cv.q)+'" placeholder="Search e.g. tennis, yoga, GAA…" autocomplete="off"><div class="c61ol" id="c61ol">'+c61othList()+'</div></div>'+c61fld('min','Duration (min)',{im:'numeric'});
+  if(cv.oth==='')h+='<div><label for="c61_name">Name (if not listed)</label><input id="c61_name" data-cf="name" value="'+esc(cv.name)+'" placeholder="e.g. Padel"></div>'+c61fld('cmet','Custom MET · optional',{ph:'e.g. 7'})+c61chips('rpeb',[['r1','1–3'],['r2','4–6'],['r3','7–8'],['r4','9–10']],'or effort (RPE · rough)')}
+ if(C61.hrT[a]&&more)h+=c61fld('hr','Avg heart rate (bpm)',{im:'numeric',ph:'optional'});
+ if(!bw)h+=c61fld('w','Your weight (kg)',{ph:'needed for estimate'});
+ h+='<div><label for="c61_man">'+(a==='other'?'Calories (kcal) · watch':'Override kcal · watch/machine')+'</label><input id="c61_man" type="number" inputmode="numeric" min="0" data-cf="man" value="'+esc(cv.man)+'" placeholder="optional"></div>';
+ h+='</div>'+(ovH?'<small class="c61h">Override: '+ovH+'</small>':'');
+ if(C61.hrT[a])h+='<button type="button" class="c61more" data-cset="more|'+(more?'':'1')+'" aria-expanded="'+more+'">'+(more?'▴ Fewer options':'▾ More: heart rate'+(a==='walk'?', elevation':a==='ell'?', RPM, watts':a==='bike'&&cv.indoor==='in'?', level, RPM':''))+'</button>';
+ h+='<div class="cest" id="cest" aria-live="polite">'+cEstTx()+'</div><div class="row"><button data-cx="cancel">Cancel</button><button class="pri" data-cx="save">Save cardio</button></div>';return h};
+cEstTx=function(){var kg=c61kg(),bw=bodyW(),R=c61Calc(cv,kg),o=cv.man!==''&&n(cv.man)>0,t=c61tmin(cv),h='';
+ if(cv.act==='other'&&!R.line&&!o)return'🔥 <b>–</b> kcal <small class="mu">'+esc(R.need||'')+'</small>';
+ if(R.need&&!o)return'🔥 <b>–</b> kcal <small class="mu">'+esc(R.need)+'</small>';
+ if(o)h='🔥 <b>'+nf(n(cv.man))+'</b> kcal <small class="mu">your reading'+(R.net?' · our estimate net '+nf(R.net):'')+'</small>';
+ else if(!kg)h='🔥 <b>–</b> kcal <small class="mu">enter your weight</small>';else if(!t)h='🔥 <b>–</b> kcal <small class="mu">enter the time</small>';
+ else h='🔥 <b>'+nf(R.net)+'</b> kcal burned <small class="mu" title="Gross includes your resting energy (1 MET)">(active · gross '+nf(R.gross)+')</small>';
+ h+='<br><small class="c61m">'+esc(R.line||'')+(R.met&&R.badge!=='MET'?' · '+R.met+' MET':R.met?' · '+R.met+' MET':'')+(kg&&String(R.line||'').indexOf('adjusted for')<0?' · '+nf(kg)+' kg':'')+(t?' · '+c61fmt(t*60):'')+(bw?' · weight from '+esc(bw.src):'')+'</small>';
+ if(R.stats.length&&cv.act!=='other')h+='<br><small class="c61s">'+esc(R.stats.join(' · '))+'</small>';
+ if(o&&cv.act==='row')h+='<br><small class="c61w">Rower monitor calories assume 79.5 kg; our estimate is adjusted for your weight.</small>';
+ else if(o&&(cv.act==='tread'||cv.act==='ell'||cv.act==='stair'||(cv.act==='bike'&&cv.indoor==='in')))h+='<br><small class="c61w">Machine screens often overestimate.</small>';
+ if(R.hrNote)h+='<br><small class="c61w">'+esc(R.hrNote)+'</small>';if(R.hint&&!(o&&cv.act==='row'))h+='<br><small class="mu">'+esc(R.hint)+'</small>';
+ h+='<br><small class="mu c61wl">Estimates for general wellness — not a medical measurement.</small>';return h};
+cLive=function(){var el=document.getElementById('cest');if(el)el.innerHTML=cEstTx();var ol=document.getElementById('c61ol');if(ol&&C61._q!==cv.q){C61._q=cv.q;ol.innerHTML=c61othList()}};
+cardioCard=function(){var R=burnRows(cur),b=burned(cur);
+ return'<div class="card full" id="cardio"><div class="row" style="justify-content:space-between;align-items:center"><h2 style="margin:0">🔥 Cardio</h2>'+(b?'<span class="bchip" title="Active (net) calories">🔥 '+nf(b)+' kcal burned</span>':'')+'</div>'+
+ (R.length?R.map(function(x){var del=x.src.indexOf('manual')===0?'<button class="sm dang" data-cdel="'+x.i+'" aria-label="Delete '+esc(x.name)+'">✕</button>':'';
+  if(x.v61)return'<div class="crow c61r"><span class="ic">'+x.ic+'</span><span class="c61rt"><b>'+esc(x.name)+'</b> <span class="c61hd">'+esc(x.head)+'</span><br><small class="mu">'+esc(x.sec||'')+(x.sec?' · ':'')+'<span class="c61b">'+esc(x.badge)+'</span></small></span><b title="'+(x.gross?'gross '+nf(x.gross)+' kcal':'')+'">'+nf(x.kcal)+'</b>'+del+'</div>';
+  return'<div class="crow'+(x.dup?' dup':'')+'"><span class="ic">'+x.ic+'</span><span style="flex:1"><b>'+esc(x.name)+'</b><br><small class="mu">'+(x.min?x.min+' min · ':'')+esc(x.src)+(x.ex?' · '+x.ex:'')+'</small></span><b>'+nf(x.kcal)+'</b>'+del+'</div>'}).join('')+'<small class="mu c61net">Burned = active (net) kcal: resting energy is not counted.</small>':'<p class="mu">No cardio logged '+(cur===iso(new Date())?'today':'this day')+'.</p>')+
+ (cv.open?cForm():'<button class="pri" data-cx="open" style="width:100%;margin-top:10px">+ Log cardio</button>')+'</div>'};
+function c61save(){var kg=c61kg(),R=c61Calc(cv,kg),o=cv.man!==''&&n(cv.man)>0,t=c61tmin(cv);
+ if(!t&&!(cv.act==='other'&&o)){toast('Enter duration');return false}
+ if(!o){if(R.need){toast(R.need);return false}if(!kg){toast('Enter your weight');return false}if(!R.gross){toast('Enter details');return false}}
+ var e={id:Date.now().toString(36),v:61,act:cv.act,name:cv.act==='other'?(R.name||cv.name||'').trim():'',min:Math.round(t*100)/100,kg:kg||null,method:R.badge||'MET',mline:R.line||'',code:R.code||'',met:R.met||null,kcalGross:R.gross||null,kcalNet:R.net||0,kcal:R.net||0,man:o?Math.round(n(cv.man)):null};
+ Object.keys(R.save).forEach(function(k){var v=R.save[k];if(v!==''&&v!=null&&v!==false)e[k]=v});if(R.save.indoor)e.indoor=true;
+ S.cardio=S.cardio||{};(S.cardio[cur]=S.cardio[cur]||[]).push(e);
+ var u=ui();u.cdef=u.cdef||{};var dd={};(C61.keep[cv.act]||[]).forEach(function(k){if(cv[k]!=null&&cv[k]!=='')dd[k]=cv[k]});u.cdef[cv.act]=dd;u.cact=cv.act;
+ save();toast('Cardio saved · 🔥 '+nf(o?n(cv.man):e.kcalNet)+' kcal');cv.open=false;cv.man='';cv.name='';cv.hr='';cRefresh();return true}
+window.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('button');if(!b||!b.closest('#cardio'))return;var D=b.dataset;
+ if(D.cact){ev.stopPropagation();c61load(D.cact);C61._q=null;cRefresh();return}
+ if(D.cset){ev.stopPropagation();var p=D.cset.split('|');cv[p[0]]=p.slice(1).join('|');if(p[0]==='oth'&&cv.oth!==''){cv.cmet='';cv.rpeb=''}cRefresh();return}
+ if(D.chp){ev.stopPropagation();var p=D.chp.split('|');cv.rounds=p[0];cv.work=p[1];cv.rest=p[2];cv.min=String(Math.round(n(p[0])*(n(p[1])+n(p[2]))/60*100)/100);cRefresh();return}
+ if(D.cx==='open'){ev.stopPropagation();cv.open=true;c61load(ui().cact||cv.act||'tread');C61._q=null;cRefresh();return}
+ if(D.cx==='save'){ev.stopPropagation();c61save();return}
+},true);
+document.addEventListener('input',function(ev){var e=ev.target;if(!e.dataset||!e.closest||!e.closest('#cardio'))return;var k=e.dataset.cf;
+ if(k==='rounds'||k==='work'||k==='rest'){var r=n(cv.rounds),w=n(cv.work),s=n(cv.rest);if(r&&w){cv.min=String(Math.round(r*(w+s)/60*100)/100);var m=document.getElementById('c61_min');if(m&&m!==e)m.value=cv.min;cLive()}}});
+function c61BurnNote(){var on=ui().burnT,a=n(plIn().act);
+ return'<small class="mu">'+(on?'Adds your <b>active (net)</b> burned calories to the daily target.':'Off by default: targets stay fixed and Eaten · Burned · Net is shown for information. When on, only active (net) calories are added.')+'</small>'+
+ (on&&a>1.2?'<small class="c61w" style="display:block;margin-top:6px">⚠️ Your activity level ('+a+') already counts your training. To avoid counting exercise twice, consider setting it to <b>Sedentary (1.2)</b> in the diet planner.</small>':'')}
 </script></body></html>
