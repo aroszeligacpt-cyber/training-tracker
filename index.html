@@ -389,6 +389,23 @@ html body .cwrap .cli .lnk{display:inline-block;padding:10px 4px!important;margi
 .crow.c61r{align-items:center}.c61rt{flex:1;min-width:0;overflow-wrap:anywhere}.c61hd{font-weight:600;opacity:.9}
 .c61b{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:9px;background:color-mix(in srgb,var(--ac) 18%,transparent);white-space:nowrap}
 .c61net{display:block;margin-top:6px;font-size:11.5px}
+.dmo{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;min-width:36px;min-height:36px;padding:0;margin:0 0 0 6px;border-radius:50%;border:1.5px solid var(--ac);background:color-mix(in srgb,var(--ac) 18%,transparent);color:var(--hi,#fff);font-size:13px;line-height:1;vertical-align:middle;flex:0 0 auto;cursor:pointer;position:relative}
+.dmo::after{content:"";position:absolute;inset:-4px}
+.dmo:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+button .dmo,a .dmo{display:inline-flex}
+h2 .dmo,h3 .dmo{font-size:14px}
+.dmo-wrap{position:fixed;inset:0;z-index:9999;display:flex;align-items:flex-end;justify-content:center}
+.dmo-bd{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;transition:opacity .2s}
+.dmo-sh{position:relative;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;box-sizing:border-box;background:var(--card);color:var(--tx);border-top:2px solid var(--ac);border-radius:20px 20px 0 0;padding:12px 16px calc(16px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .25s ease;box-shadow:0 -8px 30px rgba(0,0,0,.45)}
+.dmo-wrap.on .dmo-bd{opacity:1}.dmo-wrap.on .dmo-sh{transform:none}
+.dmo-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.dmo-hd h3{margin:0;font-size:18px;min-width:0;overflow-wrap:anywhere}
+.dmo-x{width:44px;height:44px;min-width:44px;border-radius:50%;font-size:18px;padding:0}
+.dmo-v{background:#fff;border-radius:14px;overflow:hidden;aspect-ratio:1/1;width:100%;max-height:58vh;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.dmo-v video{width:100%;height:100%;object-fit:contain;display:block;background:#fff}
+.dmo-cues{margin:12px 0 4px;padding-left:20px;font-size:14.5px;line-height:1.45}.dmo-cues li{margin:3px 0}
+.dmo-note{font-size:11.5px;margin:6px 0 0}
+body.dmo-lock{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.dmo-sh,.dmo-bd{transition:none}}
 </style></head><body>
 <div id="bgl"></div>
 <header><div class="dnav"><button id="prev" aria-label="Previous day">‹</button><div class="dmid"><div class="d" id="dlbl"></div><div class="dtrow"><button id="today" class="sm" aria-label="Jump to today">Today</button><span id="svind">✓ Saved</span></div></div><button id="next" aria-label="Next day">›</button></div><div class="secbar" id="secbar"></div></header>
@@ -408,7 +425,7 @@ html body .cwrap .cli .lnk{display:inline-block;padding:10px 4px!important;margi
 <div class="toast" id="toast"></div>
 <div id="pvm" class="modal pv"></div>
 <div id="opm" class="modal"><div class="mbox" id="opbox"></div></div>
-<script>
+<script>/* v62: demo ▶ clicks are handled before every other click listener */window.addEventListener("click",function(e){if(window.demoClick)window.demoClick(e)},true);</script><script>
 function setIcons(T){T=T||{deep:'#7e22ce',mag:'#d946ef'};
 var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#000000"/><rect x="6" y="6" width="88" height="88" rx="18" fill="none" stroke="'+T.mag+'" stroke-width="5"/><text x="50" y="68" font-size="56" text-anchor="middle">💪</text></svg>';
 var icon='data:image/svg+xml,'+encodeURIComponent(svg);
@@ -504,7 +521,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v61 · 18 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">TonTon App v62 · 18 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2496,7 +2513,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">TonTon App v61</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">TonTon App v62</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4774,7 +4791,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">TonTon App v61 · Self-recorded data for discussion with a clinician. TonTon does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">TonTon App v62 · Self-recorded data for discussion with a clinician. TonTon does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -5450,4 +5467,40 @@ document.addEventListener('input',function(ev){var e=ev.target;if(!e.dataset||!e
 function c61BurnNote(){var on=ui().burnT,a=n(plIn().act);
  return'<small class="mu">'+(on?'Adds your <b>active (net)</b> burned calories to the daily target.':'Off by default: targets stay fixed and Eaten · Burned · Net is shown for information. When on, only active (net) calories are added.')+'</small>'+
  (on&&a>1.2?'<small class="c61w" style="display:block;margin-top:6px">⚠️ Your activity level ('+a+') already counts your training. To avoid counting exercise twice, consider setting it to <b>Sedentary (1.2)</b> in the diet planner.</small>':'')}
+
+// ---- v62 exercise demo videos (registry + ▶ button + bottom sheet) ----
+// Add a clip: one line in DEMOS {id, name, src, poster, alias[], cues[]}. Aliases are matched after normalising (case, hyphens, spaces, numbering, "(…)").
+var DEMOS=[
+ {id:'lat_pulldown',name:'Lat pulldown',src:'videos/lat_pulldown.mp4',poster:'videos/lat_pulldown.jpg',
+  alias:['lat pulldown','lat pull down','lat pulldowns','lat pull downs','cable lat pulldown','lat pulldown machine','machine lat pulldown','wide grip lat pulldown','normal grip lat pulldown','lat pulldown wide grip','lat pulldown normal grip','front lat pulldown','lat pulldown front'],
+  cues:['Pull the bar to your upper chest, in front of your face','Lean back slightly and keep your chest up','Drive your elbows down to your sides','Control the bar on the way back up']}
+];
+function dmoNorm(s){return String(s||'').toLowerCase().replace(/^\s*\d+[.)]\s*/,'').replace(/[‐-―\-_/]+/g,' ').replace(/[^a-z0-9() ]+/g,' ').replace(/\s+/g,' ').trim()}
+var DMOIDX={};DEMOS.forEach(function(d){[d.name].concat(d.alias).forEach(function(a){DMOIDX[dmoNorm(a)]=d})});
+function demoFor(name){var k=dmoNorm(name);if(!k||k.length>60)return null;if(DMOIDX[k])return DMOIDX[k];var k2=k.replace(/\s*\([^)]*\)\s*/g,' ').replace(/\s+/g,' ').trim();if(DMOIDX[k2])return DMOIDX[k2];
+ var m=k.match(/^(.*?)\s*\(([^)]*)\)$/);if(m&&DMOIDX[(m[2]+' '+m[1]).trim()])return DMOIDX[(m[2]+' '+m[1]).trim()];return null}
+function demoBtn(d,label){return'<button type="button" class="dmo" data-dmo="'+d.id+'" aria-label="Play demo: '+esc(label||d.name)+'" title="Watch demo">▶</button>'}
+// inside another button/link the ▶ is a focusable span (buttons can't nest); clicks are captured before the host's handler
+function demoSpan(d,label){return'<span class="dmo" role="button" tabindex="0" data-dmo="'+d.id+'" aria-label="Play demo: '+esc(label||d.name)+'" title="Watch demo">▶</span>'}
+var DMOSKIP={SCRIPT:1,STYLE:1,OPTION:1,SELECT:1,TEXTAREA:1,INPUT:1,TITLE:1,svg:1,text:1};
+function demoDecorate(){var root=document.body;if(!root)return;var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(t){var v=t.nodeValue;if(!v||v.length>70||!/\w/.test(v))return NodeFilter.FILTER_REJECT;var p=t.parentElement;if(!p||DMOSKIP[p.tagName]||p.closest('#dmoSheet,.dmo,[contenteditable],#toast,.toast,#undo,.no-dmo'))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}}),t,L=[];
+ while(t=w.nextNode()){var d=demoFor(t.nodeValue);if(d)L.push([t,d])}
+ L.forEach(function(x){var t=x[0],d=x[1],p=t.parentElement,ob=p.closest('button,a,label,summary');
+  var lb=t.nodeValue.trim().replace(/^[^A-Za-z]+/,'')||d.name,html=ob?demoSpan(d,lb):demoBtn(d,lb);
+  var nx=t.nextSibling;while(nx&&nx.nodeType===3&&!nx.nodeValue.trim())nx=nx.nextSibling;if(nx&&nx.nodeType===1&&nx.classList.contains('dmo'))return;
+  var s=document.createElement('span');s.innerHTML=html;t.parentNode.insertBefore(s.firstChild,t.nextSibling)})}
+var DMO={raf:0,obs:null,open:null,ret:null};
+function demoSchedule(){if(DMO.raf)return;DMO.raf=requestAnimationFrame(function(){DMO.raf=0;try{demoDecorate()}catch(e){}})}
+(function(){var go=function(){demoDecorate();DMO.obs=new MutationObserver(function(M){for(var i=0;i<M.length;i++){if(M[i].addedNodes.length){demoSchedule();return}}});DMO.obs.observe(document.body,{childList:true,subtree:true})};if(document.body)go();else document.addEventListener('DOMContentLoaded',go)})();
+function demoOpen(id,label){var d=DEMOS.filter(function(x){return x.id===id})[0];if(!d)return;demoClose(true);DMO.ret=document.activeElement;
+ var el=document.createElement('div');el.id='dmoSheet';el.className='dmo-wrap';el.innerHTML='<div class="dmo-bd" data-dmox="1"></div><div class="dmo-sh" role="dialog" aria-modal="true" aria-labelledby="dmoT"><div class="dmo-hd"><h3 id="dmoT">'+esc(d.name)+'</h3><button type="button" class="dmo-x" data-dmox="1" aria-label="Close demo">✕</button></div>'+
+  '<div class="dmo-v"><video id="dmoV" muted autoplay loop playsinline webkit-playsinline disablepictureinpicture preload="auto" poster="'+esc(d.poster)+'" aria-label="'+esc(d.name)+' demonstration video"></video></div>'+
+  '<ul class="dmo-cues">'+d.cues.map(function(c){return'<li>'+esc(c)+'</li>'}).join('')+'</ul><p class="mu dmo-note">Silent 3D demo · loops. General guidance only — stop if anything hurts.</p></div>';
+ document.body.appendChild(el);document.body.classList.add('dmo-lock');var v=el.querySelector('video');v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');v.src=d.src;
+ var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){});DMO.open=d.id;requestAnimationFrame(function(){el.classList.add('on');var x=el.querySelector('.dmo-x');x&&x.focus()})}
+function demoClose(quick){var el=document.getElementById('dmoSheet');if(!el)return;var v=el.querySelector('video');if(v){try{v.pause()}catch(e){}v.removeAttribute('src');try{v.load()}catch(e){}}el.remove();document.body.classList.remove('dmo-lock');DMO.open=null;if(!quick&&DMO.ret&&DMO.ret.focus&&document.contains(DMO.ret))DMO.ret.focus();DMO.ret=null}
+window.demoClick=function(ev){var b=ev.target.closest&&ev.target.closest('[data-dmo],[data-dmox]');if(!b)return;ev.preventDefault();ev.stopImmediatePropagation();if(b.dataset.dmox){demoClose();return}demoOpen(b.dataset.dmo,(b.getAttribute('aria-label')||'').replace(/^Play demo: /,''))};
+document.addEventListener('keydown',function(e){var t=e.target;if(!DMO.open&&t&&t.dataset&&t.dataset.dmo&&t.tagName==='SPAN'&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.stopPropagation();demoOpen(t.dataset.dmo);return}if(DMO.open&&e.key==='Escape'){e.preventDefault();demoClose()}else if(DMO.open&&e.key==='Tab'){var x=document.querySelector('#dmoSheet .dmo-x');if(x){e.preventDefault();x.focus()}}});
+// generator: in a full gym, the default vertical pull is the Lat pulldown (scalable for every level); swaps still cycle the alternatives
+if(typeof gPick==='function'){var _gPick62=gPick;gPick=function(pat,role,c,used,key,vi){if(pat==='vpull'&&c&&c.eq==='gym'&&!(c.sw&&c.sw[key])&&typeof GXM!=='undefined'&&GXM['Lat pulldown']&&gOk(GXM['Lat pulldown'],c)&&used.indexOf('Lat pulldown')<0)return GXM['Lat pulldown'];return _gPick62.apply(this,arguments)}}
 </script></body></html>
