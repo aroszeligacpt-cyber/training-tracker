@@ -5749,7 +5749,7 @@ document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.targe
 // ---- v65: 👥 Community pill under the DIET tab (replaces the COMMUNITY tile) · powerlifting removed (tt_gen_v1 goal 'pl' → 'str' on read) ----
 ['train','diet'].forEach(function(m){if(HTILES[m])for(var i=HTILES[m].length-1;i>=0;i--)if(HTILES[m][i].t==='COMMUNITY')HTILES[m].splice(i,1)});
 function cmPill(){var three=herShow(),np=(typeof C!=='undefined'&&C.posts)?C.posts.length:0;
- return'<div class="cmrow full'+(three?' three':'')+'" id="cmrow"><button class="cmb" id="cmGo" aria-label="Open Community (preview)"><span class="hbadge cmbadge">👥 Community</span><small>'+(np?np+' post'+(np===1?'':'s'):'Preview')+'</small></button></div>'}
+ return'<div class="cmrow full'+(three?' three':'')+'" id="cmrow"><button class="cmb" id="cmGo" aria-label="Open Community"><span class="hbadge cmbadge">👥 Community</span><small>'+(np?np+' post'+(np===1?'':'s'):'Open')+'</small></button></div>'}
 var _rH65=rHome;rHome=function(){_rH65.apply(this,arguments);var el=document.getElementById('t-home');if(!el)return;var o=document.getElementById('cmrow');if(o)o.remove();
  var a=el.querySelector('.hdots')||document.getElementById('mtog');if(a)a.insertAdjacentHTML('afterend',cmPill());cmTiles()};
 var _swE65=swEls;swEls=function(){return _swE65.apply(this,arguments).filter(function(e){return e.id!=='cmrow'})};
@@ -5766,7 +5766,7 @@ document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.targe
 if(tab==='home')render();
 </script><script>/* v70: optional account, cloud backup and real Community (Supabase). Inactive unless a valid key is built in. */
 (function(){
-var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:''};
+var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_publishable_00hu3uDi4jz6OkJzvbBdZg_RoGGW3Ip'};
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
