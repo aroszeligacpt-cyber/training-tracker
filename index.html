@@ -6164,7 +6164,7 @@ document.addEventListener('click',function(ev){if(tab!=='report'||rp.view!=='day
 function pdfHtml(){var days=rangeDays(),h='<div class="v83ph"><h1>AT Fitness – report</h1><div>'+dl(days[0])+' – '+dl(days[days.length-1])+' '+days[0].slice(0,4)+' · generated '+fmt(iso(new Date()),{day:'numeric',month:'short',year:'numeric'})+'</div></div>';
  var k=rp.kind,ex0=rp.ex;h+=k==='train'?trainOverview(days):k==='diet'?dietOverview(days):overview(days);
  if(k!=='diet'){var names=liftNames(days);if(names.length){h+='<div class="card full"><h2>🏋️ Lift progress</h2>';names.forEach(function(nm){var q=sessions(nm,days),bq=before(nm,days[0]);h+='<div class="v83pl"><b>'+esc(nm)+'</b> · '+q.length+'× · '+changeTxt(q,bq)+'<table>'+q.map(function(x){return'<tr><td>'+dl(x.d)+'</td><td>'+fmtSets(x.e)+'</td><td>e1RM '+nf(Math.round(x.e1*10)/10)+'</td><td>'+(x.pr?prPills(x.types,true):'')+'</td></tr>'}).join('')+'</table></div>'});h+=legend()+'</div>'}}
- rp.ex=ex0;return h}
+ rp.ex=ex0;return h.replace(/url\(#gb\)/g,'#9333ea').replace(/url\(#gl\)/g,'#9333ea')}
 window.v83pdfHtml=pdfHtml;
 document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('#v83pdf');if(!b)return;ev.preventDefault();var p=document.getElementById('v83print');if(!p){p=document.createElement('div');p.id='v83print';document.body.appendChild(p)}
  p.innerHTML=pdfHtml();document.body.classList.add('v83p');var done=function(){document.body.classList.remove('v83p');window.removeEventListener('afterprint',done)};window.addEventListener('afterprint',done);
