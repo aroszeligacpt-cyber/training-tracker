@@ -570,7 +570,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v82 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v83 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2564,7 +2564,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v82</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v83</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4843,7 +4843,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v82 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v83 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6050,13 +6050,183 @@ document.addEventListener('input',function(ev){var e=ev.target;if(!e.dataset||!e
 document.addEventListener('change',function(ev){var e=ev.target;if(tab==='plan'&&e.dataset&&/^(cin|gstep|gsur)$/.test(e.dataset.pin||'')){setTimeout(function(){if(pl&&pl.res&&plIn().goal==='gentle'){pl.res=calcPlan(plIn());pl.mp=genMeals(pl.res,plIn(),pl.seed);pl.acc=false}var y=scrollY;rPlan();scrollTo(0,y)},0)}});
 })();
 </script>
+<script>/* v83: report targets per day, range Day view, PDF, typed PRs + PB celebration, bodyweight lifts, fixes */
+(function(){
+/* ---------- defensive day access ---------- */
+peek=function(s){var d=S.days[s];if(!d)return{meals:[],habits:{}};if(!Array.isArray(d.meals))d.meals=[];if(!d.habits||typeof d.habits!=='object')d.habits={};return d};
+/* ---------- score: misses count (50% closeness + 50% targets hit) ---------- */
+var _evS=evalDay;evalDay=function(s){var r=_evS.apply(this,arguments);if(r&&r.items&&r.items.length){var L=r.items.length,cl=r.items.reduce(function(a,i){return a+n(i.score)},0)/L,h=r.items.filter(function(i){return i.hit}).length;r.hits=h;r.score=Math.round((cl+h/L*100)/2)}return r};
+/* ---------- bodyweight exercises ---------- */
+var BWRX=/pull-?up|chin-?up|\bdips?\b|push-?up|inverted row|muscle-?up|nordic/i;
+window.v83isBW=function(nm){return BWRX.test(nm||'')};
+function bwKg(){var b=typeof bodyW==='function'?bodyW():null;return b?n(b.kg):0}
+function effW(nm,w){return v83isBW(nm)?bwKg()+n(w):n(w)}
+exVol=function(e){return e.sets.filter(sd).reduce(function(a,s){return a+effW(e.name,s.w)*n(s.r)},0)};
+fmtSets=function(e){var bw=v83isBW(e.name),g=[],cw=null;e.sets.filter(sd).forEach(function(z){if(cw!==n(z.w)){g.push([n(z.w),[]]);cw=n(z.w)}g[g.length-1][1].push(n(z.r))});
+ return g.map(function(x){return(bw?(x[0]?'BW+'+nf(x[0])+' kg':'BW'):(x[0]?nf(x[0])+'kg':'BW'))+' x '+x[1].join(', ')}).join(' · ')};
+function wLab(nm,w){return v83isBW(nm)?(n(w)?'BW+'+nf(w)+' kg':'BW'):nf(w)+' kg'}
+/* ---------- PR types ---------- */
+var PRT=[['w','Weight PR','W','Heavier weight than ever before'],['r','Rep PR','R','More reps than ever at the same or a higher weight'],['e','e1RM PR','1RM','Higher estimated 1-rep max (Epley) than ever'],['v','Volume PR','V','More total session volume (kg × reps) than ever']];
+function hist(name,s){var H={has:false,w:0,e:0,v:0,sets:[]};Object.keys(S.days).forEach(function(d){if(d>=s)return;var x=wk(d).ex.find(function(y){return y.name===name});if(!x)return;var ok=x.sets.filter(sd);if(!ok.length)return;H.has=true;
+ ok.forEach(function(z){H.w=Math.max(H.w,n(z.w));H.e=Math.max(H.e,e1(effW(name,z.w),n(z.r)));H.sets.push([n(z.w),n(z.r)])});H.v=Math.max(H.v,exVol(x))});return H}
+function prInfo(name,s,e){var H=hist(name,s),o={types:[],H:H};if(!H.has||!e)return o;var ok=e.sets.filter(sd);if(!ok.length)return o;
+ var cw=0,c1=0,rp=null;ok.forEach(function(z){var w=n(z.w),r=n(z.r);cw=Math.max(cw,w);c1=Math.max(c1,e1(effW(name,w),r));
+  var best=0;H.sets.forEach(function(h){if(h[0]>=w)best=Math.max(best,h[1])});if(best>0&&r>best&&(!rp||r-best>rp.d))rp={w:w,r:r,d:r-best}});
+ var vol=exVol(e);o.cw=cw;o.c1=c1;o.vol=vol;o.rp=rp;
+ if(cw>H.w)o.types.push('w');if(rp)o.types.push('r');if(c1>H.e+0.05)o.types.push('e');if(vol>H.v+0.05)o.types.push('v');return o}
+window.v83prInfo=prInfo;
+function tName(t){return PRT.filter(function(x){return x[0]===t})[0][1]}
+function tShort(t){return PRT.filter(function(x){return x[0]===t})[0][2]}
+prFor=function(name,s,e){return prInfo(name,s,e).types.map(tName).join(' · ')};
+function prPills(types,short){if(short&&types.length)return'<span class="pill hit prp" title="'+esc(types.map(tName).join(', '))+'">🏆 '+types.map(tShort).join(' · ')+'</span>';return types.map(function(t){return'<span class="pill hit prp" title="'+esc(PRT.filter(function(x){return x[0]===t})[0][3])+'">🏆 '+(short?tShort(t):tName(t))+'</span>'}).join(' ')}
+function legend(){return'<p class="mu prleg">🏆 <b>W</b> Weight PR – heavier than ever · <b>R</b> Rep PR – more reps at the same or higher weight · <b>1RM</b> e1RM PR – higher estimated 1-rep max (Epley) · <b>V</b> Volume PR – more total kg × reps in a session. Compared with all your earlier sessions.'+(liftBW()?' Bodyweight lifts (pull-ups, dips…) count your body weight ('+(bwKg()?nf(bwKg())+' kg':'not set')+') in e1RM and volume.':'')+'</p>'}
+function liftBW(){return true}
+exStats=function(e,s){var p=prInfo(e.name,s,e);return e.sets.filter(sd).length+'/'+e.sets.length+' sets done · Volume '+nf(Math.round(exVol(e)))+' kg'+(p.types.length?' '+prPills(p.types):'')};
+/* ---------- sessions / progress ---------- */
+sessions=function(name,days){return days.map(function(d){var e=wk(d).ex.find(function(x){return x.name===name});if(!e)return null;var ss=e.sets.filter(sd);if(!ss.length)return null;
+ var top=Math.max.apply(null,ss.map(function(z){return n(z.w)})),tr=Math.max.apply(null,ss.filter(function(z){return n(z.w)===top}).map(function(z){return n(z.r)})),P=prInfo(name,d,e);
+ return{d:d,e:e,top:top,topReps:tr,e1:Math.max.apply(null,ss.map(function(z){return e1(effW(name,z.w),n(z.r))})),reps:Math.max.apply(null,ss.map(function(z){return n(z.r)})),vol:exVol(e),pr:P.types.length>0,types:P.types}}).filter(Boolean)};
+function repsAtLeast(x,w){var b=0;x.e.sets.filter(sd).forEach(function(z){if(n(z.w)>=w)b=Math.max(b,n(z.r))});return b}
+function cmp(a,b){var nm=b.e.name,dr=repsAtLeast(b,a.top)-a.topReps;return sgn(b.top-a.top,' kg')+' top set ('+wLab(nm,a.top)+' → '+wLab(nm,b.top)+') · '+sgn(dr,Math.abs(dr)===1?' rep':' reps')+' at ≥'+wLab(nm,a.top)+' · e1RM '+sgn(b.e1-a.e1,' kg')}
+function before(name,from){var ds=Object.keys(S.days).filter(function(d){return d<from}).sort();for(var i=ds.length-1;i>=0;i--){var q=sessions(name,[ds[i]]);if(q.length)return q[0]}return null}
+changeTxt=function(ss,base){if(!ss.length)return'';var b=ss[ss.length-1];
+ if(base)return'vs before range ('+dl(base.d)+'): '+cmp(base,b);
+ if(ss.length<2)return'First session ever – nothing to compare yet';return'first → last: '+cmp(ss[0],b)};
+/* chart: sane single-point axis + typed trophies */
+svgLine=function(pts,o){var W=340,H=160,pl=38,pb=18,pt=16,N=pts.length;if(!N)return'';var vs=pts.map(function(p){return p.v}),mn=Math.min.apply(null,vs),mx=Math.max.apply(null,vs);
+ if(mx-mn<Math.max(0.5,Math.abs(mx)*0.02)){var c=mx||1;mn=Math.max(0,c*0.8);mx=c*1.1}else{var pad=(mx-mn)*.15;mn=Math.max(0,mn-pad);mx+=pad}
+ var x=function(i){return N===1?(pl+W)/2:pl+14+(W-pl-28)*i/(N-1)},y=function(v){return pt+(H-pt-pb)*(1-(v-mn)/(mx-mn))};
+ var s='<svg viewBox="0 0 '+W+' '+H+'" class="chart"><defs><linearGradient id="gl" x1="0" x2="1"><stop offset="0" style="stop-color:var(--ac)"/><stop offset="1" style="stop-color:var(--mag)"/></linearGradient></defs>';
+ [0,.5,1].forEach(function(f){var v=mn+(mx-mn)*f,yy=y(v);s+='<line x1="'+pl+'" x2="'+W+'" y1="'+yy+'" y2="'+yy+'" stroke="var(--t2)"/><text x="'+(pl-4)+'" y="'+(yy+3)+'" text-anchor="end" class="ax">'+short(Math.round(v*10)/10)+'</text>'});
+ if(N>1)s+='<polyline fill="none" stroke="url(#gl)" stroke-width="3" stroke-linejoin="round" points="'+pts.map(function(p,i){return x(i)+','+y(p.v)}).join(' ')+'"/>';
+ var step=Math.ceil(N/6);pts.forEach(function(p,i){s+='<g class="pt"><circle cx="'+x(i)+'" cy="'+y(p.v)+'" r="'+(p.pr?6:4)+'" style="fill:'+(p.pr?'#fbbf24':'var(--mag)')+'"><title>'+p.label+': '+nf(p.v)+(p.types&&p.types.length?' · '+p.types.map(tName).join(', '):'')+'</title></circle>';
+  if(p.pr)s+='<text x="'+(N>1&&i===N-1?x(i)+6:N>1&&i===0?x(i)-6:x(i))+'" y="'+(y(p.v)-9)+'" text-anchor="'+(N>1&&i===N-1?'end':N>1&&i===0?'start':'middle')+'" font-size="10" fill="#fbbf24">🏆'+(p.types?p.types.map(tShort).join('·'):'')+'</text>';
+  s+='</g>';if(i%step===0||i===N-1)s+='<text x="'+x(i)+'" y="'+(H-5)+'" text-anchor="middle" class="ax">'+p.label+'</text>'});
+ return s+'</svg>'};
+lifts=function(days){var names=liftNames(days);if(!names.length)return'<div class="card full"><p class="mu">No completed (ticked) sets in this range. Tick sets in Workout to see progress.</p></div>';
+ if(names.indexOf(rp.ex)<0)rp.ex=names[0];var ss=sessions(rp.ex,days),base=before(rp.ex,days[0]),M={top:['Top set (kg)','top'],e1:['Est. 1RM (kg)','e1'],reps:['Best reps','reps'],vol:['Volume (kg)','vol']};
+ var npr=ss.filter(function(x){return x.pr}).length;
+ var s='<div class="card full"><label>Exercise</label><select id="rpex">'+names.map(function(x){return'<option'+(x===rp.ex?' selected':'')+'>'+esc(x)+'</option>'}).join('')+'</select>'+
+ '<div class="liftsum"><b>'+esc(rp.ex)+'</b><div>'+changeTxt(ss,base)+'</div><div class="mu">'+ss.length+' session'+(ss.length===1?'':'s')+' in range · best e1RM '+nf(Math.round(Math.max.apply(null,ss.map(function(x){return x.e1}))*10)/10)+' kg · '+npr+' PR session'+(npr===1?'':'s')+(v83isBW(rp.ex)?' · e1RM & volume include body weight '+(bwKg()?nf(bwKg())+' kg':'(not set)'):'')+'</div></div>'+
+ '<div class="seg" style="margin-top:10px">'+Object.keys(M).map(function(k){return'<button class="sm'+(rp.metric===k?' on':'')+'" data-rpm="'+k+'">'+M[k][0]+'</button>'}).join('')+'</div>'+
+ svgLine((base?[Object.assign({},base,{pr:false,types:[],old:1})]:[]).concat(ss).map(function(x){return{label:dl(x.d)+(x.old?'*':''),v:Math.round(x[M[rp.metric][1]]*10)/10,pr:x.pr,types:x.types}}))+(base?'<p class="mu" style="font-size:12px;margin:2px 0">* last session before the range, for comparison</p>':'')+legend()+'</div>'+
+ '<div class="card"><h3>Sessions</h3><table><tr><th>Date</th><th>Sets</th><th>e1RM</th><th>Vol</th></tr>'+ss.slice().reverse().map(function(x){return'<tr><td>'+dl(x.d)+(x.pr?'<br>'+prPills(x.types,true):'')+'</td><td>'+fmtSets(x.e)+'</td><td>'+nf(Math.round(x.e1*10)/10)+'</td><td>'+short(x.vol)+'</td></tr>'}).join('')+(base?'<tr class="mu"><td>'+dl(base.d)+'*</td><td>'+fmtSets(base.e)+'</td><td>'+nf(Math.round(base.e1*10)/10)+'</td><td>'+short(base.vol)+'</td></tr>':'')+'</table></div>'+
+ '<div class="card"><h3>Progress summary · all exercises</h3>'+names.map(function(nm){var q=sessions(nm,days),bq=before(nm,days[0]),T={};q.forEach(function(x){x.types.forEach(function(t){T[t]=1})});var tt=PRT.map(function(p){return p[0]}).filter(function(t){return T[t]});
+  return'<button class="psum" data-rpex="'+esc(nm)+'"><b>'+esc(nm)+'</b><small>'+q.length+'× in range · '+changeTxt(q,bq)+'</small>'+(tt.length?'<small>'+prPills(tt,true)+'</small>':'')+'</button>'}).join('')+legend()+'</div>';return s};
+var _to=trainOverview;trainOverview=function(days){var h=_to.apply(this,arguments);var ln=liftNames(days);
+ var lp='<div class="card"><h3>Lift progress</h3>'+ln.map(function(nm){var q=sessions(nm,days),T={};q.forEach(function(x){x.types.forEach(function(t){T[t]=1})});var tt=Object.keys(T);return'<button class="psum" data-rpex="'+esc(nm)+'" data-rpv="lifts"><b>'+esc(nm)+'</b><small>'+q.length+'× · '+changeTxt(q,before(nm,days[0]))+'</small>'+(tt.length?'<small>'+prPills(tt,true)+'</small>':'')+'</button>'}).join('')+'</div>';
+ return h.replace(/<div class="card"><h3>Lift progress<\/h3>[\s\S]*?<\/button><\/div>(?=<div class="card"><h3>Habits)/,lp)};
+/* ---------- report: per-day targets ---------- */
+function eaten(d){return totals(d).kcal>0}
+function tgAvg(list,k){return list.length?list.reduce(function(a,x){return a+n(x.T[k])},0)/list.length:0}
+function dietTable(ev,fd,days){var off=days.reduce(function(a,d){return a+offTot(d).kcal},0);
+ var h='<div class="card full"><h2>Diet totals</h2><div class="mu">'+fd.length+' day'+(fd.length===1?'':'s')+' with food logged (of '+days.length+') · '+dl(days[0])+' – '+dl(days[days.length-1])+' · targets = the diet active on each day</div>';
+ if(!fd.length)return h+'<p class="mu">No food logged in this range.</p></div>';
+ h+='<table><tr><th></th><th>Total</th><th>Avg / logged day</th><th>Target / day</th><th>Avg vs target</th></tr>'+MAC.map(function(m){var k=m[0],u=m[2]==='kcal'?' kcal':' g',tot=fd.reduce(function(a,x){return a+x.t[k]},0),av=tot/fd.length,tg=tgAvg(fd,k),d=av-tg,over=d>0;
+  return'<tr><td>'+m[1]+'</td><td>'+nf(Math.round(tot))+'</td><td>'+nf(Math.round(av))+'</td><td>'+nf(Math.round(tg))+'</td><td class="'+(over?(k==='protein'?'pur':'red'):(k==='protein'?'amb':'pur'))+'"><b>'+(over?'+'+nf(Math.round(d))+u+' over':nf(Math.round(-d))+u+(k==='protein'?' short':' under'))+'</b> /day</td></tr>'}).join('')+'</table>';
+ var E=fd.reduce(function(a,x){return a+x.t.kcal},0),TT=fd.reduce(function(a,x){return a+n(x.T.kcal)},0),D=E-TT;
+ h+='<p>Range total ('+fd.length+' logged day'+(fd.length===1?'':'s')+'): <b>'+nf(Math.round(E))+' kcal</b> eaten vs <b>'+nf(Math.round(TT))+' kcal</b> target → <b class="'+(D>0?'red':'pur')+'">'+(D>0?'+'+nf(Math.round(D))+' kcal over':nf(Math.round(-D))+' kcal under')+'</b> · Off-plan: <b class="amb">'+nf(Math.round(off))+' kcal</b></p>';
+ var nd=days.length-fd.length;if(nd)h+='<p class="mu" style="font-size:13px">'+nd+' day'+(nd===1?'':'s')+' with no food logged '+(nd===1?'is':'are')+' left out of the averages.</p>';return h+'</div>'}
+function macroCard(ev,fd){var lab=function(x){return dl(x.d).split('\u00a0')[0]};return'<div class="card"><h3>Macros – average per logged day vs target</h3>'+MAC.slice(1).map(function(m){var tg=tgAvg(fd,m[0]),a=fd.length?fd.reduce(function(q,x){return q+x.t[m[0]]},0)/fd.length:0,p=tg?a/tg*100:0;return'<div style="margin:8px 0"><div class="row" style="justify-content:space-between"><span>'+m[1]+'</span><span class="mu" style="text-align:right">'+nf(Math.round(a))+' / '+nf(Math.round(tg))+' g ('+Math.round(p)+'%)</span></div>'+bar(p,p>=90&&(m[0]==='protein'||p<=110))+'</div>'}).join('')+
+ '<h3 style="margin-top:12px">Protein per day</h3>'+svgBars(ev.map(function(x){return{label:lab(x),v:Math.round(x.t.protein),c:eaten(x.d)&&x.t.protein<n(x.T.protein)*0.9?'#a16207':null}}),{target:Math.round(tgAvg(ev,'protein'))})+'</div>'}
+function kcalCard(ev){var lab=function(x){return dl(x.d).split('\u00a0')[0]};return'<div class="card"><h3>Calories eaten vs target</h3>'+svgBars(ev.map(function(x){return{label:lab(x),v:Math.round(x.t.kcal),c:x.t.kcal>n(x.T.kcal)*1.1?'var(--bad)':null}}),{target:Math.round(tgAvg(ev,'kcal'))})+'</div>'}
+overview=function(days){var ev=days.map(function(d){return{d:d,e:evalDay(d),t:totals(d),T:TG(d)}}),lg=ev.filter(function(x){return x.e.logged||wkSets(wk(x.d))});
+ if(!lg.length)return'<div class="card full"><p class="mu">No data logged between '+dl(days[0])+' and '+dl(days[days.length-1])+'.</p></div>';
+ var fd=ev.filter(function(x){return eaten(x.d)}),sl=ev.filter(function(x){return x.e.logged}),avg=sl.length?Math.round(sl.reduce(function(a,x){return a+x.e.score},0)/sl.length):0;
+ var s='<div class="card"><h3>Daily score · avg '+avg+'% ('+sl.length+' logged day'+(sl.length===1?'':'s')+')</h3>'+svgBars(ev.map(function(x){return{label:dl(x.d).split('\u00a0')[0],v:x.e.logged?x.e.score:0,c:!x.e.logged?'var(--t3)':x.e.score>=80?'url(#gb)':x.e.score>=50?'#a16207':'var(--bad)'}}),{max:100})+'</div>';
+ s+=kcalCard(ev)+macroCard(ev,fd);
+ var nh=S.habits.length;s+='<div class="card"><h3>Habits hit per day (of '+nh+')</h3>'+svgBars(ev.map(function(x){var d=peek(x.d);return{label:dl(x.d).split('\u00a0')[0],v:S.habits.filter(function(hb){return n(d.habits[hb.id])>=(hb.type==='bool'?1:n(hb.target))&&(hb.type==='bool'||n(hb.target))}).length}}),{max:nh})+'</div>';
+ var vols=ev.map(function(x){return wkVol(wk(x.d))}),tv=vols.reduce(function(a,b){return a+b},0),ses=vols.filter(Boolean).length,ln=liftNames(days),TC={},np=ln.filter(function(nm){return sessions(nm,days).some(function(x){x.types.forEach(function(t){TC[t]=(TC[t]||0)+1});return x.pr})}).length;
+ s+='<div class="card"><h3>Workout volume per day · '+ses+' session'+(ses===1?'':'s')+' · '+nf(Math.round(tv))+' kg</h3>'+svgBars(ev.map(function(x,i){return{label:dl(x.d).split('\u00a0')[0],v:Math.round(vols[i])}}))+(np?'<p style="margin:6px 0 0">🏆 <b>'+np+' of '+ln.length+' lifts set new PRs</b> in this range ('+PRT.filter(function(p){return TC[p[0]]}).map(function(p){return p[1]+' ×'+TC[p[0]]}).join(' · ')+') · <button class="sm" data-rpv="lifts" style="display:inline-flex;width:auto">See lift progress ›</button></p>':'')+'</div>';
+ s+=burnChart(ev);s+=watchCharts(ev);s+=bodyReport(days);s+=dietTable(ev,fd,days);return s};
+dietOverview=function(days){var ev=days.map(function(d){return{d:d,t:totals(d),T:TG(d)}}),fd=ev.filter(function(x){return eaten(x.d)}),lab=function(x){return dl(x.d).split('\u00a0')[0]},s='';
+ var E=fd.reduce(function(a,x){return a+x.t.kcal},0),B=ev.reduce(function(a,x){return a+burned(x.d)},0),TT=fd.reduce(function(a,x){return a+n(x.T.kcal)},0);
+ s+='<div class="card full"><h2>🍽️ Diet summary</h2><div class="netl big"><span>🍽️ Eaten <b>'+nf(Math.round(E))+'</b></span><span class="burn">🔥 Burned <b>'+nf(B)+'</b></span><span>Net <b>'+nf(Math.round(E-B))+'</b> kcal</span></div><p class="mu" style="margin-top:8px">'+fd.length+' day'+(fd.length===1?'':'s')+' with food logged'+(fd.length?' · avg '+nf(Math.round(E/fd.length))+' kcal per logged day vs '+nf(Math.round(TT/fd.length))+' target · range total <b class="'+(E>TT?'red':'pur')+'">'+(E>TT?'+'+nf(Math.round(E-TT))+' kcal over':nf(Math.round(TT-E))+' kcal under')+'</b>':'')+'</p></div>';
+ s+=kcalCard(ev);
+ s+='<div class="card"><h3>Over / under target per day</h3><table><tr><th>Day</th><th>Eaten</th><th>Target</th><th>Burned</th><th>vs target</th></tr>'+ev.filter(function(x){return eaten(x.d)||burned(x.d)}).slice().reverse().map(function(x){var b=burned(x.d),df=x.t.kcal-n(x.T.kcal);return'<tr><td>'+dl(x.d)+'</td><td>'+nf(Math.round(x.t.kcal))+'</td><td>'+nf(Math.round(n(x.T.kcal)))+'</td><td>'+(b?nf(b):'–')+'</td><td class="'+(df>0?'red':'pur')+'">'+(df>0?'+':'')+nf(Math.round(df))+'</td></tr>'}).join('')+'</table></div>';
+ s+=macroCard(ev,fd);
+ var wh=waterH();if(wh)s+='<div class="card"><h3>💧 Water per day ('+(wh.unit||'L')+')</h3>'+svgBars(ev.map(function(x){var v=n(peek(x.d).habits[wh.id]);return{label:lab(x),v:r1(v),c:v>=n(wh.target)?null:'var(--t4)'}}),{target:n(wh.target)})+'</div>';
+ s+=dietTable(ev,fd,days);return s};
+/* ---------- report: range picker with PDF, Day view follows range ---------- */
+var _rpk=rangePicker;rangePicker=function(){return _rpk().replace(/<\/div><\/div>$/,'</div><button class="sm" id="v83pdf" style="margin-top:8px;width:100%">📄 Save / share PDF of this report</button></div>')};
+function dayIn(){var t=iso(new Date());if(!rp.from)setPreset('week');var to=rp.to>t?t:rp.to;if(!rp.day||rp.day<rp.from||rp.day>rp.to)rp.day=to<rp.from?rp.from:to;return rp.day}
+window.v83dayIn=dayIn;
+var _rR=rReport;rReport=function(){if(!rp.from)setPreset('week');if(rp.view!=='day')return _rR.apply(this,arguments);
+ var d=dayIn(),c0=cur;cur=d;try{_rR.apply(this,arguments)}finally{cur=c0}
+ var el=document.getElementById('t-report'),b=document.getElementById('rpbody');if(!el||!b)return;var ds=rangeDays().filter(function(x){return x<=iso(new Date())});
+ b.insertAdjacentHTML('beforebegin',rangePicker().replace('<div class="card full">','<div class="card full v83rp">').replace(/<button class="sm" id="v83pdf"[^>]*>[^<]*<\/button>/,'<label>Day in range</label><select id="rpday">'+ds.slice().reverse().map(function(x){return'<option value="'+x+'"'+(x===d?' selected':'')+'>'+fmt(x,{weekday:'short',day:'numeric',month:'short'})+'</option>'}).join('')+'</select>$&'))};
+document.addEventListener('change',function(ev){var e=ev.target;if(e.id==='rpday'){rp.day=e.value;rReport()}
+ else if((e.id==='rpf'||e.id==='rpt')&&e.value&&rp.view==='day'){rp.day=null}},true);
+document.addEventListener('click',function(ev){if(tab!=='report'||rp.view!=='day')return;var t=ev.target.closest&&ev.target.closest('[data-day],#share');if(!t||!document.getElementById('rpbody')||!document.getElementById('rpbody').contains(t))return;
+ if(t.dataset.day){ev.stopImmediatePropagation();ev.preventDefault();var dd=t.dataset.day;if(dd<rp.from)rp.from=dd;if(dd>rp.to)rp.to=dd;rp.day=dd;rReport();return}
+ var c0=cur;cur=rp.day||cur;setTimeout(function(){cur=c0},0)},true);
+/* PDF / print */
+function pdfHtml(){var days=rangeDays(),h='<div class="v83ph"><h1>AT Fitness – report</h1><div>'+dl(days[0])+' – '+dl(days[days.length-1])+' '+days[0].slice(0,4)+' · generated '+fmt(iso(new Date()),{day:'numeric',month:'short',year:'numeric'})+'</div></div>';
+ var k=rp.kind,ex0=rp.ex;h+=k==='train'?trainOverview(days):k==='diet'?dietOverview(days):overview(days);
+ if(k!=='diet'){var names=liftNames(days);if(names.length){h+='<div class="card full"><h2>🏋️ Lift progress</h2>';names.forEach(function(nm){var q=sessions(nm,days),bq=before(nm,days[0]);h+='<div class="v83pl"><b>'+esc(nm)+'</b> · '+q.length+'× · '+changeTxt(q,bq)+'<table>'+q.map(function(x){return'<tr><td>'+dl(x.d)+'</td><td>'+fmtSets(x.e)+'</td><td>e1RM '+nf(Math.round(x.e1*10)/10)+'</td><td>'+(x.pr?prPills(x.types,true):'')+'</td></tr>'}).join('')+'</table></div>'});h+=legend()+'</div>'}}
+ rp.ex=ex0;return h}
+window.v83pdfHtml=pdfHtml;
+document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('#v83pdf');if(!b)return;ev.preventDefault();var p=document.getElementById('v83print');if(!p){p=document.createElement('div');p.id='v83print';document.body.appendChild(p)}
+ p.innerHTML=pdfHtml();document.body.classList.add('v83p');var done=function(){document.body.classList.remove('v83p');window.removeEventListener('afterprint',done)};window.addEventListener('afterprint',done);
+ setTimeout(function(){try{window.print()}catch(e){}toast('Choose “Save as PDF” (or Share) in the print dialog')},60)});
+/* ---------- workout screens: PB badges, history incl. today ---------- */
+var _rW=rWorkout;rWorkout=function(){var r=_rW.apply(this,arguments);try{var el=document.getElementById('t-workout'),R=rtn();if(!el||!R)return r;
+ if(wv.e==null){[].forEach.call(el.querySelectorAll('[data-oe]'),function(b){var re=R.ex[+b.dataset.oe];if(!re)return;var i=logFor(re.name,cur);if(i<0)return;var p=prInfo(re.name,cur,wk(cur).ex[i]);if(p.types.length&&!b.querySelector('.prb'))b.insertAdjacentHTML('beforeend','<small class="prb">'+prPills(p.types)+'</small>')})}
+ else{var re=R.ex[wv.e];if(!re)return r;var hc=[].filter.call(el.querySelectorAll('.card'),function(c){var h=c.querySelector('h3');return h&&/^History/.test(h.textContent)})[0];if(!hc)return r;
+  var rows=Object.keys(S.days).filter(function(d){return d<=cur}).sort().reverse().map(function(d){var x=wk(d).ex.find(function(y){return y.name===re.name});if(!x||!x.sets.some(sd))return'';var p=prInfo(re.name,d,x);
+   return'<tr'+(d===cur?' class="v83today"':'')+'><td>'+(d===cur?'<b>Today</b> · ':'')+fmt(d,{weekday:'short',day:'numeric',month:'short'})+(p.types.length?'<br>'+prPills(p.types,true):'')+'</td><td>'+fmtSets(x)+'</td><td>'+nf(Math.round(exVol(x)))+' kg</td></tr>'}).filter(Boolean).slice(0,15).join('');
+  hc.innerHTML='<h3>History</h3>'+(rows?'<table>'+rows+'</table>'+legend():'<p class="mu">No history yet.</p>')}}catch(e){console.error(e)}return r};
+var _wks=wkSave;wkSave=function(i){var r=_wks.apply(this,arguments);var el=document.getElementById('xs'+i);if(el)el.innerHTML=exStats(wk(cur).ex[i],cur);return r};
+/* ---------- PB celebration ---------- */
+var pend=null;
+document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('[data-sd],[data-ext]');if(!b||tab!=='workout'&&!document.getElementById('t-workout'))return;
+ var nm=null,i=null;if(b.dataset.sd){i=+b.dataset.sd.split('.')[0];var e=wk(cur).ex[i];nm=e&&e.name}else{var R=rtn();var re=R&&R.ex[+b.dataset.ext];nm=re&&re.name}
+ if(!nm)return;var j=logFor(nm,cur),e0=j>=0?wk(cur).ex[j]:null;pend={nm:nm,before:e0?prInfo(nm,cur,e0).types:[]};
+ setTimeout(function(){var P=pend;pend=null;if(!P)return;var j2=logFor(P.nm,cur);if(j2<0)return;var e2=wk(cur).ex[j2],a=prInfo(P.nm,cur,e2),nw=a.types.filter(function(t){return P.before.indexOf(t)<0});if(nw.length)celebrate(P.nm,e2,a,nw)},0)},true);
+function celebrate(nm,e,a,nw){var H=a.H,ok=e.sets.filter(sd),last=ok[ok.length-1]||{w:0,r:0},top=ok.slice().sort(function(x,y){return n(y.w)-n(x.w)||n(y.r)-n(x.r)})[0];
+ var lines=nw.map(function(t){if(t==='w')return['Weight PR',wLab(nm,a.cw)+' × '+(top?n(top.r):'')+' (+'+nf(a.cw-H.w)+' kg vs '+wLab(nm,H.w)+')'];
+  if(t==='r')return['Rep PR',wLab(nm,a.rp.w)+' × '+a.rp.r+' (+'+a.rp.d+' rep'+(a.rp.d===1?'':'s')+' at this weight or more)'];
+  if(t==='e')return['e1RM PR','est. 1RM '+nf(Math.round(a.c1*10)/10)+' kg (+'+nf(Math.round((a.c1-H.e)*10)/10)+' kg)'];
+  return['Volume PR','session volume '+nf(Math.round(a.vol))+' kg (+'+nf(Math.round(a.vol-H.v))+' kg)']});
+ var hd=lines[0],m=document.getElementById('v83pb');if(!m){m=document.createElement('div');m.id='v83pb';m.setAttribute('role','alertdialog');document.body.appendChild(m)}
+ m.innerHTML='<div class="v83pbx"><div class="v83cf">🏆</div><h2>New PB!</h2><div class="v83pbn">'+esc(nm)+'</div><div class="v83pbm">'+esc(hd[1])+'</div><div class="v83pbt">'+lines.map(function(l,k){return'<span class="pill hit">🏆 '+l[0]+'</span>'+(k?'<small>'+esc(l[1])+'</small>':'')}).join('')+'</div><button class="pri" id="v83pbok">Nice! 💪</button></div>';
+ m.className='on';toast('🏆 New PB! '+nm.replace(/ \(.*\)$/,'')+' '+hd[1]);try{if(navigator.vibrate)navigator.vibrate([80,60,160])}catch(_){}
+ clearTimeout(celebrate.h);celebrate.h=setTimeout(function(){m.className=''},6000)}
+window.v83celebrate=celebrate;
+document.addEventListener('click',function(ev){var m=document.getElementById('v83pb');if(m&&m.className==='on'&&(ev.target.id==='v83pbok'||ev.target===m)){m.className='';ev.stopPropagation()}},true);
+/* ---------- planner: macro calculator only after legal gate ---------- */
+var _rP=rPlan;rPlan=function(){var r=_rP.apply(this,arguments),el=document.getElementById('t-plan');if(el&&el.querySelector('[data-lok]')){var mc=el.querySelector('#mcalc');if(mc)mc.remove()}return r};
+/* ---------- generated meals: total within ~1% of target ---------- */
+var _gM=genMeals;genMeals=function(R,i,seed){var mp=_gM.apply(this,arguments);try{if(!mp||!R||!n(R.kcal))return mp;for(var it=0;it<3;it++){var T=planTot(mp),d=n(R.kcal)-T.kcal;if(Math.abs(d)<=n(R.kcal)*0.0025)break;
+  var all=[].concat.apply([],mp.map(function(m){return m.items})).filter(function(x){return n(x.g)>=40&&n(x.kcal)>0&&!x.u&&!x.n&&!x.pc}).sort(function(a,b){return n(b.kcal)-n(a.kcal)});var x=all[0];if(!x)break;
+  var per=n(x.kcal)/n(x.g),ng=Math.max(10,Math.round((n(x.g)+d/per)/5)*5),f=ng/n(x.g);if(f===1)break;x.g=ng;['kcal','protein','carbs','fat','fibre'].forEach(function(k){if(x[k]!=null)x[k]=r1(n(x[k])*f)})}}catch(e){console.error(e)}return mp};
+/* ---------- generated workouts: heavy leg compounds first ---------- */
+var RK={plyo:0,main:1,heavy:1,sec:2,acc:3,sl:3,hip:3,iso:4,calf:4,core:5};
+var G0=window.g78Grp||function(){return''};window.g78Grp=function(it){return /trap bar deadlift/i.test(it&&it.name||'')?'quad':G0(it)};
+var _gP=genProg;genProg=function(){var P=_gP.apply(this,arguments);try{var O=(window.GV&&GV.ord)||{};P.weeks.forEach(function(W){W.days.forEach(function(dy){dy.parts.forEach(function(p){if(p.k!=='lift'||!p.items||O[p.tpl+'@'+dy.dow])return;
+ var G=G0,R=function(it){return RK[it.role]==null?3:RK[it.role]};var ti=-1;p.items.forEach(function(it,k){if(/trap bar deadlift/i.test(it.name)&&G(it)==='post'&&it.tech!=='ss')ti=k});if(ti<0)return;
+ var tb=p.items[ti],L=p.items.slice(0,ti).concat(p.items.slice(ti+1)),q=[];L.forEach(function(it,k){if(G(it)==='quad')q.push(k)});if(!q.length)return;
+ /* trap bar deadlift = squat/hinge hybrid: a heavy compound, so it goes with the quad compounds, before leg press / lunges */
+ var at=q[0];q.forEach(function(k){if(R(L[k])<=R(tb))at=k+1});L.splice(at,0,tb);p.items=L})})})}catch(e){console.error(e)}return P};
+/* ---------- Use as my targets: also the fallback targets for days without a diet ---------- */
+document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('#puse');if(!b)return;setTimeout(function(){try{if(pl&&pl.res&&pl.did&&S.dietDef===pl.did){S.targets={kcal:pl.res.kcal,protein:pl.res.protein,carbs:pl.res.carbs,fat:pl.res.fat};Object.keys(S.dietSel||{}).forEach(function(k){if(S.dietSel[k]===''&&!(S.days[k]&&(S.days[k].meals||[]).some(function(m){return m.dietId})))delete S.dietSel[k]});save()}}catch(e){console.error(e)}},0)},true);
+/* ---------- styles ---------- */
+document.head.insertAdjacentHTML('beforeend','<style id="v83css">.set.done input{text-decoration:none!important;opacity:.85;border-color:color-mix(in srgb,#22c55e 60%,transparent);background:color-mix(in srgb,#22c55e 10%,var(--card2))}.set.done .ck.on{background:#16a34a;border-color:#22c55e;box-shadow:0 0 10px color-mix(in srgb,#22c55e 55%,transparent)}'+
+ '.prp{font-size:11.5px;padding:2px 7px;margin:2px 2px 0 0;display:inline-block;white-space:nowrap}.prb{display:block;margin-top:3px}.prleg{font-size:12px;line-height:1.45;margin:8px 0 0}.v83today td{background:color-mix(in srgb,var(--ac) 10%,transparent)}'+
+ '#v83pb{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.62);padding:20px}#v83pb.on{display:flex;animation:v83f .25s ease}'+
+ '.v83pbx{background:var(--card);border:2px solid #fbbf24;border-radius:22px;padding:22px 20px;max-width:340px;width:100%;text-align:center;box-shadow:0 0 40px rgba(251,191,36,.45);animation:v83p .45s cubic-bezier(.2,1.6,.4,1)}'+
+ '.v83cf{font-size:64px;line-height:1;animation:v83b 1s ease infinite alternate}.v83pbx h2{margin:6px 0 4px;font-size:28px;color:#fbbf24}.v83pbn{font-weight:700;font-size:17px}.v83pbm{font-size:20px;font-weight:800;margin:8px 0}.v83pbt{display:flex;flex-direction:column;gap:4px;align-items:center;margin:8px 0 14px}.v83pbt small{color:var(--mu);font-size:12.5px}.v83pbx .pri{width:100%}'+
+ '@keyframes v83f{from{opacity:0}}@keyframes v83p{from{transform:scale(.6);opacity:0}}@keyframes v83b{to{transform:translateY(-6px) rotate(-6deg)}}'+
+ '#v83print{display:none}@media print{body.v83p>*:not(#v83print){display:none!important}body.v83p #v83print{display:block!important;padding:8px}body.v83p #v83print,body.v83p #v83print *{visibility:visible!important}html:has(body.v83p),body.v83p{background:#fff!important;background-image:none!important}body.v83p #v83print{--bg:#fff;--card:#fff;--card2:#f5f1fb;--tx:#16121f;--mu:#5b5568;--t2:#ddd6e8;--t3:#c9c2d6;color:#16121f;background:#fff}body.v83p #v83print .card{border:1px solid #ddd6e8;box-shadow:none;background:#fff;color:#16121f}body.v83p{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:var(--bg)}#v83print .card{break-inside:avoid;margin:0 0 10px}#v83print button{display:none!important}.v83ph h1{margin:0 0 4px;font-size:22px}.v83ph{margin-bottom:10px}.v83pl{margin:8px 0;font-size:13px}.v83pl table{width:100%;font-size:12px}}</style>');
+})();
+</script>
 <script>/* v70: optional account, cloud backup and real Community (Supabase). Inactive unless a valid key is built in. */
 (function(){
 var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_publishable_00hu3uDi4jz6OkJzvbBdZg_RoGGW3Ip'};
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v82';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v83';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K)}
