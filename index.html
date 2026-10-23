@@ -570,7 +570,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v88 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v89 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2564,7 +2564,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v88</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v89</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4843,7 +4843,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v88 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v89 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6226,7 +6226,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v88';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v89';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -6549,6 +6549,9 @@ html.k7on,html.k7on body{overflow:hidden;overscroll-behavior:none}
 @supports (-webkit-touch-callout:none){input,textarea,select{font-size:16px!important}}
 @media (pointer:coarse){input,textarea,select{font-size:16px!important}}
 .k7comp textarea{font-size:16px}
+/* v89: visible voice errors */
+.k7err{flex-basis:100%;order:-1;display:flex;gap:8px;align-items:flex-start;margin:0 0 6px;padding:8px 10px;border-radius:12px;background:#ef444422;border:1px solid #ef444466;color:var(--tx);font-size:13px;line-height:1.35;word-break:break-word}.k7err span{flex:1}.k7errx{border:0;background:none;color:var(--mu);font-size:15px;padding:0 2px}
+.k7comp:not(.k7rec){flex-wrap:wrap}.k7comp:not(.k7rec) textarea{min-width:0}
 </style><script>/* v84/v86: real Community UI + stories + notifications + HQ avatars */
 (function(){
 if(!window.CLOUD||!CLOUD.api)return;
@@ -6754,7 +6757,7 @@ function vvFit(){var s=document.getElementById('k7shell');if(s&&!s.getClientRect
  s.style.height=Math.round(h)+'px';s.style.transform=v&&v.offsetTop>0?'translateY('+Math.round(v.offsetTop)+'px)':'';if(window.scrollY)window.scrollTo(0,0);if(bot)scrollEnd()}
 if(window.visualViewport){visualViewport.addEventListener('resize',vvFit);visualViewport.addEventListener('scroll',vvFit)}window.addEventListener('resize',vvFit);setInterval(function(){if(document.documentElement.classList.contains('k7on')||document.getElementById('k7shell'))vvFit()},1000);
 document.addEventListener('focusin',function(e){if(e.target&&e.target.id==='k7in')setTimeout(vvFit,50),setTimeout(vvFit,350)});
-window.DM88={vvFit:vvFit,pickMime:pickMime,isIOS:isIOS};
+window.DM89={eTxt:eTxt,baseMime:baseMime};window.DM88={vvFit:vvFit,pickMime:pickMime,isIOS:isIOS};
 function rtOn(){if(M.rt||!CS.sb||!CS.sb.channel||!/supabase\.co/.test(CS.sb.supabaseUrl||''))return;try{M.rt=CS.sb.channel('dm-'+me()).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},function(p){var m=p&&p.new;if(K.v==='chat'&&m&&m.conversation_id===K.cid)M.chat(K.cid,true);else{mCount();if(K.v==='dm')M.inbox(true)}}).subscribe()}catch(e){M.rt=1}}
 setInterval(function(){if(document.hidden||!CS.user||M.ok===false)return;if(tab==='comm'&&K.v==='chat')M.chat(K.cid,true);else if(tab==='comm'&&K.v==='dm')M.inbox(true)},4000);
 setInterval(function(){if(!document.hidden&&CS.user)mCount()},45000);
@@ -6783,7 +6786,7 @@ function msgsH(){var cid=K.cid,o=K.dmWith,u=U(o),L=M.msgs[cid],h='';if(!L)h+='<p
   var mine=m.sender_id===me(),lastMine=mine&&!(L.slice(i+1).some(function(x){return x.sender_id===me()}));
   h+='<div class="k7row'+(mine?' me':'')+'"><div class="k7b'+(m.kind==='voice'?' vo':'')+(m._p?' pend':'')+'">'+(m.kind==='voice'?voiceH(m):'<span class="k7tx">'+E(m.body)+'</span>')+'<small class="k7tm">'+E(new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}))+(mine?(m._p?' · sending…':m.read_at&&lastMine?' · Seen':' · ✓'):'')+'</small></div></div>'});
  return h+'<div class="k7end"></div>'}
-function compH(){var cid=K.cid;return'<div class="k7comp"><textarea id="k7in" rows="1" maxlength="4000" placeholder="Message…" aria-label="Message">'+E(M.draft[cid]||'')+'</textarea>'+((M.draft[cid]||'').trim()?'<button class="k7send" data-k="dmsend" aria-label="Send">➤</button>':'<button class="k7mic" data-k="vrec" aria-label="Record voice message">🎤</button>')+'</div>'}
+function compH(){var cid=K.cid;return'<div class="k7comp">'+errH()+'<textarea id="k7in" rows="1" maxlength="4000" placeholder="Message…" aria-label="Message">'+E(M.draft[cid]||'')+'</textarea>'+((M.draft[cid]||'').trim()?'<button class="k7send" data-k="dmsend" aria-label="Send">➤</button>':'<button class="k7mic" data-k="vrec" aria-label="Record voice message">🎤</button>')+'</div>'}
 function recBar(){var r=M.rec;return'<div class="k7comp k7rec"><button class="k7x" data-k="vcancel" aria-label="Cancel recording">✕</button><span class="k7dot"></span><span class="k7timer" id="k7timer">'+mm(Date.now()-r.t0)+'</span><canvas id="k7wave" width="300" height="44"></canvas><button class="k7x k7stp" data-k="vpause" aria-label="Stop and preview"><i></i></button><button class="k7send" data-k="vstop" aria-label="Send voice message">➤</button><p class="k7live" id="k7live">'+(r.sr?E(r.fin+r.int)||'Listening… (transcript)':'Transcript not supported on this device')+'</p></div>'}
 /* recording (v88: iOS-safe) */
 function isIOS(){var u=navigator.userAgent||'';return /iP(hone|ad|od)/.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1)}
@@ -6792,7 +6795,7 @@ function pickMime(){if(typeof MediaRecorder==='undefined')return null;var W=['au
  for(var i=0;i<L.length;i++){try{if(MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(L[i]))return L[i]}catch(e){}}return''}
 function baseMime(m){m=(m||'').split(';')[0].trim().toLowerCase();if(m==='audio/x-m4a'||m==='audio/m4a')m='audio/mp4';if(m==='video/mp4')m='audio/mp4';if(m==='video/webm')m='audio/webm';return m}
 function recFail(r,msg){if(r){r.dead=1;recEnd(r)}if(M.rec===r)M.rec=null;toast(msg);rComm()}
-function recStart(){if(M.rec)return;if(M.pre)preDiscard(true);var mime=pickMime();if(mime===null||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)return toast('Voice messages aren’t supported in this browser');
+function recStart(){if(M.rec)return;M.err='';if(M.pre)preDiscard(true);var mime=pickMime();if(mime===null||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)return toast('Voice messages aren’t supported in this browser');
  var cons=isIOS()?{audio:true}:{audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true}};
  navigator.mediaDevices.getUserMedia(cons).then(function(st){
   var mr,o=mime?{mimeType:mime}:{};if(!isIOS())o.audioBitsPerSecond=96000;
@@ -6803,40 +6806,53 @@ function recStart(){if(M.rec)return;if(M.pre)preDiscard(true);var mime=pickMime(
   st.getAudioTracks().forEach(function(t){t.onended=function(){if(M.rec===r){r.lost=1;toast('Microphone was interrupted — keeping what was recorded');recStop(false)}}});
   try{mr.start(isSafari()?undefined:1000)}catch(e){return recFail(r,'Couldn’t start recording ('+(e&&e.name||'error')+')')}
   r.mime=mr.mimeType||r.mime||'';
-  try{var AC=window.AudioContext||window.webkitAudioContext;r.ac=new AC();var an=r.ac.createAnalyser();an.fftSize=512;r.ac.createMediaStreamSource(st).connect(an);r.an=an;r.lv=[]}catch(e){}
+  if(!isIOS())try{var AC=window.AudioContext||window.webkitAudioContext;r.ac=new AC();var an=r.ac.createAnalyser();an.fftSize=512;r.ac.createMediaStreamSource(st).connect(an);r.an=an;r.lv=[]}catch(e){}
   /* iOS Safari: speech recognition takes over the microphone/audio session and silently kills MediaRecorder, so it is not run in parallel there */
   var SR=(isIOS()||M.noSR)?null:(window.SpeechRecognition||window.webkitSpeechRecognition);if(SR){try{var s=new SR();s.continuous=true;s.interimResults=true;s.lang=navigator.language||'en-IE';
    s.onresult=function(ev){var it='';for(var i=ev.resultIndex;i<ev.results.length;i++){var t=ev.results[i][0].transcript;if(ev.results[i].isFinal)r.fin+=(r.fin&&!/\s$/.test(r.fin)?' ':'')+t.trim();else it+=t}r.int=it?' '+it:'';var l=document.getElementById('k7live');if(l)l.textContent=(r.fin+r.int).trim()||'Listening…'};
    s.onerror=function(ev){if(ev&&/not-allowed|service-not-allowed|language-not-supported|audio-capture/.test(ev.error))r.srDead=1};s.onend=function(){if(M.rec===r&&!r.stopping&&!r.srDead){try{s.start()}catch(e){}}else if(r.srDone)r.srDone()};s.start();r.sr=s}catch(e){r.sr=null}}
   rComm();scrollEnd();r.tick=setInterval(function(){var t=document.getElementById('k7timer');if(t)t.textContent=mm(Date.now()-r.t0);draw(r);if(Date.now()-r.t0>=180000){toast('3-minute limit reached');recStop(true)}},100);
  },function(e){var n=String(e&&(e.name+' '+e.message));toast(/NotAllowed|denied|Permission/i.test(n)?'Microphone access is blocked — allow it in Settings › Safari › Microphone (or the site settings) and try again':/NotFound|Overconstrained/i.test(n)?'No microphone found':'Couldn’t start the microphone ('+(e&&e.name||'error')+')')})}
-function draw(r){var c=document.getElementById('k7wave');if(!c||!r.an)return;var d=new Uint8Array(r.an.fftSize);r.an.getByteTimeDomainData(d);var pk=0;for(var i=0;i<d.length;i++)pk=Math.max(pk,Math.abs(d[i]-128));r.lv.push(pk/128);if(r.lv.length>60)r.lv.shift();
+function draw(r){var c=document.getElementById('k7wave');if(!c)return;r.lv=r.lv||[];if(!r.an){r.lv.push(.18+.22*Math.abs(Math.sin(Date.now()/180))+.1*Math.random())}else{var d=new Uint8Array(r.an.fftSize);r.an.getByteTimeDomainData(d);var pk=0;for(var i=0;i<d.length;i++)pk=Math.max(pk,Math.abs(d[i]-128));r.lv.push(pk/128)}var i;if(r.lv.length>60)r.lv.shift();
  var x=c.getContext('2d'),w=c.width,h=c.height,n=r.lv.length,bw=w/60;x.clearRect(0,0,w,h);x.fillStyle=getComputedStyle(document.body).getPropertyValue('--ac')||'#a855f7';for(i=0;i<n;i++){var v=Math.max(.08,Math.min(1,r.lv[i]*2.2)),bh=v*h;x.fillRect(i*bw+1,(h-bh)/2,bw-2,bh)}}
 function recEnd(r){clearInterval(r.tick);r.stopping=1;try{r.st.getTracks().forEach(function(t){t.onended=null;t.stop()})}catch(e){}try{r.ac&&r.ac.close()}catch(e){}}
 function recCancel(){var r=M.rec;if(!r)return;M.rec=null;try{r.mr.onstop=null;if(r.mr.state!=='inactive')r.mr.stop()}catch(e){}try{r.sr&&r.sr.abort()}catch(e){}recEnd(r);toast('Recording discarded');rComm()}
 /* stop: flush data (requestData before stop; resolve on onstop, if already inactive, or after a timeout so it can never hang), then preview or send */
-function recStop(send){var r=M.rec;if(!r||r.stopping)return;r.stopping=1;var dur=Date.now()-r.t0;clearInterval(r.tick);
+/* v89: persistent, readable voice errors */
+function vErr(msg){M.err=msg;toast(msg.length>70?msg.slice(0,67)+'…':msg);rComm()}
+function errH(){return M.err?'<p class="k7err" role="alert"><span>⚠️ '+E(M.err)+'</span><button class="k7errx" data-k="verrx" aria-label="Dismiss">✕</button></p>':''}
+function eTxt(e){if(!e)return'unknown error';var p=[];if(e.statusCode||e.status)p.push(String(e.statusCode||e.status));if(e.error&&typeof e.error==='string'&&e.error!==e.message)p.push(e.error);if(e.code&&typeof e.code==='string')p.push(e.code);var m=e.message||e.msg||e.details||(typeof e==='string'?e:'');return (m||'error')+(p.length?' ['+p.join(' / ')+']':'')+(e.hint?' — '+e.hint:'')}
+function recStop(send){var r=M.rec;if(!r||r.stopping)return;r.stopping=1;var dur=Date.now()-r.t0;clearInterval(r.tick);M.err='';
  var srWait=new Promise(function(res){if(!r.sr)return res();r.srDone=res;try{r.sr.stop()}catch(e){res()}setTimeout(res,1500)});
- var got=new Promise(function(res){var done=0,fin=function(){if(!done){done=1;setTimeout(res,30)}};r.mr.onstop=fin;
-  try{if(r.mr.state==='inactive')return fin();try{r.mr.requestData()}catch(e){}r.mr.stop()}catch(e){fin()}setTimeout(fin,4000)});
- M.rec=null;M.busy=1;rComm();
- Promise.all([got,srWait]).then(function(){recEnd(r);M.busy=0;
-  var base=baseMime(r.mime||(r.ch[0]&&r.ch[0].type)||'')||(isSafari()?'audio/mp4':'audio/webm'),blob=new Blob(r.ch,{type:base});
-  if(!blob.size){rComm();return toast('Recording failed — no audio was captured'+(r.err?' ('+r.err+')':'')+'. Please try again.')}
-  if(dur<600){rComm();return toast('Too short — hold on a little longer')}
-  if(blob.size>10485760){rComm();return toast('Voice message too large (max 10 MB)')}
-  M.pre={cid:r.cid,blob:blob,mime:base,dur:Math.min(dur,180000),tr:(r.fin||'').trim().slice(0,5000)||null,url:URL.createObjectURL(blob),sr:!!r.sr};
+ /* Safari: no requestData() before stop (it can yield an empty/partial fragment); wait for the final dataavailable after stop, up to 3 s */
+ var got=new Promise(function(res){var stopped=0,done=0,t0=Date.now(),fin=function(){if(done)return;if(!r.ch.length&&Date.now()-t0<3000)return setTimeout(fin,100);done=1;res()};
+  var od=r.mr.ondataavailable;r.mr.ondataavailable=function(e){od&&od(e);if(stopped)setTimeout(fin,30)};r.mr.onstop=function(){stopped=1;setTimeout(fin,50)};
+  try{if(r.mr.state==='inactive'){stopped=1;return fin()}if(!isSafari()){try{r.mr.requestData()}catch(e){}}r.mr.stop()}catch(e){stopped=1;fin()}setTimeout(function(){stopped=1;fin()},4500)});
+ M.rec=null;rComm();
+ Promise.all([got,srWait]).then(function(){recEnd(r);
+  var raw=r.mime||(r.ch[0]&&r.ch[0].type)||'',base=baseMime(raw);if(!/^audio\/(mp4|aac|webm|ogg|mpeg|wav)$/.test(base))base=isSafari()?'audio/mp4':'audio/webm';
+  var blob=new Blob(r.ch,{type:base});
+  if(!blob.size)return vErr('Recording failed — the microphone returned no audio ('+(raw||'unknown format')+', '+r.ch.length+' chunks'+(r.err?', '+r.err:'')+'). Please try again.');
+  if(dur<600)return vErr('Too short — hold the recording a little longer (at least 1 second)');
+  if(blob.size>10485760)return vErr('Voice message too large ('+(blob.size/1048576).toFixed(1)+' MB, max 10 MB)');
+  M.pre={cid:r.cid,blob:blob,mime:base,raw:raw,dur:Math.min(dur,180000),tr:(r.fin||'').trim().slice(0,5000)||null,url:URL.createObjectURL(blob),sr:!!r.sr};
   if(send)preSend();else{rComm();scrollEnd()}})}
-function preBar(){var p=M.pre,pl=M.pa&&!M.pa.paused;return'<div class="k7comp k7rec k7pre"><button class="k7x" data-k="vdisc" aria-label="Discard voice message">🗑</button><button class="k7x k7pp" data-k="vprep" aria-label="'+(pl?'Pause preview':'Play preview')+'">'+(pl?'<i class="k7ps"></i>':'▶')+'</button><span class="k7timer">'+mm(p.dur)+'</span><span class="k7plb mu">'+(p.up?'Sending…':'Voice message ready')+'</span><button class="k7send" data-k="vstop" aria-label="Send voice message"'+(p.up?' disabled':'')+'>➤</button><p class="k7live">'+(p.tr?E(p.tr):p.sr?'Transcript unavailable':'Transcript isn’t available on this device')+'</p></div>'}
+function upVoice(path,buf,types){var t=types[0];return CS.sb.storage.from('voice-messages').upload(path,buf,{contentType:t,upsert:false,cacheControl:'3600'}).then(function(u){
+  if(u.error&&types.length>1&&/mime|415/i.test(eTxt(u.error)))return upVoice(path,buf,types.slice(1));if(u.error)u.error._t=t;return u})}
+function preSend(){var p=M.pre;if(!p||p.up)return;p.up=1;M.err='';if(M.pa){try{M.pa.pause()}catch(e){}M.pa=null}
+ var ext=p.mime==='audio/mp4'||p.mime==='audio/aac'?'m4a':p.mime==='audio/ogg'?'ogg':p.mime==='audio/mpeg'?'mp3':p.mime==='audio/wav'?'wav':'webm',path=p.cid+'/'+me()+'-'+Date.now()+'.'+ext;
+ var types=[p.mime].concat(p.mime==='audio/mp4'?['audio/x-m4a','audio/aac']:[]);
+ var tmp={id:'tmp'+Date.now(),conversation_id:p.cid,sender_id:me(),kind:'voice',voice_path:path,duration_ms:p.dur,transcript:p.tr,created_at:new Date().toISOString(),_p:1};M.url[path]=p.url;(M.msgs[p.cid]=M.msgs[p.cid]||[]).push(tmp);M.pre=null;rComm();scrollEnd();
+ /* upload raw bytes with an explicit, codec-free content type (no multipart/FormData, so the browser can't change or drop the type) */
+ (p.blob.arrayBuffer?p.blob.arrayBuffer():new Response(p.blob).arrayBuffer()).then(function(buf){if(!buf.byteLength)throw{stage:'read',message:'recorded audio is empty'};return upVoice(path,buf,types)}).then(function(u){if(u.error){u.error.stage='upload';throw u.error}
+  return CS.sb.from('messages').insert({conversation_id:p.cid,sender_id:me(),kind:'voice',voice_path:path,duration_ms:Math.max(300,Math.min(p.dur,180000)),size_bytes:p.blob.size,transcript:p.tr}).then(function(x){if(x.error){x.error.stage='save';throw x.error}})}).then(function(){p.sent=1;M.sig[p.cid]='';return M.chat(p.cid)}).catch(function(e){
+  M.msgs[p.cid]=(M.msgs[p.cid]||[]).filter(function(m){return m!==tmp});p.up=0;M.pre=p;
+  var st=e&&e.stage;if(st==='save'){CS.sb.storage.from('voice-messages').remove([path]).catch(function(){})}
+  vErr((st==='upload'?'Upload failed':st==='save'?'Uploaded, but saving the message failed':st==='read'?'Couldn’t read the recording':'Couldn’t send')+': '+eTxt(e)+' · '+(e&&e._t||p.mime)+', '+Math.round(p.blob.size/1024)+' KB, '+(p.dur/1000).toFixed(1)+' s. Tap ➤ to retry.')})}
+
+function preBar(){var p=M.pre,pl=M.pa&&!M.pa.paused;return'<div class="k7comp k7rec k7pre">'+errH()+'<button class="k7x" data-k="vdisc" aria-label="Discard voice message">🗑</button><button class="k7x k7pp" data-k="vprep" aria-label="'+(pl?'Pause preview':'Play preview')+'">'+(pl?'<i class="k7ps"></i>':'▶')+'</button><span class="k7timer">'+mm(p.dur)+'</span><span class="k7plb mu">'+(p.up?'Sending…':'Voice message ready')+'</span><button class="k7send" data-k="vstop" aria-label="Send voice message"'+(p.up?' disabled':'')+'>➤</button><p class="k7live">'+(p.tr?E(p.tr):p.sr?'Transcript unavailable':'Transcript isn’t available on this device')+'</p></div>'}
 function prePlay(){var p=M.pre;if(!p)return;if(M.pa&&!M.pa.paused){M.pa.pause();return rComm()}if(!M.pa||M.pa._u!==p.url){M.pa=new Audio(p.url);M.pa._u=p.url;M.pa.onended=M.pa.onpause=function(){rComm()};M.pa.onerror=function(){toast('Preview can’t play on this device, but you can still send it')}}M.pa.play().catch(function(){});rComm()}
 function preDiscard(q){var p=M.pre;if(M.pa){try{M.pa.pause()}catch(e){}M.pa=null}M.pre=null;if(p&&p.url&&!p.sent)try{URL.revokeObjectURL(p.url)}catch(e){}if(!q){toast('Voice message discarded');rComm()}}
-function preSend(){var p=M.pre;if(!p||p.up)return;p.up=1;if(M.pa){try{M.pa.pause()}catch(e){}M.pa=null}
- var ext=p.mime==='audio/mp4'||p.mime==='audio/aac'?'m4a':p.mime==='audio/ogg'?'ogg':'webm',path=p.cid+'/'+me()+'-'+Date.now()+'.'+ext;
- var tmp={id:'tmp'+Date.now(),conversation_id:p.cid,sender_id:me(),kind:'voice',voice_path:path,duration_ms:p.dur,transcript:p.tr,created_at:new Date().toISOString(),_p:1};M.url[path]=p.url;(M.msgs[p.cid]=M.msgs[p.cid]||[]).push(tmp);M.pre=null;rComm();scrollEnd();
- CS.sb.storage.from('voice-messages').upload(path,p.blob,{contentType:p.mime,upsert:false,cacheControl:'3600'}).then(function(u){if(u.error)throw Object.assign(u.error,{stage:'upload'});
-  return CS.sb.from('messages').insert({conversation_id:p.cid,sender_id:me(),kind:'voice',voice_path:path,duration_ms:Math.max(300,Math.min(p.dur,180000)),size_bytes:p.blob.size,transcript:p.tr})}).then(function(x){if(x.error)throw x.error;p.sent=1;M.sig[p.cid]='';return M.chat(p.cid)}).catch(function(e){M.msgs[p.cid]=(M.msgs[p.cid]||[]).filter(function(m){return m!==tmp});p.up=0;M.pre=p;rComm();
-  var t=String(e&&(e.message||e.error||e)||'');toast((e&&e.stage==='upload'?'Upload failed':'Couldn’t send')+(/mime|type/i.test(t)?' — this audio format isn’t accepted ('+p.mime+')':/size|large/i.test(t)?' — file too large':t?' — '+t:'')+'. Tap ➤ to retry.')})}
-
 function sendText(){var cid=K.cid,i=document.getElementById('k7in'),v=((i&&i.value)||'').trim();if(!v)return;M.draft[cid]='';var tmp={id:'tmp'+Date.now(),conversation_id:cid,sender_id:me(),kind:'text',body:v,created_at:new Date().toISOString(),_p:1};(M.msgs[cid]=M.msgs[cid]||[]).push(tmp);var wasF=document.activeElement===i;rComm();scrollEnd();var n=document.getElementById('k7in');if(n&&wasF)n.focus();
  CS.sb.from('messages').insert({conversation_id:cid,sender_id:me(),kind:'text',body:v}).then(function(r){if(r.error)throw r.error;M.sig[cid]='';return M.chat(cid)}).catch(function(e){M.msgs[cid]=M.msgs[cid].filter(function(m){return m!==tmp});M.draft[cid]=v;rComm();toast('Couldn’t send: '+A.E(e))})}
 /* playback */
@@ -6923,7 +6939,8 @@ document.addEventListener('click',function(e){
  else if(k==='vstop'){if(M.rec)recStop(true);else preSend()}
  else if(k==='vpause')recStop(false);
  else if(k==='vprep')prePlay();
- else if(k==='vdisc')preDiscard();
+ else if(k==='vdisc'){M.err='';preDiscard()}
+ else if(k==='verrx'){M.err='';rComm()}
  else if(k==='vplay')vPlay(x);
  else if(k==='vseek')vSeek(x,e,b);
  else if(k==='vspd'){M.rate=M.rate===1?1.5:M.rate===1.5?2:1;if(M.play.a)M.play.a.playbackRate=M.rate;[].forEach.call(document.querySelectorAll('.k7sp'),function(z){z.textContent=M.rate+'×'})}
