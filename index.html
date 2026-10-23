@@ -570,7 +570,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v89 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v90 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2564,7 +2564,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v89</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v90</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4843,7 +4843,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v89 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v90 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6226,7 +6226,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v89';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v90';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -6556,7 +6556,7 @@ html.k7on,html.k7on body{overflow:hidden;overscroll-behavior:none}
 (function(){
 if(!window.CLOUD||!CLOUD.api)return;
 var CS=CLOUD.S,C=CLOUD.C,A=CLOUD.api,prev=rComm,E=esc;
-var K={v:'feed',hist:[],uid:null,pid:null,pt:'prog',P:{},up:{},aug:{},augBusy:false,ok:{st:null,dn:null},st:[],stAt:0,stBusy:false,url:{},kind:'text',ed:null,sn:null,sv:null,busy:false};
+var K={rs:{},ut:{},v:'feed',hist:[],uid:null,pid:null,pt:'prog',P:{},up:{},aug:{},augBusy:false,ok:{st:null,dn:null},st:[],stAt:0,stBusy:false,url:{},kind:'text',ed:null,sn:null,sv:null,busy:false};
 try{K.seen=JSON.parse(localStorage.getItem('atf_story_seen')||'{}')}catch(e){K.seen={}}
 function saveSeen(){var now=Date.now(),o={};Object.keys(K.seen).forEach(function(k){if(now-K.seen[k]<26*3600e3)o[k]=K.seen[k]});K.seen=o;try{localStorage.setItem('atf_story_seen',JSON.stringify(o))}catch(e){}}
 function me(){return CS.user&&CS.user.id}
@@ -6564,14 +6564,16 @@ function missing(e,w){if(!e)return false;var m=((e.message||'')+' '+(e.details||
 function prc(){return 'id,username,avatar_url,bio,role'+(K.ok.dn===false?'':',display_name')}
 function getProfiles(ids){ids=ids.filter(function(x,i){return x&&ids.indexOf(x)===i&&!K.up[x]});if(!ids.length)return Promise.resolve();
  return CS.sb.from('profiles').select(prc()).in('id',ids).then(function(r){if(r.error&&missing(r.error,'display_name')&&K.ok.dn!==false){K.ok.dn=false;return getProfiles(ids)}if(r.error)throw r.error;if(K.ok.dn==null)K.ok.dn=true;(r.data||[]).forEach(function(p){K.up[p.id]=p});return signAv((r.data||[]).map(function(p){return p.avatar_url}))})}
-function signB(bk,paths){paths=paths.filter(function(p,i){return p&&!/^https?:/.test(p)&&paths.indexOf(p)===i&&!K.url[bk+'|'+p]});if(!paths.length)return Promise.resolve();
- return CS.sb.storage.from(bk).createSignedUrls(paths,3600).then(function(r){(r.data||[]).forEach(function(x){if(x.signedUrl)K.url[bk+'|'+x.path]=x.signedUrl})}).catch(function(){})}
+function signB(bk,paths){K.ut=K.ut||{};paths=paths.filter(function(p,i){return p&&!/^https?:/.test(p)&&paths.indexOf(p)===i&&!(K.url[bk+'|'+p]&&Date.now()-(K.ut[bk+'|'+p]||0)<3e6)});if(!paths.length)return Promise.resolve();
+ return CS.sb.storage.from(bk).createSignedUrls(paths,3600).then(function(r){(r.data||[]).forEach(function(x){if(x.signedUrl){K.url[bk+'|'+x.path]=x.signedUrl;K.ut[bk+'|'+x.path]=Date.now()}})}).catch(function(){})}
 function thumbOf(p){return p&&!/^https?:/.test(p)&&/\/avatar-\d+\.jpg$/.test(p)?p.replace(/\.jpg$/,'-t.jpg'):null}
 function signAv(p){var all=[];(p||[]).forEach(function(x){if(x){all.push(x);var t=thumbOf(x);if(t)all.push(t)}});return signB('post-images',all)}
 function avUrl(u,sz){if(!u||!u.avatar_url)return'';if(/^https:/.test(u.avatar_url))return u.avatar_url;var full=K.url['post-images|'+u.avatar_url]||'',t=thumbOf(u.avatar_url),tu=t&&K.url['post-images|'+t];if(tu&&sz&&sz*(window.devicePixelRatio||1)<=200)return tu;return full||tu||''}
 function pimg(path){return C.img[path]||K.url['post-images|'+path]||''}
 function nm(u){return u?(u.display_name||u.username||'member'):'member'}
-function av(u,sz,ring){sz=sz||36;var s=avUrl(u,sz),l=(nm(u)[0]||'?').toUpperCase();return'<span class="cav'+(ring?' k4ring':'')+'" style="width:'+sz+'px;height:'+sz+'px;font-size:'+Math.round(sz*.45)+'px">'+(s?'<img src="'+E(s)+'" alt="" decoding="async">':E(l))+'</span>'}
+function avAlt(u,s){if(!u||!u.avatar_url||/^https:/.test(u.avatar_url))return'';var f=K.url['post-images|'+u.avatar_url]||'',t=thumbOf(u.avatar_url),tu=t&&K.url['post-images|'+t]||'';return s===f?tu:f!==s?f:''}
+function avI(u,s,alt){return'<img src="'+E(s)+'" alt="" decoding="async" data-avp="'+E(u&&u.avatar_url||'')+'"'+(alt&&alt!==s?' data-fb="'+E(alt)+'"':'')+'>'}
+function av(u,sz,ring){sz=sz||36;var s=avUrl(u,sz),l=(nm(u)[0]||'?').toUpperCase();return'<span class="cav'+(ring?' k4ring':'')+'" data-l="'+E(l)+'" style="width:'+sz+'px;height:'+sz+'px;font-size:'+Math.round(sz*.45)+'px">'+(s?avI(u,s,avAlt(u,s)):E(l))+'</span>'}
 function U(id,fb){return K.up[id]||fb||{id:id,username:'member'}}
 /* ---------- augment v70 posts with payload + profile fields ---------- */
 function augment(list){var need=list.filter(function(p){return!K.aug[p.id]});var ids=list.map(function(p){return p.user_id});
@@ -6656,7 +6658,7 @@ function postV(){var o=K.P[K.uid]||{},p=(o.posts||[]).concat(C.posts||[]).concat
  var f=(C.posts||[]).find(function(x){return x.id===p.id});return h+card(f||p)}
 function editV(){var u=K.ed;var h=top('<button class="cib" data-k="back" aria-label="Cancel">✕</button>','Edit profile','<button class="k4save" data-k="esave"'+(K.busy?' disabled':'')+'>'+(K.busy?'Saving…':'Save')+'</button>');
  var src=u.avNew||avUrl(u);
- h+='<section class="cpro"><label class="k4avl"><span class="cav" style="width:96px;height:96px;font-size:40px">'+(src?'<img src="'+E(src)+'" alt="">':E((nm(u)[0]||'?').toUpperCase()))+'</span><span class="k4lnk">Change photo</span><input type="file" id="k4av" accept="image/*" hidden></label></section>';
+ h+='<section class="cpro"><label class="k4avl"><span class="cav" data-l="'+E((nm(u)[0]||'?').toUpperCase())+'" style="width:96px;height:96px;font-size:40px">'+(src?(u.avNew?'<img src="'+E(src)+'" alt="">':avI(u,src,avAlt(u,src))):E((nm(u)[0]||'?').toUpperCase()))+'</span><span class="k4lnk">Change photo</span><input type="file" id="k4av" accept="image/*" hidden></label></section>';
  h+='<div class="k4form"><label>Display name<input id="k4dn" maxlength="40" value="'+E(u.display_name||'')+'"'+(K.ok.dn===false?' disabled placeholder="Needs database update"':' placeholder="Your name"')+'></label>'+(K.ok.dn===false?'<small class="mu">Display names need supabase_v84_community.sql to be run.</small>':'')+
   '<label>Username<input id="k4un" maxlength="24" value="'+E(u.username||'')+'" autocapitalize="none" autocomplete="off"></label><small class="mu">3–24 letters, numbers or _</small><label>Bio<textarea id="k4bio" maxlength="300" rows="3">'+E(u.bio||'')+'</textarea></label>'+(u.err?'<p class="k4err">'+E(u.err)+'</p>':'')+'</div>';return h}
 function snewV(){var s=K.sn;var h=top('<button class="cib" data-k="back" aria-label="Cancel">✕</button>','New story','<button class="k4save" data-k="ssave"'+(K.busy||!s.img?' disabled':'')+'>'+(K.busy?'Sharing…':'Share')+'</button>');
@@ -6880,14 +6882,14 @@ function viewer(){var v=K.sv,el=document.getElementById('k4sv');clearTimeout(vie
  viewer.t=setTimeout(function(){step(1)},5000)}
 function step(d){var v=K.sv;if(!v)return;var l=v.G.g[v.o[v.ui]]||[];v.i+=d;if(v.i>=l.length){v.ui++;v.i=0;if(v.ui>=v.o.length)return closeSV()}else if(v.i<0){if(v.ui>0){v.ui--;v.i=(v.G.g[v.o[v.ui]]||[1]).length-1}else v.i=0}viewer()}
 function closeSV(){K.sv=null;clearTimeout(viewer.t);var el=document.getElementById('k4sv');if(el)el.remove();if(tab==='comm')rComm()}
-window.STORY84={K:K,open:openSV,close:closeSV,step:step,reload:function(){return loadStories(true)}};
+window.STORY84={K:K,hq:function(){return hq.apply(null,arguments)},rComm:function(){rComm()},open:openSV,close:closeSV,step:step,reload:function(){return loadStories(true)}};
 /* ---------- actions ---------- */
 function dataUrl(f,max){return resize(f,max,.85)}
 /* v86: high-quality image scaling — step-down halving + high smoothing; optional centre square crop */
 function hq(file,max,q,sq){return new Promise(function(res,rej){var url=URL.createObjectURL(file),im=new Image();im.onload=function(){try{URL.revokeObjectURL(url);var sw=im.naturalWidth,sh=im.naturalHeight,sx=0,sy=0;if(sq){var m=Math.min(sw,sh);sx=(sw-m)/2;sy=(sh-m)/2;sw=sh=m}
- var sc=Math.min(1,max/Math.max(sw,sh)),tw=Math.max(1,Math.round(sw*sc)),th=Math.max(1,Math.round(sh*sc)),c=document.createElement('canvas'),x=c.getContext('2d'),cw=sw,ch=sh;c.width=sw;c.height=sh;x.imageSmoothingEnabled=true;x.imageSmoothingQuality='high';x.drawImage(im,sx,sy,sw,sh,0,0,sw,sh);
+ var sc=Math.min(1,max/Math.max(sw,sh)),tw=Math.max(1,Math.round(sw*sc)),th=Math.max(1,Math.round(sh*sc)),c=document.createElement('canvas'),x=c.getContext('2d'),f0=Math.min(1,Math.max(tw*4,2048)/Math.max(sw,sh),Math.sqrt(8e6/(sw*sh))),cw=Math.max(1,Math.round(sw*f0)),ch=Math.max(1,Math.round(sh*f0));c.width=cw;c.height=ch;x.imageSmoothingEnabled=true;x.imageSmoothingQuality='high';x.drawImage(im,sx,sy,sw,sh,0,0,cw,ch);
  while(cw/2>=tw&&ch/2>=th){var n=document.createElement('canvas'),nx=n.getContext('2d');n.width=Math.round(cw/2);n.height=Math.round(ch/2);nx.imageSmoothingEnabled=true;nx.imageSmoothingQuality='high';nx.drawImage(c,0,0,cw,ch,0,0,n.width,n.height);c=n;cw=n.width;ch=n.height}
- var o=document.createElement('canvas'),ox=o.getContext('2d');o.width=tw;o.height=th;ox.imageSmoothingEnabled=true;ox.imageSmoothingQuality='high';ox.fillStyle='#fff';ox.fillRect(0,0,tw,th);ox.drawImage(c,0,0,cw,ch,0,0,tw,th);res(o.toDataURL('image/jpeg',q))}catch(e){rej(e)}};im.onerror=function(){URL.revokeObjectURL(url);rej(new Error('bad image'))};im.src=url})}
+ var o=document.createElement('canvas'),ox=o.getContext('2d');o.width=tw;o.height=th;ox.imageSmoothingEnabled=true;ox.imageSmoothingQuality='high';ox.fillStyle='#fff';ox.fillRect(0,0,tw,th);ox.drawImage(c,0,0,cw,ch,0,0,tw,th);var du=o.toDataURL('image/jpeg',q);if(!/^data:image\/jpeg;base64,/.test(du)||du.length<800)return rej(new Error('image too large for this device'));res(du)}catch(e){rej(e)}};im.onerror=function(){URL.revokeObjectURL(url);rej(new Error('bad image'))};im.src=url})}
 function avPair(f){return hq(f,1024,.9,true).then(function(full){return hq(f,256,.85,true).then(function(t){return{full:full,thumb:t}})})}
 function dToF(d){return new File([A.b64blob(d)],'a.jpg',{type:'image/jpeg'})}
 function upload(bk,path,durl){return CS.sb.storage.from(bk).upload(path,A.b64blob(durl),{contentType:'image/jpeg',upsert:false}).then(function(r){if(r.error)throw r.error;return path})}
@@ -6911,7 +6913,7 @@ function saveStory(){var s=K.sn;s.cap=(document.getElementById('k4sc').value||''
  K.busy=true;s.err=null;rComm();var uid=me(),path=uid+'/'+Date.now()+'.jpg';
  upload('story-images',path,s.img).then(function(){return CS.sb.from('stories').insert({user_id:uid,image_path:path,caption:s.cap||null,visibility:s.vis}).select('id').single()}).then(function(r){if(r.error)throw r.error;K.url['story-images|'+path]=s.img;K.busy=false;K.sn=null;toast('Story shared ✓');K.v='feed';K.hist=[];loadStories(true);rComm()}).catch(function(e){K.busy=false;var m=e.message||String(e);s.err=missing(e,'stories')||/bucket not found/i.test(m)?'Stories aren’t enabled yet — run supabase_v84_community.sql in Supabase.':'Couldn’t share: '+m;rComm()})}
 function delStory(id){if(!confirm('Delete this story?'))return;CS.sb.from('stories').delete().eq('id',id).select('id,image_path').then(function(r){if(r.error)return toast(r.error.message);var row=(r.data||[])[0];if(row&&row.image_path)CS.sb.storage.from('story-images').remove([row.image_path]).catch(function(){});K.st=K.st.filter(function(s){return s.id!==id});toast('Story deleted');closeSV();loadStories(true)})}
-function zoomAv(uid){var u=U(uid),s=avUrl(u);if(!s)return;var z=document.getElementById('k4avz');if(z)z.remove();z=document.createElement('div');z.id='k4avz';z.setAttribute('role','dialog');z.setAttribute('aria-label','Profile photo');z.innerHTML='<button data-k="avzx" aria-label="Close" class="k4avx">✕</button><img src="'+E(s)+'" alt="Profile photo of '+E(nm(u))+'" data-k="avzx">';document.body.appendChild(z)}
+function zoomAv(uid){var u=U(uid),s=avUrl(u);if(!s)return;var z=document.getElementById('k4avz');if(z)z.remove();z=document.createElement('div');z.id='k4avz';z.setAttribute('role','dialog');z.setAttribute('aria-label','Profile photo');var fb=avAlt(u,s);z.innerHTML='<button data-k="avzx" aria-label="Close" class="k4avx">✕</button><img src="'+E(s)+'" alt="Profile photo of '+E(nm(u))+'" data-k="avzx" data-avp="'+E(u.avatar_url||'')+'"'+(fb?' data-fb="'+E(fb)+'"':'')+'>';document.body.appendChild(z)}
 function share(){var u=U(K.uid),t='Follow '+(nm(u))+' (@'+(u.username||'')+') on AT Fitness 💪',url=location.origin+location.pathname;
  if(navigator.share)navigator.share({title:'AT Fitness',text:t,url:url}).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(t+' '+url).then(function(){toast('Link copied ✓')},function(){toast(t)});else toast(t)}
 document.addEventListener('click',function(e){
@@ -6963,6 +6965,16 @@ function home(){tab='home'}
 document.addEventListener('change',function(e){var t=e.target;if(t.id!=='k4av'&&t.id!=='k4sf')return;var f=t.files&&t.files[0];if(!f)return;
  if(t.id==='k4av')syncEd();(t.id==='k4av'?avPair(f):hq(f,1440,.88,false)).then(function(d){if(t.id==='k4av'&&K.ed){K.ed.avNew=d.full;K.ed.avThumb=d.thumb}else if(K.sn){K.sn.cap=(document.getElementById('k4sc')||{}).value||K.sn.cap;K.sn.img=d}rComm()},function(){toast('Couldn’t read that image')})},true);
 document.addEventListener('keydown',function(e){if(!K.sv)return;if(e.key==='Escape')closeSV();else if(e.key==='ArrowRight')step(1);else if(e.key==='ArrowLeft')step(-1)});
+
+/* v90: avatar <img> fallback chain: other size → fresh signed URL → initials (never a broken icon) */
+document.addEventListener('error',function(e){var im=e.target;if(!im||im.tagName!=='IMG'||!im.closest||!(im.closest('.cav')||im.closest('#k4avz')))return;
+ var fb=im.getAttribute('data-fb'),p0=im.getAttribute('data-avp');if(fb){im.removeAttribute('data-fb');im.src=fb;if(p0&&!/^https?:/.test(p0)&&!K.rs[p0]){K.rs[p0]=1;var t0=thumbOf(p0);delete K.url['post-images|'+p0];if(t0)delete K.url['post-images|'+t0];signAv([p0])}return}
+ var p=im.getAttribute('data-avp');if(p&&!/^https?:/.test(p)&&!K.rs[p]){K.rs[p]=1;var t=thumbOf(p);delete K.url['post-images|'+p];if(t)delete K.url['post-images|'+t];
+  CS.sb&&CS.sb.storage.from('post-images').createSignedUrls([p].concat(t?[t]:[]),3600).then(function(r){var L=(r.data||[]).filter(function(x){return x.signedUrl});L.forEach(function(x){K.url['post-images|'+x.path]=x.signedUrl;K.ut['post-images|'+x.path]=Date.now()});
+   if(L.length&&im.isConnected){im.setAttribute('data-fb',L.length>1?L[1].signedUrl:'');im.src=L[0].signedUrl}else gone(im)}).catch(function(){gone(im)});return}
+ gone(im)},true);
+function gone(im){if(!im.isConnected)return;var sp=im.closest('.cav');if(im.closest('#k4avz')){var z=document.getElementById('k4avz');if(z)z.remove();toast('Photo unavailable');return}if(sp){sp.classList.add('k4noimg');im.replaceWith(document.createTextNode(sp.getAttribute('data-l')||'?'))}else im.remove()}
+
 })();
 </script>
 </body></html>
