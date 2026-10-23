@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-IE"><head><script>(function(){var h=location.href;if(/[#&?](access_token|error_description|error_code|code|token_hash)=/.test(h))window.__AUTH_RET=h})()</script>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -570,7 +570,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v87 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v88 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2564,7 +2564,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v87</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v88</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4843,7 +4843,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v87 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v88 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6226,7 +6226,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v87';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v88';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -6537,6 +6537,18 @@ function authReturn(){var h=window.__AUTH_RET;if(!h)return false;window.__AUTH_R
 #k7wave{flex:1;min-width:120px;height:44px}
 .k7live{flex-basis:100%;margin:2px 4px 0;font-size:13px;color:var(--mu);font-style:italic;min-height:18px}
 .k7ps{display:inline-block;width:12px;height:14px;border-left:4px solid currentColor;border-right:4px solid currentColor;vertical-align:middle}.k7row.me .k7tr.mu{color:#ffffffcc}
+/* v88: fixed chat shell + iOS keyboard */
+html.k7on,html.k7on body{overflow:hidden;overscroll-behavior:none}
+.k7shell{position:fixed;left:0;right:0;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--bg);z-index:45;will-change:transform}
+.k7shell .ctb.k4tb{position:relative;flex:none}
+.k7shell .k7msgs{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:12px}
+.k7shell .k7comp{position:relative;flex:none;left:auto;right:auto;bottom:auto}
+.k7stp i{display:block;width:13px;height:13px;border-radius:3px;background:#ef4444;margin:auto}
+.k7pre .k7plb{flex:1;font-size:13px}.k7send:disabled{opacity:.5}
+/* v88: iOS zooms into any field under 16px — keep every field at 16px on touch WebKit */
+@supports (-webkit-touch-callout:none){input,textarea,select{font-size:16px!important}}
+@media (pointer:coarse){input,textarea,select{font-size:16px!important}}
+.k7comp textarea{font-size:16px}
 </style><script>/* v84/v86: real Community UI + stories + notifications + HQ avatars */
 (function(){
 if(!window.CLOUD||!CLOUD.api)return;
@@ -6648,16 +6660,16 @@ function snewV(){var s=K.sn;var h=top('<button class="cib" data-k="back" aria-la
  h+='<label class="k4snp">'+(s.img?'<img src="'+E(s.img)+'" alt="">':'<span>📷<br>Tap to choose a photo</span>')+'<input type="file" id="k4sf" accept="image/*" hidden></label>';
  h+='<div class="k4form"><label>Text (optional)<input id="k4sc" maxlength="200" value="'+E(s.cap||'')+'" placeholder="Say something…"></label><div class="k4chips">'+[['public','🌍 Everyone'],['followers','👥 Followers']].map(function(x){return'<button class="k4chip'+(s.vis===x[0]?' on':'')+'" data-k="svis" data-x="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div><small class="mu">Disappears after 24 hours.</small>'+(s.err?'<p class="k4err">'+E(s.err)+'</p>':'')+'</div>';return h}
 function rC(){if(!CS.sb||!CS.chk||!CS.user)return prev.apply(this,arguments);
- if(K.lu!==me()){K.lu=me();K.v='feed';K.hist=[];K.P={};K.cid=null;K.xp=null;M.convs=[];M.msgs={};M.last={};M.unr={};M.total=0;M.at=0;M.sig={};N.list=[];N.at=0;N.seenTop=null;if(M.rec)recCancel()}
+ if(K.lu!==me()){K.lu=me();K.v='feed';K.hist=[];K.P={};K.cid=null;K.xp=null;M.convs=[];M.msgs={};M.last={};M.unr={};M.total=0;M.at=0;M.sig={};N.list=[];N.at=0;N.seenTop=null;if(M.rec)recCancel();M.pre=null}
  var el=document.getElementById('t-comm');if(!el)return;document.body.classList.add('cmode');
  if(K.v==='feed'||K.v==='notif')N.load(false);
  if(K.v==='feed'||K.v==='dm')M.inbox(false);
  if(K.v==='feed'){loadStories();if(!C.posts&&!C.loading)A.loadFeed()}
  ensureAug();
  var h=K.v==='prof'?profV():K.v==='list'?listV():K.v==='post'?postV():K.v==='edit'&&K.ed?editV():K.v==='snew'&&K.sn?snewV():K.v==='notif'?notifV():K.v==='dm'?inboxV():K.v==='chat'?chatV():feedV();
- var y=window.scrollY,a=document.activeElement,aid=a&&a.id,ss=a&&a.selectionStart;
+ if(K.v==='chat')h='<div class="k7shell" id="k7shell">'+h+'</div>';var y=window.scrollY,a=document.activeElement,aid=K.v===K.pv?a&&a.id:null,ss=a&&a.selectionStart;if(K.v!==K.pv&&a&&a.blur)a.blur();K.pv=K.v;
  el.innerHTML='<div class="cwrap k4wrap"><div class="cbodyw">'+h+'</div>'+(K.v==='chat'?'':cNav())+'</div>';
- if(aid){var n=document.getElementById(aid);if(n&&n.focus){n.focus();try{n.setSelectionRange(ss,ss)}catch(e){}}}window.scrollTo(0,y);
+ if(aid){var n=document.getElementById(aid);if(n&&n.focus){n.focus();try{n.setSelectionRange(ss,ss)}catch(e){}}}if(K.v==='chat')window.scrollTo(0,0);else window.scrollTo(0,y);vvFit();
  if(K.sv)viewer();paint()}
 /* ---------- v86 notifications ---------- */
 var NP_K='tt_notif_v1';
@@ -6735,8 +6747,14 @@ M.chat=function(cid,quiet){if(!cid)return Promise.resolve();return CS.sb.from('m
    unread.length?CS.sb.from('messages').update({read_at:new Date().toISOString()}).in('id',unread).then(function(){}):null,
    unread.length&&N.ok?CS.sb.from('notifications').update({read_at:new Date().toISOString()}).eq('type','message').eq('conversation_id',cid).is('read_at',null).then(function(){N.list.forEach(function(n){if(n.type==='message'&&n.conversation_id===cid&&!n.read_at)n.read_at=new Date().toISOString()});paint()}):null]).then(function(){
    var ch=M.sig[cid]!==sig||need.length;M.sig[cid]=sig;M.msgs[cid]=L;if(unread.length){M.unr[cid]=0;mCount()}
-   if(tab==='comm'&&K.v==='chat'&&K.cid===cid&&!M.rec&&(ch||!quiet)){rComm();scrollEnd()}})})};
-function scrollEnd(){var e=document.querySelector('.k7end');if(e)e.scrollIntoView({block:'end'})}
+   if(tab==='comm'&&K.v==='chat'&&K.cid===cid&&(ch||!quiet)){var mb=document.getElementById('k7msgs');if(mb){var bot=mb.scrollHeight-mb.scrollTop-mb.clientHeight<80;mb.innerHTML=msgsH();if(bot||!quiet)scrollEnd()}else{rComm();scrollEnd()}}})})};
+function scrollEnd(){var mb=document.getElementById('k7msgs');if(mb)mb.scrollTop=mb.scrollHeight}
+/* v88: fixed chat layout that follows the visual viewport (iOS keyboard) */
+function vvFit(){var s=document.getElementById('k7shell');if(s&&!s.getClientRects().length)s=null;document.documentElement.classList.toggle('k7on',!!s);if(!s)return;var v=window.visualViewport,h=v?v.height:window.innerHeight,mb=document.getElementById('k7msgs'),bot=mb&&mb.scrollHeight-mb.scrollTop-mb.clientHeight<80;
+ s.style.height=Math.round(h)+'px';s.style.transform=v&&v.offsetTop>0?'translateY('+Math.round(v.offsetTop)+'px)':'';if(window.scrollY)window.scrollTo(0,0);if(bot)scrollEnd()}
+if(window.visualViewport){visualViewport.addEventListener('resize',vvFit);visualViewport.addEventListener('scroll',vvFit)}window.addEventListener('resize',vvFit);setInterval(function(){if(document.documentElement.classList.contains('k7on')||document.getElementById('k7shell'))vvFit()},1000);
+document.addEventListener('focusin',function(e){if(e.target&&e.target.id==='k7in')setTimeout(vvFit,50),setTimeout(vvFit,350)});
+window.DM88={vvFit:vvFit,pickMime:pickMime,isIOS:isIOS};
 function rtOn(){if(M.rt||!CS.sb||!CS.sb.channel||!/supabase\.co/.test(CS.sb.supabaseUrl||''))return;try{M.rt=CS.sb.channel('dm-'+me()).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},function(p){var m=p&&p.new;if(K.v==='chat'&&m&&m.conversation_id===K.cid)M.chat(K.cid,true);else{mCount();if(K.v==='dm')M.inbox(true)}}).subscribe()}catch(e){M.rt=1}}
 setInterval(function(){if(document.hidden||!CS.user||M.ok===false)return;if(tab==='comm'&&K.v==='chat')M.chat(K.cid,true);else if(tab==='comm'&&K.v==='dm')M.inbox(true)},4000);
 setInterval(function(){if(!document.hidden&&CS.user)mCount()},45000);
@@ -6756,42 +6774,70 @@ function voiceH(m){var p=M.play.id===m.id&&M.play.a?M.play.a:null,pd=p?(isFinite
   (m.transcript?'<p class="k7tr">📝 '+E(m.transcript)+'</p>':'<p class="k7tr mu">Transcript unavailable</p>')}
 function chatV(){var cid=K.cid,o=K.dmWith,u=U(o),L=M.msgs[cid];
  var h='<header class="ctb k4tb k7tb">'+backB()+'<button class="k7who" data-k="user" data-x="'+E(o)+'">'+av(u,34)+'<span><b>'+E(nm(u))+'</b><small class="mu">@'+E(u.username||'member')+'</small></span></button><span class="cib0"></span></header>';
- h+='<div class="k7msgs">';if(!L)h+='<p class="mu k4pad">Loading…</p>';else if(!L.length)h+='<p class="mu k4pad" style="text-align:center">Say hi to '+E(nm(u))+' 👋<br><small>Messages are private between the two of you.</small></p>';
+ h+='<div class="k7msgs" id="k7msgs">'+msgsH()+'</div>';
+ if((C.blk||[]).indexOf(o)>=0)return h+'<div class="k7comp"><p class="mu">You blocked this user.</p></div>';
+ if(M.rec)return h+recBar();if(M.pre&&M.pre.cid===cid)return h+preBar();
+ return h+compH()}
+function msgsH(){var cid=K.cid,o=K.dmWith,u=U(o),L=M.msgs[cid],h='';if(!L)h+='<p class="mu k4pad">Loading…</p>';else if(!L.length)h+='<p class="mu k4pad" style="text-align:center">Say hi to '+E(nm(u))+' 👋<br><small>Messages are private between the two of you.</small></p>';
  var lastDay='';(L||[]).forEach(function(m,i){var d=new Date(m.created_at).toDateString();if(d!==lastDay){lastDay=d;h+='<div class="k7day">'+E(new Date(m.created_at).toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'}))+'</div>'}
   var mine=m.sender_id===me(),lastMine=mine&&!(L.slice(i+1).some(function(x){return x.sender_id===me()}));
   h+='<div class="k7row'+(mine?' me':'')+'"><div class="k7b'+(m.kind==='voice'?' vo':'')+(m._p?' pend':'')+'">'+(m.kind==='voice'?voiceH(m):'<span class="k7tx">'+E(m.body)+'</span>')+'<small class="k7tm">'+E(new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}))+(mine?(m._p?' · sending…':m.read_at&&lastMine?' · Seen':' · ✓'):'')+'</small></div></div>'});
- h+='<div class="k7end"></div></div>';
- if((C.blk||[]).indexOf(o)>=0)return h+'<div class="k7comp"><p class="mu">You blocked this user.</p></div>';
- if(M.rec)return h+recBar();
- return h+'<div class="k7comp"><textarea id="k7in" rows="1" maxlength="4000" placeholder="Message…" aria-label="Message">'+E(M.draft[cid]||'')+'</textarea>'+((M.draft[cid]||'').trim()?'<button class="k7send" data-k="dmsend" aria-label="Send">➤</button>':'<button class="k7mic" data-k="vrec" aria-label="Record voice message">🎤</button>')+'</div>'}
-function recBar(){var r=M.rec;return'<div class="k7comp k7rec"><button class="k7x" data-k="vcancel" aria-label="Cancel recording">✕</button><span class="k7dot"></span><span class="k7timer" id="k7timer">'+mm(Date.now()-r.t0)+'</span><canvas id="k7wave" width="300" height="44"></canvas><button class="k7send" data-k="vstop" aria-label="Send voice message">➤</button><p class="k7live" id="k7live">'+(r.sr?E(r.fin+r.int)||'Listening… (transcript)':'Transcript not supported on this device')+'</p></div>'}
-/* recording */
-function pickMime(){if(typeof MediaRecorder==='undefined')return null;var L=['audio/webm;codecs=opus','audio/ogg;codecs=opus','audio/mp4;codecs=mp4a.40.2','audio/mp4','audio/aac'];for(var i=0;i<L.length;i++)if(MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(L[i]))return L[i];return''}
-function recStart(){if(M.rec)return;var mime=pickMime();if(mime===null||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)return toast('Voice messages aren’t supported in this browser');
- navigator.mediaDevices.getUserMedia({audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true,sampleRate:48000}}).then(function(st){
-  var mr;try{mr=new MediaRecorder(st,mime?{mimeType:mime,audioBitsPerSecond:96000}:{audioBitsPerSecond:96000})}catch(e){mr=new MediaRecorder(st)}
-  var r={st:st,mr:mr,ch:[],t0:Date.now(),fin:'',int:'',sr:null,cid:K.cid,mime:mr.mimeType||mime||'audio/webm'};M.rec=r;mr.ondataavailable=function(e){if(e.data&&e.data.size)r.ch.push(e.data)};mr.start(250);
+ return h+'<div class="k7end"></div>'}
+function compH(){var cid=K.cid;return'<div class="k7comp"><textarea id="k7in" rows="1" maxlength="4000" placeholder="Message…" aria-label="Message">'+E(M.draft[cid]||'')+'</textarea>'+((M.draft[cid]||'').trim()?'<button class="k7send" data-k="dmsend" aria-label="Send">➤</button>':'<button class="k7mic" data-k="vrec" aria-label="Record voice message">🎤</button>')+'</div>'}
+function recBar(){var r=M.rec;return'<div class="k7comp k7rec"><button class="k7x" data-k="vcancel" aria-label="Cancel recording">✕</button><span class="k7dot"></span><span class="k7timer" id="k7timer">'+mm(Date.now()-r.t0)+'</span><canvas id="k7wave" width="300" height="44"></canvas><button class="k7x k7stp" data-k="vpause" aria-label="Stop and preview"><i></i></button><button class="k7send" data-k="vstop" aria-label="Send voice message">➤</button><p class="k7live" id="k7live">'+(r.sr?E(r.fin+r.int)||'Listening… (transcript)':'Transcript not supported on this device')+'</p></div>'}
+/* recording (v88: iOS-safe) */
+function isIOS(){var u=navigator.userAgent||'';return /iP(hone|ad|od)/.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1)}
+function isSafari(){var u=navigator.userAgent||'';return isIOS()||(/Safari\//.test(u)&&!/Chrome|Chromium|CriOS|Edg|Firefox|FxiOS/.test(u))}
+function pickMime(){if(typeof MediaRecorder==='undefined')return null;var W=['audio/webm;codecs=opus','audio/ogg;codecs=opus'],P=['audio/mp4;codecs=mp4a.40.2','audio/mp4','audio/aac'],L=isSafari()?P.concat(W):W.concat(P);
+ for(var i=0;i<L.length;i++){try{if(MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(L[i]))return L[i]}catch(e){}}return''}
+function baseMime(m){m=(m||'').split(';')[0].trim().toLowerCase();if(m==='audio/x-m4a'||m==='audio/m4a')m='audio/mp4';if(m==='video/mp4')m='audio/mp4';if(m==='video/webm')m='audio/webm';return m}
+function recFail(r,msg){if(r){r.dead=1;recEnd(r)}if(M.rec===r)M.rec=null;toast(msg);rComm()}
+function recStart(){if(M.rec)return;if(M.pre)preDiscard(true);var mime=pickMime();if(mime===null||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)return toast('Voice messages aren’t supported in this browser');
+ var cons=isIOS()?{audio:true}:{audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true}};
+ navigator.mediaDevices.getUserMedia(cons).then(function(st){
+  var mr,o=mime?{mimeType:mime}:{};if(!isIOS())o.audioBitsPerSecond=96000;
+  try{mr=new MediaRecorder(st,o)}catch(e){try{mr=new MediaRecorder(st)}catch(e2){st.getTracks().forEach(function(t){t.stop()});return toast('Couldn’t start recording on this device ('+(e2&&e2.name||'error')+')')}}
+  var r={st:st,mr:mr,ch:[],t0:Date.now(),fin:'',int:'',sr:null,cid:K.cid,mime:mime};M.rec=r;
+  mr.ondataavailable=function(e){if(e.data&&e.data.size){r.ch.push(e.data);if(!r.mime&&e.data.type)r.mime=e.data.type}};
+  mr.onerror=function(e){r.err=(e&&e.error&&(e.error.name||e.error.message))||'recorder error'};
+  st.getAudioTracks().forEach(function(t){t.onended=function(){if(M.rec===r){r.lost=1;toast('Microphone was interrupted — keeping what was recorded');recStop(false)}}});
+  try{mr.start(isSafari()?undefined:1000)}catch(e){return recFail(r,'Couldn’t start recording ('+(e&&e.name||'error')+')')}
+  r.mime=mr.mimeType||r.mime||'';
   try{var AC=window.AudioContext||window.webkitAudioContext;r.ac=new AC();var an=r.ac.createAnalyser();an.fftSize=512;r.ac.createMediaStreamSource(st).connect(an);r.an=an;r.lv=[]}catch(e){}
-  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(SR){try{var s=new SR();s.continuous=true;s.interimResults=true;s.lang=navigator.language||'en-IE';
+  /* iOS Safari: speech recognition takes over the microphone/audio session and silently kills MediaRecorder, so it is not run in parallel there */
+  var SR=(isIOS()||M.noSR)?null:(window.SpeechRecognition||window.webkitSpeechRecognition);if(SR){try{var s=new SR();s.continuous=true;s.interimResults=true;s.lang=navigator.language||'en-IE';
    s.onresult=function(ev){var it='';for(var i=ev.resultIndex;i<ev.results.length;i++){var t=ev.results[i][0].transcript;if(ev.results[i].isFinal)r.fin+=(r.fin&&!/\s$/.test(r.fin)?' ':'')+t.trim();else it+=t}r.int=it?' '+it:'';var l=document.getElementById('k7live');if(l)l.textContent=(r.fin+r.int).trim()||'Listening…'};
-   s.onerror=function(ev){if(ev&&/not-allowed|service-not-allowed|language-not-supported/.test(ev.error))r.srDead=1};s.onend=function(){if(M.rec===r&&!r.stopping&&!r.srDead){try{s.start()}catch(e){}}else if(r.srDone)r.srDone()};s.start();r.sr=s}catch(e){r.sr=null}}
-  rComm();scrollEnd();r.tick=setInterval(function(){var t=document.getElementById('k7timer');if(t)t.textContent=mm(Date.now()-r.t0);draw(r);if(Date.now()-r.t0>=180000){toast('3-minute limit reached — sending');recStop(true)}},100);
- },function(e){toast(/denied|allowed|Permission/i.test(String(e&&(e.name+e.message)))?'Microphone permission is needed for voice messages':'Couldn’t start the microphone')})}
+   s.onerror=function(ev){if(ev&&/not-allowed|service-not-allowed|language-not-supported|audio-capture/.test(ev.error))r.srDead=1};s.onend=function(){if(M.rec===r&&!r.stopping&&!r.srDead){try{s.start()}catch(e){}}else if(r.srDone)r.srDone()};s.start();r.sr=s}catch(e){r.sr=null}}
+  rComm();scrollEnd();r.tick=setInterval(function(){var t=document.getElementById('k7timer');if(t)t.textContent=mm(Date.now()-r.t0);draw(r);if(Date.now()-r.t0>=180000){toast('3-minute limit reached');recStop(true)}},100);
+ },function(e){var n=String(e&&(e.name+' '+e.message));toast(/NotAllowed|denied|Permission/i.test(n)?'Microphone access is blocked — allow it in Settings › Safari › Microphone (or the site settings) and try again':/NotFound|Overconstrained/i.test(n)?'No microphone found':'Couldn’t start the microphone ('+(e&&e.name||'error')+')')})}
 function draw(r){var c=document.getElementById('k7wave');if(!c||!r.an)return;var d=new Uint8Array(r.an.fftSize);r.an.getByteTimeDomainData(d);var pk=0;for(var i=0;i<d.length;i++)pk=Math.max(pk,Math.abs(d[i]-128));r.lv.push(pk/128);if(r.lv.length>60)r.lv.shift();
  var x=c.getContext('2d'),w=c.width,h=c.height,n=r.lv.length,bw=w/60;x.clearRect(0,0,w,h);x.fillStyle=getComputedStyle(document.body).getPropertyValue('--ac')||'#a855f7';for(i=0;i<n;i++){var v=Math.max(.08,Math.min(1,r.lv[i]*2.2)),bh=v*h;x.fillRect(i*bw+1,(h-bh)/2,bw-2,bh)}}
-function recEnd(r){clearInterval(r.tick);r.stopping=1;try{r.st.getTracks().forEach(function(t){t.stop()})}catch(e){}try{r.ac&&r.ac.close()}catch(e){}}
-function recCancel(){var r=M.rec;if(!r)return;M.rec=null;try{r.mr.onstop=null;r.mr.stop()}catch(e){}try{r.sr&&r.sr.abort()}catch(e){}recEnd(r);toast('Recording discarded');rComm()}
-function recStop(){var r=M.rec;if(!r)return;M.rec=null;var dur=Date.now()-r.t0;
+function recEnd(r){clearInterval(r.tick);r.stopping=1;try{r.st.getTracks().forEach(function(t){t.onended=null;t.stop()})}catch(e){}try{r.ac&&r.ac.close()}catch(e){}}
+function recCancel(){var r=M.rec;if(!r)return;M.rec=null;try{r.mr.onstop=null;if(r.mr.state!=='inactive')r.mr.stop()}catch(e){}try{r.sr&&r.sr.abort()}catch(e){}recEnd(r);toast('Recording discarded');rComm()}
+/* stop: flush data (requestData before stop; resolve on onstop, if already inactive, or after a timeout so it can never hang), then preview or send */
+function recStop(send){var r=M.rec;if(!r||r.stopping)return;r.stopping=1;var dur=Date.now()-r.t0;clearInterval(r.tick);
  var srWait=new Promise(function(res){if(!r.sr)return res();r.srDone=res;try{r.sr.stop()}catch(e){res()}setTimeout(res,1500)});
- var got=new Promise(function(res){r.mr.onstop=function(){res()};try{r.mr.stop()}catch(e){res()}});
- recEnd(r);rComm();
- Promise.all([got,srWait]).then(function(){var base=(r.mime||'audio/webm').split(';')[0],blob=new Blob(r.ch,{type:base});
-  if(dur<600||!blob.size)return toast('Too short — hold on a little longer');if(blob.size>10485760)return toast('Voice message too large (max 10 MB)');
-  var ext=base==='audio/mp4'||base==='audio/aac'?'m4a':base==='audio/ogg'?'ogg':'webm',path=r.cid+'/'+me()+'-'+Date.now()+'.'+ext,tr=(r.fin||'').trim().slice(0,5000)||null;
-  var tmp={id:'tmp'+Date.now(),conversation_id:r.cid,sender_id:me(),kind:'voice',voice_path:path,duration_ms:Math.min(dur,180000),transcript:tr,created_at:new Date().toISOString(),_p:1};M.url[path]=URL.createObjectURL(blob);(M.msgs[r.cid]=M.msgs[r.cid]||[]).push(tmp);rComm();scrollEnd();
-  return CS.sb.storage.from('voice-messages').upload(path,blob,{contentType:base,upsert:false}).then(function(u){if(u.error)throw u.error;
-   return CS.sb.from('messages').insert({conversation_id:r.cid,sender_id:me(),kind:'voice',voice_path:path,duration_ms:Math.max(300,Math.min(dur,180000)),size_bytes:blob.size,transcript:tr})}).then(function(x){if(x.error)throw x.error;M.sig[r.cid]='';return M.chat(r.cid)}).catch(function(e){M.msgs[r.cid]=(M.msgs[r.cid]||[]).filter(function(m){return m!==tmp});rComm();toast('Couldn’t send: '+A.E(e))})})}
-function sendText(){var cid=K.cid,i=document.getElementById('k7in'),v=((i&&i.value)||'').trim();if(!v)return;M.draft[cid]='';var tmp={id:'tmp'+Date.now(),conversation_id:cid,sender_id:me(),kind:'text',body:v,created_at:new Date().toISOString(),_p:1};(M.msgs[cid]=M.msgs[cid]||[]).push(tmp);rComm();scrollEnd();var n=document.getElementById('k7in');if(n)n.focus();
+ var got=new Promise(function(res){var done=0,fin=function(){if(!done){done=1;setTimeout(res,30)}};r.mr.onstop=fin;
+  try{if(r.mr.state==='inactive')return fin();try{r.mr.requestData()}catch(e){}r.mr.stop()}catch(e){fin()}setTimeout(fin,4000)});
+ M.rec=null;M.busy=1;rComm();
+ Promise.all([got,srWait]).then(function(){recEnd(r);M.busy=0;
+  var base=baseMime(r.mime||(r.ch[0]&&r.ch[0].type)||'')||(isSafari()?'audio/mp4':'audio/webm'),blob=new Blob(r.ch,{type:base});
+  if(!blob.size){rComm();return toast('Recording failed — no audio was captured'+(r.err?' ('+r.err+')':'')+'. Please try again.')}
+  if(dur<600){rComm();return toast('Too short — hold on a little longer')}
+  if(blob.size>10485760){rComm();return toast('Voice message too large (max 10 MB)')}
+  M.pre={cid:r.cid,blob:blob,mime:base,dur:Math.min(dur,180000),tr:(r.fin||'').trim().slice(0,5000)||null,url:URL.createObjectURL(blob),sr:!!r.sr};
+  if(send)preSend();else{rComm();scrollEnd()}})}
+function preBar(){var p=M.pre,pl=M.pa&&!M.pa.paused;return'<div class="k7comp k7rec k7pre"><button class="k7x" data-k="vdisc" aria-label="Discard voice message">🗑</button><button class="k7x k7pp" data-k="vprep" aria-label="'+(pl?'Pause preview':'Play preview')+'">'+(pl?'<i class="k7ps"></i>':'▶')+'</button><span class="k7timer">'+mm(p.dur)+'</span><span class="k7plb mu">'+(p.up?'Sending…':'Voice message ready')+'</span><button class="k7send" data-k="vstop" aria-label="Send voice message"'+(p.up?' disabled':'')+'>➤</button><p class="k7live">'+(p.tr?E(p.tr):p.sr?'Transcript unavailable':'Transcript isn’t available on this device')+'</p></div>'}
+function prePlay(){var p=M.pre;if(!p)return;if(M.pa&&!M.pa.paused){M.pa.pause();return rComm()}if(!M.pa||M.pa._u!==p.url){M.pa=new Audio(p.url);M.pa._u=p.url;M.pa.onended=M.pa.onpause=function(){rComm()};M.pa.onerror=function(){toast('Preview can’t play on this device, but you can still send it')}}M.pa.play().catch(function(){});rComm()}
+function preDiscard(q){var p=M.pre;if(M.pa){try{M.pa.pause()}catch(e){}M.pa=null}M.pre=null;if(p&&p.url&&!p.sent)try{URL.revokeObjectURL(p.url)}catch(e){}if(!q){toast('Voice message discarded');rComm()}}
+function preSend(){var p=M.pre;if(!p||p.up)return;p.up=1;if(M.pa){try{M.pa.pause()}catch(e){}M.pa=null}
+ var ext=p.mime==='audio/mp4'||p.mime==='audio/aac'?'m4a':p.mime==='audio/ogg'?'ogg':'webm',path=p.cid+'/'+me()+'-'+Date.now()+'.'+ext;
+ var tmp={id:'tmp'+Date.now(),conversation_id:p.cid,sender_id:me(),kind:'voice',voice_path:path,duration_ms:p.dur,transcript:p.tr,created_at:new Date().toISOString(),_p:1};M.url[path]=p.url;(M.msgs[p.cid]=M.msgs[p.cid]||[]).push(tmp);M.pre=null;rComm();scrollEnd();
+ CS.sb.storage.from('voice-messages').upload(path,p.blob,{contentType:p.mime,upsert:false,cacheControl:'3600'}).then(function(u){if(u.error)throw Object.assign(u.error,{stage:'upload'});
+  return CS.sb.from('messages').insert({conversation_id:p.cid,sender_id:me(),kind:'voice',voice_path:path,duration_ms:Math.max(300,Math.min(p.dur,180000)),size_bytes:p.blob.size,transcript:p.tr})}).then(function(x){if(x.error)throw x.error;p.sent=1;M.sig[p.cid]='';return M.chat(p.cid)}).catch(function(e){M.msgs[p.cid]=(M.msgs[p.cid]||[]).filter(function(m){return m!==tmp});p.up=0;M.pre=p;rComm();
+  var t=String(e&&(e.message||e.error||e)||'');toast((e&&e.stage==='upload'?'Upload failed':'Couldn’t send')+(/mime|type/i.test(t)?' — this audio format isn’t accepted ('+p.mime+')':/size|large/i.test(t)?' — file too large':t?' — '+t:'')+'. Tap ➤ to retry.')})}
+
+function sendText(){var cid=K.cid,i=document.getElementById('k7in'),v=((i&&i.value)||'').trim();if(!v)return;M.draft[cid]='';var tmp={id:'tmp'+Date.now(),conversation_id:cid,sender_id:me(),kind:'text',body:v,created_at:new Date().toISOString(),_p:1};(M.msgs[cid]=M.msgs[cid]||[]).push(tmp);var wasF=document.activeElement===i;rComm();scrollEnd();var n=document.getElementById('k7in');if(n&&wasF)n.focus();
  CS.sb.from('messages').insert({conversation_id:cid,sender_id:me(),kind:'text',body:v}).then(function(r){if(r.error)throw r.error;M.sig[cid]='';return M.chat(cid)}).catch(function(e){M.msgs[cid]=M.msgs[cid].filter(function(m){return m!==tmp});M.draft[cid]=v;rComm();toast('Couldn’t send: '+A.E(e))})}
 /* playback */
 function vPlay(mid){var L=M.msgs[K.cid]||[],m=L.find(function(x){return x.id===mid});if(!m)return;var P=M.play;
@@ -6806,7 +6852,7 @@ document.addEventListener('keydown',function(e){if(e.target&&e.target.id==='k7in
 
 rComm=rC;window.rComm=rC;
 function go(v){K.hist.push({v:K.v,uid:K.uid,pid:K.pid});K.v=v;window.scrollTo(0,0);rComm()}
-function back(){if(M.rec)recCancel();if(M.play.a){try{M.play.a.pause()}catch(e){}M.play={id:null,a:null}}var x=K.hist.pop()||{v:'feed'};K.v=x.v;K.uid=x.uid;K.pid=x.pid;K.ed=null;K.sn=null;rComm()}
+function back(){if(M.rec)recCancel();if(M.pre)preDiscard(true);if(M.play.a){try{M.play.a.pause()}catch(e){}M.play={id:null,a:null}}var x=K.hist.pop()||{v:'feed'};K.v=x.v;K.uid=x.uid;K.pid=x.pid;K.ed=null;K.sn=null;rComm()}
 /* ---------- story viewer ---------- */
 function openSV(uid){var G=groups(),o=G.o.filter(function(x){return x!==me()});o.unshift(me());o=o.filter(function(x){return G.g[x]});var ui=o.indexOf(uid);if(ui<0)return;var l=G.g[uid],i=l.findIndex(function(s){return!K.seen[s.id]});K.sv={o:o,ui:ui,i:i<0?0:i,G:G};viewer()}
 function viewer(){var v=K.sv,el=document.getElementById('k4sv');clearTimeout(viewer.t);if(!v){if(el)el.remove();return}
@@ -6874,7 +6920,10 @@ document.addEventListener('click',function(e){
  else if(k==='dmsend')sendText();
  else if(k==='vrec')recStart();
  else if(k==='vcancel')recCancel();
- else if(k==='vstop')recStop();
+ else if(k==='vstop'){if(M.rec)recStop(true);else preSend()}
+ else if(k==='vpause')recStop(false);
+ else if(k==='vprep')prePlay();
+ else if(k==='vdisc')preDiscard();
  else if(k==='vplay')vPlay(x);
  else if(k==='vseek')vSeek(x,e,b);
  else if(k==='vspd'){M.rate=M.rate===1?1.5:M.rate===1.5?2:1;if(M.play.a)M.play.a.playbackRate=M.rate;[].forEach.call(document.querySelectorAll('.k7sp'),function(z){z.textContent=M.rate+'×'})}
