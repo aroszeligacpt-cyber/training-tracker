@@ -570,7 +570,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v91 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v92 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2564,7 +2564,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v91</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v92</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -2984,7 +2984,7 @@ var _rwo37=rWorkout;rWorkout=function(){_rwo37();var el=document.getElementById(
   if(r&&wv.e==null)el.querySelectorAll('[data-oe]').forEach(function(b){var re=r.ex[+b.dataset.oe];if(!re)return;var bb=b.querySelector('b');if(bb){bb.textContent=re.dn||exAl(re.name);bb.insertAdjacentHTML('afterend',(re.dn&&re.dn!==re.name?'<small class="mu">orig: '+esc(re.name)+'</small>':''))}
    var ta=b.parentNode.querySelector('.tact');if(ta)ta.insertAdjacentHTML('afterbegin','<button class="sm" data-xrn="R|'+b.dataset.oe+'" aria-label="Rename exercise">✎</button>')});
   if(r&&wv.e!=null&&r.ex[wv.e]){var re=r.ex[wv.e],h=el.querySelector('h2');if(h){h.textContent=re.dn||exAl(re.name);h.insertAdjacentHTML('beforeend',' <button class="sm ren" data-xrn="R|'+wv.e+'" aria-label="Rename exercise">✎</button>')}}
-  if(!r){var cx=el.querySelector('#cxadd');if(cx)cx.insertAdjacentHTML('afterend','<button class="sm" data-go="exlib" style="margin-top:6px;width:100%">⭐ More options (equipment, type, note) in Exercises ›</button>')}}};
+  if(!r){var cx=el.querySelector('#cxadd');if(cx)cx.insertAdjacentHTML('afterend','<button class="sm" data-go="exlib" style="margin-top:6px;width:100%">⭐ More exercise options ›</button>')}}};
 var _rRep37=rReport;rReport=function(){_rRep37.apply(this,arguments);exWalk(document.getElementById('t-report'),exAliasMap())};
 // rename sheet
 var XR=null;
@@ -4843,7 +4843,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v91 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v92 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6226,7 +6226,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v91';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v92';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -6999,11 +6999,11 @@ function setOpen(id,v){var s=st();s[id]=v?1:0;try{localStorage.setItem(KEY,JSON.
 function esc2(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 /* header + body markup; titleHtml is trusted app markup */
 function head(id,titleHtml,sub,o){return'<div class="clh" role="button" tabindex="0" id="clh-'+id+'" aria-controls="clb-'+id+'" aria-expanded="'+(o?'true':'false')+'"><span class="clt">'+titleHtml+(sub?'<span class="cls">'+esc2(sub)+'</span>':'')+'</span><span class="clc" aria-hidden="true">›</span></div>'}
-function html(id,titleHtml,bodyHtml,opt){opt=opt||{};var o=isOpen(id,opt.open);return'<div class="'+(opt.cls||'card')+' cl cl-now'+(o?' open cl-done':'')+'"'+(opt.domId?' id="'+opt.domId+'"':'')+' data-cl="'+id+'">'+head(id,titleHtml,opt.sub,o)+'<div class="clb" id="clb-'+id+'" role="region" aria-labelledby="clh-'+id+'"'+(o?'':' inert')+'><div class="cli">'+bodyHtml+'</div></div></div>'}
+function html(id,titleHtml,bodyHtml,opt){opt=opt||{};var o=window.COLL.isOpen(id,opt.open);return'<div class="'+(opt.cls||'card')+' cl cl-now'+(o?' open cl-done':'')+'"'+(opt.domId?' id="'+opt.domId+'"':'')+' data-cl="'+id+'">'+head(id,titleHtml,opt.sub,o)+'<div class="clb" id="clb-'+id+'" role="region" aria-labelledby="clh-'+id+'"'+(o?'':' inert')+'><div class="cli">'+bodyHtml+'</div></div></div>'}
 /* convert an already-rendered card: its first heading becomes the row title */
-function wrap(card,id,opt){if(!card||card.classList.contains('cl'))return card;opt=opt||{};var h=card.querySelector(':scope>h1,:scope>h2,:scope>h3'),t=opt.title||(h?h.innerHTML:id);if(h)h.remove();
- var o=isOpen(id,opt.open),b=document.createElement('div');b.className='clb';b.id='clb-'+id;b.setAttribute('role','region');b.setAttribute('aria-labelledby','clh-'+id);if(!o)b.setAttribute('inert','');var inner=document.createElement('div');inner.className='cli';
- while(card.firstChild)inner.appendChild(card.firstChild);b.appendChild(inner);card.classList.add('cl','cl-now');if(o)card.classList.add('open','cl-done');card.setAttribute('data-cl',id);card.insertAdjacentHTML('afterbegin',head(id,t,opt.sub,o));card.appendChild(b);settle(card);return card}
+function wrap(card,id,opt){if(!card||card.classList.contains('cl'))return card;opt=opt||{};var hn=opt.heading||null,h=hn||(opt.title?null:card.querySelector(':scope>h1,:scope>h2,:scope>h3')),t=opt.title||(h&&!hn?h.innerHTML:hn?'':id);if(h){var hp=h.parentNode;h.remove();if(hp!==card&&hp&&!hp.textContent.trim()&&!hp.querySelector('*'))hp.remove()}
+ var o=window.COLL.isOpen(id,opt.open),b=document.createElement('div');b.className='clb';b.id='clb-'+id;b.setAttribute('role','region');b.setAttribute('aria-labelledby','clh-'+id);if(!o)b.setAttribute('inert','');var inner=document.createElement('div');inner.className='cli';
+ while(card.firstChild)inner.appendChild(card.firstChild);b.appendChild(inner);card.classList.add('cl','cl-now');if(o)card.classList.add('open','cl-done');card.setAttribute('data-cl',id);card.insertAdjacentHTML('afterbegin',head(id,t,opt.sub,o));if(hn){var ct=card.querySelector(':scope>.clh .clt');ct.insertBefore(hn,ct.firstChild)}card.appendChild(b);settle(card);return card}
 function settle(c){requestAnimationFrame(function(){requestAnimationFrame(function(){c.classList.remove('cl-now')})})}
 function toggle(c,v){if(!c)return;var id=c.getAttribute('data-cl'),o=v==null?!c.classList.contains('open'):!!v,h=c.querySelector(':scope>.clh'),b=c.querySelector(':scope>.clb');c.classList.remove('cl-now','cl-done');c.classList.toggle('open',o);if(h)h.setAttribute('aria-expanded',o?'true':'false');if(b){if(o)b.removeAttribute('inert');else b.setAttribute('inert','')}setOpen(id,o);
  clearTimeout(c._t);if(o)c._t=setTimeout(function(){if(c.classList.contains('open'))c.classList.add('cl-done')},320);try{c.dispatchEvent(new CustomEvent('coll',{bubbles:true,detail:{id:id,open:o}}))}catch(e){}}
@@ -7018,4 +7018,56 @@ window.COLL={html:html,wrap:wrap,toggle:toggle,isOpen:isOpen,setOpen:setOpen,KEY
  var _rw=rWorkout;rWorkout=function(){_rw.apply(this,arguments);var g=document.getElementById('spkgo');if(g)g.remove();var a=document.getElementById('cxadd'),c=a&&a.closest('.card');if(c&&!c.classList.contains('cl')){var n=(typeof S!=='undefined'&&S.customEx||[]).length;COLL.wrap(c,'customex',{title:'Custom exercises',sub:n?n+' saved':'Add your own exercises'})}};
  if(typeof tab!=='undefined'&&tab==='workout')try{rWorkout()}catch(e){}})();
 </script>
+<style>/* v92 tidy */
+.cl>.clh .clt>h1,.cl>.clh .clt>h2,.cl>.clh .clt>h3,.cl>.clh .clt>h4{margin:0;font:inherit;font-weight:800;letter-spacing:inherit;text-transform:none;color:inherit;display:inline}
+.cl>.clh .clt>h3{font-size:1em}
+.cl>.clh .cls{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cl.clx{margin:6px 0 2px}.cl.clx>.clh{min-height:36px}.cl.clx>.clh .clt{font-size:.88em;font-weight:700;color:var(--mu)}.cl.clx>.clh .clc{width:1.6em;height:1.6em;font-size:1em}
+.k9more{display:block;width:100%;margin:4px 0 6px;padding:6px 0;border:0;background:none;color:var(--ac);font-weight:700;text-align:left;font-size:.92em}
+.k9hide{display:none!important}
+</style>
+<script>/* v92: apply collapsible rows app-wide (primary daily cards stay open) */
+(function(){if(!window.COLL)return;
+var TABS={home:1,workout:1,meals:1,her:1,settings:1,habits:1,checkin:1,gut:1,cardio:1,watch:1,shop:0,exlib:1,report:1};
+var KEEP=/meals to tick|^workouts$|^log ·|^habits$|^photos ·|^body$|how you feel today|^today\b|what would you like to track|before you continue|no diets yet|her is locked|set up her|today’s diet|your daily targets|day totals|^workout$|^🔥 cardio$|today’s nice\/nhs checks|^meals$|^🌸 her$|^🌿 gut$|^daily score ·|^🏆 your exercises$|^📚 exercise library$/i;
+function slug(t){return t.toLowerCase().replace(/\([^)]*\)/g,'').replace(/·.*$/,'').replace(/[\d.,%+−-]+/g,'').replace(/[^a-z\u00c0-\u024f ]+/g,' ').trim().replace(/\s+/g,'-').slice(0,40)||'x'}
+function txt(e){return (e&&e.textContent||'').replace(/\s+/g,' ').trim()}
+function sub(card,h){var s=card.querySelector('select');if(s&&s.selectedIndex>=0&&s.options[s.selectedIndex])return txt(s.options[s.selectedIndex]);
+ var on=card.querySelector('.on:not(.ck),[aria-pressed="true"],.sel');if(on&&txt(on).length<40&&txt(on))return txt(on);
+ var cb=card.querySelector('input[type=checkbox]');if(cb&&card.querySelectorAll('input[type=checkbox]').length===1)return cb.checked?'On':'Off';
+ var n=card.querySelectorAll('.hab,.tile,li').length;if(n>1)return n+' items';
+ var m=[].find.call(card.querySelectorAll('.mu,small,p'),function(p){return p!==h&&!h.contains(p)&&txt(p).length>3&&!p.querySelector('input,button,select')});if(m){var t=txt(m);return t.length>58?t.slice(0,56).replace(/\s+\S*$/,'')+'…':t}
+ return 'Tap to open'}
+function explain(root,tab){[].forEach.call(root.querySelectorAll('.card p.mu,.card p.k4hint,.card > .mu'),function(p){if(p.closest('.clx')||p.closest('.clh')||p.closest('#spk .spkp'))return;var t=txt(p);if(t.length<140||p.querySelector('input,button,select,textarea,canvas'))return;
+ var id=tab+':info:'+slug(t.slice(0,40)),w=document.createElement('div');w.className='clx-wrap';p.parentNode.insertBefore(w,p);var c=document.createElement('div');c.className='clx';c.appendChild(p);w.appendChild(c);
+ COLL.wrap(c,id,{title:'ℹ️ How it works'});w.replaceWith(c)})}
+function proc(tab){var el=document.getElementById('t-'+tab);if(!el||busy)return;if(tab==='workout'&&typeof rtn==='function'&&rtn())return;busy=1;try{
+ var cards=[].filter.call(el.querySelectorAll('.card'),function(c){return !c.classList.contains('cl')&&!c.parentElement.closest('.card')});
+ cards.forEach(function(c,i){var h=c.querySelector(':scope>h1,:scope>h2,:scope>h3,:scope>.row>h2,:scope>.row>h3');if(!h)return;var t=txt(h).replace(/⚙/g,'').trim();if(!t||(KEEP.test(t)&&!(tab==='settings'&&/^(🌸 her|🌿 gut)$/i.test(t))))return;if(i===0&&c.classList.contains('full')&&tab!=='settings')return;
+  if(c.querySelector('input:focus,textarea:focus,select:focus'))return;var s=sub(c,h);COLL.wrap(c,tab+':'+slug(t),{heading:h,sub:s})});
+ explain(el,tab)}catch(e){console.warn('tidy',e)}busy=0}
+var busy=0,q={};function sched(tab){if(q[tab])return;q[tab]=1;Promise.resolve().then(function(){q[tab]=0;proc(tab)})}
+Object.keys(TABS).forEach(function(t){if(!TABS[t])return;var el=document.getElementById('t-'+t);if(!el)return;new MutationObserver(function(){if(!busy)sched(t)}).observe(el,{childList:true,subtree:true});sched(t)});
+/* duplicate “Or create a full plan” button next to + Create (the Workouts card already has ✨ Create plan) */
+new MutationObserver(function(){var d=document.querySelector('#t-workout .ggenl');if(d&&document.querySelector('#t-workout .ggenb'))d.remove()}).observe(document.getElementById('t-workout')||document.body,{childList:true,subtree:true});
+/* Community: long comment threads → “View N earlier comments ›” */
+var cmOpen={};function cm(){[].forEach.call(document.querySelectorAll('#t-comm .ccom'),function(b){if(b.dataset.k9)return;var L=[].filter.call(b.children,function(x){return x.classList.contains('k4c')||x.classList.contains('cl-cm')});if(L.length<=3)return;b.dataset.k9=1;var key=txt(L[0]).slice(0,40);if(cmOpen[key])return;
+ var hid=L.slice(0,L.length-2);hid.forEach(function(x){x.classList.add('k9hide')});var btn=document.createElement('button');btn.className='k9more';btn.type='button';btn.textContent='View '+hid.length+' earlier comment'+(hid.length>1?'s':'')+' ›';btn.setAttribute('aria-expanded','false');
+ btn.onclick=function(e){e.preventDefault();e.stopPropagation();cmOpen[key]=1;hid.forEach(function(x){x.classList.remove('k9hide')});btn.remove()};b.insertBefore(btn,L[0])})}
+var ce=document.getElementById('t-comm');if(ce)new MutationObserver(function(){Promise.resolve().then(cm)}).observe(ce,{childList:true,subtree:true});
+})();
+</script>
+<style>/* v92: button/label fit (audit at 375/390, all sizes/themes) */
+button{line-height:1.22;text-wrap:balance}
+.crow2 button{white-space:nowrap;padding-left:6px!important;padding-right:6px!important;font-size:clamp(13px,3.7vw,15px);min-width:0;overflow:hidden;text-overflow:ellipsis}
+[data-hm]{white-space:nowrap;font-size:clamp(11.5px,3.3vw,14px)!important;letter-spacing:.02em;padding-left:4px!important;padding-right:4px!important}
+.dmo{overflow:hidden}
+.seg{display:flex;flex-wrap:wrap;gap:6px}.seg>button{white-space:nowrap;flex:1 1 auto;min-width:0;padding-left:10px;padding-right:10px}
+#t-workout [data-go=exlib],#t-workout .ggenb,#t-gut button,#t-settings button.sm,#t-home .herb{padding-top:9px;padding-bottom:9px;line-height:1.25;min-height:44px}
+.cl>.clh .clt{overflow-wrap:anywhere}
+.lnk{padding:4px 2px}
+#t-home .herb{white-space:nowrap;font-size:clamp(12px,3.5vw,14px)}
+.dmo{font-size:12px!important;line-height:1!important}
+</style>
+<style>[data-gubs]{white-space:nowrap;padding-left:8px!important;padding-right:8px!important}</style>
+<style>#t-gen button.sm{white-space:normal;height:auto!important;min-height:36px;padding-left:8px;padding-right:8px;overflow-wrap:anywhere}.herb{white-space:nowrap!important;font-size:clamp(12px,3.4vw,14px)}</style>
 </body></html>
