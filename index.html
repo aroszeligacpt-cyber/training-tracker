@@ -570,7 +570,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v92 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v93 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -4843,7 +4843,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v92 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v93 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6226,7 +6226,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v92';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v93';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -6607,11 +6607,11 @@ function payH(p){var a=P(p),t=typ(p);
 function card(p){var u=U(p.user_id,p.profiles),mine=p.user_id===me(),src=p.image_path?pimg(p.image_path):'',inF=(C.posts||[]).some(function(q){return q===p}),liked=p.liked,cn=p.nc||0,lk=p.nl||0;
  var h='<article class="ccard k4card" id="post-'+E(p.id)+'"><div class="cph"><button class="k4u" data-k="user" data-x="'+E(p.user_id)+'">'+av(u,38)+'<span class="cwho"><b>'+E(nm(u))+(u.role&&u.role!=='user'?' <span class="ctg">'+E(u.role)+'</span>':'')+'</b><small class="mu">@'+E(u.username||'member')+' · '+E(A.ago(p.created_at))+(p.visibility==='followers'?' · 👥':'')+'</small></span></button><button class="k4more" data-ca="more" data-x="'+E(p.id)+'" aria-label="More">⋯</button></div>';
  if(p.image_path)h+='<div class="k4img">'+(src?'<img src="'+E(src)+'" alt="Post photo" loading="lazy">':'<span class="mu">Loading photo…</span>')+(typ(p)==='progress'?'<i class="k4tag">📸 Progress</i>':'')+'</div>';
- h+=payH(p);if(p.body)h+='<p class="ccap"><b>'+E(u.username||'')+'</b> '+E(p.body)+'</p>';
- h+='<div class="cact"><button '+(inF?'data-ca':'data-k')+'="like" data-x="'+E(p.id)+'" class="'+(liked?'clk2':'')+'" aria-pressed="'+(liked?'true':'false')+'">'+(liked?'❤️':'🤍')+' '+lk+'</button><button data-ca="cm" data-x="'+E(p.id)+'">💬 '+cn+'</button></div>';
+ h+=payH(p);if(p.body)h+='<p class="ccap"><button class="k9nm" data-k="user" data-x="'+E(p.user_id)+'">'+E(u.username||'')+'</button> '+E(p.body)+'</p>';
+ h+='<div class="cact"><button '+(inF?'data-ca':'data-k')+'="like" data-x="'+E(p.id)+'" class="'+(liked?'clk2':'')+'" aria-pressed="'+(liked?'true':'false')+'">'+(liked?'❤️':'🤍')+' '+lk+'</button><button data-ca="cm" data-x="'+E(p.id)+'">💬 '+cn+'</button></div>'+(lk>0?'<button class="k9lk" data-k="likers" data-x="'+E(p.id)+'">Liked by '+lk+(lk===1?' person':' people')+' ›</button>':'');
  if(C.menu===p.id){h+='<div class="k4menu">'+(mine||A.staff()?'<button data-ca="del" data-x="'+E(p.id)+'">🗑 Delete post</button>':'')+(!mine?'<button data-ca="rep" data-x="'+E(p.id)+'">🚩 Report</button><button data-ca="blk" data-x="'+E(p.user_id)+'">⛔ Block @'+E(u.username||'')+'</button>':'')+(A.staff()&&!mine?'<button data-ca="ban" data-x="'+E(p.user_id)+'">🔨 Ban user</button>':'')+'</div>'}
  if(C.rep===p.id){h+='<div class="k4menu">'+A.REASONS.map(function(r){return'<button data-ca="repr" data-x="'+E(p.id)+'" data-r="'+E(r[0])+'">'+E(r[1])+'</button>'}).join('')+'</div>'}
- if(C.open===p.id){var cs=(C.cm||{})[p.id];h+='<div class="ccom">'+(cs?cs.map(function(c){var cu=U(c.user_id,c.profiles);return'<div class="k4c"><b>'+E(cu.username||'member')+'</b> '+E(c.body)+' <small class="mu">'+E(A.ago(c.created_at))+'</small>'+(c.user_id===me()||A.staff()?' <button data-ca="cdel" data-x="'+E(c.id)+'" data-p="'+E(p.id)+'" aria-label="Delete comment">✕</button>':'')+'</div>'}).join('')||'<p class="mu">No comments yet.</p>':'<p class="mu">Loading…</p>')+(CS.ban?'':'<div class="k4cin"><input id="clCm" maxlength="1000" placeholder="Add a comment…"><button data-ca="csend" data-x="'+E(p.id)+'">Send</button></div>')+'</div>'}
+ if(C.open===p.id){var cs=(C.cm||{})[p.id];h+='<div class="ccom">'+(cs?cs.map(function(c){var cu=U(c.user_id,c.profiles);return'<div class="k4c"><button class="k9nm" data-k="user" data-x="'+E(c.user_id)+'">'+E(cu.username||'member')+'</button> '+E(c.body)+' <small class="mu">'+E(A.ago(c.created_at))+'</small>'+(c.user_id===me()||A.staff()?' <button data-ca="cdel" data-x="'+E(c.id)+'" data-p="'+E(p.id)+'" aria-label="Delete comment">✕</button>':'')+'</div>'}).join('')||'<p class="mu">No comments yet.</p>':'<p class="mu">Loading…</p>')+(CS.ban?'':'<div class="k4cin"><input id="clCm" maxlength="1000" placeholder="Add a comment…"><button data-ca="csend" data-x="'+E(p.id)+'">Send</button></div>')+'</div>'}
  return h+'</article>'}
 /* ---------- header / views ---------- */
 function top(l,t,r){return'<header class="ctb k4tb">'+l+'<h1>'+t+'</h1>'+r+'</header>'}
@@ -6648,7 +6648,7 @@ function profV(){var uid=K.uid,o=K.P[uid]||{},u=U(uid,uid===me()?CS.prof:null),o
  var G=groups(),has=(G.g[uid]||[]).length;
  var h=top(backB(),'@'+E(u.username||'member'),own?'<button class="cib" data-k="edit" aria-label="Edit profile">⚙</button>':'<span class="cib0"></span>');
  h+='<section class="cpro"><button class="k4sb" data-k="'+(has?'sv':avUrl(u)?'avz':own?'snew':'none')+'" data-x="'+E(uid)+'" aria-label="Story">'+av(u,92,has?(unseen(G.g[uid])?1:2):3)+'</button><div class="cnm">'+E(nm(u))+'</div><div class="mu">@'+E(u.username||'member')+(own?(cGoal()?' · '+E(cGoal()):''):'')+'</div>'+(own?'<div class="k4strk">🔥 '+cStreak()+'-day streak</div>':'')+(u.bio?'<p class="k4bio">'+E(u.bio)+'</p>':'')+
-  '<div class="ccnt"><div><b>'+(c.p!=null?c.p:'–')+'</b><small>posts</small></div><div><b>'+(c.f!=null?c.f:'–')+'</b><small>followers</small></div><div><b>'+(c.g!=null?c.g:'–')+'</b><small>following</small></div></div></section>';
+  '<div class="ccnt"><button data-k="all" aria-label="Posts"><b>'+(c.p!=null?c.p:'–')+'</b><small>posts</small></button><button data-k="flist" data-x="followers"><b>'+(c.f!=null?c.f:'–')+'</b><small>followers</small></button><button data-k="flist" data-x="following"><b>'+(c.g!=null?c.g:'–')+'</b><small>following</small></button></div></section>';
  h+='<div class="crow2">'+(own?'<button class="p" data-k="edit">Edit profile</button>':(C.fol||[]).indexOf(uid)>=0?'<button data-ca="unf" data-x="'+E(uid)+'">Following ✓</button>':'<button class="p" data-ca="fol" data-x="'+E(uid)+'">Follow</button>')+(own?'':'<button data-k="dmto" data-x="'+E(uid)+'">💬 Message</button>')+'<button data-k="share">'+(own?'Share profile':'Share')+'</button></div>';
  h+='<div class="ctabs k4tabs">'+[['prog','Progress'],['wo','Workouts'],['day','Days'],['meal','Meals']].map(function(x){return'<button class="ctab'+(K.pt===x[0]?' on':'')+'" data-k="ptab" data-x="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>';
  if(!o.posts)h+='<p class="mu k4pad">'+(o.err?'Couldn’t load: '+E(o.err):'Loading…')+'</p>';else h+=tiles(o.posts,K.pt);
@@ -6671,7 +6671,7 @@ function rC(){if(!CS.sb||!CS.chk||!CS.user)return prev.apply(this,arguments);
  if(K.v==='feed'||K.v==='dm')M.inbox(false);
  if(K.v==='feed'){loadStories();if(!C.posts&&!C.loading)A.loadFeed()}
  ensureAug();
- var h=K.v==='prof'?profV():K.v==='list'?listV():K.v==='post'?postV():K.v==='edit'&&K.ed?editV():K.v==='snew'&&K.sn?snewV():K.v==='notif'?notifV():K.v==='dm'?inboxV():K.v==='chat'?chatV():feedV();
+ var h=K.v==='prof'?profV():K.v==='list'?listV():K.v==='post'?postV():K.v==='edit'&&K.ed?editV():K.v==='snew'&&K.sn?snewV():K.v==='notif'?notifV():K.v==='dm'?inboxV():K.v==='chat'?chatV():(dLink(),K.v==='fl')?flV():feedV();
  if(K.v==='chat')h='<div class="k7shell" id="k7shell">'+h+'</div>';var y=window.scrollY,a=document.activeElement,aid=K.v===K.pv?a&&a.id:null,ss=a&&a.selectionStart;if(K.v!==K.pv&&a&&a.blur)a.blur();K.pv=K.v;
  el.innerHTML='<div class="cwrap k4wrap"><div class="cbodyw">'+h+'</div>'+(K.v==='chat'?'':cNav())+'</div>';
  if(aid){var n=document.getElementById(aid);if(n&&n.focus){n.focus();try{n.setSelectionRange(ss,ss)}catch(e){}}}if(K.v==='chat')window.scrollTo(0,0);else window.scrollTo(0,y);vvFit();
@@ -6869,8 +6869,9 @@ document.addEventListener('input',function(e){if(e.target&&e.target.id==='k7in')
 document.addEventListener('keydown',function(e){if(e.target&&e.target.id==='k7in'&&e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendText()}});
 
 rComm=rC;window.rComm=rC;
-function go(v){K.hist.push({v:K.v,uid:K.uid,pid:K.pid});K.v=v;window.scrollTo(0,0);rComm()}
-function back(){if(M.rec)recCancel();if(M.pre)preDiscard(true);if(M.play.a){try{M.play.a.pause()}catch(e){}M.play={id:null,a:null}}var x=K.hist.pop()||{v:'feed'};K.v=x.v;K.uid=x.uid;K.pid=x.pid;K.ed=null;K.sn=null;rComm()}
+function goU(x){if(K.v==='prof'&&K.uid===x)return;K.hist.push({v:K.v,uid:K.uid,pid:K.pid,fl:K.fl,pt:K.pt});K.uid=x;K.pt='prog';K.v='prof';window.scrollTo(0,0);rComm()}
+function go(v){K.hist.push({v:K.v,uid:K.uid,pid:K.pid,fl:K.fl,pt:K.pt});K.v=v;window.scrollTo(0,0);rComm()}
+function back(){if(M.rec)recCancel();if(M.pre)preDiscard(true);if(M.play.a){try{M.play.a.pause()}catch(e){}M.play={id:null,a:null}}var x=K.hist.pop()||{v:'feed'};K.v=x.v;K.uid=x.uid;K.pid=x.pid;if(x.fl)K.fl=x.fl;if(x.pt)K.pt=x.pt;K.ed=null;K.sn=null;rComm()}
 /* ---------- story viewer ---------- */
 function openSV(uid){var G=groups(),o=G.o.filter(function(x){return x!==me()});o.unshift(me());o=o.filter(function(x){return G.g[x]});var ui=o.indexOf(uid);if(ui<0)return;var l=G.g[uid],i=l.findIndex(function(s){return!K.seen[s.id]});K.sv={o:o,ui:ui,i:i<0?0:i,G:G};viewer()}
 function viewer(){var v=K.sv,el=document.getElementById('k4sv');clearTimeout(viewer.t);if(!v){if(el)el.remove();return}
@@ -6914,7 +6915,28 @@ function saveStory(){var s=K.sn;s.cap=(document.getElementById('k4sc').value||''
  upload('story-images',path,s.img).then(function(){return CS.sb.from('stories').insert({user_id:uid,image_path:path,caption:s.cap||null,visibility:s.vis}).select('id').single()}).then(function(r){if(r.error)throw r.error;K.url['story-images|'+path]=s.img;K.busy=false;K.sn=null;toast('Story shared ✓');K.v='feed';K.hist=[];loadStories(true);rComm()}).catch(function(e){K.busy=false;var m=e.message||String(e);s.err=missing(e,'stories')||/bucket not found/i.test(m)?'Stories aren’t enabled yet — run supabase_v84_community.sql in Supabase.':'Couldn’t share: '+m;rComm()})}
 function delStory(id){if(!confirm('Delete this story?'))return;CS.sb.from('stories').delete().eq('id',id).select('id,image_path').then(function(r){if(r.error)return toast(r.error.message);var row=(r.data||[])[0];if(row&&row.image_path)CS.sb.storage.from('story-images').remove([row.image_path]).catch(function(){});K.st=K.st.filter(function(s){return s.id!==id});toast('Story deleted');closeSV();loadStories(true)})}
 function zoomAv(uid){var u=U(uid),s=avUrl(u);if(!s)return;var z=document.getElementById('k4avz');if(z)z.remove();z=document.createElement('div');z.id='k4avz';z.setAttribute('role','dialog');z.setAttribute('aria-label','Profile photo');var fb=avAlt(u,s);z.innerHTML='<button data-k="avzx" aria-label="Close" class="k4avx">✕</button><img src="'+E(s)+'" alt="Profile photo of '+E(nm(u))+'" data-k="avzx" data-avp="'+E(u.avatar_url||'')+'"'+(fb?' data-fb="'+E(fb)+'"':'')+'>';document.body.appendChild(z)}
-function share(){var u=U(K.uid),t='Follow '+(nm(u))+' (@'+(u.username||'')+') on AT Fitness 💪',url=location.origin+location.pathname;
+
+function flKey(f){return f.kind+'|'+(f.uid||f.pid)}
+function flLoad(f){var k=flKey(f),o=K.FL[k];if(o&&(o.busy||Date.now()-o.at<30000))return;o=K.FL[k]={busy:1,at:Date.now(),ids:null};
+ var q=f.kind==='followers'?CS.sb.from('follows').select('follower_id').eq('followee_id',f.uid):f.kind==='following'?CS.sb.from('follows').select('followee_id').eq('follower_id',f.uid):CS.sb.from('likes').select('user_id').eq('post_id',f.pid);
+ q.limit(1000).then(function(r){if(r.error)throw r.error;var ids=(r.data||[]).map(function(y){return y.follower_id||y.followee_id||y.user_id});return getProfiles(ids).then(function(){o.ids=ids;o.busy=0;o.at=Date.now()})}).catch(function(e){o.busy=0;o.err=e.message||String(e)}).then(function(){if(tab==='comm'&&K.v==='fl')rComm()})}
+function flV(){var f=K.fl||{kind:'followers',uid:me()},o;K.FL=K.FL||{};flLoad(f);o=K.FL[flKey(f)]||{};
+ var tu=f.uid?U(f.uid,f.uid===me()?CS.prof:null):null,ti=f.kind==='likes'?'Liked by':(f.kind==='followers'?'Followers':'Following');
+ var h=top(backB(),ti+(tu?'<small class="k9sub">@'+E(tu.username||'member')+'</small>':''),'<span class="cib0"></span>');
+ if(o.err)return h+'<p class="mu k4pad">Couldn’t load: '+E(o.err)+'</p>';if(!o.ids)return h+'<p class="mu k4pad">Loading…</p>';
+ var ids=o.ids.filter(function(i,n,a){return a.indexOf(i)===n&&(C.blk||[]).indexOf(i)<0});
+ if(!ids.length)return h+'<p class="mu k4pad k9emp">'+(f.kind==='likes'?'No likes yet.':f.kind==='followers'?(f.uid===me()?'You have no followers yet.':'No followers yet.'):(f.uid===me()?'You’re not following anyone yet.':'Not following anyone yet.'))+'</p>';
+ h+='<div class="k9srch"><input id="k9q" type="search" placeholder="Search" value="'+E(f.q||'')+'" autocomplete="off"></div><div class="k9list">';
+ ids.forEach(function(i){var u=U(i,i===me()?CS.prof:null),s=((u.username||'')+' '+nm(u)).toLowerCase(),fo=(C.fol||[]).indexOf(i)>=0;
+  h+='<div class="k9row" data-s="'+E(s)+'"><button class="k9u" data-k="user" data-x="'+E(i)+'">'+av(u,44)+'<span class="k9t"><b>'+E(nm(u))+'</b><small class="mu">@'+E(u.username||'member')+'</small></span></button>'+(i===me()?'<span class="k9you mu">You</span>':fo?'<button class="k9f" data-ca="unf" data-x="'+E(i)+'">Following</button>':'<button class="k9f p" data-ca="fol" data-x="'+E(i)+'">Follow</button>')+'</div>'});
+ return h+'</div><p class="mu k4pad k9none" hidden>No matches.</p>'}
+function flFilt(){var i=document.getElementById('k9q');if(!i)return;var q=i.value.trim().toLowerCase(),n=0;if(K.fl)K.fl.q=i.value;[].forEach.call(document.querySelectorAll('.k9row'),function(r){var on=!q||r.dataset.s.indexOf(q)>=0;r.hidden=!on;if(on)n++});var z=document.querySelector('.k9none');if(z)z.hidden=n>0}
+document.addEventListener('input',function(e){if(e.target&&e.target.id==='k9q')flFilt()});
+window.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-ca="unf"]');if(!b||tab!=='comm')return;var u=U(b.dataset.x);if(!confirm('Unfollow @'+(u.username||'this member')+'?')){e.preventDefault();e.stopImmediatePropagation();return}K.FL={}},true);
+window.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-ca="fol"]');if(b)K.FL={}},true);
+function dLink(){if(K.dl)return;K.dl=1;var h;try{h=new URLSearchParams(location.search).get('u')}catch(e){}if(!h)return;try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}
+ CS.sb.from('profiles').select('id').eq('username',h).maybeSingle().then(function(r){if(r.data&&r.data.id)goU(r.data.id);else toast('Profile @'+h+' not found')})}
+function share(){var u=U(K.uid),t='Follow '+(nm(u))+' (@'+(u.username||'')+') on AT Fitness 💪',url=location.origin+location.pathname+(u.username?'?u='+encodeURIComponent(u.username):'');
  if(navigator.share)navigator.share({title:'AT Fitness',text:t,url:url}).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(t+' '+url).then(function(){toast('Link copied ✓')},function(){toast(t)});else toast(t)}
 document.addEventListener('click',function(e){
  var nv=e.target.closest&&e.target.closest('[data-c="nav"][data-x="comm"]');if(nv&&CS.user){K.v='feed';K.hist=[];K.sv=null}
@@ -6926,7 +6948,9 @@ document.addEventListener('click',function(e){
  if(k==='home'){document.body.classList.remove('cmode');go_(home)}
  else if(k==='set'){document.body.classList.remove('cmode');go_(function(){tab='acct'})}
  else if(k==='back')back();
- else if(k==='user'){K.uid=x;K.pt='prog';go('prof')}
+ else if(k==='user')goU(x);
+ else if(k==='flist'){K.fl={kind:x,uid:K.uid,q:''};go('fl')}
+ else if(k==='likers'){K.fl={kind:'likes',pid:x,q:''};go('fl')}
  else if(k==='avz')zoomAv(x);
  else if(k==='avzx'){var z=document.getElementById('k4avz');if(z)z.remove()}
  else if(k==='notif'){go('notif');N.load(true)}
@@ -7056,6 +7080,19 @@ var cmOpen={};function cm(){[].forEach.call(document.querySelectorAll('#t-comm .
 var ce=document.getElementById('t-comm');if(ce)new MutationObserver(function(){Promise.resolve().then(cm)}).observe(ce,{childList:true,subtree:true});
 })();
 </script>
+<style>/* v93 community lists */
+.cpro .k4sb{display:block;width:max-content;margin:0 auto;line-height:0;font-size:0;min-height:0;height:auto}.cpro .k4sb .cav{vertical-align:top;line-height:1;display:grid}.cav{position:relative}.cav img{position:absolute;inset:0;display:block}
+.ccnt>button{background:none;border:0;color:inherit;font:inherit;padding:4px 2px;border-radius:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;min-height:44px;flex:1}
+.ccnt>button:active{background:rgba(255,255,255,.06)}
+.k9sub{display:block;font-size:12px;font-weight:400;opacity:.7}
+.k9srch{padding:8px 14px}.k9srch input{width:100%;box-sizing:border-box;font-size:16px;padding:10px 12px;border-radius:12px}
+.k9row{display:flex;align-items:center;gap:8px;padding:6px 14px}.k9row[hidden]{display:none}
+.k9u{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:none;border:0;color:inherit;text-align:left;padding:4px 0;font:inherit}
+.k9t{display:flex;flex-direction:column;min-width:0}.k9t b,.k9t small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.k9f{flex:none;min-width:96px;white-space:nowrap;padding:8px 12px;border-radius:10px}.k9you{flex:none;padding:0 8px}
+.k9nm{background:none;border:0;padding:0;margin:0;font:inherit;font-weight:700;color:inherit;cursor:pointer;min-height:0}
+.k9lk{display:block;background:none;border:0;color:inherit;font-weight:600;font-size:14px;padding:2px 14px 8px;text-align:left;min-height:0}
+</style>
 <style>/* v92: button/label fit (audit at 375/390, all sizes/themes) */
 button{line-height:1.22;text-wrap:balance}
 .crow2 button{white-space:nowrap;padding-left:6px!important;padding-right:6px!important;font-size:clamp(13px,3.7vw,15px);min-width:0;overflow:hidden;text-overflow:ellipsis}
