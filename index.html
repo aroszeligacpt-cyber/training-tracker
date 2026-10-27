@@ -578,7 +578,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v105 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v106 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2572,7 +2572,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v105</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v106</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4851,7 +4851,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v105 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v106 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6234,7 +6234,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v105';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v106';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -7686,6 +7686,83 @@ var st=document.createElement('style');st.textContent='#morep h3{font-size:12px!
  '.moscore{display:flex;gap:12px;align-items:center;margin:10px 0}.mosc{flex:0 0 auto;width:86px;height:86px;border-radius:50%;border:7px solid;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}.mosc b{font-size:30px}.mosc small{font-size:11px;color:var(--mu)}.mogr{font-size:20px;font-weight:800}.moexp{font-size:12px;line-height:1.45}'+
  '@media print{#morep h3{color:#7e22ce!important}#morep .ergrid div{background:#f3f3f3!important;border:0!important}#morep .ert td,#morep .ert th{border-bottom:1px solid #ddd!important;color:#16121f!important}#morep .epat{background:#f3f3f3!important;color:#16121f!important}#morep .mosc small,#morep .mu{color:#555!important}#morep .ergrid div{padding:5px!important}#morep .ergrid b{font-size:15px!important}#morep h3{break-after:avoid}#morep .rbaby,#morep .moscore,#morep tr{break-inside:avoid}#morep{font-size:11.5px}#morep svg.erch{max-height:165px;width:100%}#morep .moexp{font-size:10px!important;line-height:1.35!important}#morep p{margin:3px 0}#morep ul{margin:2px 0}body.v83p #v83print{padding:0 8px!important}body.v83p{padding:0!important;margin:0!important;min-height:0!important}html:has(body.v83p){min-height:0!important;height:auto!important}#morep>:last-child{margin-bottom:0!important}#morep .ert td,#morep .ert th{padding:2px 4px!important}#morep h3{margin:10px 0 3px!important}#morep .epat{font-size:11px!important;padding:5px 8px!important}#morep .ergrid{gap:4px!important}}';document.head.appendChild(st);
 })();
+
+</script>
+<style>
+.wtx{display:flex;flex-direction:column;gap:4px}.wtr{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;border-radius:10px;background:var(--c2,rgba(127,127,127,.08))}.wtr span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.wtr small{color:var(--mu);white-space:nowrap;flex-shrink:0}
+.wcpa{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.wcpa .sm{flex:1 1 auto;min-height:40px}.wcpl.on>.clh .clt{color:var(--ac,inherit)}.wprest b{display:block;margin-bottom:4px}
+.wtx button{display:none}
+
+</style>
+<script>
+/* v106: Training Plan (active plan only, today's workout open) + Workout Creator (create plan, speak, one-off, custom ex, saved plans) */
+(function(){if(typeof rWorkout!=='function')return;
+window.WC=0;var _lt=null,_enter=0;
+function progs(){try{return gSt().progs||[]}catch(e){return[]}}
+function genOf(r){return r.gen&&progs().some(function(p){return p.id===r.gen})?r.gen:null}
+function tpOf(r){var L=S.tplans||[];for(var i=0;i<L.length;i++)if((L[i].routines||[]).indexOf(r.id)>=0)return L[i].id;return null}
+function planKey(r){var g=genOf(r);if(g)return'gen:'+g;var t=tpOf(r);return t?'tp:'+t:'man'}
+function valid(p){if(!p)return false;if(p.t==='man')return S.routines.some(function(r){return planKey(r)==='man'});return S.routines.some(function(r){return planKey(r)===p.t+':'+p.id})}
+window.wpMig=function(){if(S.wplan!==undefined&&(S.wplan===null||valid(S.wplan)))return;var p=null,G=progs();for(var i=0;i<G.length&&!p;i++)if(valid({t:'gen',id:G[i].id}))p={t:'gen',id:G[i].id};
+ var T=S.tplans||[];for(var j=0;j<T.length&&!p;j++)if(valid({t:'tp',id:T[j].id}))p={t:'tp',id:T[j].id};if(!p&&valid({t:'man'}))p={t:'man'};S.wplan=p;S.v106m=1;save()};
+function key(p){return p?(p.t==='man'?'man':p.t+':'+p.id):''}
+window.wpRoutines=function(p){p=p===undefined?S.wplan:p;if(!p)return[];var k=key(p);return S.routines.filter(function(r){return planKey(r)===k})};
+window.wpName=function(p){p=p===undefined?S.wplan:p;if(!p)return'';if(p.t==='man')return'🏋️ My workouts';var L=p.t==='gen'?progs():(S.tplans||[]),x=L.filter(function(q){return q.id===p.id})[0];return x?(p.t==='gen'?'✨ ':'📋 ')+x.name:''};
+function dow(d){return(new Date(d+'T12:00:00').getDay()+6)%7}
+window.wpToday=function(){var R=wpRoutines();if(!R.length)return null;var p=S.wplan;
+ if(p.t==='gen'){var x=R.filter(function(r){return r.gdow===dow(cur)})[0];return x||null}
+ var w=wk(cur),names=w.ex.map(function(e){return e.name});if(names.length){var hit=R.filter(function(r){return r.ex.some(function(e){return names.indexOf(e.name)>=0})})[0];if(hit)return hit}
+ var best=-1,bd='';R.forEach(function(r,i){var ld=lastDone(r.ex.map(function(e){return e.name}));if(ld&&ld<cur&&ld>bd){bd=ld;best=i}});return R[(best+1)%R.length]};
+window.wcGo=function(on){WC=on?1:0;tab='workout';wv={r:null,e:null};if(typeof RE!=='undefined')RE=null;_lt='workout';render();scrollTo(0,0)};
+var _rd=render;render=function(){if(tab==="workout"&&_lt!=="workout")_enter=1;if(tab!=='workout'&&tab!=='gen'&&tab!=='exlib')window.WC=0;_lt=tab;var r=_rd.apply(this,arguments);if(tab==='gen'&&window.WC){var hb=document.querySelector('#secbar [data-go="home"]');if(hb)hb.textContent='‹ Creator'}return r};
+function bar(){var sb=document.getElementById('secbar');if(!sb||tab!=='workout')return;var t=sb.querySelector('.apptl'),b=sb.querySelector('[data-go="home"],#wcback');if(t)t.textContent=WC?'✏️ Workout Creator':'📋 Training Plan';
+ if(b){if(WC&&b.id!=='wcback')b.outerHTML='<button class="sm" id="wcback">‹ Plan</button>';else if(!WC&&b.id==='wcback')b.outerHTML='<button class="sm" data-go="home">‹ Home</button>'}}
+function short(t){return String(t).replace(/^✨ .* · (?=(Mon|Tue|Wed|Thu|Fri|Sat|Sun) – )/,'')}
+function shortTiles(root){[].slice.call(root.querySelectorAll('.tile [data-or] b')).forEach(function(b){b.textContent=short(b.textContent)})}
+function tileOf(el,id){var b=el.querySelector('[data-or="'+id+'"]');return b&&b.closest('.tile')}
+function exPrev(r){return'<div class="wtx">'+r.ex.map(function(e){return'<div class="wtr"><span>'+esc(e.name)+'</span><small>'+(e.tpl||[]).length+'×'+(e.rx?' · '+esc(String(e.rx).slice(0,40)):'')+'</small></div>'}).join('')+'</div>'}
+function planView(el){var sum=el.querySelector('.card.full .ggenb');sum=sum&&sum.closest('.card');var rc=el.querySelector('#radd');rc=rc&&rc.closest('.card');if(!rc){var t0=el.querySelector('.tile.rt');rc=t0&&t0.closest('.card')}
+ ['#spk','[data-cl="customex"]'].forEach(function(s){var x=el.querySelector(s);if(x)x.remove()});
+ var R=wpRoutines(),ids=R.map(function(r){return r.id});if(sum){var h=sum.querySelector('h2');if(h)h.firstChild.textContent=wpName()||'No active plan';var g=sum.querySelector('.ggenb');g.outerHTML='<button class="pri" id="wcopen" style="width:100%;margin-top:10px">✏️ Workout Creator</button>'}
+ if(!rc)return;var tiles=[].slice.call(rc.querySelectorAll('.tile'));tiles.forEach(function(t){var b=t.querySelector('[data-or]');if(!b||ids.indexOf(b.dataset.or)<0)t.remove();else{var a=t.querySelector('.tact');if(a)a.remove()}});
+ [].slice.call(rc.children).forEach(function(c){if(!c.classList.contains('tile'))c.remove()});
+ if(!R.length){rc.innerHTML='<p class="mu" style="margin:0 0 10px">No active training plan yet. Build one or pick a saved plan in the Workout Creator.</p><button class="pri" id="wcopen2" style="width:100%">✏️ Open Workout Creator</button>';return}
+ var td=wpToday(),tt=td&&tileOf(rc,td.id),out='';
+ if(td&&tt){var box=document.createElement('div');box.innerHTML=COLL.html('wptoday','📅 Today · '+esc(short(td.name)),exPrev(td)+'<button class="pri" data-or="'+td.id+'" style="width:100%;margin-top:10px">▶ Open today’s workout</button>',{cls:'card full',open:true,sub:td.ex.length+' exercise'+(td.ex.length===1?'':'s')});var c=box.firstChild;tt.remove();rc.parentNode.insertBefore(c,rc)}
+ else if(S.wplan&&S.wplan.t==='gen'){rc.insertAdjacentHTML('beforebegin','<div class="card full wprest"><b>😌 Rest day</b><div class="mu">No session scheduled for '+G_DOW[dow(cur)]+' in this plan. Pick any workout below if you want to train.</div></div>')}
+ shortTiles(rc);var left=rc.querySelectorAll('.tile').length;if(left){var w=COLL.wrap(rc,'wplist',{title:(td&&tt?'Rest of the plan':'Plan workouts'),sub:left+' workout'+(left===1?'':'s'),open:!(td&&tt)})}else rc.remove()}
+function creatorView(el){var sum=el.querySelector('.card.full .ggenb');sum=sum&&sum.closest('.card');[].slice.call(el.querySelectorAll('.hcard,.wprest')).forEach(function(x){x.remove()});
+ var rc=el.querySelector('#radd');rc=rc&&rc.closest('.card');var spk=el.querySelector('#spk'),cx=el.querySelector('[data-cl="customex"]');
+ var groups={};if(rc)[].slice.call(rc.querySelectorAll('.tile')).forEach(function(t){var b=t.querySelector('[data-or]'),r=b&&S.routines.find(function(q){return q.id===b.dataset.or});if(!r)return;var k=planKey(r);if(k!=='man'){(groups[k]=groups[k]||[]).push(t);t.remove()}});
+ var act=key(S.wplan),nMan=wpRoutines({t:'man'}).length;
+ var top=COLL.html('wccreate','✨ Create Plan','<p class="mu" style="margin:0 0 10px">Strength, muscle, running or hybrid — a full weekly plan with sets, reps and progression.</p><button class="pri" data-go="gen" style="width:100%">✨ Create a new plan</button>',{cls:'card full',sub:'Generate a weekly training plan'});
+ if(sum)sum.outerHTML=top;else el.insertAdjacentHTML('afterbegin',top);
+ if(rc){[].slice.call(rc.querySelectorAll('[data-go="gen"]')).forEach(function(x){x.remove()});if(nMan)rc.insertAdjacentHTML('beforeend',act==='man'?'<div class="mu" style="margin-top:8px">✓ These are your active Training Plan</div>':'<button class="sm" data-wpset="man" style="width:100%;margin-top:8px">Use as my Training Plan</button>');COLL.wrap(rc,'wconeoff',{title:'🏋️ One-off workouts',sub:nMan?nMan+' workout'+(nMan===1?'':'s')+' · create, edit, reorder':'Create single workouts'})}
+ var plans=[];progs().forEach(function(x,i){plans.push({k:'gen:'+x.id,t:'gen',id:x.id,i:i,name:x.name,sub:(x.inp&&x.inp.days?x.inp.days+' d/wk · ':'')+fmt(x.date,{day:'numeric',month:'short'})})});(S.tplans||[]).forEach(function(x,i){plans.push({k:'tp:'+x.id,t:'tp',id:x.id,i:i,name:x.name,sub:'older plan · '+fmt(x.date,{day:'numeric',month:'short'})})});
+ var body=plans.length?plans.map(function(p){var on=act===p.k,n2=(groups[p.k]||[]).length;return'<div class="cl clx wcpl'+(on?' on':'')+'" data-cl="wcp:'+p.k+'">'+'<div class="clh" role="button" tabindex="0" aria-expanded="false"><span class="clt">'+(on?'✓ ':'')+esc(p.name)+'<span class="cls">'+(on?'Active · ':'')+n2+' workout'+(n2===1?'':'s')+' · '+esc(p.sub)+'</span></span><span class="clc" aria-hidden="true">›</span></div><div class="clb" inert><div class="cli"><div class="wcpt" data-k="'+p.k+'"></div><div class="wcpa">'+(on?'':n2?'<button class="sm pri" data-wpset="'+p.k+'">Set active</button>':'')+(p.t==='gen'?'<button class="sm" data-wcedit="'+p.i+'">✨ Edit plan</button>':n2?'':'<button class="sm" data-wcadd="'+p.i+'">Add workouts</button>')+'<button class="sm dang" data-wcdel="'+p.k+'" aria-label="Delete plan">✕</button></div></div></div></div>'}).join(''):'<p class="mu" style="margin:0">No saved plans yet — create one above.</p>';
+ var sp=document.createElement('div');sp.innerHTML=COLL.html('wcsaved','📚 Saved plans',body,{cls:'card full',sub:plans.length?plans.length+' plan'+(plans.length===1?'':'s')+(S.wplan&&S.wplan.t!=='man'?' · active: '+wpName().replace(/^\S+ /,''):''):'None yet'});
+ el.appendChild(sp.firstChild);[].slice.call(el.querySelectorAll('.wcpt')).forEach(function(b){(groups[b.dataset.k]||[]).forEach(function(t){b.appendChild(t)})});
+ [].slice.call(el.querySelectorAll('.wcpt')).forEach(shortTiles);[].slice.call(el.querySelectorAll('.wcpl')).forEach(function(c){var o=COLL.isOpen(c.dataset.cl);if(o){c.classList.add('open','cl-done');c.querySelector('.clh').setAttribute('aria-expanded','true');c.querySelector('.clb').removeAttribute('inert')}});
+ [].slice.call(el.querySelectorAll('.tact .ed')).forEach(function(x){x.textContent='✏️ Edit'});[].slice.call(el.querySelectorAll('.wcpt .tact .rn')).forEach(function(x){x.textContent='✎'});var order=[el.querySelector('[data-cl="wccreate"]'),spk,rc,cx,el.querySelector('[data-cl="wcsaved"]')];order.forEach(function(x){if(x)el.appendChild(x)});var lf=el.querySelector('.lfoot');if(lf)el.appendChild(lf)}
+var _rw=rWorkout;rWorkout=function(){try{if(S.wplan===undefined||(S.wplan&&!valid(S.wplan)))wpMig()}catch(e){}
+ if(_enter){_enter=0}
+ var x=_rw.apply(this,arguments);try{bar();var el=document.getElementById('t-workout');if(el&&!rtn()&&!(typeof RE!=='undefined'&&RE)){if(WC)creatorView(el);else planView(el)}else if(el&&rtn()&&WC){}}catch(e){console.error('v106',e)}return x};
+var _gs=typeof gSaveRoutines==='function'&&gSaveRoutines;if(_gs)gSaveRoutines=function(){var r=_gs.apply(this,arguments);if(GV&&GV.id){S.wplan={t:'gen',id:GV.id};save();toast('Saved · now your active Training Plan')}return r};
+if(typeof gSavedHtml==='function')gSavedHtml=function(){return'<div class="card full" id="gsaved"><div class="mu">Saved plans live in the ✏️ Workout Creator.</div><button class="sm" data-wcgo="1" style="width:100%;margin-top:8px">📚 Open saved plans</button></div>'};
+function del(k){var p=k.split(':'),nm=wpName({t:p[0],id:p[1]});if(p[0]==='gen'){undoDel('Plan deleted (its workouts stay as one-off workouts)',function(){var st=gSt();st.progs=st.progs.filter(function(q){return q.id!==p[1]});gSave();if(key(S.wplan)===k)S.wplan=undefined})}else undoDel('Older plan deleted',function(){S.tplans=S.tplans.filter(function(q){return q.id!==p[1]});if(key(S.wplan)===k)S.wplan=undefined});setTimeout(function(){if(tab==='workout')rWorkout()},0)}
+document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('button');if(!b)return;var D=b.dataset;
+ if(b.id==='wcopen'||b.id==='wcopen2'||D.wcgo){ev.stopPropagation();wcGo(1);return}
+ if(b.id==='wcback'){ev.stopPropagation();wcGo(0);return}
+ if(tab==='gen'&&b.closest('#secbar')&&D.go==='home'&&WC){ev.stopPropagation();ev.preventDefault();wcGo(1);return}
+ if(D.wpset){var q=D.wpset.split(':');S.wplan=q[0]==='man'?{t:'man'}:{t:q[0],id:q[1]};save();toast('Active plan: '+wpName().replace(/^\S+ /,''));rWorkout();return}
+ if(D.wcedit!=null){var x=progs()[+D.wcedit];if(!x)return;GV={id:x.id,seed:x.seed,sw:JSON.parse(JSON.stringify(x.sw||{})),wk:x.wk||0,name:x.name};gSt().in=JSON.parse(JSON.stringify(x.inp));gSt().in.rm=gSt().in.rm||{};gSave();gBuild();tab='gen';render();var g=document.getElementById('gres');if(g)g.scrollIntoView();return}
+ if(D.wcadd!=null){var y=(S.tplans||[])[+D.wcadd];if(!y||!y.P)return;tp={P:y.P,acc:true,added:false,name:y.name,id:y.id};tAdd();tp=null;rWorkout();return}
+ if(D.wcdel){del(D.wcdel);return}
+ if(D.go==='gen'&&tab==='workout')WC=1},true);
+/* entering the tab: open today's workout row (handled in planView); data-go workout resets to plan view */
+document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('[data-go="workout"]');if(b)window.WC=0},true);
+if(typeof HTILES!=='undefined'&&HTILES.train)HTILES.train.forEach(function(t){if(t.t==='WORKOUT'){t.t='TRAINING PLAN';t.ic='📋';var s0=t.s;t.s=function(){var n=wpName();var w=wk(cur),all=wkAll(w);return all?wkSets(w)+'/'+all+' sets done':n?n.replace(/^\S+ /,''):'Set up your plan'}}else if(t.t==='CREATE PLAN'){t.t='WORKOUT CREATOR';t.ic='✏️';t.s=function(){var n2=progs().length+(S.tplans||[]).length;return(n2?n2+' saved plan'+(n2===1?'':'s')+' · ':'')+'one-off · speak · custom'};t.go=function(){wcGo(1)}}});
+if(typeof tab!=='undefined'&&tab==='workout')try{rWorkout()}catch(e){}})();
 
 </script>
 </body></html>
