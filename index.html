@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v115 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v116 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v115</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v116</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4853,7 +4853,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v115 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v116 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -5595,7 +5595,7 @@ function snKind(cats,liquid,name){cats=(cats||[]).join(' ');var nm=String(name||
  return K}
 // ---- v63: Scan page (📷 SCAN tile on Diet home) ----
 var SNH='tt_scan_hist_v1',SN={st:null,det:null,loop:null,busy:0,res:null,torch:false,tcap:false,gen:0,msg:''};
-var SNOFF='code,product_name,product_name_en,generic_name,brands,stores,nutriments,serving_size,serving_quantity,quantity,ingredients_text,ingredients_text_en,additives_tags,nutriscore_grade,nutriscore_version,nutriscore_data,nova_group,categories_tags,image_front_small_url';
+var SNOFF='code,product_name,product_name_en,generic_name,brands,stores,nutriments,serving_size,serving_quantity,quantity,ingredients_text,ingredients_text_en,additives_tags,nutriscore_grade,nutriscore_version,nutriscore_data,nutriscore,nova_group,categories_tags,image_front_small_url';
 var SNLBL={g:['Good choice','🟢'],o:['OK sometimes','🟠'],r:['Limit','🔴'],x:['Not enough data','⚪']};
 var SNNM={fat:'Fat',sat:'Saturates',sug:'Sugars',salt:'Salt'},SNLW={fat:'fat',sat:'saturates',sug:'sugar',salt:'salt'},SNLV={g:'LOW',o:'MED',r:'HIGH'};
 function snHist(){try{var a=JSON.parse(localStorage.getItem(SNH)||'[]');return Array.isArray(a)?a:[]}catch(e){return[]}}
@@ -6236,7 +6236,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v115';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v116';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -8435,6 +8435,56 @@ var GDH={};window.V115GDH=GDH;
 if(typeof gdMeal==='function'){var _gdm=gdMeal;gdMeal=function(sl,tg,X,o){var L=_gdm.apply(this,arguments);if(!o||!o.rnd||!o.use||L.length<2)return L;var top=L[0].sc,B=L.filter(function(c){return c.sc>=top-9}),k=X.c+sl,H=GDH[k]=GDH[k]||[];
  var B2=B.filter(function(c){return H.indexOf(c.n)<0});if(!B2.length){H.length=0;B2=B}var r=Math.random,w=B2.map(function(c){return Math.max(0.6,c.sc-top+10)}),s=w.reduce(function(a,b){return a+b},0),x=r()*s,p=B2[0];for(var q=0;q<B2.length;q++){x-=w[q];if(x<=0){p=B2[q];break}}
  H.push(p.n);return[p].concat(L.filter(function(c){return c!==p}))}}
+})();
+</script>
+<script>/* v116 */
+/* v116: Scan page — calculate Nutri-Score (2023) when Open Food Facts has none; clear "Not enough data" / "Not applicable" reasons */
+(function(){
+var FVW='apple|apricot|banana|berr|blackcurrant|cherr|cranberr|date|fig|grape|kiwi|lemon|lime|mango|melon|orange|peach|pear|pineapple|plum|raisin|raspberr|strawberr|sultana|currant|tomato|carrot|onion|pepper|spinach|kale|cabbage|broccoli|cauliflower|courgette|aubergine|pea|bean|lentil|chickpea|pumpkin|squash|beetroot|potato(?!.*starch)|sweetcorn|corn(?! ?(starch|flour|syrup))|mushroom|garlic|celery|leek|cucumber|olive|avocado|almond|hazelnut|walnut|cashew|peanut|pistachio|pecan|coconut|vegetable|fruit';
+var FVR=new RegExp('\\b('+FVW+')','i');
+// share of fruit / veg / legumes / nuts from "Ingredient (12%)" style lists
+function fvlEst(t){t=String(t||'');if(!t)return null;var s=0,m,re=/([A-Za-z][A-Za-z ,'-]{2,40}?)\s*\(?\s*(\d{1,3}(?:[.,]\d+)?)\s*%/g,hit=0;while((m=re.exec(t))){var nm=m[1].split(/[,(]/).pop();if(FVR.test(nm)&&!/powder|flavour|starch|flour|extract/i.test(nm)&&(!/\boil\b/i.test(nm)||/olive|rapeseed|colza|walnut/i.test(nm))){s+=parseFloat(m[2].replace(',','.'));hit=1}}if(!hit){var one=t.replace(/\.\s*$/,'').trim();if(one&&!/[,;]/.test(one)&&one.length<60&&FVR.test(one)&&(!/\boil\b/i.test(one)||/olive|rapeseed|colza|walnut/i.test(one))&&!/powder|flavour|starch|flour|extract|syrup/i.test(one))return 100}return hit?Math.min(100,s):null}
+window.snFvlEst=fvlEst;
+var EXN={'alcoholic-beverages':'alcoholic drinks',wines:'alcoholic drinks',beers:'alcoholic drinks',spirits:'alcoholic drinks',ciders:'alcoholic drinks',liqueurs:'alcoholic drinks',herbs:'herbs',spices:'spices',salts:'salt',salt:'salt',condiments:'',seasonings:'seasonings','baby-foods':'baby food','baby-milks':'baby milk','infant-formulas':'infant formula','follow-on-milks':'baby milk',teas:'tea',coffees:'coffee','herbal-teas':'herbal tea',infusions:'herbal tea','chewing-gum':'chewing gum',vinegars:'vinegar',yeasts:'yeast','table-sweeteners':'table sweeteners',sweeteners:'table sweeteners','unprocessed-single-ingredient-products':'single-ingredient unprocessed foods','fresh-fruits':'fresh fruit (single ingredient)','fresh-vegetables':'fresh vegetables (single ingredient)',eggs:'eggs (single ingredient)','fresh-meats':'fresh meat (single ingredient)','fresh-fish':'fresh fish (single ingredient)',waters:''};
+var NOTEX=/dietary-supplements|protein|bodybuilding|meal-replacement|sports/;
+function exempt(cats,naCat,name){var c=String(naCat||'').replace(/^en:/,'');if(c&&!NOTEX.test(c)){return EXN[c]!=null&&EXN[c]!==''?EXN[c]:c.replace(/-/g,' ')}
+ var C=(cats||[]).join(' ');if(/en:(alcoholic-beverages|wines|beers|spirits|ciders|liqueurs)\b/.test(C))return'alcoholic drinks';if(/en:baby-foods|en:infant|en:baby-milks/.test(C))return'baby food';if(/en:(herbs|spices|salts)\b/.test(C)&&!/en:(sauces|meals|snacks)\b/.test(C))return/spices/.test(C)?'spices':/herbs/.test(C)?'herbs':'salt';
+ if(/en:(coffees|teas|herbal-teas)\b/.test(C)&&!/en:(iced-teas|sweetened-beverages|tea-based-beverages|coffee-drinks)\b/.test(C))return/coffees/.test(C)?'coffee':'tea';return''}
+function exemptName(nm){nm=String(nm||'').toLowerCase();if(/\b(wine|beer|lager|stout|cider|vodka|gin|whisk(e)?y|rum|brandy|liqueur|prosecco)\b/.test(nm)&&!/alcohol.free|0\.0|non.alcoholic|vinegar|sauce|gravy/.test(nm))return'alcoholic drinks';
+ if(/\b(baby|infant|toddler) ?(food|milk|formula|porridge|puree|pouch)|follow.on milk|first infant/.test(nm))return'baby food';if(/^(dried |ground |mixed )?(herbs?|spices?|oregano|basil|thyme|paprika|cumin|turmeric|cinnamon|black pepper|sea salt|table salt|salt)\b/.test(nm))return'herbs, spices and salt';
+ if(/\b(tea bags?|teabags|ground coffee|instant coffee|coffee beans)\b/.test(nm))return'tea and coffee';return''}
+function kindOf(cats,liquid,name,ns23){var K;var d=ns23&&ns23.data;if(d&&d.is_beverage!=null)K={bev:!!d.is_beverage,water:!!d.is_water,cheese:!!d.is_cheese,fats:!!d.is_fat_oil_nuts_seeds,redmeat:!!d.is_red_meat_product};
+ else{K=snKind(cats,liquid,name);var C=(cats||[]).join(' '),nm=String(name||'').toLowerCase();
+  // Nutri-Score 2023: milk, milk drinks, drinkable yoghurt and plant drinks are beverages
+  K.bev=(/en:(beverages|milks|dairy-drinks|milk-drinks|plant-based-milks|drinkable-yogurts|protein-shakes|smoothies|juices)\b/.test(C)||!!liquid||/\b(milk|drink|shake|smoothie|juice|kefir|latte)\b/.test(nm))&&!/en:(soups|yogurts|creams|ice-creams|cheeses|sauces|desserts)\b(?!.*drink)/.test(C.replace(/en:drinkable-yogurts/,''))&&!/\b(soup|cream(?! soda)|ice cream|sauce|powder|chocolate bar|yogh?urt(?!.*drink))\b/.test(nm)}
+ return K}
+function missing(N){var o=[];if(N.kj==null)o.push('energy');if(N.sug==null)o.push('sugars');if(N.sat==null)o.push('saturates');if(N.salt==null)o.push('salt');return o}
+function grade(R,K,fvl){var N=R.N,s=snScore({kj:N.kj,sug:N.sug,sat:N.sat,salt:N.salt,fat:N.fat,fib:N.fib,pro:N.pro,fvl:fvl},K);if(!s)return;R.grade=s.grade;R.gsrc='calc';R.score=s.score;R.fibMiss=N.fib==null;R.fvlUsed=fvl||0;delete R.na;delete R.miss;delete R.naWhy}
+window.snDecide=function(R,p){var ns23=(p.nutriscore||{})['2023']||null,D=p.nutriscore_data||{},cats=p.categories_tags||[],gr=String(p.nutriscore_grade||'').toLowerCase(),ver=String(p.nutriscore_version||'2023');
+ var K=kindOf(cats,R.drink,R.name,ns23),comp=function(id){var c=ns23&&ns23.data&&ns23.data.components;if(!c)return undefined;var a=(c.negative||[]).concat(c.positive||[]).filter(function(x){return x.id===id})[0];return a?a.value:undefined},cs=comp('non_nutritive_sweeteners'),cf=comp('fruits_vegetables_legumes');var sw=cs!=null?!!cs:ns23&&ns23.data&&ns23.data.non_nutritive_sweeteners!=null?!!ns23.data.non_nutritive_sweeteners:/e(950|951|952|954|955|960|961|962|969)\b/.test((p.additives_tags||[]).join(' '));K.sweet=sw;R.K=K;if(K.bev)R.drink=true;else if(R.drink&&!(R.serv&&/ml/.test(R.serv.label||'')))R.drink=false;
+ delete R.na;delete R.miss;delete R.naWhy;
+ if(/^[a-e]$/.test(gr)&&ver==='2023'){R.grade=gr;R.gsrc='off';return R}
+ R.grade=null;R.gsrc=null;var ex=exempt(cats,(ns23&&ns23.not_applicable_category)||D.nutriscore_not_applicable_for_category,R.name);
+ if(ex){R.na=1;R.naWhy=ex;return R}
+ var ms=missing(R.N);if(ms.length){R.miss=ms;return R}
+ var fe=fvlEst(p.ingredients_text_en||p.ingredients_text),fvl=cf!=null?cf:R.N.fvl!=null&&(R.N.fvl>0||!K.fats||fe==null)?R.N.fvl:(fe!=null?fe:0);grade(R,K,fvl);return R};
+var _sm=snMerge;snMerge=function(R,p){_sm.apply(this,arguments);try{snDecide(R,p)}catch(e){console.warn(e)}return R};
+// local Irish/UK list items
+var _sff=snFromFood;snFromFood=function(f,code){var R=_sff.apply(this,arguments);try{if(!f||!R||!R.N)return R;if(R.gsrc==='off')return R;var ex=exemptName(R.name);
+ delete R.na;R.grade=null;R.gsrc=null;if(ex){R.na=1;R.naWhy=ex;return R}var ms=missing(R.N);if(ms.length){R.miss=ms;return R}if(!R.K)R.K=kindOf([],R.drink,R.name,null);grade(R,R.K,null)}catch(e){}return R};
+window.snLocalGrade=function(f){if(!f||f.sug==null||f.sat==null||f.salt==null)return null;if(f.ns>=1&&f.ns<=5)return{g:'abcde'[f.ns-1],src:'off'};if(exemptName(f.name))return null;var k=f.kind||0,K=f.kind!=null?{bev:!!(k&1),water:!!(k&2),cheese:!!(k&4),fats:!!(k&8),redmeat:!!(k&16)}:kindOf([],f.liquid,f.name,null);
+ var s=snScore({kj:f.kcal!=null?f.kcal*4.184:null,sug:f.sug,sat:f.sat,salt:f.salt,fat:f.fat,fib:f.fibre,pro:f.protein,fvl:null},K);return s?{g:s.grade,src:'calc'}:null};
+// wording
+var _sw=snWhy;snWhy=function(R){if(R&&R.col==='x'&&!R.pending){if(R.na&&R.naWhy)return'Nutri-Score doesn’t apply to '+R.naWhy+' — use the traffic lights as a guide.';if(R.miss&&R.miss.length&&!R.offline)return'Missing: '+snList(R.miss)+' — Nutri-Score needs energy, sugars, saturates and salt. Check the label on the pack.'}return _sw.apply(this,arguments)};
+var _sc=snCard;snCard=function(R){var h=_sc.apply(this,arguments);try{if(!R)return h;var lab=null;
+ if(R.grade&&R.gsrc==='calc')lab='Nutri-Score '+R.grade.toUpperCase()+' (calculated by AT Fitness)';else if(!R.grade&&R.na)lab='Not applicable'+(R.naWhy?' · '+R.naWhy:'');else if(!R.grade&&R.miss&&R.miss.length&&!R.pending)lab='Not enough data · Missing: '+snList(R.miss);
+ if(lab)h=h.replace(/(<div class="snbig[^>]*>[\s\S]*?<small>)[\s\S]*?(<\/small>)/,function(a,b,c){return b+esc(lab)+c});
+ if(R.grade&&R.gsrc==='calc'){var info='ⓘ Calculated from the label with the official Nutri-Score 2023 '+(R.K&&R.K.bev?'drinks':R.K&&R.K.fats?'fats, oils & nuts':R.K&&R.K.cheese?'cheese':'food')+' formula'+(R.fibMiss?'; fibre not listed, counted as 0':'')+(R.fvlUsed?'; fruit/veg/nuts '+Math.round(R.fvlUsed)+'%':'')+'. Open Food Facts has no official grade.';h=h.replace('<p class="snwhy">','<p class="mu snci">'+esc(info)+'</p><p class="snwhy">')}
+ if(!R.grade&&R.na)h=h.replace(/(<div class="snbig[^>]*>[\s\S]*?<b>)[^<]*(<\/b>)/,'$1Not applicable$2')}catch(e){}return h};
+// search results: health colour dot where local data allows
+var _ss=snSearch;snSearch=function(q){var r=_ss.apply(this,arguments);setTimeout(dots,0);setTimeout(dots,400);setTimeout(dots,1200);return r};
+function dots(){var el=document.getElementById('snsr');if(!el||typeof IR==='undefined')return;el.querySelectorAll('.snsr[data-snc]').forEach(function(b){if(b.querySelector('.snsd'))return;var c=b.dataset.snc,f=null;try{f=IR.map['o'+c]||null}catch(e){}if(!f)return;var g=snLocalGrade(f);if(!g)return;var col=snCol(g.g);var bb=b.querySelector('b');bb&&bb.insertAdjacentHTML('afterbegin','<span class="sndot snsd c-'+col+'" title="Nutri-Score '+g.g.toUpperCase()+(g.src==='calc'?' (calculated)':'')+'" aria-label="'+SNLBL[col][0]+'"></span> ')})}
+var st=document.createElement('style');st.textContent='.snci{font-size:12px;margin:6px 0 0;line-height:1.35}.snsr b .snsd{display:inline-block;vertical-align:middle;margin-right:4px}';document.head.appendChild(st);
 })();
 </script>
 </body></html>
