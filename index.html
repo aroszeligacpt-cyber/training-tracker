@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v114 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v115 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v114</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v115</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -3074,7 +3074,7 @@ function obSel(m,w){if(!obHas(m)||(m.sel||'a')===w)return;var t=m.items,ta=m.alt
 function obMeal(k){var p=k.split('|');if(p[0]==='x'){var x=dietById(p[1]);return x&&x.mp[+p[2]]}if(p[0]==='p')return pl&&pl.mp&&pl.mp[+p[2]];if(p[0]==='b')return bd&&bd.meals[+p[2]];if(p[0]==='d')return day(cur).meals[+p[2]]}
 function obGen(k,A,excl){var p=k.split('|'),old=MS,L=[];MS={k:p[0],id:p[1],i:+p[2],f:[],seed:1+Math.floor(Math.random()*1e6)};
  try{var c=msCtx(MS),T=sumItems(A);if(T.kcal>0)L=msGen({items:A,keto:c.keto,fish:c.fish,slot:mslSlot(MS.i,c.all.length,T.kcal,c.dk),f:[],seed:MS.seed})}finally{MS=old}
- var H=(OBH[k]=OBH[k]||[]),F=L.filter(function(o){return excl.indexOf(o.t.n)<0&&H.indexOf(o.t.n)<0});if(!F.length){H.length=0;F=L.filter(function(o){return excl.indexOf(o.t.n)<0})}if(!F.length)F=L;if(!F.length)return null;F=F.slice(0,Math.min(F.length,10));
+ var H=(OBH[k]=OBH[k]||[]),F=L.filter(function(o){return excl.indexOf(o.t.n)<0&&H.indexOf(o.t.n)<0});if(!F.length){H.length=0;F=L.filter(function(o){return excl.indexOf(o.t.n)<0})}if(!F.length)F=L;if(!F.length)return null;
  var o=F[Math.floor(Math.random()*F.length)];H.push(o.t.n);return{items:o.items.map(function(x){return Object.assign({},x)}),alt:o.t.n}}
 function obDone(k,msg){var p=k.split('|');if(p[0]==='x'){var x=dietById(p[1]);x.edited=todayIso();bdMerge(x);save();XP['x'+x.id+'|'+p[2]]=1;rMeals()}
  else if(p[0]==='p'){if(pl.acc&&pl.did)syncDiet(true);save();rPlan()}else if(p[0]==='b'){rMeals()}else{save();rMeals()}
@@ -4853,7 +4853,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v114 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v115 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6236,7 +6236,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v114';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v115';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -8275,6 +8275,166 @@ window.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.
 // Workout list "+ add exercise" (quick add) also gets a suggested B
 document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('[data-xadd]');if(!b)return;var r=rtn(),e=r&&r.ex[r.ex.length-1];if(e&&e.name===b.dataset.xadd.split('|')[0]&&!e.b&&!e.nob){e.b=mkB(e,names(r.ex));save();rWorkout()}});
 var st=document.createElement('style');st.textContent='.xab{display:flex;align-items:center;gap:8px;margin:-2px 0 10px 4px;min-width:0}.xab .obt button{min-height:32px;min-width:40px;padding:2px 10px}.xabl{font-size:12.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}.xabd{margin:8px 0 0}.xbe{display:flex;align-items:center;gap:6px;margin-top:8px;min-width:0;flex-wrap:wrap}.xbe .sm{flex:0 0 auto;width:auto;min-height:34px}.xbt{flex:0 0 auto;font-weight:800;font-size:12px;border:1px solid var(--ac2,#a855f7);color:var(--ac2t,var(--ac2,#a855f7));border-radius:999px;padding:2px 8px}.xbn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13.5px}.xbe>small{flex:1;min-width:0}.xbp{margin-top:6px}';document.head.appendChild(st);
+})();
+</script>
+<script>/* v115 */
+var MLIB115=[
+['Smoked salmon & scrambled eggs on sourdough','B','sav fish egg quick lowf',0,[['Sourdough bread','c'],['Smoked salmon','p'],['Butter','f'],['Egg',100],['Spinach, raw',40]]],
+['Turkey rashers, eggs & beans on toast','B','sav meat egg quick',0,[['Wholemeal bread','c'],['Turkey rashers','p'],['Butter','f'],['Egg',100],['Baked beans',80]]],
+['Kippers with brown soda bread & tomato','B','sav fish quick',0,[['Brown soda bread','c'],['Kippers (smoked herring)','p'],['Butter','f'],['Tomato',100]]],
+['Lean sausage & egg breakfast muffin','B','sav meat egg quick',0,[['English muffin','c'],['Lean sausages (97% pork), grilled','p'],['Cheddar cheese','f'],['Egg',60],['Tomato',60]]],
+['Bacon, egg & avocado bagel','B','sav meat egg quick',0,[['Bagel, wholemeal','c'],['Back rashers (bacon), grilled','p'],['Avocado','f'],['Egg',60],['Rocket',20]]],
+['Ham, cottage cheese & cucumber crispbreads','B S','sav meat quick nocook',0,[['Rye crispbread (Ryvita)','c'],['Cottage cheese','p'],['Walnuts','f'],['Ham, sliced',40],['Cucumber',80]]],
+['Tuna melt on wholemeal toast','B L','sav fish quick',0,[['Wholemeal bread','c'],['Tuna, canned in water (drained)','p'],['Cheddar cheese','f'],['Tomato',80]]],
+['Chicken, egg & spinach breakfast wrap','B L','sav meat egg quick',0,[['Wholemeal wrap / tortilla','c'],['Chicken breast slices (deli)','p'],['Avocado','f'],['Egg',60],['Spinach, raw',30]]],
+['Crab & avocado on sourdough toast','B L','sav fish quick lowf',0,[['Sourdough bread','c'],['Crab meat, canned (drained)','p'],['Avocado','f'],['Rocket',20],['Lemon juice',10]]],
+['Protein porridge with banana & peanut butter','B','sweet veg quick',0,[['Porridge oats','c'],['Whey protein powder','p'],['Peanut butter','f'],['Banana',80],['Milk, semi-skimmed',150]]],
+['Lactose-free porridge with strawberries & walnuts','B','sweet veg quick lowf',0,[['Porridge oats','c'],['Vegan protein powder','p'],['Walnuts','f'],['Milk, lactose-free semi-skimmed',200],['Strawberries',80]]],
+['Skyr, kiwi & toasted oat bowl','B S','sweet veg quick nocook lowf',0,[['Porridge oats','c'],['Skyr, plain','p'],['Pumpkin seeds','f'],['Kiwi',100]]],
+['Weetabix with milk, whey & berries','B','sweet veg quick nocook',0,[['Weetabix','c'],['Whey protein powder','p'],['Almonds','f'],['Milk, semi-skimmed',200],['Mixed berries, frozen',80]]],
+['Scotch pancakes with Greek yoghurt & blueberries','B','sweet veg quick',0,[['Pancakes (Scotch pancakes)','c'],['Greek yoghurt, 0% fat','p'],['Almond butter','f'],['Blueberries',80]]],
+['Quark & raspberry overnight oats','B','sweet veg nocook lowgi',0,[['Porridge oats','c'],['Quark','p'],['Chia seeds','f'],['Raspberries',80],['Milk, semi-skimmed',100]]],
+['Pepper & feta omelette with sourdough','B','sav egg veg quick',0,[['Sourdough bread','c'],['Egg white','p'],['Feta','f'],['Egg',100],['Peppers, red',60],['Spinach, raw',40]]],
+['Tofu scramble on wholemeal toast','B','sav veg quick',0,[['Wholemeal bread','c'],['Tofu, firm','p'],['Olive oil','f'],['Mushrooms',60],['Spinach, raw',40]]],
+['Cottage cheese & pineapple on rye','B S','sweet veg quick nocook',0,[['Rye bread, light','c'],['Cottage cheese','p'],['Walnuts','f'],['Pineapple',80]]],
+['Muesli with skyr & apple','B','sweet veg quick nocook lowgi',0,[['Muesli, no added sugar','c'],['Skyr, plain','p'],['Flaxseed, ground','f'],['Apple',100]]],
+['Keto smoked salmon & cream cheese omelette','B L','sav fish egg quick',1,[['Spinach, raw','c'],['Smoked salmon','p'],['Cream cheese, full fat','f'],['Egg',120]]],
+['Keto bacon, eggs & avocado','B','sav meat egg quick',1,[['Cherry tomatoes','c'],['Back rashers (bacon), grilled','p'],['Avocado','f'],['Egg',120]]],
+['Keto Greek yoghurt with walnuts & raspberries','B S','sweet veg quick nocook',1,[['Raspberries','c'],['Greek yoghurt, full fat','p'],['Walnuts','f']]],
+['Egg & new potato salad','L','sav egg veg quick lowf',0,[['New potatoes, boiled','c'],['Egg, boiled','p'],['Olive oil','f'],['Lettuce',60],['Cherry tomatoes',80]]],
+['Shakshuka with sourdough','L D','sav egg veg',0,[['Sourdough bread','c'],['Egg','p'],['Feta','f'],['Pasta sauce, tomato (jar)',150],['Peppers, red',80]]],
+['Egg fried rice with peas','L D','sav egg veg quick',0,[['Basmati rice, cooked','c'],['Egg','p'],['Rapeseed oil','f'],['Peas, frozen',80],['Soy sauce',10]]],
+['Egg mayo wholemeal sandwich','L','sav egg veg quick nocook',0,[['Wholemeal bread','c'],['Egg, boiled','p'],['Light mayonnaise','f'],['Lettuce',30]]],
+['Potato & spinach frittata','L D','sav egg veg lowf',0,[['Potatoes, boiled','c'],['Egg','p'],['Olive oil','f'],['Spinach, raw',60],['Cheddar cheese',20]]],
+['Chicken Caesar-style wrap','L','sav meat quick nocook',0,[['Wholemeal wrap / tortilla','c'],['Chicken breast slices (deli)','p'],['Light mayonnaise','f'],['Lettuce',50],['Parmesan',10]]],
+['Prawn & avocado rice bowl','L','sav fish quick',0,[['Basmati rice, cooked','c'],['King prawns, cooked','p'],['Avocado','f'],['Cucumber',80],['Soy sauce',10]]],
+['Turkey & hummus wholemeal pitta','L','sav meat quick nocook',0,[['Pitta bread, wholemeal','c'],['Turkey breast slices (deli)','p'],['Hummus','f'],['Lettuce',40],['Cucumber',60]]],
+['Smoked tofu, quinoa & chickpea salad','L','sav veg quick nocook lowgi',0,[['Quinoa, cooked','c'],['Smoked tofu','p'],['Feta','f'],['Chickpeas, canned (drained)',60],['Cucumber',80],['Cherry tomatoes',60]]],
+['Lentil, roast pepper & mozzarella salad','L D','sav veg quick lowgi',0,[['Lentils, cooked','c'],['Light mozzarella','p'],['Olive oil','f'],['Peppers, red',80],['Rocket',30]]],
+['Jacket potato with cottage cheese & beans','L','sav veg',0,[['Potatoes, baked (with skin)','c'],['Cottage cheese','p'],['Butter','f'],['Baked beans',100]]],
+['Salmon & sweet potato salad','L','sav fish quick lowgi',0,[['Sweet potato, baked','c'],['Salmon fillet, cooked','p'],['Olive oil','f'],['Rocket',30],['Cherry tomatoes',60]]],
+['Chicken pesto pasta salad','L','sav meat quick',0,[['Pasta, cooked','c'],['Chicken breast, cooked (grilled)','p'],['Pesto','f'],['Cherry tomatoes',80],['Spinach, raw',30]]],
+['Smoked mackerel & beetroot rye open sandwich','L S','sav fish quick nocook lowgi',0,[['Rye bread, light','c'],['Cottage cheese, low fat','p'],['Mackerel, smoked','f'],['Beetroot, cooked',60],['Rocket',20]]],
+['Beef & bean burrito bowl','L D','sav meat',0,[['Basmati rice, cooked','c'],['Beef mince 5% fat, raw','p'],['Avocado','f'],['Black beans, canned (drained)',60],['Peppers, red',80],['Sweetcorn, canned',40]]],
+['Chicken & couscous salad box','L D','sav meat quick nocook',0,[['Couscous, cooked','c'],['Chicken breast, cooked (grilled)','p'],['Feta','f'],['Cucumber',80],['Cherry tomatoes',80]]],
+['Cold salmon & baby potato salad','L D','sav fish nocook lowf',0,[['New potatoes, boiled','c'],['Salmon fillet, cooked','p'],['Light mayonnaise','f'],['Cucumber',80],['Lettuce',40]]],
+['Mozzarella, Parma ham & tomato ciabatta plate','L D','sav meat nocook',0,[['Ciabatta','c'],['Light mozzarella','p'],['Olive oil','f'],['Parma ham (prosciutto)',30],['Cherry tomatoes',100],['Rocket',30]]],
+['Chicken stir-fry with rice noodles','D L','sav meat quick lowf',0,[['Rice noodles, cooked','c'],['Chicken breast, raw','p'],['Rapeseed oil','f'],['Peppers, red',80],['Carrots, raw',60],['Soy sauce',15]]],
+['Pork tenderloin with mash & green beans','D','sav meat lowf',0,[['Potatoes, boiled','c'],['Pork tenderloin, raw','p'],['Butter','f'],['Green beans',120]]],
+['Lamb kofta with couscous & tzatziki','D','sav meat',0,[['Couscous, cooked','c'],['Greek yoghurt, 0% fat','p'],['Lamb kofta, cooked','f'],['Cucumber',60],['Tomato',80]]],
+['Oven-baked cod, chips & peas','D','sav fish',0,[['Oven chips','c'],['Cod, raw','p'],['Rapeseed oil','f'],['Peas, frozen',100]]],
+['Haddock with buttery potatoes & carrots','D','sav fish lowf',0,[['Potatoes, boiled','c'],['Haddock, raw','p'],['Butter','f'],['Carrots, boiled',120]]],
+['Prawn & pea risotto','D','sav fish',0,[['Risotto (arborio) rice, raw','c'],['Prawns / shrimp, raw','p'],['Parmesan','f'],['Peas, frozen',80],['Onion',40]]],
+['Turkey meatballs with spaghetti','D','sav meat',0,[['Spaghetti, cooked','c'],['Turkey mince 7% fat, raw','p'],['Olive oil','f'],['Pasta sauce, tomato (jar)',120]]],
+['Steak, baby potatoes & mushrooms','D','sav meat',0,[['New potatoes, boiled','c'],['Sirloin steak, raw','p'],['Butter','f'],['Mushrooms',80],['Spinach, raw',40]]],
+['Chicken curry with basmati rice','D','sav meat',0,[['Basmati rice, cooked','c'],['Chicken thigh, skinless, raw','p'],['Rapeseed oil','f'],['Curry sauce (jar)',100],['Spinach, raw',40]]],
+['Chilli con carne with brown rice','D','sav meat lowgi',0,[['Brown rice, cooked','c'],['Beef mince 5% fat, raw','p'],['Olive oil','f'],['Kidney beans, canned (drained)',80],['Pasta sauce, tomato (jar)',100]]],
+['Trout with quinoa & asparagus','D','sav fish lowgi lowf',0,[['Quinoa, cooked','c'],['Trout, rainbow farmed, raw','p'],['Olive oil','f'],['Green beans',100]]],
+['Lean lamb shepherd\'s pie','D','sav meat',0,[['Potatoes, boiled','c'],['Lamb mince, raw','p'],['Butter','f'],['Carrots, boiled',80],['Peas, frozen',60]]],
+['Chicken, rice & carrots one-pan','D L','sav meat lowf',0,[['Basmati rice, cooked','c'],['Chicken breast, raw','p'],['Olive oil','f'],['Carrots, boiled',100],['Spinach, raw',40]]],
+['Salmon teriyaki with jasmine rice & bok choy','D','sav fish quick',0,[['Jasmine rice, cooked','c'],['Salmon fillet, raw','p'],['Rapeseed oil','f'],['Green beans',100],['Soy sauce',15]]],
+['Quorn & paneer curry with rice','D','sav veg',0,[['Basmati rice, cooked','c'],['Quorn pieces','p'],['Paneer','f'],['Chickpeas, canned (drained)',60],['Curry sauce (jar)',80],['Spinach, raw',40]]],
+['Tofu & veg noodle stir-fry','D L','sav veg quick lowf',0,[['Rice noodles, cooked','c'],['Tofu, firm','p'],['Rapeseed oil','f'],['Peppers, red',80],['Carrots, raw',60],['Soy sauce',15]]],
+['Quorn & lentil bolognese with wholewheat pasta','D','sav veg lowgi',0,[['Wholewheat pasta, cooked','c'],['Quorn mince','p'],['Olive oil','f'],['Lentils, cooked',60],['Pasta sauce, tomato (jar)',120]]],
+['Halloumi & roast veg couscous with yoghurt','D','sav veg',0,[['Couscous, cooked','c'],['Greek yoghurt, 0% fat','p'],['Halloumi','f'],['Courgette',80],['Peppers, red',80]]],
+['Cheese & mushroom omelette with baby potatoes','D','sav egg veg quick',0,[['New potatoes, boiled','c'],['Egg white','p'],['Cheddar cheese','f'],['Egg',120],['Mushrooms',60]]],
+['Spanish tortilla with salad','D L','sav egg veg lowf',0,[['Potatoes, boiled','c'],['Egg','p'],['Olive oil','f'],['Lettuce',60],['Cucumber',60]]],
+['Black bean & sweet potato chilli','D','sav veg lowgi',0,[['Sweet potato, raw','c'],['Quorn mince','p'],['Avocado','f'],['Black beans, canned (drained)',80],['Pasta sauce, tomato (jar)',100]]],
+['Tempeh & brown rice bowl with peanut dressing','D L','sav veg lowgi',0,[['Brown rice, cooked','c'],['Tempeh','p'],['Peanut butter','f'],['Carrots, raw',60],['Cucumber',60]]],
+['Eggs & beans on wholemeal toast supper','D','sav egg veg quick',0,[['Wholemeal bread','c'],['Egg white','p'],['Butter','f'],['Egg',100],['Baked beans',100]]],
+['Protein rice pudding with berries','D S','sweet veg quick',0,[['Rice pudding (canned)','c'],['Whey protein powder','p'],['Almonds','f'],['Raspberries',80]]],
+['Apple & peanut butter with skyr','S','sweet veg quick nocook',0,[['Apple','c'],['Skyr, plain','p'],['Peanut butter','f']]],
+['Rice cakes with cottage cheese & cucumber','S','sav veg quick nocook lowf',0,[['Rice cakes','c'],['Cottage cheese, low fat','p'],['Walnuts','f'],['Cucumber',60]]],
+['Oatcakes, cheddar & turkey slices','S','sav meat quick nocook',0,[['Oatcakes','c'],['Turkey breast slices (deli)','p'],['Cheddar cheese','f']]],
+['Boiled eggs, crispbread & cherry tomatoes','S','sav egg veg quick nocook lowf',0,[['Rye crispbread (Ryvita)','c'],['Egg, boiled','p'],['Almonds','f'],['Cherry tomatoes',80]]],
+['Protein shake with banana','S','sweet veg quick nocook',0,[['Banana','c'],['Whey protein powder','p'],['Almonds','f'],['Milk, semi-skimmed',200]]],
+['Kefir berry smoothie','S B','sweet veg quick nocook',0,[['Mixed berries, frozen','c'],['Whey protein powder','p'],['Flaxseed, ground','f'],['Kefir',200]]],
+['Tuna & sweetcorn rice cakes','S','sav fish quick nocook lowf',0,[['Rice cakes','c'],['Tuna, canned in water (drained)','p'],['Light mayonnaise','f'],['Sweetcorn, canned',30]]],
+['Chicken slices, hummus & oatcakes with carrot sticks','S','sav meat quick nocook',0,[['Oatcakes','c'],['Chicken breast slices (deli)','p'],['Hummus','f'],['Carrots, raw',80]]],
+['Greek yoghurt with kiwi & pumpkin seeds','S B','sweet veg quick nocook lowf',0,[['Kiwi','c'],['Greek yoghurt, 0% fat','p'],['Pumpkin seeds','f']]],
+['Strawberries, quark & dark chocolate','S','sweet veg quick nocook',0,[['Strawberries','c'],['Quark','p'],['Dark chocolate 70%','f']]],
+['Beef jerky, apple & almonds','S','sav meat quick nocook',0,[['Apple','c'],['Beef jerky','p'],['Almonds','f']]],
+['Smoked salmon & cream cheese crispbreads','S','sav fish quick nocook',0,[['Rye crispbread (Ryvita)','c'],['Smoked salmon','p'],['Cream cheese, light','f'],['Cucumber',60]]],
+['Cottage cheese, pear & walnuts','S','sweet veg quick nocook lowgi',0,[['Pear','c'],['Cottage cheese','p'],['Walnuts','f']]],
+['Edamame & rice cake snack plate','S','sav veg quick nocook',0,[['Rice cakes','c'],['Edamame beans, shelled','p'],['Peanut butter','f']]],
+['Orange, skyr & chia pot','S','sweet veg quick nocook lowf',0,[['Orange','c'],['Skyr, plain','p'],['Chia seeds','f']]],
+['Keto chicken Caesar salad','L D','sav meat quick',1,[['Cauliflower','c'],['Chicken breast, cooked (grilled)','p'],['Mayonnaise','f'],['Lettuce',60],['Parmesan',15]]],
+['Keto salmon with asparagus & butter','D L','sav fish quick',1,[['Asparagus','c'],['Salmon fillet, raw','p'],['Butter','f'],['Spinach, raw',40]]],
+['Keto steak with garlic mushrooms','D','sav meat quick',1,[['Mushrooms','c'],['Sirloin steak, raw','p'],['Butter','f'],['Rocket',30]]],
+['Keto cheese & spinach omelette','B L D','sav egg veg quick',1,[['Spinach, raw','c'],['Egg white','p'],['Cheddar cheese','f'],['Egg',150]]],
+['Keto tuna & avocado salad','L S','sav fish quick nocook',1,[['Cucumber','c'],['Tuna, canned in water (drained)','p'],['Avocado','f'],['Light mayonnaise',15]]],
+['Keto pork loin with cauliflower mash','D','sav meat',1,[['Cauliflower','c'],['Pork loin, raw','p'],['Butter','f'],['Green beans',80]]],
+['Keto prawn & courgette stir-fry','D L','sav fish quick',1,[['Courgette','c'],['King prawns, cooked','p'],['Coconut oil','f'],['Peppers, green',60],['Soy sauce',10]]],
+['Keto halloumi & rocket salad','L D','sav veg quick',1,[['Cherry tomatoes','c'],['Halloumi','p'],['Olive oil','f'],['Rocket',40]]],
+['Keto ham & cheese roll-ups','S','sav meat quick nocook',1,[['Cucumber','c'],['Ham, sliced','p'],['Cheddar cheese','f']]],
+['Keto cheese, celery & almonds','S','sav veg quick nocook',1,[['Celery','c'],['Cheddar cheese','p'],['Almonds','f']]],
+['Keto chicken thighs with green beans','D','sav meat',1,[['Green beans','c'],['Chicken thigh, skinless, raw','p'],['Olive oil','f'],['Broccoli, raw',60]]],
+['Keto egg & smoked mackerel salad','L','sav fish egg quick nocook',1,[['Cherry tomatoes','c'],['Egg, boiled','p'],['Mackerel, smoked','f'],['Lettuce',50]]],
+['Keto cod with pesto & courgette','D','sav fish quick',1,[['Courgette','c'],['Cod, raw','p'],['Pesto','f'],['Spinach, raw',40]]],
+['Keto cottage cheese with strawberries & walnuts','S B','sweet veg quick nocook',1,[['Strawberries','c'],['Cottage cheese','p'],['Walnuts','f']]],
+['Keto smoked salmon & cream cheese cucumber bites','S','sav fish quick nocook',1,[['Cucumber','c'],['Smoked salmon','p'],['Cream cheese, full fat','f']]],
+['Keto boiled eggs with avocado & tomatoes','S B','sav egg veg quick nocook',1,[['Cherry tomatoes','c'],['Egg, boiled','p'],['Avocado','f']]],
+['Keto turkey, brie & celery plate','S','sav meat quick nocook',1,[['Celery','c'],['Turkey breast slices (deli)','p'],['Brie','f']]],
+['Keto skyr with blueberries & almonds','S B','sweet veg quick nocook',1,[['Blueberries','c'],['Skyr, plain','p'],['Almonds','f']]],
+['Keto ham & mushroom omelette','B L','sav meat egg quick',1,[['Mushrooms','c'],['Ham, sliced','p'],['Butter','f'],['Egg',120]]],
+['Keto sausage, egg & spinach plate','B','sav meat egg quick',1,[['Cherry tomatoes','c'],['Lean sausages (97% pork), grilled','p'],['Butter','f'],['Egg',100],['Spinach, raw',40]]],
+['Keto protein chia pudding with raspberries','B S','sweet veg nocook',1,[['Raspberries','c'],['Whey protein powder','p'],['Chia seeds','f'],['Almond milk, unsweetened',150]]],
+['Keto kippers & scrambled eggs','B','sav fish egg quick',1,[['Spinach, raw','c'],['Kippers (smoked herring)','p'],['Butter','f'],['Egg',100]]],
+['Keto Greek yoghurt with peanut butter','S','sweet veg quick nocook',1,[['Raspberries','c'],['Greek yoghurt, 0% fat','p'],['Peanut butter','f']]],
+['Keto chicken & cheddar snack plate','S','sav meat quick nocook',1,[['Cherry tomatoes','c'],['Chicken breast slices (deli)','p'],['Cheddar cheese','f']]],
+['Peanut butter & banana rice cakes with eggs','B S','sweet egg veg quick lowf',0,[['Rice cakes','c'],['Egg, boiled','p'],['Peanut butter','f'],['Banana',60]]],
+['Cheddar & egg sourdough toastie','B','sav egg veg quick lowf',0,[['Sourdough bread','c'],['Egg white','p'],['Cheddar cheese','f'],['Egg',60],['Spinach, raw',30]]],
+['Strawberry protein oats (lactose-free)','B S','sweet veg quick lowf',0,[['Porridge oats','c'],['Pea protein powder','p'],['Peanut butter','f'],['Milk, lactose-free semi-skimmed',150],['Strawberries',60]]],
+['Turkey, walnut & kiwi oatcake plate','S','sav meat quick nocook lowf',0,[['Oatcakes','c'],['Turkey breast slices (deli)','p'],['Walnuts','f'],['Kiwi',80]]],
+['Tofu & spinach scramble on sourdough','B','sav veg quick lowf',0,[['Sourdough bread','c'],['Tofu, firm','p'],['Olive oil','f'],['Spinach, raw',40],['Cherry tomatoes',60]]],
+['Tuna & cucumber rice cakes','S','sav fish quick nocook lowf',0,[['Rice cakes','c'],['Tuna, canned in water (drained)','p'],['Olive oil','f'],['Cucumber',50]]],
+['Chicken & carrot rice cake stack','S','sav meat quick nocook lowf',0,[['Rice cakes','c'],['Chicken breast slices (deli)','p'],['Peanut butter','f'],['Carrots, raw',60]]],
+['Scrambled eggs with smoked salmon & potato cakes','B','sav fish egg quick lowf',0,[['Potatoes, boiled','c'],['Smoked salmon','p'],['Butter','f'],['Egg',100],['Spinach, raw',30]]]
+];
+
+/* v115: full recipe library for every generator, no-repeat rotation, no top-10 cap, Gut/PCOS weighted variety, portion caps */
+(function(){
+MLIB115.forEach(function(a){if(MLIB.some(function(t){return t.n===a[0]}))return;if(!a[4].every(function(x){return fByName(x[0])}))return;MLIB.push({id:MLIB.length,n:a[0],sl:a[1].split(' '),tg:a[2].split(' '),keto:!!a[3],it:a[4]})});
+function cap(nm){try{var m=gdMax(nm);return/whey|protein powder|casein/i.test(nm)?50:m}catch(e){return 300}}
+var SIDE={c:{B:['Wholemeal bread','Banana','Porridge oats'],S:['Banana','Rice cakes','Apple'],L:['Basmati rice, cooked','Potatoes, boiled','Wholemeal bread'],D:['Potatoes, boiled','Basmati rice, cooked','Wholemeal bread']},
+ p:{B:['Greek yoghurt, 0% fat','Egg white','Cottage cheese'],S:['Greek yoghurt, 0% fat','Cottage cheese'],L:['Chicken breast, raw','Greek yoghurt, 0% fat','Egg white'],D:['Chicken breast, raw','Greek yoghurt, 0% fat','Egg white']},
+ f:{B:['Almonds','Peanut butter'],S:['Almonds','Walnuts'],L:['Olive oil','Avocado'],D:['Olive oil','Avocado']}};
+var VEGP=['Greek yoghurt, 0% fat','Egg white','Cottage cheese'];
+// clamp oversized foods and spread what's missing over other foods (keeps big 2,600+ kcal days realistic)
+function split(items,tg,sl,o){o=o||{};sl=sl||'L';var over=false;items=items.map(function(x){var c=cap(x.name);if(x.g>c){over=true;return calc(fByName(x.name)||foodByKey(x.key),c)}return x});if(!over)return items;
+ var mac={c:'carbs',p:'protein',f:'fat'};['p','c','f'].forEach(function(r){if(o.keto&&r==='c')return;for(var k=0;k<3;k++){var T=sumItems(items),d=tg[mac[r]]-T[mac[r]];if(d<(r==='f'?4:8))return;
+  var L=(r==='p'&&o.veg?VEGP:SIDE[r][sl]||SIDE[r].L),done=false;for(var i=0;i<L.length&&!done;i++){var f=fByName(L[i]);if(!f||f[mac[r]]<=0)continue;if(o.av&&o.av[f.name])continue;var ex=items.filter(function(x){return x.name===f.name})[0],have=ex?ex.g:0,c=cap(f.name),g=Math.min(c,have+d/(f[mac[r]]/100));g=Math.round(g/5)*5;if(g-have<10)continue;
+   items=ex?items.map(function(x){return x===ex?calc(f,g):x}):items.concat([calc(f,g)]);done=true}if(!done)return}});return items}
+window.v115split=split;
+function isVeg(t){return t&&t.tg&&t.tg.indexOf('veg')>=0}
+function shuffle(a,r){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+var GH={};window.V115GH=GH;
+function pool(R,i,sl){var keto=R&&R.style&&R.style.id==='keto',L=MLIB.filter(function(t){return t.sl.indexOf(sl)>=0&&(!keto||t.keto)&&t.it.every(function(x){return fByName(x[0])})});
+ if(i&&i.fish&&(sl==='L'||sl==='D')){var F=L.filter(function(t){return t.tg.indexOf('fish')>=0});if(F.length>=4)L=F}return L}
+// main generator base: whole library, random order, no repeats until the pool is used up
+_gm0=function(R,i,seed){var sp=SPLIT[i.meals]||SPLIT[4],keto=R&&R.style&&R.style.id==='keto',r=rng(((seed||0)*7919+Math.floor(Math.random()*1e6))%2147483647||1),today=[];
+ return sp.map(function(s,ix){var tg={protein:R.protein*s[2],carbs:R.carbs*s[2],fat:R.fat*s[2]},kt=tg.protein*4+tg.carbs*4+tg.fat*9,P=pool(R,i,s[0]),key=(keto?'k':'')+(i.fish?'f':'')+s[0],H=GH[key]=GH[key]||[];
+  if(!P.length)return{type:s[1],slot:s[0],tpl:0,items:buildMeal(TPL[s[0]][0],tg)};
+  var fresh=P.filter(function(t){return H.indexOf(t.n)<0&&today.indexOf(t.n)<0});if(!fresh.length){H.length=0;fresh=P.filter(function(t){return today.indexOf(t.n)<0})}if(!fresh.length)fresh=P;
+  var C=shuffle(fresh,r).concat(shuffle(P,r)),best=null;
+  for(var q=0;q<C.length;q++){var t=C[q],it=buildMeal(t.it,tg);if(!it.length)continue;it=split(it,tg,s[0],{keto:keto,veg:isVeg(t)});var T=sumItems(it),e=Math.abs(T.kcal-kt)/kt+Math.max(0,tg.protein-T.protein)/Math.max(1,tg.protein);
+   if(!best||e<best.e)best={t:t,it:it,e:e};if(Math.abs(T.kcal-kt)/kt<0.1&&T.protein>=tg.protein*0.85){best={t:t,it:it,e:e};break}}
+  H.push(best.t.n);today.push(best.t.n);return{type:s[1],slot:s[0],tpl:0,alt:best.t.n,items:best.it}})};
+// favourites/avoid path: more variety among good candidates
+var FVH={};if(typeof fvTpls==='function'){var _fvT=fvTpls;fvTpls=function(R,i,slot){var L=_fvT.apply(this,arguments).filter(function(t){return t.n}),H=FVH[slot]=FVH[slot]||[],F=L.filter(function(t){return H.indexOf(t.n)<0});if(F.length<3){H.length=0;F=L}return F}}
+if(typeof fvGen1==='function'){var _fv1=fvGen1;fvGen1=function(){var mp=_fv1.apply(this,arguments);try{mp.forEach(function(m){if(m.alt){var H=FVH[m.slot]=FVH[m.slot]||[];if(H.indexOf(m.alt)<0)H.push(m.alt)}})}catch(e){}return mp}}
+function trim(items,kt){var T=sumItems(items);for(var k=0;k<4&&T.kcal>kt*1.05;k++){var L=items.filter(function(x){var f=fByName(x.name);return f&&f.carbs>f.protein&&f.carbs*4>f.fat*9&&x.g>40}).sort(function(a,b){return b.kcal-a.kcal});if(!L.length)break;var x=L[0],f=fByName(x.name),cut=(T.kcal-kt)/(f.kcal/100),g=Math.max(30,Math.round((x.g-cut)/5)*5);if(g>=x.g)break;items=items.map(function(y){return y===x?calc(f,g):y});T=sumItems(items)}return items}
+if(typeof avoidSet==='function'){var _av=avoidSet;avoidSet=function(i){var A=_av.apply(this,arguments);try{if((i&&i.avoid||[]).some(function(t){return/pork|pig/i.test(t)}))FOODS.forEach(function(f){if(/\bham\b|bacon|rasher|sausage|gammon|chorizo|salami|pepperoni|prosciutto|parma ham|serrano|black pudding|white pudding|boczek|kie\u0142basa|kabanos|szynka|frankfurter|hot dog/i.test(f.name)&&!/turkey|chicken|vegan|veggie|quorn/i.test(f.name))A[f.name]=1})}catch(e){}return A}}
+function carbItems(mp){var L=[];mp.forEach(function(m){m.items.forEach(function(x,j){var f=fByName(x.name);if(f&&f.carbs>f.protein&&f.carbs*4>f.fat*9&&f.kcal>=60)L.push([m,j,f])})});return L}
+function fitDay(mp,R){for(var it=0;it<4;it++){var T=planTot(mp),d=R.kcal-T.kcal;if(Math.abs(d)<=R.kcal*0.025)return;var L=carbItems(mp);if(d<0)L=L.filter(function(q){return q[0].items[q[1]].g>40});else L=L.filter(function(q){return q[0].items[q[1]].g<cap(q[2].name)-5});if(!L.length)return;
+ var tot=L.reduce(function(a,q){return a+q[0].items[q[1]].kcal},0)||1;L.forEach(function(q){var x=q[0].items[q[1]],share=d*x.kcal/tot,g=x.g+share/(q[2].kcal/100);g=Math.max(30,Math.min(cap(q[2].name),Math.round(g/5)*5));q[0].items[q[1]]=calc(q[2],g)})}}
+// outermost: final portion sanity on every plan
+var _gmX=genMeals;genMeals=function(R,i,seed){var mp=_gmX.apply(this,arguments);try{var sp=SPLIT[i.meals]||SPLIT[4],keto=R.style&&R.style.id==='keto',AV=typeof avoidSet==='function'?avoidSet(i):{};mp.forEach(function(m,ix){var s=sp[ix]||sp[sp.length-1];var tg={protein:R.protein*s[2],carbs:R.carbs*s[2],fat:R.fat*s[2]};m.items=split(m.items,tg,m.slot||s[0],{keto:keto,av:AV,veg:!m.items.some(function(x){return/chicken|beef|pork|turkey|lamb|ham|bacon|steak|salmon|cod|tuna|fish|prawn|mackerel|haddock|trout/i.test(x.name)})})});fitDay(mp,R)}catch(e){console.warn(e)}return mp};
+// Gut/IBS & PCOS: weighted random among all good candidates + rotation instead of always the top score
+var GDH={};window.V115GDH=GDH;
+if(typeof gdMeal==='function'){var _gdm=gdMeal;gdMeal=function(sl,tg,X,o){var L=_gdm.apply(this,arguments);if(!o||!o.rnd||!o.use||L.length<2)return L;var top=L[0].sc,B=L.filter(function(c){return c.sc>=top-9}),k=X.c+sl,H=GDH[k]=GDH[k]||[];
+ var B2=B.filter(function(c){return H.indexOf(c.n)<0});if(!B2.length){H.length=0;B2=B}var r=Math.random,w=B2.map(function(c){return Math.max(0.6,c.sc-top+10)}),s=w.reduce(function(a,b){return a+b},0),x=r()*s,p=B2[0];for(var q=0;q<B2.length;q++){x-=w[q];if(x<=0){p=B2[q];break}}
+ H.push(p.n);return[p].concat(L.filter(function(c){return c!==p}))}}
 })();
 </script>
 </body></html>
