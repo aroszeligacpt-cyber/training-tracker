@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v113 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v114 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v113</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v114</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4853,7 +4853,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v113 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v114 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6236,7 +6236,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v113';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v114';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -8078,12 +8078,12 @@ function mealFromKey(kind,key){try{
  var p=String(key).split('|'),c={k:p[0],id:p[1],i:+p[2]},o=msCtx(c),m=o&&o.m;if(!m)return null;
  return mealObj((typeof mlab==='function'?mlab(m):'Meal')+(m.alt?' · '+m.alt:''),m.items)}catch(e){return null}}
 function rxOf(e){var t=e.tpl||[],rs=t.map(function(z){return+z.r||0}).filter(Boolean),lo=Math.min.apply(null,rs),hi=Math.max.apply(null,rs),w=Math.max.apply(null,t.map(function(z){return+z.w||0}).concat([0]));return{name:e.name,muscle:e.muscle||'',sets:t.length,rep:rs.length?(lo===hi?String(lo):lo+'–'+hi):'',top:w?'top '+w+' kg':''}}
-function rtCopy(r){return{name:String(r.name||'Workout').replace(/^✨\s*/,''),ex:(r.ex||[]).map(function(e){return{name:e.name,muscle:e.muscle||'',tpl:(e.tpl||[]).map(function(z){return{w:z.w,r:z.r}}),rx:e.rx||undefined}})}}
+function rtCopy(r){return{name:String(r.name||'Workout').replace(/^✨\s*/,''),ex:(r.ex||[]).map(function(e){return{name:e.name,muscle:e.muscle||'',tpl:(e.tpl||[]).map(function(z){return{w:z.w,r:z.r}}),rx:e.rx||undefined,b:e.b?{name:e.b.name,muscle:e.b.muscle||'',tpl:(e.b.tpl||[]).map(function(z){return{w:z.w,r:z.r}})}:undefined,sel:e.b&&e.sel==='b'?'b':undefined}})}}
 function woFromRoutine(r){var ex=(r.ex||[]).map(rxOf);return{name:rtCopy(r).name,ex:ex,nsets:ex.reduce(function(a,x){return a+x.sets},0),vol:0,prs:[],tpl:1,rt:[rtCopy(r)]}}
 function planWo(){var L=[],nm='Training plan';try{L=wpRoutines();var w=S.wplan;if(w&&w.t==='gen'){var g=gSt().progs.find(function(p){return p.id===w.id});if(g)nm=g.name}}catch(e){}return planFrom(nm,L)}
 function planFrom(nm,L){var rt=L.map(rtCopy);return{name:nm,days:rt.length,rt:rt,ex:rt.map(function(r){return{name:r.name,sets:r.ex.length,rep:'ex',top:''}}),nsets:rt.reduce(function(a,r){return a+r.ex.reduce(function(b,e){return b+e.tpl.length},0)},0)}}
 function sessionWo(){var w=null;try{w=cLogged()}catch(e){}if(!w)return null;var t=todayIso(),W=wk(t),v=0,ns=0,rt={name:w.name.split(' · ')[0],ex:[]};
- W.ex.forEach(function(e){var ss=e.sets.filter(sd);if(!ss.length)return;ss.forEach(function(z){ns++;v+=(+z.w||0)*(+z.r||0)});rt.ex.push({name:e.name,muscle:e.muscle||'',tpl:ss.map(function(z){return{w:z.w,r:z.r}})})});
+ W.ex.forEach(function(e){var ss=e.sets.filter(sd);if(!ss.length)return;ss.forEach(function(z){ns++;v+=(+z.w||0)*(+z.r||0)});rt.ex.push({name:e.name,muscle:e.muscle||'',tpl:ss.map(function(z){return{w:z.w,r:z.r}}),opt:e.opt||undefined,b:e.alt?{name:e.alt,muscle:e.muscle||''}:undefined,sel:e.opt==='b'?'b':undefined})});
  w.vol=Math.round(v);w.nsets=ns;w.rt=[rt];w.sess=1;var d=W.k13;if(d&&d.st&&d.et&&d.et-d.st>=60000)w.min=Math.round((d.et-d.st)/60000);return w}
 /* ---------- auto tags ---------- */
 var MEAT=/chicken|beef|pork|ham|bacon|turkey|lamb|steak|mince|sausage|salami|chorizo|duck/i,FISH=/salmon|tuna|cod|hake|prawn|fish|mackerel|pollock|sea bass|trout|sardine/i;
@@ -8189,7 +8189,7 @@ function saveMeal(a){var m=a.meal,d=day(cur),N=nMeals(cur),no=0;for(var i=1;i<=N
  var items=(m.items||[]).map(function(i){var f=i.key&&foodByKey(i.key),it=f&&i.g?calc(f,i.g):{name:i.name,g:i.g,kcal:i.kcal,protein:i.protein,carbs:i.carbs,fat:i.fat,fibre:0};it.eaten=false;return it});
  var mm=fixM({no:no||undefined,name:m.name||'',off:!no,eaten:false,desc:'',items:items,kcal:0,protein:0,carbs:0,fat:0});mm.alt=m.name;d.meals.push(mm);try{sortDay(d)}catch(e){}save();return no}
 function copyWo(a){var L=a.wo.rt&&a.wo.rt.length?a.wo.rt:[{name:a.wo.name,ex:(a.wo.ex||[]).map(function(x){var r=parseInt(String(x.rep))||8,w=parseFloat(String(x.top||'').replace(/^top\s*/,''))||'';return{name:x.name,muscle:x.muscle||'',tpl:Array.from({length:+x.sets||3},function(){return{w:w,r:r}})}})}];var n0=0;
- L.forEach(function(r){S.routines.push({id:'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),name:String(r.name||'Workout').slice(0,60)+' (copy)',ex:(r.ex||[]).map(function(e){return{name:e.name,muscle:e.muscle||'',tpl:(e.tpl&&e.tpl.length?e.tpl:[{w:'',r:8}]).map(function(z){return{w:z.w,r:z.r}}),rx:e.rx}})});n0++});save();return n0}
+ L.forEach(function(r){S.routines.push({id:'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),name:String(r.name||'Workout').slice(0,60)+' (copy)',ex:(r.ex||[]).map(function(e){return{name:e.name,muscle:e.muscle||'',tpl:(e.tpl&&e.tpl.length?e.tpl:[{w:'',r:8}]).map(function(z){return{w:z.w,r:z.r}}),rx:e.rx,b:e.b&&e.b.name?{name:String(e.b.name).slice(0,80),muscle:e.b.muscle||'',tpl:(e.b.tpl&&e.b.tpl.length?e.b.tpl:e.tpl||[{w:'',r:8}]).map(function(z){return{w:z.w,r:z.r}})}:undefined,sel:e.b&&e.sel==='b'?'b':undefined}})});n0++});save();return n0}
 document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('[data-k13sv],[data-k13cp]');if(!b)return;ev.stopPropagation();ev.preventDefault();var id=b.dataset.k13sv||b.dataset.k13cp,a=PCACHE[id];if(!a)return toast('Open the post and try again');
  if(b.dataset.k13sv){var no=saveMeal(a);b.textContent='✓ Saved';b.disabled=true;toast(no?'Added to today as Meal '+no+' (planned) ✓':'Added to today (off-plan) ✓')}
  else{var c=copyWo(a);b.textContent='✓ Copied';b.disabled=true;toast(c>1?c+' workouts added to Workout Creator ✓':'Added to Workout Creator ✓')}},true);
@@ -8221,5 +8221,60 @@ var st=document.createElement('style');st.textContent=
 document.head.appendChild(st);
 })();
 
+</script>
+<script>/* v114: exercise Option B — one alternative per exercise (same muscle + movement pattern), A/B chip in Training Plan + logging, history/PRs per option */
+(function(){
+var MG={Quads:'Legs',Hamstrings:'Legs',Glutes:'Legs',Calves:'Legs',Legs:'Legs',Biceps:'Arms',Triceps:'Arms',Forearms:'Arms',Arms:'Arms',Lats:'Back',Traps:'Back','Lower back':'Back',Back:'Back',Delts:'Shoulders',Shoulders:'Shoulders',Chest:'Chest',Abs:'Core',Core:'Core'};
+function mg(m){return MG[m]||m||'Other'}
+var PR=[['rdelt',/rear delt|reverse fly|face pull/],['hamc',/leg curl|nordic|hamstring curl/],['quad',/leg extension/],['calf',/calf/],['sl',/lunge|split squat|step-up|step up/],['squat',/squat|leg press|hack/],['glute',/hip thrust|glute bridge|bridge|kickback/],['hinge',/deadlift|rdl|good morning|back extension/],['fly',/fly|pec deck|crossover/],['vpush',/overhead|shoulder press|military|arnold|pike/],['tri',/tricep|skull|pushdown|close-grip|dips \(tri|kickback/],['hpush',/bench|push-up|press-up|chest press|dips|floor press/],['vpull',/pull-up|chin-up|pulldown|pullover|pull up/],['hpull',/row|inverted/],['delt',/lateral raise|upright|front raise/],['bi',/curl/],['core',/plank|crunch|leg raise|rollout|twist|sit-up|dead bug|pallof|ab /]];
+function pat(nm){var g=typeof GXM!=='undefined'&&GXM[nm];if(g)return g[1];var s=String(nm||'').toLowerCase();for(var i=0;i<PR.length;i++)if(PR[i][1].test(s))return PR[i][0];return''}
+function uni(){var L=[],seen={};function add(n,m){if(!n||seen[n])return;seen[n]=1;L.push({name:n,muscle:m})}
+ try{exList().forEach(function(x){add(x.name,x.muscle)})}catch(e){}try{GX.forEach(function(x){add(x[0],x[3])})}catch(e){}return L}
+function musOf(nm,m){if(m&&m!=='Other')return m;try{return cMus(nm)}catch(e){return m||'Other'}}
+// ranked alternatives: same muscle group + same pattern first, then same muscle group
+function sugList(nm,mus,used){used=used||[];var p=pat(nm),g=mg(musOf(nm,mus)),kk=function(s){return String(s||'').toLowerCase().replace(/[^a-z]/g,'').replace(/s(?=[a-z]*$)/g,'')},ku=used.concat([nm]).map(kk),U=uni().filter(function(x){return ku.indexOf(kk(x.name))<0});
+ var a=U.filter(function(x){return p&&pat(x.name)===p&&mg(x.muscle)===g}),b=U.filter(function(x){return mg(x.muscle)===g&&a.indexOf(x)<0&&(!p||pat(x.name)&&(typeof GALT!=='undefined'&&(GALT[p]||[]).indexOf(pat(x.name))>=0))}),c=U.filter(function(x){return mg(x.muscle)===g&&a.indexOf(x)<0&&b.indexOf(x)<0});
+ return a.concat(b,c)}
+function mkB(x,used){var s=sugList(x.name,x.muscle,used)[0];if(!s)return null;return{name:s.name,muscle:s.muscle,tpl:(x.tpl||[{r:''}]).map(function(z){return{w:'',r:z.r}})}}
+function names(ex){var u=[];(ex||[]).forEach(function(e){u.push(e.name);if(e.b)u.push(e.b.name)});return u}
+function autoB(ex){(ex||[]).forEach(function(e){if(e&&!e.b&&!e.nob&&pat(e.name)!=='plyo'){var b=mkB(e,names(ex));if(b)e.b=b}});return ex}
+function swap(e){if(!e||!e.b)return;var o={name:e.name,muscle:e.muscle,tpl:e.tpl};if(e.dn)o.dn=e.dn;var b=e.b;e.name=b.name;e.muscle=b.muscle||e.muscle;e.tpl=b.tpl&&b.tpl.length?b.tpl:(e.tpl||[]).map(function(z){return{w:'',r:z.r}});if(b.dn)e.dn=b.dn;else delete e.dn;e.b=o;e.sel=e.sel==='b'?'a':'b'}
+function isB(e){return e&&e.sel==='b'}
+function aName(e){return isB(e)?e.b.name:e.name}function bName(e){return isB(e)?e.name:e.b.name}
+window.X14={pat:pat,sugList:sugList,mkB:mkB,autoB:autoB,swap:swap};
+function chip(rid,k,e,det){if(!e||!e.b)return'';var b=isB(e),o=e.b;
+ return'<div class="xab'+(det?' xabd':'')+'"><div class="obt" role="group" aria-label="Exercise option"><button type="button" class="'+(b?'':'on')+'" data-xab="'+rid+'|'+k+'|a" aria-pressed="'+!b+'">A</button><button type="button" class="'+(b?'on':'')+'" data-xab="'+rid+'|'+k+'|b" aria-pressed="'+b+'">B</button></div><span class="mu xabl">'+(det?'Option '+(b?'B':'A')+' · own PRs &amp; history':(b?'or A: ':'or B: ')+esc(o.dn||exAl(o.name)))+'</span></div>'}
+// ---- data plumbing ----
+var _el=ensureLog;ensureLog=function(re){var i=_el.apply(this,arguments);try{var x=wk(cur).ex[i];if(x&&re&&re.b&&!x.opt){x.opt=isB(re)?'b':'a';x.alt=re.b.name}}catch(e){}return i};
+var _ro=reOpen;reOpen=function(id){var r=S.routines.find(function(x){return x.id===id}),fl=[];if(r)r.ex.forEach(function(e,k){if(isB(e)){swap(e);fl.push(k)}});_ro.apply(this,arguments);
+ if(RE)RE.ex.forEach(function(e){e._o=1});if(RE)RE._v14=1;if(RE&&r)RE.ex.forEach(function(e,k){var s=r.ex[k];if(s){if(s.b)e.b=cl(s.b);if(s.nob)e.nob=1;if(fl.indexOf(k)>=0)e.sel0='b'}});if(r&&fl.length){fl.forEach(function(k){swap(r.ex[k])})}};
+var _rs=reSave;reSave=function(){var src=RE&&RE.ex.map(function(e){return{b:e.b,nob:e.nob,s:e.sel0}}),id=RE&&RE.id;_rs.apply(this,arguments);var r=src&&S.routines.find(function(x){return x.id===id});
+ if(r){r.ex.forEach(function(e,k){var s=src[k];if(!s)return;if(s.b)e.b=s.b;if(s.nob)e.nob=1;e.sel='a';if(s.s==='b'&&e.b)swap(e)});save();rWorkout()}};
+if(typeof gRoutineEx==='function'){var _gr=gRoutineEx;gRoutineEx=function(p){var L=_gr.apply(this,arguments);try{if(p&&p.k==='lift')autoB(L)}catch(e){}return L}}
+// ---- UI ----
+function deco(){if(tab!=='workout')return;var el=document.getElementById('t-workout');if(!el)return;
+ if(typeof RE!=='undefined'&&RE){var ch=0;if(RE._v14)RE.ex.forEach(function(e){if(!e._o){e._o=1;if(!e.b&&!e.nob){e.b=mkB(e,names(RE.ex));ch=1}}if(e.b&&e.b.name===e.name){delete e.b}});if(ch){rr();return}el.querySelectorAll('.rei').forEach(function(d,k){var e=RE.ex[k];if(!e||d.querySelector('.xbe'))return;var h;
+  if(e.b)h='<div class="xbe"><span class="xbt">B</span><span class="xbn"><b>'+esc(e.b.name)+'</b><small class="mu"> · '+esc(e.b.muscle||'')+'</small></span><button type="button" class="sm" data-xbc="'+k+'" aria-label="Change option B">⇄</button><button type="button" class="sm dang" data-xbr="'+k+'" aria-label="Remove option B">✕</button></div>'+(XB===k?'<div class="xbp">'+sugList(e.name,e.muscle,names(RE.ex)).slice(0,8).map(function(x){return'<button type="button" class="fr" data-xbp="'+k+'|'+esc(x.name)+'"><span>'+esc(x.name)+'</span><small>'+esc(x.muscle)+'</small></button>'}).join('')+'</div>':'');
+  else h='<div class="xbe"><button type="button" class="sm" data-xba="'+k+'">+ Option B</button><small class="mu">same muscles, swap any day</small></div>';
+  var g=d.querySelector('.rxg');(g||d.lastChild).insertAdjacentHTML('afterend',h)});return}
+ var r=rtn();if(!r)return;
+ if(wv.e==null){el.querySelectorAll('.tile [data-oe]').forEach(function(b){var k=+b.dataset.oe,t=b.closest('.tile'),e=r.ex[k];if(!t||!e||!e.b||t.nextElementSibling&&t.nextElementSibling.classList.contains('xab'))return;t.insertAdjacentHTML('afterend',chip(r.id,k,e))})}
+ else{var e=r.ex[wv.e];if(!e||!e.b||el.querySelector('.xabd'))return;var h2=el.querySelector('.card h2'),m=h2&&h2.nextElementSibling;(m||h2)&&(m||h2).insertAdjacentHTML('afterend',chip(r.id,wv.e,e,1))}}
+var XB=null;
+var _rw=rWorkout;rWorkout=function(){var x=_rw.apply(this,arguments);try{deco()}catch(e){console.error(e)}return x};
+function rr(){if(RE){var n0=document.getElementById('rename');if(n0)RE.name=n0.value||RE.name}var y=scrollY;rWorkout();scrollTo(0,y)}
+window.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('button');if(!b)return;var D=b.dataset,stop=function(){ev.stopImmediatePropagation();ev.preventDefault()};
+ if(D.xab){stop();var p=D.xab.split('|'),r=S.routines.find(function(x){return x.id===p[0]}),e=r&&r.ex[+p[1]];if(!e||!e.b)return;if((isB(e)?'b':'a')===p[2])return;
+  if(r.id===wv.r){var i=logFor(e.name,cur),L=wk(cur).ex;if(i>=0&&!L[i].sets.some(sd)){wkW().ex.splice(i,1)}}
+  swap(e);save();var y=scrollY;rWorkout();scrollTo(0,y);toast('Option '+(isB(e)?'B':'A')+': '+(e.dn||exAl(e.name)));return}
+ if(typeof RE==='undefined'||!RE)return;
+ if(D.xba!=null){stop();var e1=RE.ex[+D.xba];delete e1.nob;e1.b=mkB(e1,names(RE.ex));if(!e1.b)toast('No matching exercise in the library');XB=null;rr()}
+ else if(D.xbr!=null){stop();var e2=RE.ex[+D.xbr];delete e2.b;e2.nob=1;XB=null;rr();toast('Option B removed')}
+ else if(D.xbc!=null){stop();XB=XB===+D.xbc?null:+D.xbc;rr()}
+ else if(D.xbp){stop();var q=D.xbp.split('|'),e3=RE.ex[+q[0]],nm=q.slice(1).join('|');e3.b={name:nm,muscle:musOf(nm,(uni().filter(function(x){return x.name===nm})[0]||{}).muscle),tpl:(e3.tpl||[]).map(function(z){return{w:'',r:z.r}})};XB=null;rr();toast('Option B: '+nm)}},true);
+// Workout list "+ add exercise" (quick add) also gets a suggested B
+document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('[data-xadd]');if(!b)return;var r=rtn(),e=r&&r.ex[r.ex.length-1];if(e&&e.name===b.dataset.xadd.split('|')[0]&&!e.b&&!e.nob){e.b=mkB(e,names(r.ex));save();rWorkout()}});
+var st=document.createElement('style');st.textContent='.xab{display:flex;align-items:center;gap:8px;margin:-2px 0 10px 4px;min-width:0}.xab .obt button{min-height:32px;min-width:40px;padding:2px 10px}.xabl{font-size:12.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}.xabd{margin:8px 0 0}.xbe{display:flex;align-items:center;gap:6px;margin-top:8px;min-width:0;flex-wrap:wrap}.xbe .sm{flex:0 0 auto;width:auto;min-height:34px}.xbt{flex:0 0 auto;font-weight:800;font-size:12px;border:1px solid var(--ac2,#a855f7);color:var(--ac2t,var(--ac2,#a855f7));border-radius:999px;padding:2px 8px}.xbn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13.5px}.xbe>small{flex:1;min-width:0}.xbp{margin-top:6px}';document.head.appendChild(st);
+})();
 </script>
 </body></html>
