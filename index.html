@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v116 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v117 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v116</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v117</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4853,7 +4853,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v116 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v117 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6104,7 +6104,7 @@ changeTxt=function(ss,base){if(!ss.length)return'';var b=ss[ss.length-1];
  if(ss.length<2)return'First session ever – nothing to compare yet';return'first → last: '+cmp(ss[0],b)};
 /* chart: sane single-point axis + typed trophies */
 svgLine=function(pts,o){var W=340,H=160,pl=38,pb=18,pt=16,N=pts.length;if(!N)return'';var vs=pts.map(function(p){return p.v}),mn=Math.min.apply(null,vs),mx=Math.max.apply(null,vs);
- if(mx-mn<Math.max(0.5,Math.abs(mx)*0.02)){var c=mx||1;mn=Math.max(0,c*0.8);mx=c*1.1}else{var pad=(mx-mn)*.15;mn=Math.max(0,mn-pad);mx+=pad}
+ if(o&&o.fit){mn=Math.floor(mn-o.fit);mx=Math.ceil(mx+o.fit)}else if(mx-mn<Math.max(0.5,Math.abs(mx)*0.02)){var c=mx||1;mn=Math.max(0,c*0.8);mx=c*1.1}else{var pad=(mx-mn)*.15;mn=Math.max(0,mn-pad);mx+=pad}
  var x=function(i){return N===1?(pl+W)/2:pl+14+(W-pl-28)*i/(N-1)},y=function(v){return pt+(H-pt-pb)*(1-(v-mn)/(mx-mn))};
  var s='<svg viewBox="0 0 '+W+' '+H+'" class="chart"><defs><linearGradient id="gl" x1="0" x2="1"><stop offset="0" style="stop-color:var(--ac)"/><stop offset="1" style="stop-color:var(--mag)"/></linearGradient></defs>';
  [0,.5,1].forEach(function(f){var v=mn+(mx-mn)*f,yy=y(v);s+='<line x1="'+pl+'" x2="'+W+'" y1="'+yy+'" y2="'+yy+'" stroke="var(--t2)"/><text x="'+(pl-4)+'" y="'+(yy+3)+'" text-anchor="end" class="ax">'+short(Math.round(v*10)/10)+'</text>'});
@@ -6236,7 +6236,7 @@ var CFG=window.__SBCFG||{url:'https://zqmorfrtnmcpfgeqligp.supabase.co',key:'sb_
 var ON=!!(CFG.key&&/^(eyJ|sb_publishable_)/.test(CFG.key));
 window.CLOUD={on:ON};
 if(!ON)return;
-var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v116';
+var RT=/^https:\/\/aroszeligacpt-cyber\.github\.io$/.test(location.origin)?'https://aroszeligacpt-cyber.github.io/training-tracker/':location.href.split(/[?#]/)[0];var META_K='tt_cloud_v1',AUTH_K='atf-sb-auth',VER='v117';
 function meta(){try{return JSON.parse(localStorage.getItem(META_K)||'{}')}catch(e){return{}}}
 function setMeta(o){var m=meta();for(var k in o)m[k]=o[k];_set.call(localStorage,META_K,JSON.stringify(m))}
 function isData(k){return k==='trainingTracker.v1'||(k.indexOf('tt_')===0&&k!==META_K&&k!=='tt_cloud_keys_v1')}
@@ -7045,7 +7045,7 @@ function isOpen(id,def){var s=st();return id in s?!!s[id]:!!def}
 function setOpen(id,v){var s=st();s[id]=v?1:0;try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
 function esc2(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 /* header + body markup; titleHtml is trusted app markup */
-function head(id,titleHtml,sub,o){return'<div class="clh" role="button" tabindex="0" id="clh-'+id+'" aria-controls="clb-'+id+'" aria-expanded="'+(o?'true':'false')+'"><span class="clt">'+titleHtml+(sub?'<span class="cls">'+esc2(sub)+'</span>':'')+'</span><span class="clc" aria-hidden="true">›</span></div>'}
+function head(id,titleHtml,sub,o){return'<div class="clh" role="button" tabindex="0" id="clh-'+id+'" aria-controls="clb-'+id+'" aria-expanded="'+(o?'true':'false')+'"><span class="clt">'+titleHtml+(sub?'<span class="cls'+(sub==='Tap to open'?' cltap':'')+'">'+esc2(sub)+'</span>':'')+'</span><span class="clc" aria-hidden="true">›</span></div>'}
 function html(id,titleHtml,bodyHtml,opt){opt=opt||{};var o=window.COLL.isOpen(id,opt.open);return'<div class="'+(opt.cls||'card')+' cl cl-now'+(o?' open cl-done':'')+'"'+(opt.domId?' id="'+opt.domId+'"':'')+' data-cl="'+id+'">'+head(id,titleHtml,opt.sub,o)+'<div class="clb" id="clb-'+id+'" role="region" aria-labelledby="clh-'+id+'"'+(o?'':' inert')+'><div class="cli">'+bodyHtml+'</div></div></div>'}
 /* convert an already-rendered card: its first heading becomes the row title */
 function wrap(card,id,opt){if(!card||card.classList.contains('cl'))return card;opt=opt||{};var hn=opt.heading||null,h=hn||(opt.title?null:card.querySelector(':scope>h1,:scope>h2,:scope>h3')),t=opt.title||(h&&!hn?h.innerHTML:hn?'':id);if(h){var hp=h.parentNode;h.remove();if(hp!==card&&hp&&!hp.textContent.trim()&&!hp.querySelector('*'))hp.remove()}
@@ -8485,6 +8485,123 @@ var _sc=snCard;snCard=function(R){var h=_sc.apply(this,arguments);try{if(!R)retu
 var _ss=snSearch;snSearch=function(q){var r=_ss.apply(this,arguments);setTimeout(dots,0);setTimeout(dots,400);setTimeout(dots,1200);return r};
 function dots(){var el=document.getElementById('snsr');if(!el||typeof IR==='undefined')return;el.querySelectorAll('.snsr[data-snc]').forEach(function(b){if(b.querySelector('.snsd'))return;var c=b.dataset.snc,f=null;try{f=IR.map['o'+c]||null}catch(e){}if(!f)return;var g=snLocalGrade(f);if(!g)return;var col=snCol(g.g);var bb=b.querySelector('b');bb&&bb.insertAdjacentHTML('afterbegin','<span class="sndot snsd c-'+col+'" title="Nutri-Score '+g.g.toUpperCase()+(g.src==='calc'?' (calculated)':'')+'" aria-label="'+SNLBL[col][0]+'"></span> ')})}
 var st=document.createElement('style');st.textContent='.snci{font-size:12px;margin:6px 0 0;line-height:1.35}.snsr b .snsd{display:inline-block;vertical-align:middle;margin-right:4px}';document.head.appendChild(st);
+})();
+</script>
+<script>/* v117 */
+(function(){
+function ciFull(c){return !!(c&&(n(c.bf)||Object.keys(c.photos||{}).some(function(k){return c.photos[k]})||Object.keys(c.m||{}).some(function(k){return n(c.m[k])})))}
+function fullDates(){return ciDates().filter(function(d){return ciFull(ci(d))})}
+function wkDays(to){var a=[];for(var i=6;i>=0;i--)a.push(add(to,-i));return a}
+function eaten(d){return totals(d).kcal>0}
+function avgA(a){return a.length?a.reduce(function(x,y){return x+y},0)/a.length:0}
+function r1(v){return Math.round(v*10)/10}
+window.ciFull=ciFull;window.ciFullDates=fullDates;
+/* ---------- charts ---------- */
+var _sb=svgBars;svgBars=function(d,o){var h=_sb(d,o);if(o&&o.target){h=h.replace(/<text[^>]*fill="#fbbf24">target [^<]*<\/text>/,'')+'<div class="tgleg"><i></i>Target '+short(o.target)+'</div>'}return h};
+/* ---------- body & check-ins (report) ---------- */
+bodyReport=function(days){var wi=days.filter(function(d){return ci(d)&&n(ci(d).w)}),pts=wi.map(function(d){return{label:dl(d),v:n(ci(d).w)}}),cd=days.filter(function(d){return hasCI(ci(d))}),fu=cd.filter(function(d){return ciFull(ci(d))});
+ if(!cd.length)return'<div class="card full"><h2>Body & check-ins</h2><p class="mu">No check-ins in this range.</p></div>';
+ var ch='',first=fu[0],last=fu[fu.length-1];if(fu.length>1){var F=ci(first),L=ci(last);ch=MEAS.concat([['bf','Body fat %']]).map(function(m){var a=m[0]==='bf'?F.bf:(F.m||{})[m[0]],b=m[0]==='bf'?L.bf:(L.m||{})[m[0]];return n(a)&&n(b)?'<tr><td>'+m[1]+'</td><td>'+nf(n(a))+' → '+nf(n(b))+'</td><td><b class="pur">'+sgn(n(b)-n(a),m[0]==='bf'?'%':' cm')+'</b></td></tr>':''}).join('')}
+ var fa=FEEL.map(function(f){var v=cd.map(function(d){return(ci(d).f||{})[f[0]]}).filter(Boolean);if(!v.length)return'';var a=avgA(v);return'<div class="srow"><span>'+f[1]+'</span><span class="mu">'+v.length+' day'+(v.length===1?'':'s')+'</span><b class="pur">'+f[2][Math.round(a)-1]+' '+r1(a)+'/5</b></div>'}).join('');
+ return'<div class="card full"><h2>Body & check-ins</h2><p class="mu">'+wi.length+' weigh-in'+(wi.length===1?'':'s')+' · '+fu.length+' full check-in'+(fu.length===1?'':'s')+' (photos / measurements)</p>'+(pts.length?'<h3>Body weight'+(pts.length>1?' · '+sgn(pts[pts.length-1].v-pts[0].v,' kg'):'')+'</h3>'+svgLine(pts,{fit:1}):'<p class="mu">No weights logged.</p>')+
+ (ch?'<h3 style="margin-top:12px">Measurement changes ('+dl(first)+' → '+dl(last)+')</h3><table>'+ch+'</table>':fu.length===1?'<p class="mu" style="margin-top:10px">One full check-in in this range – add another with measurements to see changes.</p>':'')+(fa?'<h3 style="margin-top:12px">How you felt · averages</h3>'+fa:'')+'</div>'};
+/* ---------- compare: newest by default ---------- */
+document.addEventListener('change',function(e){var t=e.target;if(t&&t.id==='cmpa')ciCmp.aU=1;if(t&&t.id==='cmpb')ciCmp.bU=1},true);
+compareCard=function(ds){var L=fullDates();if(L.length<2)L=ds;if(L.length<2)return'<div class="card full"><h2>Compare</h2><p class="mu">Do at least two full check-ins (photos or measurements) to compare.</p></div>';
+ if(!ciCmp.bU||L.indexOf(ciCmp.b)<0){ciCmp.b=L[L.length-1];ciCmp.bU=0}if(!ciCmp.aU||L.indexOf(ciCmp.a)<0||ciCmp.a>=ciCmp.b){var pv=L.filter(function(d){return d<ciCmp.b});ciCmp.a=pv.length?pv[pv.length-1]:L[0];ciCmp.aU=0}
+ var A=ci(ciCmp.a),B=ci(ciCmp.b),P=POSES.find(function(p){return p[0]===ciCmp.pose})||POSES[0];
+ [ciCmp.a,ciCmp.b].forEach(function(d){if(!thumbsLoaded[d])loadThumbs(d).then(function(){if(tab==='checkin')rCheckin()})});
+ var opt=function(sel){return L.map(function(d){return'<option value="'+d+'"'+(d===sel?' selected':'')+'>'+fmt(d,{day:'numeric',month:'short',year:'numeric'})+'</option>'}).join('')};
+ var row=function(lbl,a,b,u){a=n(a);b=n(b);if(!a&&!b)return'';return'<tr><td>'+lbl+'</td><td>'+(a?nf(a):'–')+'</td><td>'+(b?nf(b):'–')+'</td><td><b class="pur">'+(a&&b?sgn(b-a,u):'')+'</b></td></tr>'};
+ return'<div class="card full" id="cmp"><h2>Compare</h2><div class="g2"><div><label>Before</label><select id="cmpa">'+opt(ciCmp.a)+'</select></div><div><label>After</label><select id="cmpb">'+opt(ciCmp.b)+'</select></div></div>'+
+ '<div class="seg" style="margin-top:10px">'+POSES.map(function(p){return'<button class="sm'+(ciCmp.pose===p[0]?' on':'')+'" data-cpose="'+p[0]+'">'+p[1].replace(' side','')+'</button>'}).join('')+'</div>'+
+ '<div class="pgrid" style="margin-top:10px">'+slot(ciCmp.a,[P[0],dl(ciCmp.a)],false)+slot(ciCmp.b,[P[0],dl(ciCmp.b)],false)+'</div>'+
+ '<table><tr><th></th><th>'+dl(ciCmp.a)+'</th><th>'+dl(ciCmp.b)+'</th><th>Change</th></tr>'+row('Weight (kg)',A.w,B.w,' kg')+row('Body fat %',A.bf,B.bf,'%')+MEAS.map(function(m){return row(m[1],(A.m||{})[m[0]],(B.m||{})[m[0]],' cm')}).join('')+'</table></div>'};
+/* ---------- history: full check-ins vs weigh-ins, by week ---------- */
+function histHtml(){var ds=ciDates();if(!ds.length)return'<h2>History</h2><p class="mu">No check-ins yet.</p>';var W={};ds.forEach(function(d){var m=monday(d);(W[m]=W[m]||[]).push(d)});
+ return'<h2>History</h2>'+Object.keys(W).sort().reverse().map(function(m){var L=W[m],fu=L.filter(function(d){return ciFull(ci(d))}),wi=L.filter(function(d){return!ciFull(ci(d))&&n(ci(d).w)}),ot=L.filter(function(d){return!ciFull(ci(d))&&!n(ci(d).w)}),ws=L.filter(function(d){return n(ci(d).w)});
+  var h='<div class="cihw"><div class="cihwh">Week of '+fmt(m,{day:'numeric',month:'short'})+(ws.length>1?' · <b class="pur">'+sgn(n(ci(ws[ws.length-1]).w)-n(ci(ws[0]).w),' kg')+'</b>':'')+'</div>';
+  h+=fu.slice().reverse().map(function(d){var x=ci(d),np=Object.keys(x.photos||{}).filter(function(k){return x.photos[k]}).length,nm=Object.keys(x.m||{}).filter(function(k){return n(x.m[k])}).length;return'<button class="psum" data-cid="'+d+'"><b>📸 '+fmt(d,{weekday:'short',day:'numeric',month:'short'})+(d===cur?' · open':'')+'</b><small>'+[n(x.w)?nf(n(x.w))+' kg':'',n(x.bf)?nf(n(x.bf))+'% BF':'',np?np+' photo'+(np===1?'':'s'):'',nm?nm+' measurement'+(nm===1?'':'s'):''].filter(Boolean).join(' · ')+'</small></button>'}).join('');
+  var dd=wi.concat(ot).sort();if(dd.length)h+='<div class="ciwi"><span class="mu">Daily weigh-ins</span><div class="ciwic">'+dd.map(function(d){var x=ci(d);return'<button class="sm'+(d===cur?' on':'')+'" data-cid="'+d+'">'+fmt(d,{weekday:'short'})+' '+(n(x.w)?nf(n(x.w)):'✓')+'</button>'}).join('')+'</div></div>';
+  return h+'</div>'}).join('')}
+/* ---------- weekly check-in report ---------- */
+var CIR={on:false,to:null};window.CIR=CIR;
+function planned(){try{var st=gSt();if(st.progs&&st.progs.length&&st.in&&st.in.days)return+st.in.days}catch(e){}return wkTarget()}
+function repTo(){var L=fullDates();if(CIR.to&&L.indexOf(CIR.to)>=0)return CIR.to;var p=L.filter(function(d){return d<=cur});return p.length?p[p.length-1]:(L.length?L[L.length-1]:cur)}
+function wcrHtml(pr){var to=repTo(),days=wkDays(to),from=days[0],L=fullDates(),bf=L.filter(function(d){return d<from}),bd=bf.length?bf[bf.length-1]:null,A=bd?ci(bd):null,B=ci(to)||{m:{},f:{},photos:{}};
+ var wsd=ciDates().filter(function(d){return d>=(bd||from)&&d<=to&&n(ci(d).w)}),wts=wsd.map(function(d){return n(ci(d).w)});
+ var wA=A&&n(A.w)?n(A.w):wts.length?wts[0]:0,wB=n(B.w)||(wts.length?wts[wts.length-1]:0),dW=wA&&wB?wB-wA:null;
+ var waA=A&&(A.m||{}).waist,waB=(B.m||{}).waist,dWa=n(waA)&&n(waB)?n(waB)-n(waA):null,dBf=A&&n(A.bf)&&n(B.bf)?n(B.bf)-n(A.bf):null;
+ var ev=days.map(function(d){return{d:d,t:totals(d),T:TG(d)}}),fd=ev.filter(function(x){return eaten(x.d)});
+ var av=function(k){return avgA(fd.map(function(x){return x.t[k]}))},at=function(k){return avgA(fd.map(function(x){return n(x.T[k])}))};
+ var kP=at('kcal')?av('kcal')/at('kcal')*100:0,onK=fd.filter(function(x){var T=n(x.T.kcal);return T&&Math.abs(x.t.kcal-T)<=T*0.1}).length,pHit=fd.filter(function(x){return x.t.protein>=n(x.T.protein)*0.9}).length;
+ var ses=days.filter(function(d){return wkSets(wk(d))>0}),vol=days.reduce(function(a,d){return a+wkVol(wk(d))},0),pl=planned(),ln=liftNames(days),best=ln.map(function(nm){var q=sessions(nm,days);var b=q.slice().sort(function(x,y){return y.e1-x.e1})[0];return{nm:nm,b:b,pr:q.some(function(x){return x.pr}),n:q.length}}).filter(function(x){return x.b}).sort(function(x,y){return y.b.e1-x.b.e1}),npr=best.filter(function(x){return x.pr}).length;
+ var cr=[];days.forEach(function(d){((S.cardio||{})[d]||[]).forEach(function(c){cr.push({d:d,min:n(c.min),k:cKcal(c)})})});
+ var hb=S.habits.map(function(h){var v=days.map(function(d){return peek(d).habits?n(peek(d).habits[h.id]):0}),lg=v.filter(function(x){return x>0}),hit=v.filter(function(x){return h.type==='bool'?x>=1:n(h.target)&&x>=n(h.target)}).length;return{h:h,avg:avgA(lg),lg:lg.length,hit:hit}});
+ var cdw=days.filter(function(d){return hasCI(ci(d))}),fe=FEEL.map(function(f){var v=cdw.map(function(d){return(ci(d).f||{})[f[0]]}).filter(Boolean);return{f:f,v:v,a:avgA(v)}}).filter(function(x){return x.v.length}),notes=cdw.filter(function(d){return(ci(d).notes||'').trim()});
+ var pat=[];if(dW!=null)pat.push('Weight '+(Math.abs(dW)<0.2?'held steady':dW<0?'down '+nf(r1(-dW))+' kg':'up '+nf(r1(dW))+' kg')+(bd?' since '+dl(bd):' this week')+(dWa!=null&&Math.abs(dWa)>=0.5?', waist '+sgn(dWa,' cm'):'')+'.');
+ if(fd.length)pat.push('Calories averaged '+Math.round(kP)+'% of target ('+onK+'/'+fd.length+' days within ±10%), protein hit on '+pHit+'/'+fd.length+' days.');else pat.push('No food logged this week.');
+ pat.push(ses.length+' of '+pl+' planned session'+(pl===1?'':'s')+' done'+(npr?' with '+npr+' PR'+(npr===1?'':'s'):'')+'.');
+ var verdict=dW==null?'':(dW<-0.2&&kP<=105?'The deficit is working – keep going.':dW<-0.2?'Weight is dropping even above target – recheck logging or targets.':dW>0.3&&kP>105?'Calories over target are the likely reason for the gain.':kP>=95&&kP<=105&&ses.length>=pl?'Great adherence – give it another week before changing anything.':'');if(verdict)pat.push(verdict);
+ var tl=function(v,l){return'<div><b>'+v+'</b><small>'+l+'</small></div>'};
+ var h='<h2>Weekly check-in</h2><p class="mu">'+fmt(from,{day:'numeric',month:'short'})+' – '+fmt(to,{day:'numeric',month:'short',year:'numeric'})+(bd?' · compared with '+fmt(bd,{day:'numeric',month:'short'}):'')+' · AT Fitness</p>'+
+  '<div class="ergrid">'+tl(dW!=null?sgn(dW,''):'–','weight (kg)')+tl(dWa!=null?sgn(dWa,''):'–','waist (cm)')+tl(dBf!=null?sgn(dBf,''):'–','body fat (%)')+tl(ses.length+'/'+pl,'sessions')+tl(fd.length?Math.round(kP)+'%':'–','kcal vs target')+tl(fd.length?Math.round(av('protein'))+' g':'–','avg protein')+'</div>'+
+  '<p class="epat">'+esc(pat.join(' '))+'</p>';
+ // photos
+ var ph=POSES.filter(function(p){return(B.photos||{})[p[0]]||(A&&(A.photos||{})[p[0]])});
+ if(ph.length){var im=function(d,p){var t=d&&thumbs[d+'|'+p[0]];return'<figure>'+(t?'<img src="'+t+'" alt="'+p[1]+' '+dl(d)+'">':'<span class="mu">–</span>')+'</figure>'};
+  h+='<h3>Photos</h3><div class="wcph" style="grid-template-columns:44px repeat('+ph.length+',minmax(0,1fr))"><span></span>'+ph.map(function(p){return'<span class="wcpl">'+p[1].replace(' side','')+'</span>'}).join('')+(bd?'<span class="wcpd">'+dl(bd)+'</span>'+ph.map(function(p){return im(bd,p)}).join(''):'')+'<span class="wcpd">'+dl(to)+'</span>'+ph.map(function(p){return im(to,p)}).join('')+'</div>'}
+ // weight chart
+ if(wsd.length>1)h+='<h3>Body weight</h3>'+svgLine(wsd.map(function(d){return{label:dl(d),v:n(ci(d).w)}}),{fit:1});
+ // body table
+ var rows=[['Weight','kg',A&&A.w,B.w],['Body fat','%',A&&A.bf,B.bf]].concat(MEAS.map(function(m){return[m[1],'cm',A&&(A.m||{})[m[0]],(B.m||{})[m[0]]]})).filter(function(r){return n(r[2])||n(r[3])});
+ if(rows.length)h+='<h3>Body</h3><table class="ert"><tr><th></th><th>'+(bd?dl(bd):'Before')+'</th><th>'+dl(to)+'</th><th>Change</th></tr>'+rows.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+(n(r[2])?nf(n(r[2])):'–')+'</td><td>'+(n(r[3])?nf(n(r[3])):'–')+'</td><td><b>'+(n(r[2])&&n(r[3])?sgn(n(r[3])-n(r[2]),r[1]==='kg'?' kg':r[1]==='%'?'%':' cm'):'')+'</b></td></tr>'}).join('')+'</table>';
+ // diet
+ h+='<h3>Diet adherence</h3>';if(fd.length){h+='<table class="ert"><tr><th></th><th>Avg/day</th><th>Target</th><th>vs target</th></tr>'+MAC.map(function(m){var a=av(m[0]),t=at(m[0]),u=m[0]==='kcal'?'':' g',p=t?a/t*100:0;return'<tr><td>'+m[1]+'</td><td>'+nf(Math.round(a))+u+'</td><td>'+nf(Math.round(t))+u+'</td><td><b class="'+(Math.abs(p-100)<=10?'pur':'red')+'">'+Math.round(p)+'%</b></td></tr>'}).join('')+'</table><p class="mu wcsm">'+fd.length+'/7 days logged · '+onK+' within ±10% kcal · protein ≥90% on '+pHit+' days · targets = the diet active on each day</p>'}else h+='<p class="mu">No food logged.</p>';
+ // training
+ h+='<h3>Training</h3><table class="ert"><tr><td>Sessions</td><td><b>'+ses.length+' of '+pl+' planned</b>'+(ses.length?' · '+ses.map(function(d){return fmt(d,{weekday:'short'})}).join(', '):'')+'</td></tr><tr><td>Volume</td><td>'+nf(Math.round(vol))+' kg · '+days.reduce(function(a,d){return a+wkSets(wk(d))},0)+' sets</td></tr><tr><td>PRs</td><td>'+(npr?'🏆 '+npr+' lift'+(npr===1?'':'s'):'None this week')+'</td></tr></table>';
+ if(best.length)h+='<table class="ert wcbs"><tr><th>Best sets</th><th>Top set</th><th>e1RM</th></tr>'+best.slice(0,8).map(function(x){return'<tr><td>'+esc(x.nm)+(x.pr?' 🏆':'')+'</td><td>'+(x.b.top?nf(x.b.top)+' kg':'BW')+' × '+x.b.topReps+'</td><td>'+(x.b.e1?nf(Math.round(x.b.e1)):'–')+'</td></tr>'}).join('')+'</table>'+(best.length>8?'<p class="mu wcsm">+'+(best.length-8)+' more lifts</p>':'');
+ // cardio & habits
+ h+='<h3>Cardio & habits</h3><table class="ert"><tr><td>Cardio</td><td>'+(cr.length?cr.length+' session'+(cr.length===1?'':'s')+' · '+nf(cr.reduce(function(a,x){return a+x.min},0))+' min · '+nf(Math.round(cr.reduce(function(a,x){return a+x.k},0)))+' kcal':'None logged')+'</td></tr>'+hb.filter(function(x){return x.lg}).map(function(x){return'<tr><td>'+esc(x.h.name)+'</td><td>'+(x.h.type==='bool'?x.hit+'/7 days':'avg '+nf(r1(x.avg))+(x.h.unit?' '+esc(x.h.unit):'')+(n(x.h.target)?' · target hit '+x.hit+'/7':''))+'</td></tr>'}).join('')+'</table>';
+ // feelings
+ if(fe.length)h+='<h3>How you felt · averages</h3><table class="ert">'+fe.map(function(x){return'<tr><td>'+x.f[1]+'</td><td>'+x.f[2][Math.round(x.a)-1]+' <b>'+r1(x.a)+'/5</b></td><td class="mu">'+x.v.length+' day'+(x.v.length===1?'':'s')+'</td></tr>'}).join('')+'</table>';
+ if(notes.length)h+='<h3>Notes</h3>'+notes.map(function(d){return'<p class="wcn"><b>'+dl(d)+'</b> '+esc(ci(d).notes)+'</p>'}).join('');
+ return h+'<p class="mu wcsm" style="margin-top:10px">Self-logged data · prepared with AT Fitness.</p>'}
+function wcrView(){var el=document.getElementById('t-checkin'),L=fullDates(),to=repTo(),bf=L.filter(function(d){return d<add(to,-6)}),bd=bf.length?bf[bf.length-1]:null;
+ [to,bd].forEach(function(d){if(d&&!thumbsLoaded[d])loadThumbs(d).then(function(){if(tab==='checkin'&&CIR.on)wcrView()})});
+ el.innerHTML='<div class="card full notidy noprint"><div class="row" style="align-items:center;flex-wrap:nowrap;gap:8px"><button class="sm" data-cirx="1" style="flex:0 0 auto;width:auto">‹ Check-in</button>'+(L.length?'<select id="cirsel" style="flex:1;min-width:0">'+L.slice().reverse().map(function(d){return'<option value="'+d+'"'+(d===to?' selected':'')+'>Week to '+fmt(d,{day:'numeric',month:'short',year:'numeric'})+'</option>'}).join('')+'</select>':'')+'</div><button data-cirprint="1" style="width:100%;margin-top:8px">📄 Save / share PDF</button></div>'+
+ (L.length?'<div class="card full notidy" id="wcrep">'+wcrHtml()+'</div>':'<div class="card full notidy"><p class="mu">Do a full check-in (photos or measurements) to get a weekly report.</p></div>')}
+window.wcrView=wcrView;window.wcrHtml=wcrHtml;
+var _rc=rCheckin;window.rCheckin=rCheckin=function(){if(CIR.on)return wcrView();_rc.apply(this,arguments);var el=document.getElementById('t-checkin');if(!el)return;
+ var hc=[].find.call(el.querySelectorAll('.card'),function(c){var h=c.querySelector('h2');return h&&h.textContent.trim()==='History'});if(hc)hc.innerHTML=histHtml();
+ if(!el.querySelector('[data-cirep]'))el.insertAdjacentHTML('afterbegin','<div class="card full notidy wcrb"><button class="pri" data-cirep="1" style="width:100%">📋 Weekly check-in report</button></div>')};
+document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('[data-cirep],[data-cirx],[data-cirprint]');if(!b)return;var D=b.dataset;ev.preventDefault();ev.stopPropagation();
+ if(D.cirep){CIR.on=true;CIR.to=null;rCheckin();scrollTo(0,0)}else if(D.cirx){CIR.on=false;rCheckin();scrollTo(0,0)}
+ else if(D.cirprint){var p=document.getElementById('v83print');if(!p){p=document.createElement('div');p.id='v83print';document.body.appendChild(p)}p.innerHTML='<div id="wcrep" class="wcpr0">'+wcrHtml(true).replace(/id="g([lb])"/g,'id="g$1p"').replace(/url\(#g([lb])\)/g,'url(#g$1p)')+'</div>';document.body.classList.add('v83p');var done=function(){document.body.classList.remove('v83p');window.removeEventListener('afterprint',done)};window.addEventListener('afterprint',done);try{window.print()}catch(e){toast('Use your browser’s Share → Print to save as PDF')}}},true);
+document.addEventListener('change',function(e){if(e.target&&e.target.id==='cirsel'){CIR.to=e.target.value;wcrView()}});
+var _rn=render;render=function(){if(tab!=='checkin')CIR.on=false;return _rn.apply(this,arguments)};
+/* ---------- report tidy: lift progress w/o history, empty watch ---------- */
+function earlier(nm,from){return Object.keys(S.days).some(function(d){return d<from&&sessions(nm,[d]).length})}
+function rDays(){var a=[],f=rp.from,t=rp.to;if(!f||!t)return a;for(var d=f;d<=t&&a.length<400;d=add(d,1))a.push(d);return a}
+function bestTable(days,ln){var rows=ln.map(function(nm){var q=sessions(nm,days),b=q.slice().sort(function(x,y){return y.e1-x.e1})[0];return b?{nm:nm,b:b,pr:q.some(function(x){return x.pr})}:null}).filter(Boolean).sort(function(x,y){return y.b.e1-x.b.e1});
+ return'<table class="ert wcbs"><tr><th>Lift</th><th>Best set</th><th>e1RM</th></tr>'+rows.map(function(x){return'<tr><td><button class="lnk" data-rpex="'+esc(x.nm)+'" data-rpv="lifts">'+esc(x.nm)+'</button>'+(x.pr?' 🏆':'')+'</td><td>'+(x.b.top?nf(x.b.top)+' kg':'BW')+' × '+x.b.topReps+'</td><td>'+(x.b.e1?nf(Math.round(x.b.e1)):'–')+'</td></tr>'}).join('')+'</table>'}
+var _rR=rReport;rReport=function(){var r=_rR.apply(this,arguments),el=document.getElementById('t-report');if(!el||rp.kind==='month')return r;try{
+ [].forEach.call(el.querySelectorAll('.card'),function(c){var h=c.querySelector('h3');if(h&&/⌚ Watch/.test(h.textContent)&&/No Apple Watch data/.test(c.textContent))c.remove()});
+ var days=rDays();if(days.length){var ln=liftNames(days),H={};ln.forEach(function(nm){if(sessions(nm,days).length>1||earlier(nm,days[0]))H[nm]=1});var rest=ln.filter(function(nm){return!H[nm]});
+  if(rest.length)[].forEach.call(el.querySelectorAll('.card'),function(c){var h=c.querySelector(':scope>h3');if(!h)return;var t=h.textContent.trim();if(t!=='Lift progress'&&!/^Progress summary/.test(t))return;
+   var keep=[].filter.call(c.querySelectorAll('.psum[data-rpex]'),function(b){return H[b.dataset.rpex]}).map(function(b){return b.outerHTML}).join('');
+   c.innerHTML='<h3>'+(keep?esc(t):'Best sets this period')+'</h3>'+keep+(keep?'<h4 class="wch4">First time logged · best sets</h4>':'')+bestTable(days,rest)+'<p class="mu wcsm">'+(keep?'':'First time these lifts are logged – ')+'progress trends appear once you repeat a lift.</p>'})}
+ }catch(e){console.warn('v117',e)}return r};
+/* ---------- plan accept → targets from the active plan ---------- */
+var _v5=v5UsePlan;v5UsePlan=function(days,msg){var first=!S.dietDef;_v5.apply(this,arguments);if(pl&&pl.res&&pl.did&&first){S.dietDef=pl.did;S.targets={kcal:pl.res.kcal,protein:pl.res.protein,carbs:pl.res.carbs,fat:pl.res.fat};save();toast(msg+' · targets set from this plan')}};
+/* ---------- css ---------- */
+var st=document.createElement('style');st.textContent='.rpk{flex-wrap:wrap;row-gap:6px}.rpk>button{width:auto;flex:0 1 auto;white-space:nowrap}.rpk>span{flex:1 0 100%}'+
+'.cl.open>.clh .cltap{display:none}.tgleg{display:flex;align-items:center;justify-content:flex-end;gap:6px;font-size:11px;color:#fbbf24;margin-top:2px}.tgleg i{display:inline-block;width:18px;border-top:2px dashed #fbbf24}'+
+'#t-checkin{padding-bottom:calc(90px + env(safe-area-inset-bottom))}.cihw{margin:8px 0 12px}.cihwh{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mu);margin-bottom:4px}.ciwi{margin-top:6px}.ciwic{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}.ciwic button{width:auto;min-height:34px;font-size:12px;padding:4px 10px}'+
+'#wcrep h3{font-size:12px!important;text-transform:uppercase;letter-spacing:.06em;color:var(--ac2t,#c084fc)!important;margin:16px 0 6px!important;font-weight:800}#wcrep .ergrid div{background:var(--t2);border-radius:12px}#wcrep .ergrid b{font-size:19px}#wcrep table.ert{width:100%;border-collapse:collapse;table-layout:auto}#wcrep .ert td,#wcrep .ert th{border-bottom:1px solid var(--t2);padding:6px 4px;text-align:left;vertical-align:top}#wcrep .ert th{font-size:11px;color:var(--mu);font-weight:700}#wcrep .epat{font-size:13px;line-height:1.45;margin:8px 0;padding:10px 12px;border-radius:12px;background:var(--t2)}.wcsm{font-size:12px!important}.wch4{font-size:12px;margin:12px 0 4px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em}.wcn{font-size:13px;margin:4px 0;overflow-wrap:anywhere}'+
+'.wcph{display:grid;gap:6px;align-items:center}.wcpl{font-size:11px;font-weight:700;text-align:center;color:var(--mu)}.wcpd{font-size:11px;font-weight:700;color:var(--mu);line-height:1.1}.wcph figure{margin:0}.wcph img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block;background:var(--t2)}.wcph figure>span{display:flex;aspect-ratio:3/4;align-items:center;justify-content:center;border:1px dashed var(--t3);border-radius:8px;font-size:12px}.wcbs td:first-child{overflow-wrap:anywhere}button.lnk{background:none;border:0;padding:0;min-height:0;width:auto;color:inherit;font:inherit;text-align:left;text-decoration:underline dotted}'+
+'@media print{#wcrep h3{color:#7e22ce!important}#wcrep .ergrid div{background:#f3f3f3!important;border:0!important;padding:5px!important}#wcrep .ergrid b{font-size:15px!important;color:#16121f!important}#wcrep .ert td,#wcrep .ert th{border-bottom:1px solid #ddd!important;color:#16121f!important;padding:2px 4px!important}#wcrep .epat{background:#f3f3f3!important;color:#16121f!important;font-size:11px!important}#wcrep .mu,#wcrep small,#wcrep figcaption{color:#555!important}#wcrep{font-size:11.5px;color:#16121f}#wcrep h3{break-after:avoid;margin:10px 0 3px!important}#wcrep tr,#wcrep .wcpr,#wcrep .ergrid{break-inside:avoid}#wcrep .wcph img{max-height:150px;object-fit:contain}#wcrep svg{max-height:150px;width:100%}}';document.head.appendChild(st);
+if(typeof tab!=='undefined'&&tab==='checkin')try{rCheckin()}catch(e){}
 })();
 </script>
 </body></html>
