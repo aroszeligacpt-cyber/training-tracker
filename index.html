@@ -8802,7 +8802,7 @@ function ppFix(items,T,ctx){ctx=ctx||{};if(!items||!items.length||!T)return item
  };combos();
  // per-food rules
  var V=[];L=L.map(function(x){var f=fByName(x.name),r=ppRule(x.name);if(!f||!r)return x;var mn=r.min,mx=r.max;
-   if(ctx.gd&&typeof gdMax==='function'){var gm=gdMax(x.name);if(gm<mx)mx=Math.max(gm,0)}if(mx<mn){mn=mx}
+   if(typeof gdMax==='function'){var gm=gdMax(x.name);if(gm<mx&&(ctx.gd||gm>=mn))mx=Math.max(gm,0)}if(mx<mn){mn=mx}
    var g=x.g;if(g<mn&&g<0.6*mn&&L.length>2)return null;g=Math.max(mn,Math.min(mx,g));if(mx>mn){g=mn+Math.round((g-mn)/r.step)*r.step;if(g>mx)g=mn+Math.floor((mx-mn)/r.step)*r.step}
    var o=Object.assign({},x,calc(f,g));V.push({o:o,f:f,mn:mn,mx:mx,st:r.step});return o}).filter(Boolean);
  combos();V=V.filter(function(v){return L.indexOf(v.o)>=0});
@@ -8827,7 +8827,7 @@ function ppT(R,s){return{kcal:n(R.kcal)*s,protein:n(R.protein)*s,carbs:n(R.carbs
  if(typeof gdMeal==='function'){var gme=gdMeal;gdMeal=function(sl,tg,X){var o0=PPC;PPC={gd:X&&X.c};try{var L=gme.apply(this,arguments)}finally{PPC=o0}try{L.forEach(function(b){b.items=ppFix(b.items,tg,{gd:X&&X.c})})}catch(e){console.warn(e)}return L}}
 })();
 function ppDay(mp,R,fr,ctx){ctx=ctx||{};try{var Kt=n(R.kcal),Pt=n(R.protein),Ct=n(R.carbs),Ft=n(R.fat);if(!(Kt>0))return;
- var V=[];mp.forEach(function(m,mi){m.items.forEach(function(x,j){var f=fByName(x.name),r=ppRule(x.name);if(!f||!r||r.max<=r.min)return;var mx=r.max;if(ctx.gd&&typeof gdMax==='function')mx=Math.min(mx,gdMax(x.name));if(mx<=r.min)return;V.push({m:m,mi:mi,j:j,f:f,mn:r.min,mx:mx,st:r.step})})});
+ var V=[];mp.forEach(function(m,mi){m.items.forEach(function(x,j){var f=fByName(x.name),r=ppRule(x.name);if(!f||!r||r.max<=r.min)return;var mx=r.max;if(typeof gdMax==='function'){var gq=gdMax(x.name);if(ctx.gd||gq>=r.min)mx=Math.min(mx,gq)}if(mx<=r.min)return;V.push({m:m,mi:mi,j:j,f:f,mn:r.min,mx:mx,st:r.step})})});
  var S=planTot(mp),MK=mp.map(function(m){return sumItems(m.items).kcal}),E=function(S,MK){var e=Math.abs(S.kcal-Kt)/Kt*8+1.5*Math.abs(S.protein-Pt)/Math.max(Pt,10)+Math.abs(S.carbs-Ct)/Math.max(Ct,15)+Math.abs(S.fat-Ft)/Math.max(Ft,8);MK.forEach(function(k,i){var w=Kt*(fr[i]||1/mp.length),d=Math.abs(k-w)/w;if(d>0.2)e+=(d-0.2)*4});return e};
  for(var it=0;it<80;it++){var e0=E(S,MK),best=null;V.forEach(function(v){var x=v.m.items[v.j];[1,-1].forEach(function(d){var g=x.g+d*v.st;if(g<v.mn-1e-6||g>v.mx+1e-6)return;var c=calc(v.f,g),S2={kcal:S.kcal+c.kcal-x.kcal,protein:S.protein+c.protein-x.protein,carbs:S.carbs+c.carbs-x.carbs,fat:S.fat+c.fat-x.fat},MK2=MK.slice();MK2[v.mi]+=c.kcal-x.kcal;var e=E(S2,MK2);if(e<e0-1e-4&&(!best||e<best.e))best={e:e,v:v,c:c,S:S2,MK:MK2}})});
   if(!best)break;best.v.m.items[best.v.j]=Object.assign({},best.v.m.items[best.v.j],best.c);S=best.S;MK=best.MK}}catch(e){console.warn(e)}}
