@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v119 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v120 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v119</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v120</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4853,7 +4853,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v119 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v120 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -8710,5 +8710,126 @@ var _bm=bdMerge;bdMerge=function(x){_bm.apply(this,arguments);try{var td=todayIs
  }catch(e){console.warn('v119',e)}};
 window.v119BdMerge=bdMerge;
 })();
+</script>
+<script>/* v120 */
+var PPC={};
+// v120 portion rules: [regex, min, max, step, unit]
+var PPR=[
+ [/protein shake/i,250,350,50,'shake'],
+ [/whey|pea protein|vegan protein|protein powder/i,25,40,5,'scoop'],
+ [/^egg white/i,60,300,30,'whites'],
+ [/^egg\b(?!.*noodle)/i,60,240,60,'egg'],
+ [/olive oil|rapeseed oil|coconut oil|sunflower oil|vegetable oil/i,5,15,5,'tsp'],
+ [/sesame oil/i,5,10,5],
+ [/^butter/i,5,20,5],
+ [/peanut butter|almond butter|nut butter|cashew butter/i,10,30,5,'tbsp'],
+ [/almonds|walnuts|cashew|hazelnut|pecan|brazil|pistachio|mixed nuts|peanuts\b/i,10,30,5],
+ [/pumpkin seeds|sunflower seeds|chia|flaxseed|linseed|hemp seed|sesame seeds/i,10,25,5],
+ [/wholemeal bread|white bread|sourdough|rye bread|soda bread|granary|seeded bread|chleb|brown bread|^bread/i,40,120,40,'slice'],
+ [/wrap|tortilla(?!.*corn)/i,60,120,60,'wrap'],
+ [/corn tortilla/i,50,150,25,'tortilla'],
+ [/pitta/i,60,120,60,'pitta'],
+ [/bagel/i,85,85,85,'bagel'],
+ [/english muffin/i,60,120,60,'muffin'],
+ [/ciabatta/i,80,160,80,'roll'],
+ [/pancakes/i,60,120,30,'pancake'],
+ [/rice cakes/i,18,45,9,'cake'],
+ [/oatcakes|crispbread|ryvita/i,20,50,10,'piece'],
+ [/crackers/i,16,40,8],
+ [/weetabix/i,38,57,19,'biscuit'],
+ [/porridge oats|^oats/i,30,100,10],
+ [/granola/i,30,70,5],
+ [/muesli/i,30,80,5],
+ [/rice, cooked|quinoa, cooked|couscous, cooked|bulgur|millet|buckwheat|noodles, cooked/i,100,330,10],
+ [/pasta, cooked|spaghetti, cooked|wholewheat pasta, cooked/i,120,330,10],
+ [/pasta, dry/i,50,120,5],
+ [/risotto.*raw/i,50,110,5],
+ [/potatoes, boiled|potatoes, baked|new potatoes|sweet potato/i,120,450,10],
+ [/oven chips/i,100,250,10],
+ [/chicken breast, raw|chicken thigh|turkey mince|beef mince|steak|pork loin|pork tenderloin|lamb/i,100,250,10],
+ [/chicken breast, cooked|turkey breast, cooked/i,80,200,10],
+ [/deli|ham, sliced/i,30,120,10],
+ [/parma ham|prosciutto/i,20,60,10],
+ [/back rashers|bacon/i,25,100,25,'rasher'],
+ [/turkey rashers/i,30,120,15],
+ [/sausage/i,45,180,45,'sausage'],
+ [/smoked salmon|mackerel, smoked|kippers/i,50,150,10],
+ [/tuna, canned|crab meat/i,60,180,10],
+ [/prawn|shrimp/i,80,250,10],
+ [/salmon fillet|cod|hake|pollock|haddock|sea bass|coley|trout/i,100,250,10],
+ [/tofu|tempeh|quorn/i,80,250,10],
+ [/paneer|halloumi/i,40,100,10],
+ [/greek yoghurt, 0%|skyr|quark|cottage cheese/i,100,400,10],
+ [/greek yoghurt, full/i,100,250,10],
+ [/kefir/i,150,300,50],
+ [/^milk|almond milk|oat milk|soy milk/i,100,300,50],
+ [/rice pudding/i,100,400,10],
+ [/cheddar/i,15,50,5],[/parmesan/i,10,30,5],[/feta/i,20,60,5],[/mozzarella/i,30,125,5],
+ [/cream cheese, full/i,15,40,5],[/cream cheese, light/i,20,60,5],[/brie/i,20,50,5],
+ [/hummus/i,20,80,5],[/mayonnaise/i,10,30,5],[/pesto/i,10,30,5],[/dark chocolate/i,10,30,5],
+ [/avocado/i,30,100,10],
+ [/banana/i,80,200,10],[/apple/i,100,250,10],[/pear/i,120,240,10],[/orange/i,130,260,10],[/kiwi/i,70,210,70,'kiwi'],
+ [/berr|strawberr|raspberr|blueberr/i,50,250,10],[/pineapple/i,80,200,10],
+ [/spinach/i,20,150,10],[/rocket|lettuce/i,20,100,10],[/garlic/i,3,10,1],[/lemon juice|lime juice/i,5,15,5],[/soy sauce/i,5,15,5],
+ [/pasta sauce|curry sauce/i,50,200,10],[/tomatoes, canned/i,100,400,10],[/baked beans/i,80,210,10],
+ [/beans|chickpeas|lentils|edamame/i,50,250,10],
+ [/beef jerky/i,25,70,5],
+ [/cherry tomatoes/i,40,150,10],[/peas, frozen|^peas/i,50,150,10],[/sweetcorn/i,30,100,10],
+ [/celery|onion|bean sprouts/i,30,150,10],
+ [/pepper|tomato|cucumber|broccoli|mushroom|courgette|carrot|asparagus|peas|cauliflower|parsnip|cabbage|pak choi|beetroot|green beans/i,40,250,10]
+];
+function ppRule(nm){for(var i=0;i<PPR.length;i++)if(PPR[i][0].test(nm))return{min:PPR[i][1],max:PPR[i][2],step:PPR[i][3],u:PPR[i][4]||''};return null}
+var PPX={pp:/whey|pea protein|vegan protein|protein powder/i,sweetBase:/oats|porridge|granola|muesli|yoghurt|yogurt|skyr|quark|milk|kefir|weetabix|pancake|rice pudding|cottage cheese/i,
+ savoury:/chicken|turkey|beef|pork|lamb|ham|bacon|rasher|sausage|salmon|tuna|cod|hake|pollock|haddock|bass|coley|trout|prawn|shrimp|crab|kipper|mackerel|tofu|tempeh|quorn|spinach|tomato|pepper|onion|mushroom|broccoli|courgette|cucumber|rocket|lettuce|soy sauce|garlic|cheddar|feta|parmesan|halloumi|paneer|hummus|pesto|mayonnaise|pasta sauce|curry|beans|lentil|chickpea|asparagus|green beans|carrot|cauliflower|potato|chips|rice, cooked|noodle|couscous|quinoa|bulgur|egg\b/i,
+ salty:/^egg|chicken|tuna|salmon|ham|turkey|beef|spinach|tomato|pepper|cheddar|avocado|bread|mushroom/i,
+ fruit:/banana|apple|pear|orange|kiwi|berr|pineapple|dark chocolate|granola|honey|jam/i,
+ hard:/chicken|turkey|beef|pork|lamb|steak|sausage|salmon fillet|tuna|cod|hake|pollock|haddock|bass|coley|trout|prawn|shrimp|crab|kipper|smoked salmon|mackerel|tofu|tempeh|quorn|tomato|pepper|onion|mushroom|broccoli|courgette|soy sauce|garlic|pasta sauce|curry|potato|chips|rice, cooked|noodle|couscous|quinoa|bulgur|asparagus|green beans|cauliflower|spinach|cucumber|rocket|lettuce|feta|halloumi|hummus|mayonnaise|pesto|beans|lentil|chickpea|ham|bacon|rasher|parma/i,
+ prot:/whey|pea protein|vegan protein|protein powder|^egg|chicken|turkey|beef|pork|lamb|steak|sausage|salmon|tuna|cod|hake|pollock|haddock|bass|coley|trout|prawn|shrimp|crab|kipper|mackerel|tofu|tempeh|quorn|paneer|ham|deli|bacon|rasher|jerky/i};
+/* v120: realistic portions for every meal generator */
+function ppFix(items,T,ctx){ctx=ctx||{};if(!items||!items.length||!T)return items;
+ var Kt=T.kcal||(n(T.protein)*4+n(T.carbs)*4+n(T.fat)*9);if(!(Kt>0))return items;
+ var nm=function(x){return x.name},L=[];
+ // merge duplicates of the same food
+ items.forEach(function(x){var e=L.filter(function(y){return y.name===x.name})[0];if(e){var f=fByName(x.name);if(f){L[L.indexOf(e)]=Object.assign({},e,calc(f,e.g+x.g))}}else L.push(Object.assign({},x))});
+ var has=function(re){return L.some(function(x){return re.test(x.name)})},drop=function(fn,k){var keep=L.filter(function(x){return!fn(x)});if(keep.length>=(k||2))L=keep};
+ var combos=function(){
+ // odd combos
+ if(has(PPX.pp)&&!has(PPX.sweetBase)&&(has(PPX.hard)||has(PPX.salty)))drop(function(x){return PPX.pp.test(x.name)},1);
+ if(has(PPX.fruit)&&has(PPX.hard))drop(function(x){return PPX.fruit.test(x.name)},1);
+ var meat=/chicken|turkey|beef|pork|lamb|steak|sausage|salmon|tuna|cod|hake|pollock|haddock|bass|coley|trout|prawn|shrimp|crab|kipper|mackerel|ham|deli|bacon|rasher|parma/i;
+ var M=L.filter(function(x){return meat.test(x.name)}).sort(function(a,b){return b.protein-a.protein});if(M.length>1)drop(function(x){return M.indexOf(x)>0},1);
+ var P=L.filter(function(x){return PPX.prot.test(x.name)}).sort(function(a,b){return b.protein-a.protein});if(P.length>2)drop(function(x){return P.indexOf(x)>1});
+ };combos();
+ // per-food rules
+ var V=[];L=L.map(function(x){var f=fByName(x.name),r=ppRule(x.name);if(!f||!r)return x;var mn=r.min,mx=r.max;
+   if(ctx.gd&&typeof gdMax==='function'){var gm=gdMax(x.name);if(gm<mx)mx=Math.max(gm,0)}if(mx<mn){mn=mx}
+   var g=x.g;if(g<mn&&g<0.6*mn&&L.length>2)return null;g=Math.max(mn,Math.min(mx,g));if(mx>mn){g=mn+Math.round((g-mn)/r.step)*r.step;if(g>mx)g=mn+Math.floor((mx-mn)/r.step)*r.step}
+   var o=Object.assign({},x,calc(f,g));V.push({o:o,f:f,mn:mn,mx:mx,st:r.step});return o}).filter(Boolean);
+ combos();V=V.filter(function(v){return L.indexOf(v.o)>=0});
+ // rebalance in whole steps toward the meal's target
+ var Pt=n(T.protein),Ct=n(T.carbs),Ft=n(T.fat),err=function(){var S=sumItems(L);return Math.abs(S.kcal-Kt)/Kt*3+1.5*Math.abs(S.protein-Pt)/Math.max(Pt,10)+Math.abs(S.carbs-Ct)/Math.max(Ct,15)+Math.abs(S.fat-Ft)/Math.max(Ft,8)};
+ var bal=function(){for(var it=0;it<60;it++){var e0=err(),best=null;V.forEach(function(v){[1,-1].forEach(function(d){var g=v.o.g+d*v.st;if(g<v.mn-1e-6||g>v.mx+1e-6)return;var i=L.indexOf(v.o),old=L[i];L[i]=calc(v.f,g);var e=err();L[i]=old;if(e<e0-1e-4&&(!best||e<best.e))best={e:e,v:v,g:g}})});
+  if(!best)break;var i=L.indexOf(best.v.o),o=Object.assign({},best.v.o,calc(best.v.f,best.g));L[i]=o;best.v.o=o}};bal();
+ // still clearly short of the meal's share: add one sensible food in a real portion, then rebalance
+ var adC=false;for(var ad=0;ad<2;ad++){var S=sumItems(L);if(S.kcal>=Kt*0.93)break;var AV=ctx.av||PPC.av||(typeof avoidSet==='function'?avoidSet(plIn()):{}),lowC=Ct*4<Kt*0.15,sw=(has(PPX.sweetBase)||has(PPX.pp))&&!has(PPX.hard),
+   cb=L.some(function(x){var f=fByName(x.name);return f&&f.carbs>f.protein&&f.carbs*4>f.fat*9&&f.kcal>=60}),C=[];
+  if(!lowC&&!adC&&S.carbs<Ct*0.9)C=cb?(sw?['Banana','Porridge oats']:has(/bread|wrap|bagel|pitta|muffin|crispbread|oatcake|rice cake|cracker|tortilla/i)?[]:['Sweetcorn, canned','Peas, frozen']):sw?['Porridge oats','Banana']:has(/^egg|smoked salmon|ham|deli|bacon|rasher|avocado/i)?['Wholemeal bread','Sourdough bread']:Kt<450?['Rice cakes','Oatcakes']:['Basmati rice, cooked','Potatoes, boiled','Wholemeal wrap / tortilla'];
+  if(S.fat<Ft*0.95||lowC)C=C.concat(sw?['Peanut butter','Almonds','Chia seeds']:has(PPX.fruit)?['Almonds','Peanut butter']:['Avocado','Almonds','Walnuts']);
+  var pk=null;C.forEach(function(c){if(pk||AV[c]||has(new RegExp('^'+c.split(/[ ,]/)[0],'i')))return;var f=fByName(c),r=ppRule(c);if(!f||!r)return;if(lowC&&f.carbs>15)return;if(ctx.gd&&typeof gdTag==='function'&&(gdTag(c).fr||(typeof gdMax==='function'&&gdMax(c)<r.min)))return;if(ctx.gd==='ibs'&&/wholemeal|wrap|almond|banana/i.test(c))return;if(has(PPX.hard)&&PPX.fruit.test(c))return;pk={f:f,r:r}});
+  if(!pk)break;if(pk.f.carbs>pk.f.fat)adC=true;var o=calc(pk.f,pk.r.min);L.push(o);V.push({o:o,f:pk.f,mn:pk.r.min,mx:pk.r.max,st:pk.r.step});bal()}
+ return L}
+function ppT(R,s){return{kcal:n(R.kcal)*s,protein:n(R.protein)*s,carbs:n(R.carbs)*s,fat:n(R.fat)*s}}
+(function(){
+ var bm=buildMeal;buildMeal=function(tpl,tg){var r=bm.apply(this,arguments);try{r=ppFix(r,tg,PPC)}catch(e){console.warn(e)}return r};
+ var gm=genMeals;genMeals=function(R,i,seed){var o0=PPC;PPC={av:typeof avoidSet==='function'?avoidSet(i||{}):{}};try{var mp=gm.apply(this,arguments)}finally{PPC=o0}var AVi=typeof avoidSet==='function'?avoidSet(i||{}):{};try{var sp=SPLIT[i&&i.meals]||SPLIT[4],tot=mp.length;mp.forEach(function(m,ix){var s=sp[ix]?sp[ix][2]:1/tot;m.items=ppFix(m.items,ppT(R,s),{av:AVi})});ppDay(mp,R,mp.map(function(m,ix){return sp[ix]?sp[ix][2]:1/tot}))}catch(e){console.warn(e)}return mp};
+ var ms=msGen;msGen=function(o){var L=ms.apply(this,arguments);try{var T=sumItems(o.items);L.forEach(function(c){c.items=ppFix(c.items,T);c.tot=sumItems(c.items)})}catch(e){console.warn(e)}return L};
+ if(typeof gdGen==='function'){var gg=gdGen;gdGen=function(c,seed){var o0=PPC;PPC={gd:c};try{var d=gg.apply(this,arguments)}finally{PPC=o0}try{d.mp.forEach(function(m,ix){m.items=ppFix(m.items,ppT(d.res,d.frac[ix]||1/d.mp.length),{gd:c})});ppDay(d.mp,d.res,d.frac||[],{gd:c})}catch(e){console.warn(e)}return d}}
+ if(typeof gdMeal==='function'){var gme=gdMeal;gdMeal=function(sl,tg,X){var o0=PPC;PPC={gd:X&&X.c};try{var L=gme.apply(this,arguments)}finally{PPC=o0}try{L.forEach(function(b){b.items=ppFix(b.items,tg,{gd:X&&X.c})})}catch(e){console.warn(e)}return L}}
+})();
+function ppDay(mp,R,fr,ctx){ctx=ctx||{};try{var Kt=n(R.kcal),Pt=n(R.protein),Ct=n(R.carbs),Ft=n(R.fat);if(!(Kt>0))return;
+ var V=[];mp.forEach(function(m,mi){m.items.forEach(function(x,j){var f=fByName(x.name),r=ppRule(x.name);if(!f||!r||r.max<=r.min)return;var mx=r.max;if(ctx.gd&&typeof gdMax==='function')mx=Math.min(mx,gdMax(x.name));if(mx<=r.min)return;V.push({m:m,mi:mi,j:j,f:f,mn:r.min,mx:mx,st:r.step})})});
+ var S=planTot(mp),MK=mp.map(function(m){return sumItems(m.items).kcal}),E=function(S,MK){var e=Math.abs(S.kcal-Kt)/Kt*8+1.5*Math.abs(S.protein-Pt)/Math.max(Pt,10)+Math.abs(S.carbs-Ct)/Math.max(Ct,15)+Math.abs(S.fat-Ft)/Math.max(Ft,8);MK.forEach(function(k,i){var w=Kt*(fr[i]||1/mp.length),d=Math.abs(k-w)/w;if(d>0.2)e+=(d-0.2)*4});return e};
+ for(var it=0;it<80;it++){var e0=E(S,MK),best=null;V.forEach(function(v){var x=v.m.items[v.j];[1,-1].forEach(function(d){var g=x.g+d*v.st;if(g<v.mn-1e-6||g>v.mx+1e-6)return;var c=calc(v.f,g),S2={kcal:S.kcal+c.kcal-x.kcal,protein:S.protein+c.protein-x.protein,carbs:S.carbs+c.carbs-x.carbs,fat:S.fat+c.fat-x.fat},MK2=MK.slice();MK2[v.mi]+=c.kcal-x.kcal;var e=E(S2,MK2);if(e<e0-1e-4&&(!best||e<best.e))best={e:e,v:v,c:c,S:S2,MK:MK2}})});
+  if(!best)break;best.v.m.items[best.v.j]=Object.assign({},best.v.m.items[best.v.j],best.c);S=best.S;MK=best.MK}}catch(e){console.warn(e)}}
 </script>
 </body></html>
