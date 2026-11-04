@@ -9261,10 +9261,11 @@ v7Sheet=function(){var R=v10R(),o=document.getElementById('v7rs');if(o)o.remove(
  var L=R.wg.map(function(x){return{d:x.d,k:'g',t:'Workout complete',s:'Every planned set done'}}).concat(R.dm.map(function(x){return{d:x.d,k:'m',t:'Diet day complete',s:'Every meal ticked'}}),R.pr.map(function(p){return{d:p.d,k:'p',t:'PR · '+p.n,s:p.txt||(p.v?p.v+' kg e1RM':'Personal best')}})).sort(function(a,b){return a.d<b.d?1:a.d>b.d?-1:0}).slice(0,40);
  var tot=function(k,c,lab,st){return'<div>'+v7Ic(k,30)+'<b>'+c+'</b><small>'+lab+'</small><small class="v10s">🔥 '+st+'</small></div>'};
  document.body.insertAdjacentHTML('beforeend','<div class="fswbg" id="v7rs"><div class="fswsh"><div class="fswhd"><b>Your rewards</b><button class="sm" data-v7x="1" aria-label="Close">✕</button></div>'+
- '<div class="v7tot v10g3">'+tot('g',R.wg.length,'Goblets',v10WStreak()+' sessions')+tot('m',R.dm.length,'Medals',v8DStreak()+' days')+tot('p',R.pr.length,'PRs',v10PStreak()+' weeks')+'</div>'+
+ '<div class="v7tot v10g3">'+tot('g',R.wg.length,'Goblets',v10Pl(v10WStreak(),'session'))+tot('m',R.dm.length,'Medals',v10Pl(v8DStreak(),'day'))+tot('p',R.pr.length,'PRs',v10Pl(v10PStreak(),'week'))+'</div>'+
  '<p class="mu" style="font-size:12px;margin:8px 0">Goblet: one a day when you finish every planned set. Medal: one a day when you tick all your meals. Dumbbell: every new personal record.</p>'+
  (L.length?'<div class="v7ls">'+L.map(function(x){return'<div>'+v7Ic(x.k)+'<span><b>'+esc(x.t)+'</b><small>'+esc(x.s)+'</small></span><em>'+fmt(x.d,{day:'numeric',month:'short'})+'</em></div>'}).join('')+'</div>':'<p class="mu">No rewards yet.</p>')+
  '<div class="pacc" style="margin-top:10px"><button class="ck'+(R.mute?'':' on')+'" id="v7snd" aria-label="Tick sounds">'+(R.mute?'':'✓')+'</button><span><b>Tick sounds</b></span></div></div></div>')};
+function v10Pl(n,w){return n+' '+w+(n===1?'':'s')}
 // flame tiers
 var V10T=[[1,'ember',44],[3,'small',60],[7,'medium',76],[14,'big',92],[30,'bigger',104],[50,'bigger2',114],[75,'bigger3',124],[100,'blaze',140]];
 function v10Tier(s){var t=0;for(var i=0;i<V10T.length;i++)if(s>=V10T[i][0])t=i;return t}
