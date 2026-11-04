@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v125 · 22 Oct 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v126 · 22 Oct 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v125</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v126</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4853,7 +4853,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v125 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v126 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -9038,5 +9038,94 @@ function v123FinBtn(){try{if(tab!=='workout'||cur!==todayIso()||typeof rtn!=='fu
  var cp=calcPlan;calcPlan=function(i){var r=cp.apply(this,arguments);try{if(i&&i.goal==='gentle'&&r&&r.style&&i.style==='simple')r.style=Object.assign({},r.style,{id:'simple',name:'Gentle start · Simple'})}catch(e){}return r}}catch(e){console.warn(e)}})();
 // H) PCOS/PMOS report: weekly trend table scrolls inside the card on phones
 (function(){var c=document.createElement('style');c.textContent='table.pcwt{display:block;overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}@media print{table.pcwt{display:table;overflow:visible}}';document.head.appendChild(c)})();
+</script>
+<script>/* v126 */
+/* ---- v126: Speak my diet (inside the diet creator) + "Create diet" tile ---- */
+try{HT59['CREATE DIET PLAN']='CREATE DIET'}catch(e){}
+var SDA={chicken:'Chicken breast, raw','chicken breast':'Chicken breast, raw','chicken thigh':'Chicken thigh, skinless, raw',rice:'Basmati rice, raw','white rice':'White rice, raw','brown rice':'Brown rice, raw','basmati rice':'Basmati rice, raw',
+ egg:'Egg','egg white':'Egg white',toast:'Wholemeal bread',bread:'Wholemeal bread','brown bread':'Wholemeal bread','white bread':'White bread','white toast':'White bread',oat:'Porridge oats',porridge:'Porridge oats',
+ whey:'Whey protein powder','protein powder':'Whey protein powder','protein shake':'Whey protein powder','whey protein':'Whey protein powder',milk:'Milk, semi-skimmed','semi skimmed milk':'Milk, semi-skimmed','skimmed milk':'Milk, skimmed','whole milk':'Milk, whole',
+ potato:'Potatoes, raw','sweet potato':'Sweet potato, raw',pasta:'Pasta, dry',spaghetti:'Pasta, dry',salmon:'Salmon fillet, raw',beef:'Beef mince 5% fat, raw','beef mince':'Beef mince 5% fat, raw',mince:'Beef mince 5% fat, raw',steak:'Sirloin steak, raw',
+ turkey:'Turkey breast, raw',tuna:'Tuna, canned in water (drained)',cod:'Cod, raw',prawn:'Prawns / shrimp, raw',yoghurt:'Greek yoghurt, 0% fat',yogurt:'Greek yoghurt, 0% fat','greek yoghurt':'Greek yoghurt, 0% fat','greek yogurt':'Greek yoghurt, 0% fat',
+ skyr:'Skyr, plain','cottage cheese':'Cottage cheese',cheese:'Cheddar cheese','peanut butter':'Peanut butter',banana:'Banana',apple:'Apple',berries:'Mixed berries, frozen',blueberries:'Blueberries',strawberries:'Strawberries',broccoli:'Broccoli, raw',
+ spinach:'Spinach, raw',avocado:'Avocado','olive oil':'Olive oil',oil:'Olive oil',butter:'Butter',almond:'Almonds',walnut:'Walnuts','rice cake':'Rice cakes',wrap:'Wholemeal wrap / tortilla',tortilla:'Wholemeal wrap / tortilla',bagel:'Bagel, plain',
+ 'cream of rice':'Cream of rice, dry',granola:'Granola',honey:'Honey',quinoa:'Quinoa, raw',couscous:'Couscous, dry',lentil:'Lentils, green/brown, dry',beans:'Baked beans','baked beans':'Baked beans',tofu:'Tofu, firm',ham:'Ham, sliced',bacon:'Back rashers (bacon), raw'};
+var SDU={scoop:30,slice:38,egg:58,cup:240,tbsp:15,tablespoon:15,tsp:5,teaspoon:5,handful:30,piece:100,can:120,tin:120,portion:150,bowl:250,glass:250,pint:568,rasher:25,fillet:130,breast:170};
+var SDNUM={a:1,an:1,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,fifteen:15,twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90,hundred:100,half:0.5,couple:2};
+var SDM=/\b(breakfast|brekkie|lunch|dinner|tea time|supper|snacks?|pre[- ]?workout|post[- ]?workout|meal (?:one|two|three|four|five|six|\d))\b\s*:?/gi;
+function sdSing(w){return w.replace(/\b(\w+?)(ies)\b/g,'$1y').replace(/\b(\w+?[^s])s\b/g,'$1').replace(/\btomatoe\b/,'tomato').replace(/\bpotatoe\b/,'potato')}
+function sdNumify(t){t=' '+t.toLowerCase().replace(/[–—]/g,'-')+' ';t=t.replace(/\b(\d+)\s*(?:and a half|½)\b/g,function(a,b){return(+b+0.5)+''});
+ t=t.replace(/\b(one|two|three|four|five|six|seven|eight|nine)\s+hundred(?:\s+and)?(?:\s+(fifty|twenty|thirty|forty|sixty|seventy|eighty|ninety))?\b/g,function(a,b,c){return(SDNUM[b]*100+(c?SDNUM[c]:0))+''});
+ t=t.replace(/\b(a|an|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|fifteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|half|couple)\b(?:\s+of)?/g,function(a,b){return SDNUM[b]+''});
+ return t.replace(/(\d)\s*(g|kg|ml|l)\b/g,'$1 $2').replace(/\s+/g,' ').trim()}
+function sdFood(nm){var q=nm.replace(/\b(of|some|the|grams?|raw|cooked|boiled|fresh|large|medium|small|my|with|x)\b/g,' ').replace(/[^a-z0-9%&' -]/g,' ').replace(/\s+/g,' ').trim();if(!q)return null;
+ var s1=sdSing(q),keys=Object.keys(SDA).sort(function(a,b){return b.length-a.length});
+ for(var i=0;i<keys.length;i++){var k=keys[i];if(new RegExp('(^| )'+k+'( |$)').test(s1)||new RegExp('(^| )'+k+'( |$)').test(q)){var f=fByName(SDA[k]);if(f){if(k==='egg'&&/white/.test(q))continue;return f}}}
+ var L=searchFoods(q);if(!L.length)L=searchFoods(s1);if(!L.length)return null;var f0=L[0],w=s1.split(' ')[0];return norm(f0.name).indexOf(w.slice(0,Math.max(3,w.length-1)))>=0?f0:null}
+function sdGrams(f,qty,unit,raw){var u=(unit||'').replace(/s$/,'');if(u==='g'||u==='gram'||u==='ml')return qty;if(u==='kg'||u==='l'||u==='litre'||u==='liter')return qty*1000;
+ var U=(f.units||[]),pick=function(re){var x=U.filter(function(z){return re.test(z.label)})[0];return x&&x.g};
+ if(u){var g=pick(new RegExp(u,'i'));if(!g&&u==='egg')g=pick(/egg/);if(!g)g=SDU[u];if(g)return Math.round(qty*g)}
+ var u0=U.filter(function(z){return /medium|egg|slice|scoop|fillet|breast|can\b|pot|bar\b|piece|whole|wrap|bagel|rasher/i.test(z.label)})[0],r0=typeof ppRule==='function'&&ppRule(f.name),g1=u0?u0.g:r0&&qty==null?r0.min:U.length?U[0].g:null;if(/^egg$/i.test(f.name))g1=58;if(!g1)g1=/oil|butter|peanut butter|honey/i.test(f.name)?15:/powder|whey/i.test(f.name)?30:100;
+ if(qty==null)return f.kcal<60&&!u0?Math.max(g1,80):g1;return qty>=20&&!U.length?qty:qty>=20&&qty>g1*6?qty:Math.round(qty*g1)}
+function sdParse(text){var t=sdNumify(text||''),segs=[],m,last=0,name='Meal 1',out=[];SDM.lastIndex=0;
+ while((m=SDM.exec(t))){if(m.index>last)segs.push([name,t.slice(last,m.index)]);name=m[1];last=SDM.lastIndex}segs.push([name,t.slice(last)]);
+ var lab=function(s){s=s.toLowerCase();return /break|brek/.test(s)?'Breakfast':/lunch/.test(s)?'Lunch':/dinner|tea/.test(s)?'Dinner':/supper/.test(s)?'Supper':/snack/.test(s)?'Snack':/pre/.test(s)?'Pre-workout':/post/.test(s)?'Post-workout':s.charAt(0).toUpperCase()+s.slice(1)};
+ segs.forEach(function(sg){var body=sg[1].replace(/\b(i had|i ate|i'll have|then|for|have|had|about|around|roughly)\b/g,' ').trim();if(!body.replace(/[\s,.;:-]/g,''))return;var items=[];
+  body.split(/\s*(?:,|;|\.(?!\d)|\band then\b|\band\b|\bwith\b|\bplus\b|&|\+)\s*/).forEach(function(ch){ch=ch.trim();if(!ch)return;
+   var mm=ch.match(/^(\d+(?:\.\d+)?)\s*(kg|g|grams?|ml|l|litres?|liters?|scoops?|slices?|eggs?|cups?|tbsp|tablespoons?|tsp|teaspoons?|handfuls?|pieces?|cans?|tins?|portions?|bowls?|glass(?:es)?|pints?|rashers?|fillets?|breasts?)?\b\s*(?:of\s+)?(.*)$/),qty=null,unit='',nm=ch;
+   if(mm){qty=+mm[1];unit=mm[2]||'';nm=mm[3]||'';if(/^eggs?$/.test(unit)&&!nm){nm='egg';}}
+   else{var m2=ch.match(/^(.*?)\s+(\d+(?:\.\d+)?)\s*(kg|g|grams?|ml)\b/);if(m2){nm=m2[1];qty=+m2[2];unit=m2[3]}}
+   if(/^(slice|egg|scoop|fillet|breast|rasher)s?$/.test(unit)&&nm&&!new RegExp(unit.replace(/s$/,'')).test(nm))nm=(unit.replace(/s$/,'')==='scoop'?'':'')+nm;
+   if(!nm&&unit)nm=unit;var heard=ch,f=sdFood(nm||ch);
+   if(f&&/cooked|boiled/.test(heard)&&typeof RAWBACK!=='undefined'&&RAWBACK[f.name]&&fByName(RAWBACK[f.name]))f=fByName(RAWBACK[f.name]);
+   if(!f){items.push({heard:heard,unknown:true,g:qty&&/^(g|grams?|ml)$/.test(unit)?qty:100});return}
+   var g=sdGrams(f,qty,unit),x=calc(f,g);var rx=typeof ppRaw==='function'?ppRaw(x):x;if(rx&&rx.name!==x.name&&!/cooked/.test(heard)){}rx.heard=heard;items.push(rx);
+   var rest=sdSing((nm||'').toLowerCase());Object.keys(SDA).sort(function(a,b){return b.length-a.length}).forEach(function(k){var re=new RegExp('(^| )'+k+'( |$)');if(!re.test(rest))return;rest=rest.replace(re,' ');var f2=fByName(SDA[k]);if(!f2||f2.name===f.name||items.some(function(y){return y.name===f2.name}))return;var y=calc(f2,sdGrams(f2,null,''));y=typeof ppRaw==='function'?ppRaw(y):y;y.heard=heard;items.push(y)})});
+  if(items.length)out.push({name:lab(sg[0]),items:items})});
+ return out}
+var SD=null;
+function sdCard(){return'<div class="card full sdc" id="sdcard"><div class="row" style="align-items:center;gap:10px"><span style="font-size:26px">🎤</span><div style="flex:1;min-width:0"><b>Speak my diet</b><br><small class="mu">Say or type your meals — we turn them into a diet you can edit.</small></div><button class="pri sm" id="sdopen" style="flex:0 0 auto;width:auto">Speak</button></div></div>'}
+function sdSheet(){var sr=!!(window.SpeechRecognition||window.webkitSpeechRecognition),R=SD.res;var unk=R?R.reduce(function(a,m){return a+m.items.filter(function(x){return x.unknown}).length},0):0;
+ var h='<div class="fswbg" id="sdsh"><div class="fswsh sdsh"><div class="fswhd"><b>🎤 Speak my diet</b><button class="sm" data-sdx="1" aria-label="Close">✕</button></div>'+
+ '<div class="spkw"><textarea id="sdt" rows="4" placeholder="breakfast 3 eggs, 2 slices of toast, lunch 200 g chicken with 100 g rice and broccoli, snack a scoop of whey and a banana">'+esc(SD.txt)+'</textarea>'+(sr?'<button class="sm spkm'+(SD.on?' on':'')+'" id="sdmic" aria-label="Dictate">🎤</button>':'')+'</div>'+
+ '<p class="mu" style="font-size:12px;margin:4px 0">'+(SD.on?'Listening… tap 🎤 to stop':sr?'Tap 🎤 and speak, or type. Say the meal name, then foods with amounts.':'Voice isn’t supported in this browser — type your meals, or use your keyboard’s 🎤 to dictate.')+'</p>'+
+ '<button class="pri" id="sdparse" style="width:100%">Build meals</button>';
+ if(R){h+=(R.length?R.map(function(m,mi){var T=sumItems(m.items.filter(function(x){return!x.unknown}));return'<div class="sdm"><div class="spkrow"><input data-sdmn="'+mi+'" value="'+esc(m.name)+'" aria-label="Meal name"><small class="mu" style="flex:0 0 auto">'+nf(Math.round(T.kcal))+' kcal</small></div>'+
+   m.items.map(function(x,ii){var k=mi+'|'+ii;if(x.unknown)return'<div class="sdi unk"><div class="spkrow"><span class="sdn">⚠️ Not found: “'+esc(x.heard)+'”</span><button class="sm dang xb" data-sddel="'+k+'" aria-label="Remove">✕</button></div><div class="spkrow"><input data-sdq="'+k+'" placeholder="Search the food library" value="'+esc(x.q||'')+'"></div>'+(x.opts&&x.opts.length?'<div class="sdo">'+x.opts.map(function(o){return'<button class="sm" data-sdpick="'+k+'|'+esc(o)+'">'+esc(o)+'</button>'}).join('')+'</div>':'')+'</div>';
+    return'<div class="sdi"><div class="spkrow"><span class="sdn">'+esc(x.name)+'<small class="mu">“'+esc(x.heard||'')+'” · P'+Math.round(x.protein)+' C'+Math.round(x.carbs)+' F'+Math.round(x.fat)+'</small></span><input type="number" inputmode="numeric" class="sdg" data-sdg="'+k+'" value="'+x.g+'" aria-label="grams"><small class="mu">g</small><button class="sm dang xb" data-sddel="'+k+'" aria-label="Remove">✕</button></div></div>'}).join('')+'</div>'}).join(''):'<p class="mu">No foods recognised — try “lunch 200 g chicken and 100 g rice”.</p>');
+  var T=sumItems([].concat.apply([],R.map(function(m){return m.items.filter(function(x){return!x.unknown})})));
+  h+='<p style="margin:8px 0 4px"><b>'+nf(Math.round(T.kcal))+' kcal</b> <span class="mu">· P '+Math.round(T.protein)+' · C '+Math.round(T.carbs)+' · F '+Math.round(T.fat)+'</span></p>'+(unk?'<p class="mu" style="font-size:12px;color:#f59e0b">'+unk+' food'+(unk>1?'s':'')+' not found — search for '+(unk>1?'them':'it')+' or remove; unmatched foods are not saved.</p>':'')+
+  '<label>Diet name</label><input id="sdname" value="'+esc(SD.name||'My spoken diet')+'"><label class="sdchk"><input type="checkbox" id="sdtoday"'+(SD.today!==false?' checked':'')+'> Use as today’s diet (adds these meals to today’s log)</label>'+
+  '<button class="pri" id="sdsave" style="width:100%;margin-top:8px">💾 Save diet</button>'}
+ return h+'</div></div>'}
+function sdRe(){var o=document.getElementById('sdsh'),st=o&&o.querySelector('.fswsh')?o.querySelector('.fswsh').scrollTop:0;if(o)o.remove();document.body.insertAdjacentHTML('beforeend',sdSheet());var n2=document.querySelector('#sdsh .fswsh');if(n2)n2.scrollTop=st}
+function sdOpen(){SD=SD||{txt:'',res:null,on:false};sdRe()}
+var SDREC=null;function sdMic(){var C=window.SpeechRecognition||window.webkitSpeechRecognition;if(!C){var t=document.getElementById('sdt');t&&t.focus();return}if(SDREC){try{SDREC.stop()}catch(e){}return}
+ var r=new C();SDREC=r;r.lang='en-IE';r.interimResults=false;r.continuous=true;var base=(document.getElementById('sdt')||{}).value||SD.txt;
+ r.onresult=function(e){var s='';for(var i=0;i<e.results.length;i++)if(e.results[i].isFinal)s+=e.results[i][0].transcript+' ';SD.txt=(base?base.trim()+' ':'')+s.trim();var t=document.getElementById('sdt');if(t)t.value=SD.txt};
+ r.onerror=function(e){toast(e.error==='not-allowed'?'Microphone blocked — type or use your keyboard’s 🎤':'Dictation error: '+e.error)};r.onend=function(){SDREC=null;SD.on=false;sdRe()};try{r.start();SD.on=true;sdRe()}catch(e){SDREC=null;toast('Type your meals or use your keyboard’s 🎤')}}
+function sdSave(){var R=(SD.res||[]).map(function(m){return{name:m.name,items:m.items.filter(function(x){return!x.unknown&&n(x.g)>0}).map(function(x){var y=Object.assign({},x);delete y.heard;return y})}}).filter(function(m){return m.items.length});
+ if(!R.length){toast('Add at least one recognised food');return}var nm=((document.getElementById('sdname')||{}).value||'').trim()||'My spoken diet',T=sumItems([].concat.apply([],R.map(function(m){return m.items})));
+ var res={kcal:Math.round(T.kcal),protein:Math.round(T.protein),carbs:Math.round(T.carbs),fat:Math.round(T.fat)};
+ var o={id:'d'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),name:nm,kind:'own',spoken:1,res:res,tg:cl(res),date:iso(new Date()),mp:R.map(function(m,i){return fixM({no:i+1,name:m.name,type:'',items:cl(m.items)})})};
+ S.plans.unshift(o);var td=(document.getElementById('sdtoday')||{}).checked;if(td){var t=todayIso();S.dietSel[t]=o.id;ensureDietMeals(t)}save();var x=document.getElementById('sdsh');x&&x.remove();SD=null;
+ tab='meals';dv=td?null:'diets';cur=td?todayIso():cur;render();scrollTo(0,0);toast(td?'Diet saved · now today’s diet':'Saved to My diets')}
+(function(){var rp=rPlan;rPlan=function(){var r=rp.apply(this,arguments);try{var el=document.getElementById('t-plan');if(el&&!el.querySelector('#sdcard'))el.insertAdjacentHTML('afterbegin',sdCard())}catch(e){console.warn(e)}return r};
+ var it=function(k){var p=k.split('|');return SD&&SD.res&&SD.res[+p[0]]&&SD.res[+p[0]].items[+p[1]]};
+ document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('button');if(!b)return;var D=b.dataset,stop=function(){ev.preventDefault();ev.stopImmediatePropagation()};
+  if(b.id==='sdopen'){stop();sdOpen();return}if(!document.getElementById('sdsh'))return;
+  if(D.sdx){stop();if(SDREC)try{SDREC.stop()}catch(e){}document.getElementById('sdsh').remove();return}
+  if(b.id==='sdmic'){stop();sdMic();return}
+  if(b.id==='sdparse'){stop();SD.txt=document.getElementById('sdt').value;SD.res=sdParse(SD.txt);sdRe();return}
+  if(D.sddel){stop();var p=D.sddel.split('|');SD.res[+p[0]].items.splice(+p[1],1);if(!SD.res[+p[0]].items.length)SD.res.splice(+p[0],1);sdRe();return}
+  if(D.sdpick){stop();var q=D.sdpick.split('|'),x=it(q[0]+'|'+q[1]),f=fByName(q.slice(2).join('|'));if(x&&f){var g=x.g||sdGrams(f,null,''),y=calc(f,g);y=typeof ppRaw==='function'?ppRaw(y):y;y.heard=x.heard;SD.res[+q[0]].items[+q[1]]=y;sdRe()}return}
+  if(b.id==='sdsave'){stop();SD.name=document.getElementById('sdname').value;sdSave();return}},true);
+ document.addEventListener('input',function(ev){var e=ev.target;if(!e.closest||!e.closest('#sdsh'))return;var D=e.dataset;
+  if(e.id==='sdt')SD.txt=e.value;if(e.id==='sdname')SD.name=e.value;if(D.sdmn!=null)SD.res[+D.sdmn].name=e.value;
+  if(D.sdg){var x=it(D.sdg),f=x&&fByName(x.name);if(f){var y=calc(f,Math.max(0,n(e.value)));y.heard=x.heard;var p=D.sdg.split('|');SD.res[+p[0]].items[+p[1]]=y;var s=e.closest('.sdi').querySelector('.sdn small');if(s)s.textContent='“'+(x.heard||'')+'” · P'+Math.round(y.protein)+' C'+Math.round(y.carbs)+' F'+Math.round(y.fat)}}},true);
+ document.addEventListener('change',function(ev){var e=ev.target;if(!e.closest||!e.closest('#sdsh'))return;var D=e.dataset;if(e.id==='sdtoday')SD.today=e.checked;
+  if(D.sdq){var x=it(D.sdq);if(x){x.q=e.value;x.opts=e.value.trim()?searchFoods(e.value).slice(0,5).map(function(f){return f.name}):[];sdRe()}}
+  if(D.sdg)sdRe()},true);
+ var c=document.createElement('style');c.textContent='.sdc{border:1px solid var(--ac,#a855f7)}.sdsh{max-height:88vh;overflow-y:auto}.sdm{margin-top:10px;padding:8px;border-radius:12px;background:var(--t2,rgba(255,255,255,.05))}.sdm .spkrow input{flex:1;min-width:0}.sdi{padding:6px 0;border-top:1px solid rgba(255,255,255,.06)}.sdi .spkrow{display:flex;gap:6px;align-items:center}.sdn{flex:1;min-width:0;font-size:14px;overflow-wrap:anywhere}.sdn small{display:block;font-size:11px}.sdg{width:64px!important;flex:0 0 64px}.sdi .xb{flex:0 0 auto;width:auto}.sdo{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.sdo button{width:auto;font-size:12px}.sdi.unk .sdn{color:#f59e0b}.sdchk{display:flex;gap:8px;align-items:center;margin-top:8px;font-size:13px}.sdchk input{width:auto}';document.head.appendChild(c)})();
 </script>
 </body></html>
