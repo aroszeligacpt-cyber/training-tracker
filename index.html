@@ -7075,7 +7075,7 @@ window.COLL={html:html,wrap:wrap,toggle:toggle,isOpen:isOpen,setOpen:setOpen,KEY
 <script>/* v92: apply collapsible rows app-wide (primary daily cards stay open) */
 (function(){if(!window.COLL)return;
 var TABS={home:1,workout:1,meals:1,her:1,settings:1,habits:1,checkin:1,gut:1,cardio:1,watch:1,shop:0,exlib:1,report:1};
-var KEEP=/meals to tick|^workouts$|^log ·|^habits$|^photos ·|^body$|how you feel today|^today\b|what would you like to track|before you continue|no diets yet|her is locked|set up her|today’s diet|your daily targets|day totals|^workout$|^🔥 cardio$|today’s nice\/nhs checks|^meals$|^🌸 her$|^🌿 gut$|^daily score ·|^<i class="dbi" aria-hidden="true"></i> your exercises$|^📚 exercise library$/i;
+var KEEP=/meals to tick|^workouts$|^log ·|^habits$|^photos ·|^body$|how you feel today|^today\b|what would you like to track|before you continue|no diets yet|her is locked|set up her|today’s diet|your daily targets|day totals|^workout$|^🔥 cardio$|today’s nice\/nhs checks|^meals$|^🌸 her$|^🌿 gut$|^daily score ·|^\s*(\uD83C\uDFC6 )?your exercises$|^📚 exercise library$/i;
 function slug(t){return t.toLowerCase().replace(/\([^)]*\)/g,'').replace(/·.*$/,'').replace(/[\d.,%+−-]+/g,'').replace(/[^a-z\u00c0-\u024f ]+/g,' ').trim().replace(/\s+/g,'-').slice(0,40)||'x'}
 function txt(e){return (e&&e.textContent||'').replace(/\s+/g,' ').trim()}
 function sub(card,h){var s=card.querySelector('select');if(s&&s.selectedIndex>=0&&s.options[s.selectedIndex])return txt(s.options[s.selectedIndex]);
@@ -9236,7 +9236,7 @@ v7SyncDiet=function(pop){try{var d=cur;if(d>todayIso())return;var R=v7R();R.cel=
 /* ---- v130: goblet = workout day complete (1/day), medal = diet day complete (1/day), dumbbell = every PR; full-screen streak-fire celebrations ---- */
 var V7D0='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><defs><linearGradient id="v7d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6dcff"/><stop offset=".5" stop-color="#a78bfa"/><stop offset="1" stop-color="#5b3fd1"/></linearGradient></defs><g transform="rotate(-30 12 12)"><rect x="6.5" y="11" width="11" height="2" rx="1" fill="#cfc6e8"/><rect x="2.2" y="7.5" width="2.6" height="9" rx="1.1" fill="url(#v7d)"/><rect x="4.6" y="5.5" width="2.8" height="13" rx="1.2" fill="url(#v7d)"/><rect x="16.6" y="5.5" width="2.8" height="13" rx="1.2" fill="url(#v7d)"/><rect x="19.2" y="7.5" width="2.6" height="9" rx="1.1" fill="url(#v7d)"/></g></svg>';
 v7Ic=function(k,sz){var i='v7i'+(++V7N),t=(k==='g'?V7G0:k==='p'?V7D0:V7M0).replace(/id="v7[gmd]"/,'id="'+i+'"').replace(/url\(#v7[gmd]\)/g,'url(#'+i+')');return sz?t.replace(/width="20" height="20"/,'width="'+sz+'" height="'+sz+'"'):t};
-(function(){var c=document.createElement('style');c.textContent='.dbi{display:inline-block;width:1.1em;height:1.1em;vertical-align:-.2em;background:url("data:image/svg+xml,'+encodeURIComponent(V7D0.replace(/url\(#v7d\)/g,'#a78bfa').replace(/<defs>.*<\/defs>/,''))+'") center/contain no-repeat}#v83pb{display:none!important}';document.head.appendChild(c)})();
+(function(){var c=document.createElement('style');var u='url("data:image/svg+xml,'+encodeURIComponent(V7D0.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" ').replace(/url\(#v7d\)/g,'#000').replace(/<defs>.*<\/defs>/,''))+'") center/contain no-repeat';c.textContent='.dbi{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.22em;background:#b9a3ff;-webkit-mask:'+u+';mask:'+u+'}.pill .dbi,.prp .dbi{background:currentColor}#v83pb{display:none!important}';document.head.appendChild(c)})();
 function v10R(){var R=v7R();R.wg=R.wg||[];R.wcel=R.wcel||{};R.cel=R.cel||{};R.pr=R.pr||[];return R}
 (function(){var R=v10R();if(!R.v130){R.pr=R.pr.map(function(p){return{d:p.d,n:p.n,v:p.v,t:p.t||['e']}});R.v130=1;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}})();
 // streaks
@@ -9261,7 +9261,7 @@ v7Sheet=function(){var R=v10R(),o=document.getElementById('v7rs');if(o)o.remove(
  var L=R.wg.map(function(x){return{d:x.d,k:'g',t:'Workout complete',s:'Every planned set done'}}).concat(R.dm.map(function(x){return{d:x.d,k:'m',t:'Diet day complete',s:'Every meal ticked'}}),R.pr.map(function(p){return{d:p.d,k:'p',t:'PR · '+p.n,s:p.txt||(p.v?p.v+' kg e1RM':'Personal best')}})).sort(function(a,b){return a.d<b.d?1:a.d>b.d?-1:0}).slice(0,40);
  var tot=function(k,c,lab,st){return'<div>'+v7Ic(k,30)+'<b>'+c+'</b><small>'+lab+'</small><small class="v10s">🔥 '+st+'</small></div>'};
  document.body.insertAdjacentHTML('beforeend','<div class="fswbg" id="v7rs"><div class="fswsh"><div class="fswhd"><b>Your rewards</b><button class="sm" data-v7x="1" aria-label="Close">✕</button></div>'+
- '<div class="v7tot v10t3">'+tot('g',R.wg.length,'Goblets',v10WStreak()+' sessions')+tot('m',R.dm.length,'Medals',v8DStreak()+' days')+tot('p',R.pr.length,'PRs',v10PStreak()+' weeks')+'</div>'+
+ '<div class="v7tot v10g3">'+tot('g',R.wg.length,'Goblets',v10WStreak()+' sessions')+tot('m',R.dm.length,'Medals',v8DStreak()+' days')+tot('p',R.pr.length,'PRs',v10PStreak()+' weeks')+'</div>'+
  '<p class="mu" style="font-size:12px;margin:8px 0">Goblet: one a day when you finish every planned set. Medal: one a day when you tick all your meals. Dumbbell: every new personal record.</p>'+
  (L.length?'<div class="v7ls">'+L.map(function(x){return'<div>'+v7Ic(x.k)+'<span><b>'+esc(x.t)+'</b><small>'+esc(x.s)+'</small></span><em>'+fmt(x.d,{day:'numeric',month:'short'})+'</em></div>'}).join('')+'</div>':'<p class="mu">No rewards yet.</p>')+
  '<div class="pacc" style="margin-top:10px"><button class="ck'+(R.mute?'':' on')+'" id="v7snd" aria-label="Tick sounds">'+(R.mute?'':'✓')+'</button><span><b>Tick sounds</b></span></div></div></div>')};
@@ -9300,7 +9300,7 @@ v7Pop=function(k){v10Cel(k==='g'?'g':'m')};
   var before=nm?v10PrTypes(nm,cur).t.slice():[];
   setTimeout(function(){try{if(nm){var x=v10PrTypes(nm,cur),nw=x.t.filter(function(t){return before.indexOf(t)<0});if(nw.length&&x.a){var R=v10R(),tx=v10PrTxt(nm,x);R.pr.push({d:cur,n:nm,t:nw,v:tx.e1,txt:tx.main});save();v10Cel('p',{n:nm,main:tx.main,e1:tx.e1,prev:tx.prev})}}v7SyncPR();v10SyncW(true)}catch(e){console.warn(e)}},5)},true);
  var c=document.createElement('style');c.textContent=
- '.v10gp{gap:3px}.v10gp b{margin-right:4px}.v10gp b:last-child{margin-right:0}.v10t3{grid-template-columns:repeat(3,1fr)!important}.v10t3 b{font-size:20px!important}.v10s{display:block;margin-top:2px;white-space:nowrap}'+
+ '.v10gp{gap:3px}.v10gp b{margin-right:4px}.v10gp b:last-child{margin-right:0}.v10g3{grid-template-columns:repeat(3,1fr)!important}.v10g3 b{font-size:20px!important}.v10g3 small{white-space:nowrap}.v10s{display:block;margin-top:2px;white-space:nowrap}'+
  '.v10cel{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(6,4,14,.74);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);animation:v10fade .3s ease both}.v10cel.out{opacity:0;transition:opacity .3s}@keyframes v10fade{from{opacity:0}}'+
  '.v10g{--k:#f5b82e}.v10m{--k:#22c66e}.v10p{--k:#a78bfa}.v10fire{position:absolute;left:0;right:0;bottom:0;height:62%;background:radial-gradient(ellipse at 50% 100%,#ff6a0055,transparent 65%);pointer-events:none}'+
  '.v10in{position:relative;z-index:2;width:min(342px,90vw);text-align:center}'+
@@ -9320,5 +9320,11 @@ v7Pop=function(k){v10Cel(k==='g'?'g':'m')};
  '.v10wk{display:flex;justify-content:center;gap:6px;margin:0 0 14px;animation:v10up .5s .45s both}.v10wk .dd{width:40px;height:52px;border-radius:12px;background:rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:16px;flex:0 1 40px}.v10wk .dd b{font-size:11px;color:#b9b0d0}.v10wk .dd.on{background:#ff7a0026;border:1px solid #ff7a0066}.v10wk .dd.now{background:#ff7a00;box-shadow:0 0 16px #ff7a00}.v10wk .dd.now b{color:#fff}'+
  '.v10mini{display:flex;align-items:center;gap:10px;justify-content:center;padding:10px;border-radius:14px;background:rgba(255,255,255,.06);margin-bottom:18px;font-size:13px;animation:v10up .5s .55s both}.v10mini svg{flex:0 0 auto}.v10mini > span{display:flex;flex-wrap:wrap;gap:4px 10px;justify-content:center}.v10mini span span{white-space:nowrap}'+
  '.v10ok{width:100%;animation:v10up .5s .7s both}@keyframes v10up{from{transform:translateY(14px);opacity:0}}';document.head.appendChild(c)})();
+v7Streak=function(){return Math.max(1,v10WStreak())};
+// chart PR marks: swap the emoji for the dumbbell icon inside SVG charts
+function v10SvgDb(){try{var u='data:image/svg+xml,'+encodeURIComponent(V7D0.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" ').replace(/url\(#v7d\)/g,'#a78bfa').replace(/<defs>.*<\/defs>/,''));
+ document.querySelectorAll('svg text').forEach(function(t){if(t.textContent.indexOf('🏋️')<0||t.dataset.v10)return;t.dataset.v10=1;t.textContent=t.textContent.replace('🏋️','').trim();if(!t.textContent)t.textContent=' ';var fs=parseFloat(t.getAttribute('font-size'))||11,b=t.getBBox(),im=document.createElementNS('http://www.w3.org/2000/svg','image');
+  var sz=fs+2;im.setAttribute('href',u);im.setAttribute('width',sz);im.setAttribute('height',sz);im.setAttribute('x',(t.textContent.trim()?b.x-sz-1:b.x+b.width/2-sz/2));im.setAttribute('y',b.y+b.height/2-sz/2);t.parentNode.insertBefore(im,t)})}catch(e){}}
+(function(){var rr=render;render=function(){var r=rr.apply(this,arguments);setTimeout(v10SvgDb,0);return r};document.addEventListener('click',function(){setTimeout(v10SvgDb,60)})})();
 </script>
 </body></html>
