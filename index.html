@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v132 · 5 Nov 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v133 · 5 Nov 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v132</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v133</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4853,7 +4853,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v132 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v133 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -9376,6 +9376,271 @@ var _sc=snCard;snCard=function(R){var h=_sc.apply(this,arguments);try{if(R.pendi
 var _hp=snHistPut;snHistPut=function(R){_hp.apply(this,arguments);try{var a=snHist();if(a[0]&&a[0].code===R.code){var c=snCond(R);a[0].cd=[c.ibs,c.pcos,c.ibsWhy,c.pcosWhy];localStorage.setItem(SNH,JSON.stringify(a));snHistPaint()}}catch(e){}};
 var _hpt=snHistPaint;snHistPaint=function(){_hpt.apply(this,arguments);try{var a=snHist(),m={};a.forEach(function(x){m[x.code]=x});[].forEach.call(document.querySelectorAll('#snhist .snhi'),function(b){var x=m[b.dataset.snh],n=b.querySelector('.snhn');if(x&&n&&!n.querySelector('.sncd'))n.insertAdjacentHTML('beforeend',snCondHtml(x.cd?{ibs:x.cd[0],pcos:x.cd[1],ibsWhy:x.cd[2],pcosWhy:x.cd[3]}:snCond(x)))})}catch(e){}};
 var _sl=snLegal;snLegal=function(A){return _sl.apply(this,arguments)+'<p style="font-size:13px;line-height:1.5"><b>IBS and PCOS tags</b> on Scan results are a rough guide from the product name, ingredients list and sugar figure — not medical advice and not a diagnosis. <b style="color:#22c55e">Green</b> = nothing obviously unsuitable found; <b style="color:#ef4444">red</b> = contains something often best limited; grey “?” = not enough information. IBS checks common high-FODMAP triggers (onion, garlic, polyol sweeteners, inulin, excess fructose, lactose, wheat, pulses) following NICE/NHS and Monash University guidance; portions and personal tolerance matter — check the Monash FODMAP app. PCOS checks sugary foods and drinks, processed meats and refined high-GI carbs, in line with the general healthy-eating advice of the 2023 International PCOS/PMOS Guideline. Always check the label and speak to your GP or dietitian.</p>'};
+})();
+</script>
+<script>/* v133: English + Polish (Polski) language switcher */
+(function(){
+if(typeof render!=='function')return;
+var KEY='tt_lang_v1';
+window.LANG=(function(){try{var x=localStorage.getItem(KEY);if(x==='pl'||x==='en')return x}catch(e){}return'en'})();
+try{document.documentElement.lang=LANG==='pl'?'pl':'en'}catch(e){}
+
+var I18N={
+en:{
+ lang:'Language', langNote:'Choose English or Polish. More languages later.',
+ home:'Home', today:'Today', yesterday:'Yesterday', saved:'✓ Saved', menu:'Menu',
+ settings:'Settings', legal:'Legal & Sources', notebook:'Notebook', restTimer:'Rest timer',
+ shopping:'Shopping list', watch:'Connect iWatch', dietHist:'Diet history', backup:'Backup / Export',
+ train:'TRAINING', diet:'DIET', her:'HER',
+ workout:'WORKOUT', cardio:'CARDIO', exercises:'EXERCISES', habits:'HABITS', checkin:'CHECK-IN',
+ trainRep:'TRAINING REPORT', trainPlan:'TRAINING PLAN', wokCreator:'WORKOUT CREATOR', createDiet:'CREATE DIET PLAN', myDiets:'MY DIETS', shopTile:'SHOPPING LIST',
+ water:'WATER', dietRep:'DIET REPORT', scan:'Scan',
+ sec:{scan:'📷 Scan',gen:'✨ Create plan',meals:'🍽️ Diet',habits:'✅ Habits',workout:'🏋️ Workout',
+  report:'📊 Report',exlib:'📚 Exercises',notes:'📝 Notebook',timer:'⏱️ Rest timer',tplan:'🏋️ Training plan',
+  plan:'🥗 Create diet plan',settings:'⚙️ Settings',checkin:'📸 Check-in',shop:'🛒 Shopping list',
+  watch:'⌚ Connect iWatch',her:'🌸 Her',legal:'⚖️ Legal & Sources',comm:'👥 Community',pt:'🧑‍🏫 Coaching',
+  acct:'☁️ Account',cardio:'🔥 Cardio',gut:'🌿 Gut'},
+ mset:'Colour themes, background photo, targets',
+ mleg:'Disclaimer, sources and further reading',
+ mnote:'Notes for training, diet & life',
+ mtim:'Countdown between sets',
+ mshop:'Groceries for your diet × days',
+ mwat:'Import Apple Watch data via Apple Health',
+ mhist:'All diets, deleted ones, restore',
+ mbak:'Download your data as a file',
+ todaysDiet:"Today’s diet", myDietsH:'My diets', createOwn:'+ Create my own diet', useCreator:'✨ Use plan creator',
+ history:'History', default:'Default', noDiets:'No diets yet.', setToday:"📅 Set as Today’s diet",
+ speakDiet:'Speak my diet', speak:'Speak',
+ breakfast:'Breakfast', lunch:'Lunch', dinner:'Dinner', snack:'Snack',
+ morningSnack:'Morning snack', afternoonSnack:'Afternoon snack', meal:'Meal', offPlan:'Off-plan',
+ save:'Save', cancel:'Cancel', done:'Done', del:'Delete', back:'Back', close:'Close',
+ regenerate:'↻ Regenerate', createNew:'↻ Create a new diet',
+ sessionDone:'🎉 Session complete', shareSession:'📣 Share this session',
+ rewards:'Your rewards', goblets:'Goblets', medals:'Medals', prs:'PRs',
+ wokDone:'Workout complete', dietDone:'Diet day complete', newPr:'New PR!',
+ noRewards:'No rewards yet.',
+ hit:'hit', setsDone:'sets done', routines:'routines', routine:'routine',
+ logCardio:'Log cardio', libraryPr:'Library & PRs', photosW:'Photos & weight',
+ liftsCardio:'Lifts · cardio · watch', kcalMeals:'Calories & meals', groceries:'Groceries for your diet',
+ quickAdd:'Quick add', kcalNet:'Kcal · macros · net',
+ burnedCal:'🔥 Burned calories', burnAdd:'Add burned calories to daily target',
+ backupH:'Backup', expJson:'Export JSON', impJson:'Import JSON', resetAll:'Reset all data',
+ dataNote:'Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).',
+ gauge:'🎯 Daily score gauge', customise:'⚙ Customise gauge',
+ legalBtn:'⚖️ Legal & Sources', legalSub:'Disclaimer, health sources, books and further reading.',
+ morePl:'', scanSub:'Point the camera at a barcode for an instant health check.',
+ recentScans:'Recent scans', scanAnother:'📷 Scan another', check:'Check',
+ orBarcode:'Or type the barcode', orSearch:'Or search by name',
+ goodChoice:'Good choice', okSometimes:'OK sometimes', limit:'Limit', noData:'Not enough data',
+ startCam:'▶ Start camera', stopCam:'⏸ Stop camera', torch:'🔦 Torch'
+},
+pl:{
+ lang:'Język', langNote:'Wybierz angielski lub polski. Więcej języków później.',
+ home:'Start', today:'Dziś', yesterday:'Wczoraj', saved:'✓ Zapisano', menu:'Menu',
+ settings:'Ustawienia', legal:'Prawo i źródła', notebook:'Notatnik', restTimer:'Timer przerwy',
+ shopping:'Lista zakupów', watch:'Połącz iWatch', dietHist:'Historia diet', backup:'Kopia / eksport',
+ train:'TRENING', diet:'DIETA', her:'HER',
+ workout:'TRENING', cardio:'CARDIO', exercises:'ĆWICZENIA', habits:'NAWYKI', checkin:'POMIARY',
+ trainRep:'RAPORT TRENINGU', trainPlan:'PLAN TRENINGU', wokCreator:'KREATOR TRENINGU', createDiet:'STWÓRZ DIETĘ', myDiets:'MOJE DIETY', shopTile:'LISTA ZAKUPÓW',
+ water:'WODA', dietRep:'RAPORT DIETY', scan:'Skanuj',
+ sec:{scan:'📷 Skanuj',gen:'✨ Stwórz plan',meals:'🍽️ Dieta',habits:'✅ Nawyki',workout:'🏋️ Trening',
+  report:'📊 Raport',exlib:'📚 Ćwiczenia',notes:'📝 Notatnik',timer:'⏱️ Timer przerwy',tplan:'🏋️ Plan treningu',
+  plan:'🥗 Stwórz dietę',settings:'⚙️ Ustawienia',checkin:'📸 Pomiary',shop:'🛒 Lista zakupów',
+  watch:'⌚ Połącz iWatch',her:'🌸 Her',legal:'⚖️ Prawo i źródła',comm:'👥 Społeczność',pt:'🧑‍🏫 Coaching',
+  acct:'☁️ Konto',cardio:'🔥 Cardio',gut:'🌿 Jelita'},
+ mset:'Motywy, tło, cele',
+ mleg:'Zastrzeżenia, źródła i dalsza lektura',
+ mnote:'Notatki o treningu, diecie i życiu',
+ mtim:'Odliczanie między seriami',
+ mshop:'Zakupy pod Twoją dietę × dni',
+ mwat:'Import z Apple Watch przez Apple Health',
+ mhist:'Wszystkie diety, usunięte, przywracanie',
+ mbak:'Pobierz dane jako plik',
+ todaysDiet:'Dzisiejsza dieta', myDietsH:'Moje diety', createOwn:'+ Stwórz własną dietę', useCreator:'✨ Kreator planu',
+ history:'Historia', default:'Domyślna', noDiets:'Brak diet.', setToday:'📅 Ustaw jako dzisiejszą dietę',
+ speakDiet:'Powiedz dietę', speak:'Mów',
+ breakfast:'Śniadanie', lunch:'Obiad', dinner:'Kolacja', snack:'Przekąska',
+ morningSnack:'Poranna przekąska', afternoonSnack:'Popołudniowa przekąska', meal:'Posiłek', offPlan:'Poza planem',
+ save:'Zapisz', cancel:'Anuluj', done:'Gotowe', del:'Usuń', back:'Wróć', close:'Zamknij',
+ regenerate:'↻ Wygeneruj ponownie', createNew:'↻ Stwórz nową dietę',
+ sessionDone:'🎉 Trening ukończony', shareSession:'📣 Udostępnij trening',
+ rewards:'Twoje nagrody', goblets:'Puchary', medals:'Medale', prs:'Rekordy',
+ wokDone:'Trening ukończony', dietDone:'Dzień diety ukończony', newPr:'Nowy rekord!',
+ noRewards:'Brak nagród.',
+ hit:'zaliczone', setsDone:'serii zrobionych', routines:'planów', routine:'plan',
+ logCardio:'Zapisz cardio', libraryPr:'Biblioteka i rekordy', photosW:'Zdjęcia i waga',
+ liftsCardio:'Ciężary · cardio · zegarek', kcalMeals:'Kalorie i posiłki', groceries:'Zakupy pod dietę',
+ quickAdd:'Szybkie dodanie', kcalNet:'Kcal · makro · netto',
+ burnedCal:'🔥 Spalone kalorie', burnAdd:'Dodaj spalone kalorie do dziennego celu',
+ backupH:'Kopia zapasowa', expJson:'Eksport JSON', impJson:'Import JSON', resetAll:'Wyczyść wszystkie dane',
+ dataNote:'Dane są tylko w tej przeglądarce na tym urządzeniu. Eksportuj regularnie. Zdjęcia są w pamięci przeglądarki; możesz je dołączyć do eksportu (duży plik).',
+ gauge:'🎯 Wskaźnik dziennego wyniku', customise:'⚙ Dostosuj wskaźnik',
+ legalBtn:'⚖️ Prawo i źródła', legalSub:'Zastrzeżenia, źródła zdrowia, książki i dalsza lektura.',
+ morePl:'', scanSub:'Skieruj aparat na kod kreskowy, żeby dostać szybką ocenę.',
+ recentScans:'Ostatnie skany', scanAnother:'📷 Skanuj kolejny', check:'Sprawdź',
+ orBarcode:'Albo wpisz kod kreskowy', orSearch:'Albo szukaj po nazwie',
+ goodChoice:'Dobry wybór', okSometimes:'Czasem OK', limit:'Ogranicz', noData:'Za mało danych',
+ startCam:'▶ Włącz aparat', stopCam:'⏸ Zatrzymaj aparat', torch:'🔦 Latarka'
+}};
+
+window.t=function(k){var D=I18N[LANG]||I18N.en,E=I18N.en,p=k.split('.'),v=D,e=E;
+ for(var i=0;i<p.length;i++){v=v&&v[p[i]];e=e&&e[p[i]]}
+ return(v!=null?v:(e!=null?e:k))};
+
+window.setLang=function(l){if(l!=='en'&&l!=='pl')return;LANG=l;try{localStorage.setItem(KEY,l)}catch(e){}
+ try{document.documentElement.lang=l==='pl'?'pl':'en'}catch(e){}
+ try{toast(l==='pl'?'Język: polski':'Language: English')}catch(e){}
+ render();scrollTo(0,0)};
+
+function langCard(){return'<div class="card full" id="langc"><h2>🌐 '+t('lang')+' / Language</h2><p class="mu" style="font-size:12px;margin:0 0 8px">'+t('langNote')+'</p><div class="row" style="gap:8px"><button class="'+(LANG==='en'?'pri':'sm')+'" data-lang="en" style="flex:1">English</button><button class="'+(LANG==='pl'?'pri':'sm')+'" data-lang="pl" style="flex:1">Polski</button></div></div>'}
+
+document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('[data-lang]');if(!b)return;ev.preventDefault();ev.stopImmediatePropagation();setLang(b.dataset.lang)},true);
+
+// ---- tile titles ----
+var TILE_T={WORKOUT:'workout',CARDIO:'cardio',EXERCISES:'exercises',HABITS:'habits','CHECK-IN':'checkin','TRAINING REPORT':'trainRep',
+ DIET:'diet','CREATE PLAN':'createDiet','CREATE DIET PLAN':'createDiet','CREATE TRAINING PLAN':'createDiet','MY DIETS':'myDiets','SHOPPING LIST':'shopTile',WATER:'water','DIET REPORT':'dietRep',
+ 'TRAINING PLAN':'trainPlan','WORKOUT CREATOR':'wokCreator'};
+var _th=tilesHtml;tilesHtml=function(m){var h=_th.apply(this,arguments);if(LANG==='en')return h;
+ return h.replace(/<b>([^<]+)<\/b>/g,function(_,x){var k=TILE_T[x];return'<b>'+(k?t(k):x)+'</b>'})};
+
+// ---- mode toggle ----
+var _mt=modeToggle;modeToggle=function(){var h=_mt.apply(this,arguments);if(LANG==='en')return h;
+ return h.replace('🏋️ TRAINING','🏋️ '+t('train')).replace('🍽️ DIET','🍽️ '+t('diet')).replace('🌸 HER','🌸 '+t('her'))};
+
+// ---- menu ----
+var _mo=menuOpen;menuOpen=function(){_mo.apply(this,arguments);if(LANG==='en')return;
+ try{var map={Settings:[t('settings'),t('mset')],'Legal & Sources':[t('legal'),t('mleg')],Notebook:[t('notebook'),t('mnote')],'Rest timer':[t('restTimer'),t('mtim')],'Shopping list':[t('shopping'),t('mshop')],'Connect iWatch':[t('watch'),t('mwat')],'Diet history':[t('dietHist'),t('mhist')],'Backup / Export':[t('backup'),t('mbak')]};
+ [].forEach.call(document.querySelectorAll('#hmenu .mitem'),function(b){var lb=b.querySelector('b'),sm=b.querySelector('small');if(!lb)return;var m=map[lb.textContent];if(m){lb.textContent=m[0];if(sm)sm.textContent=m[1]}})}catch(e){}};
+
+// ---- header / secbar / date label ----
+var _rn=render;render=function(){var r=_rn.apply(this,arguments);try{i18nChrome()}catch(e){console.warn(e)}return r};
+function i18nChrome(){
+ var tb=document.getElementById('today');if(tb){tb.textContent=t('today');tb.setAttribute('aria-label',LANG==='pl'?'Przejdź do dziś':'Jump to today')}
+ var sv=document.getElementById('svind');if(sv)sv.textContent=t('saved');
+ var mb=document.getElementById('menuBtn');if(mb)mb.setAttribute('aria-label',t('menu'));
+ var dl=document.getElementById('dlbl');if(dl){var sm=dl.querySelector('small'),rest=dl.childNodes[0];
+  if(rest&&rest.nodeType===3){var u=rest.textContent;if(/^Today/.test(u))rest.textContent=t('today');else if(/^Yesterday/.test(u))rest.textContent=t('yesterday')}}
+ var sb=document.getElementById('secbar');if(sb){var hb=sb.querySelector('[data-go="home"]');if(hb)hb.textContent='‹ '+t('home');
+  var ap=sb.querySelector('.apptl');if(ap&&!/AT Fitness/.test(ap.textContent)){var SEC=I18N.en.sec,map={};Object.keys(SEC).forEach(function(k){map[SEC[k]]=t('sec.'+k)});
+   // also monthly/training/diet report variants
+   map['🗓️ Monthly report']=LANG==='pl'?'🗓️ Raport miesięczny':'🗓️ Monthly report';
+   map['📈 Training report']=LANG==='pl'?'📈 Raport treningu':'📈 Training report';
+   map['📊 Diet report']=LANG==='pl'?'📊 Raport diety':'📊 Diet report';
+   var tx=ap.textContent;if(map[tx])ap.textContent=map[tx];
+   // gut / pcos dynamic titles
+   if(LANG==='pl'){if(/PCOS/.test(tx))ap.textContent=tx.replace('PCOS/PMOS','PCOS/PMOS');if(tx.indexOf('Gut')>=0)ap.textContent=tx.replace('Gut','Jelita')}}}
+ if(tab==='settings')i18nSettings();
+ if(tab==='meals')i18nMeals();
+ if(tab==='workout')i18nWorkout();
+ if(tab==='scan')i18nScan();
+ if(tab==='habits')i18nHabits();
+ i18nPhrases(document.getElementById('t-'+tab)||document.body);
+}
+
+function i18nSettings(){var el=document.getElementById('t-settings');if(!el)return;
+ if(!document.getElementById('langc'))el.insertAdjacentHTML('afterbegin',langCard());
+ if(LANG==='en')return;
+ var map=[
+  ['⚖️ Legal & Sources',t('legalBtn')],['Disclaimer, health sources, books and further reading.',t('legalSub')],
+  ['🔥 Burned calories',t('burnedCal')],['Add burned calories to daily target',t('burnAdd')],
+  ['Backup',t('backupH')],['Export JSON',t('expJson')],['Import JSON',t('impJson')],['Reset all data',t('resetAll')],
+  ['🎯 Daily score gauge',t('gauge')],['⚙ Customise gauge',t('customise')],
+  ['Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).',t('dataNote')]
+ ];
+ replaceDeep(el,map);
+}
+
+function i18nMeals(){if(LANG==='en')return;var el=document.getElementById('t-meals');if(!el)return;
+ replaceDeep(el,[
+  ["Today’s diet",t('todaysDiet')],['My diets',t('myDietsH')],['+ Create my own diet',t('createOwn')],
+  ['✨ Use plan creator',t('useCreator')],['🕘 History',t('history')],['History',t('history')],
+  ['Default',t('default')],['No diets yet.',t('noDiets')],["📅 Set as Today’s diet",t('setToday')],
+  ['🎤 Speak my diet',t('speakDiet')],['Speak my diet',t('speakDiet')],['Speak',t('speak')],
+  ['Breakfast',t('breakfast')],['Lunch',t('lunch')],['Dinner',t('dinner')],['Snack',t('snack')],
+  ['Morning snack',t('morningSnack')],['Afternoon snack',t('afternoonSnack')],['Off-plan',t('offPlan')],
+  ['↻ Regenerate',t('regenerate')],['↻ Create a new diet',t('createNew')],['Save to My diets',LANG==='pl'?'Zapisz w Moich dietach':'Save to My diets'],
+  ['Diet name',LANG==='pl'?'Nazwa diety':'Diet name'],['Edit diet',LANG==='pl'?'Edytuj dietę':'Edit diet'],
+  ['Eaten',LANG==='pl'?'Zjedzone':'Eaten'],['Burned',LANG==='pl'?'Spalone':'Burned'],['kcal left',LANG==='pl'?'kcal zostało':'kcal left'],
+  ['MEALS',LANG==='pl'?'POSIŁKI':'MEALS'],['No diets yet',LANG==='pl'?'Brak diet':'No diets yet'],
+  ['Build your own diet meal by meal',LANG==='pl'?'Złóż własną dietę posiłek po posiłku':'Build your own diet meal by meal']
+ ]);
+}
+function i18nWorkout(){if(LANG==='en')return;var el=document.getElementById('t-workout');if(!el)return;
+ replaceDeep(el,[
+  ['Workouts',LANG==='pl'?'Treningi':'Workouts'],['Routines',LANG==='pl'?'Plany':'Routines'],
+  ['Session complete',t('sessionDone').replace('🎉 ','')],['📣 Share this session',t('shareSession')],
+  ['Start today',LANG==='pl'?'Zacznij dziś':'Start today'],['Not started today',LANG==='pl'?'Nie rozpoczęto dziś':'Not started today'],
+  ['Pick a routine to train',LANG==='pl'?'Wybierz plan treningu':'Pick a routine to train'],
+  ['sets done',t('setsDone')],['Add exercise',LANG==='pl'?'Dodaj ćwiczenie':'Add exercise']
+ ]);
+}
+function i18nHabits(){if(LANG==='en')return;var el=document.getElementById('t-habits');if(!el)return;
+ replaceDeep(el,[['Log ·',LANG==='pl'?'Dziennik ·':'Log ·'],['Habits',LANG==='pl'?'Nawyki':'Habits'],['Streaks',LANG==='pl'?'Serie':'Streaks']]);
+}
+function i18nScan(){if(LANG==='en')return;var el=document.getElementById('t-scan');if(!el)return;
+ replaceDeep(el,[
+  ['📷 Scan a product',LANG==='pl'?'📷 Skanuj produkt':'📷 Scan a product'],
+  [I18N.en.scanSub,t('scanSub')],['Recent scans',t('recentScans')],['📷 Scan another',t('scanAnother')],
+  ['Or type the barcode',t('orBarcode')],['Or search by name',t('orSearch')],['Check',t('check')],
+  ['Good choice',t('goodChoice')],['OK sometimes',t('okSometimes')],['Limit',t('limit')],['Not enough data',t('noData')],
+  ['▶ Start camera',t('startCam')],['⏸ Stop camera',t('stopCam')],['🔦 Torch',t('torch')],
+  ['Starting camera…',LANG==='pl'?'Uruchamianie aparatu…':'Starting camera…'],
+  ['Point the camera at the barcode',LANG==='pl'?'Skieruj aparat na kod kreskowy':'Point the camera at the barcode']
+ ]);
+ // IBS/PCOS stay as acronyms
+}
+
+// phrase replace in text nodes (and button/label text) — longest first, exact
+function replaceExact(root,map){if(!root||LANG==='en')return;var skip='SCRIPT STYLE TEXTAREA CODE PRE INPUT SELECT'.split(' ');
+ (function walk(n){if(!n)return;if(n.nodeType===1){if(skip.indexOf(n.tagName)>=0||n.id==='langc')return;for(var c=n.firstChild;c;){var nx=c.nextSibling;walk(c);c=nx}return}
+  if(n.nodeType===3){var v=n.nodeValue,tr=v.trim();if(map[tr]!=null){var lead=v.match(/^\s*/)[0],trail=v.match(/\s*$/)[0];n.nodeValue=lead+map[tr]+trail}}})(root)}
+function replaceDeep(root,pairs){if(!root||LANG==='en')return;pairs=pairs.slice().sort(function(a,b){return b[0].length-a[0].length});
+ var skip='SCRIPT STYLE TEXTAREA CODE PRE'.split(' ');
+ (function walk(n){if(!n)return;if(n.nodeType===1){if(skip.indexOf(n.tagName)>=0)return;if(n.id==='langc')return;
+   if(n.tagName==='INPUT'||n.tagName==='SELECT'){var ph=n.getAttribute('placeholder');if(ph){var np=trOne(ph,pairs);if(np!==ph)n.setAttribute('placeholder',np)}return}
+   if(n.tagName==='BUTTON'||n.tagName==='LABEL'||n.tagName==='A'||n.tagName==='SUMMARY'){/* children */}
+   for(var c=n.firstChild;c;){var nx=c.nextSibling;walk(c);c=nx}return}
+  if(n.nodeType===3){var v=n.nodeValue,nv=trOne(v,pairs);if(nv!==v)n.nodeValue=nv}})(root)}
+function trOne(v,pairs){for(var i=0;i<pairs.length;i++){if(v.indexOf(pairs[i][0])>=0)v=v.split(pairs[i][0]).join(pairs[i][1])}return v}
+function i18nPhrases(root){if(LANG==='en'||!root)return;
+ replaceExact(root,{'Save':t('save'),'Cancel':t('cancel'),'Done':t('done'),'Delete':t('del'),'Close':t('close')});
+ replaceDeep(root,[
+  ['‹ Home','‹ '+t('home')],
+  ['Your rewards',t('rewards')],['Goblets',t('goblets')],['Medals',t('medals')],['No rewards yet.',t('noRewards')],
+  ['Workout complete',t('wokDone')],['Diet day complete',t('dietDone')],['New PR!',t('newPr')],
+  ['Breakfast',t('breakfast')],['Lunch',t('lunch')],['Dinner',t('dinner')],['Snack',t('snack')],
+  ['Off-plan',t('offPlan')],['Default',t('default')],["Today’s diet",t('todaysDiet')],
+  ['🎤 Speak my diet',t('speakDiet')],['Speak my diet',t('speakDiet')]
+ ]);
+}
+
+// rewards / celebration titles
+try{if(typeof V10K!=='undefined'){var _v10=null;Object.defineProperty(window,'__v10i18n',{value:1});
+ var wrapV10=function(){if(!_v10){V10K.g.h=function(){return t('wokDone')};}};
+ // replace static strings when celebrating
+ var _cel=typeof v10Cel==='function'?v10Cel:null;
+}}catch(e){}
+try{var _vs=v7Sheet;v7Sheet=function(){_vs.apply(this,arguments);if(LANG==='pl'){try{i18nPhrases(document.getElementById('v7rs'))}catch(e){}}}}catch(e){}
+try{if(typeof V10K==='object'){['g','m','p'].forEach(function(k){var o=V10K[k],H=o.h,L=o.l;Object.defineProperty(o,'h',{configurable:true,get:function(){return k==='g'?t('wokDone'):k==='m'?t('dietDone'):t('newPr')}});
+ Object.defineProperty(o,'n',{configurable:true,get:function(){return k==='g'?t('goblets').replace(/s$/,''):k==='m'?t('medals').replace(/e$/,'').replace(/s$/,''):'PR'}})})}}catch(e){}
+
+// mlab meal names
+try{var _ml=mlab;mlab=function(m){var x=_ml.apply(this,arguments);if(LANG==='en')return x;
+ return x.replace(/^Breakfast$/,t('breakfast')).replace(/^Lunch$/,t('lunch')).replace(/^Dinner$/,t('dinner')).replace(/^Snack$/,t('snack')).replace(/^Morning snack$/,t('morningSnack')).replace(/^Afternoon snack$/,t('afternoonSnack')).replace(/^Off-plan$/,t('offPlan')).replace(/^Meal /,t('meal')+' ')}}catch(e){}
+
+// SNLBL for scan
+try{if(typeof SNLBL!=='undefined'){var _g=SNLBL.g[0],_o=SNLBL.o[0],_r=SNLBL.r[0],_x=SNLBL.x[0];
+ Object.defineProperty(SNLBL.g,'0',{configurable:true,get:function(){return t('goodChoice')}});
+ Object.defineProperty(SNLBL.o,'0',{configurable:true,get:function(){return t('okSometimes')}});
+ Object.defineProperty(SNLBL.r,'0',{configurable:true,get:function(){return t('limit')}});
+ Object.defineProperty(SNLBL.x,'0',{configurable:true,get:function(){return t('noData')}})}}catch(e){}
+
+// sdCard speak button
+try{var _sd=sdCard;sdCard=function(){var h=_sd.apply(this,arguments);if(LANG==='en')return h;return h.replace(/Speak my diet/g,t('speakDiet')).replace(/>Speak</,'>'+t('speak')+'<')}}catch(e){}
+
+// rSettings insert lang card always (even en)
+var _rs=rSettings;rSettings=function(){_rs.apply(this,arguments);try{var el=document.getElementById('t-settings');if(el&&!document.getElementById('langc'))el.insertAdjacentHTML('afterbegin',langCard());i18nSettings()}catch(e){}};
+
 })();
 </script>
 </body></html>
