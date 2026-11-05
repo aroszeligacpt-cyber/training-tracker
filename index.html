@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v131 · 5 Nov 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v132 · 5 Nov 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v131</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v132</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4853,7 +4853,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v131 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v132 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -5664,7 +5664,7 @@ function snCard(R){var N=R.N,u=R.drink?'100 ml':'100 g',sv=R.serv,k=sv?sv.g/100:
   '<p class="snwhy">'+esc(R.why||'')+'</p><div class="snchips">'+['fat','sat','sug','salt'].map(function(x){var c=L[x];return'<span class="snch c-'+(c||'x')+'"><i>'+SNNM[x]+'</i><b>'+(c?SNLV[c]:'?')+'</b><small>'+snFmt(N[x],' g')+'</small></span>'}).join('')+'</div>'+
   '<p class="mu snper">Traffic lights per '+u+(R.drink?' (drinks criteria)':'')+'</p>';
  if(R.nova)h+='<p class="snnova n'+R.nova+'">'+({1:'🌱 Unprocessed or minimally processed (NOVA 1)',2:'🧂 Processed culinary ingredient (NOVA 2)',3:'🥫 Processed food (NOVA 3)',4:'🏭 Ultra-processed food (NOVA 4)'})[R.nova]+'</p>';
- try{if(typeof guOn==='function'&&guOn()){var gf={name:R.name,brand:R.brand,ingr:R.ingr||'',add:R.add||[]};h+=guSweetHtml(gf);if(typeof gdFTag==='function')h+='<p class="snfod">Gut: '+gdFTag(R.name)+'</p>'}}catch(e){}
+ try{if(typeof guOn==='function'&&guOn()){var gf={name:R.name,brand:R.brand,ingr:R.ingr||'',add:R.add||[]};h+=guSweetHtml(gf)}}catch(e){}
  var rows=[['Energy','kcal',' kcal'],['Protein','pro',' g'],['Carbs','carb',' g'],['of which sugars','sug',' g'],['Fat','fat',' g'],['of which saturates','sat',' g'],['Fibre','fib',' g'],['Salt','salt',' g']];
  h+='<table class="sntab"><thead><tr><th></th><th>per '+u+'</th>'+(sv?'<th>per '+esc(sv.label.length>22?'serving ('+nf(sv.g)+(R.drink?' ml':' g')+')':sv.label)+'</th>':'')+'</tr></thead><tbody>'+rows.map(function(r){var v=N[r[1]];return'<tr'+(/^of/.test(r[0])?' class="sub"':'')+'><td>'+r[0]+'</td><td>'+snFmt(v,r[2])+'</td>'+(sv?'<td>'+snFmt(v==null?null:v*k,r[2])+'</td>':'')+'</tr>'}).join('')+'</tbody></table>';
  var f=R.key?foodByKey(R.key):null;
@@ -9338,5 +9338,44 @@ var _w=gdWhy;gdWhy=function(nm,X){var r=_w(nm,X);if(r||!X||X.c!=='pmos'||X.fv[nm
  if(SW.test(nm))r='sweet / sugary';else if(PM.test(nm)&&!/\(deli\)|chicken breast slices|turkey breast slices/i.test(nm))r='processed meat';else if(RF.test(nm))r='refined high-GI carb';else if(WR.test(nm))r='refined grain — wholegrains preferred';else if(/lactose[- ]free/i.test(nm)&&!(typeof GM!=='undefined'&&(GM.mode==='both'||GM.mode==='ibs')))r='regular dairy preferred (not IBS)';
  return X.cache[nm]=r};
 var _c=gdCap;gdCap=function(nm,X){var c=_c(nm,X);if(X&&X.c==='pmos'&&/^potato|potatoes/i.test(nm))return c?Math.min(c,300):300;if(X&&X.c==='pmos'&&/^sweet potato/i.test(nm))return c?Math.min(c,300):300;return c}})();
+</script>
+<style>.sncd{display:flex;gap:10px;align-items:center;margin:10px 2px 0;font-size:12px;font-weight:800;letter-spacing:.06em}.sncd span{padding:2px 7px;border-radius:7px;border:1.5px solid currentColor;line-height:1.3}.sncd .ok{color:#22c55e}.sncd .bad{color:#ef4444}.sncd .unk{color:#8b8b99}.sncdw{font-size:12px;margin:4px 2px 0;line-height:1.35}.snhn .sncd{margin:3px 0 0;font-size:10px;gap:6px}.snhn .sncd span{padding:0 5px;border-width:1px}</style>
+<script>/* v132: Scan — IBS / PCOS tags (green OK, red bad, grey ? unsure) */
+(function(){if(typeof snCard!=='function')return;
+var I_BAD=[[/sorbitol|mannitol|xylitol|maltitol|isomalt|erythritol|lactitol|polyol|sugar alcohol|\be\s?-?(420|421|953|965|966|967|968)\b/i,'sweeteners (polyols)'],[/onion|garlic|shallot|leek/i,'onion / garlic'],[/inulin|chicory|fructo-?oligo|\bfos\b|oligofructose/i,'inulin / chicory fibre'],[/high[- ]fructose|fructose syrup|glucose-fructose|\bhoney\b|agave/i,'excess fructose'],[/apple|pear|mango|watermelon|cherr|dried fruit|raisin|sultana|\bdates\b|prune/i,'high-FODMAP fruit'],[/chickpea|lentil|kidney bean|baked beans|soya flour|soybean|cashew|pistachio/i,'beans / pulses (GOS)']],
+ LAC=/\b(milk|cream|whey|skimmed milk powder|milk solids|lactose|ice cream|custard|yogh?urt|condensed)\b/i,LACOK=/lactose[- ]free|hard cheese|cheddar|parmesan|mozzarella|butter\b/i,
+ WH=/\b(wheat|rye|barley|spelt)\b/i;
+var P_SW=/rice pudding|custard|ice cream|frozen yoghurt|\bcake|cheesecake|biscuit|digestive|cookie|brownie|muffin|doughnut|pastry|croissant|waffle|pancake|scone|flapjack|chocolate(?!.*dark)|sweets|candy|jelly|gummies|haribo|marshmallow|toffee|fudge|\bjuice\b|smoothie|milkshake|hot chocolate|\bcola\b|lemonade|fizzy|energy drink|syrup|\bjam\b|marmalade|frosties|frosted|coco pops|sugar puffs/i,
+ P_PM=/bacon|rashers|sausage|chipolata|\bham\b|gammon|salami|pepperoni|chorizo|kabanos|hot dog|pastrami|corned beef|nuggets|fish fingers|battered|breaded/i,
+ P_RF=/granola(?!.*low sugar)|cream crackers|cornflakes|puffed rice|rice krispies|rice cakes|instant porridge|white bread|white sliced|crisps|tortilla chips|pretzels/i;
+window.snCond=function(R){R=R||{};var nm=[R.name||'',R.brand||''].join(' '),ing=String(R.ingr||''),txt=nm+' '+ing+' '+(R.add||[]).join(' '),N=R.N||{},dr=!!R.drink,o={ibs:'unk',pcos:'unk',ibsWhy:'',pcosWhy:''};
+ // IBS
+ var t=null;try{t=gdTag(R.name||'')}catch(e){}var hit='';for(var i=0;i<I_BAD.length;i++)if(I_BAD[i][0].test(i<2?txt:(ing||nm))){hit=I_BAD[i][1];break}
+ if(!hit&&LAC.test(ing||nm)&&!LACOK.test(nm))hit='lactose (dairy)';
+ if(!hit&&WH.test(nm)&&!/sourdough|gluten[- ]free/i.test(nm))hit='wheat / rye (fructans)';
+ if(!hit&&t&&t.f==='H'&&t.src!=='none')hit=t.g?({fructans:'fructans',fructose:'excess fructose',lactose:'lactose',polyols:'polyols',gos:'GOS'})[t.g]||'high-FODMAP':'high-FODMAP';
+ if(hit){o.ibs='bad';o.ibsWhy='Contains '+hit+' — common IBS trigger'}
+ else if(ing.length>3){if(WH.test(ing)&&!/gluten[- ]free/i.test(nm)){o.ibs='unk';o.ibsWhy='Contains wheat — fine in small amounts for many'}else{o.ibs='ok';o.ibsWhy='No common FODMAP triggers in the ingredients'}}
+ else if(t&&(t.f==='L'||t.f==='M')){o.ibs='ok';o.ibsWhy=t.f==='M'?'Low-FODMAP in small portions (≤'+(t.cap||'')+' g)':'Low-FODMAP food'}
+ else o.ibsWhy='No ingredients list — can’t tell';
+ // PCOS
+ var sug=N.sug,hi=dr?11.25:22.5,lo=dr?2.5:5,pw='';
+ if(P_SW.test(nm)&&!/no added sugar|sugar[- ]free|zero|diet\b/i.test(nm))pw='sweet / sugary';else if(P_PM.test(nm))pw='processed meat';else if(P_RF.test(nm))pw='refined high-GI carbs';
+ else if(sug!=null&&sug>hi)pw='high sugar ('+Math.round(sug*10)/10+' g per 100 '+(dr?'ml':'g')+')';
+ else if(dr&&sug!=null&&sug>lo&&!/milk|kefir|yog/i.test(nm))pw='sugary drink';
+ else if(R.col==='r'&&sug!=null&&sug>10)pw='sugary and low Nutri-Score';
+ if(pw){o.pcos='bad';o.pcosWhy=pw.charAt(0).toUpperCase()+pw.slice(1)+' — best limited with PCOS/PMOS'}
+ else if(sug!=null&&(sug<=lo||R.col==='g'||(R.col==='o'&&sug<=12.5))){o.pcos='ok';o.pcosWhy=sug<=lo?'Low in sugar':'Moderate sugar, decent overall score'}
+ else if(sug==null&&/chicken|turkey|beef|fish|salmon|tuna|cod|egg|oats|porridge|lentil|bean|quinoa|brown rice|vegetable|spinach|broccoli|nuts|almond/i.test(nm)){o.pcos='ok';o.pcosWhy='Whole food'}
+ else o.pcosWhy=sug==null?'No sugar figure — can’t tell':'Quite sugary — fine now and then';
+ return o};
+function tag(k,v,w){var l=k==='ibs'?'IBS':'PCOS';return'<span class="'+v+'" title="'+esc(w)+'" aria-label="'+l+': '+(v==='ok'?'looks OK':v==='bad'?'not ideal':'not sure')+'. '+esc(w)+'">'+l+(v==='unk'?'?':'')+'</span>'}
+window.snCondHtml=function(c,full){if(!c)return'';var h='<div class="sncd">'+tag('ibs',c.ibs,c.ibsWhy)+tag('pcos',c.pcos,c.pcosWhy)+'</div>';
+ if(full)h+='<p class="mu sncdw">'+['IBS: '+c.ibsWhy,'PCOS: '+c.pcosWhy].map(esc).join('<br>')+'</p>';return h};
+var _sc=snCard;snCard=function(R){var h=_sc.apply(this,arguments);try{if(R.pending)return h;var c=snCond(R),k=h.indexOf('<p class="snwhy">');var x=snCondHtml(c,1);h=k>=0?h.slice(0,k)+x+h.slice(k):h+x}catch(e){}return h};
+var _hp=snHistPut;snHistPut=function(R){_hp.apply(this,arguments);try{var a=snHist();if(a[0]&&a[0].code===R.code){var c=snCond(R);a[0].cd=[c.ibs,c.pcos,c.ibsWhy,c.pcosWhy];localStorage.setItem(SNH,JSON.stringify(a));snHistPaint()}}catch(e){}};
+var _hpt=snHistPaint;snHistPaint=function(){_hpt.apply(this,arguments);try{var a=snHist(),m={};a.forEach(function(x){m[x.code]=x});[].forEach.call(document.querySelectorAll('#snhist .snhi'),function(b){var x=m[b.dataset.snh],n=b.querySelector('.snhn');if(x&&n&&!n.querySelector('.sncd'))n.insertAdjacentHTML('beforeend',snCondHtml(x.cd?{ibs:x.cd[0],pcos:x.cd[1],ibsWhy:x.cd[2],pcosWhy:x.cd[3]}:snCond(x)))})}catch(e){}};
+var _sl=snLegal;snLegal=function(A){return _sl.apply(this,arguments)+'<p style="font-size:13px;line-height:1.5"><b>IBS and PCOS tags</b> on Scan results are a rough guide from the product name, ingredients list and sugar figure — not medical advice and not a diagnosis. <b style="color:#22c55e">Green</b> = nothing obviously unsuitable found; <b style="color:#ef4444">red</b> = contains something often best limited; grey “?” = not enough information. IBS checks common high-FODMAP triggers (onion, garlic, polyol sweeteners, inulin, excess fructose, lactose, wheat, pulses) following NICE/NHS and Monash University guidance; portions and personal tolerance matter — check the Monash FODMAP app. PCOS checks sugary foods and drinks, processed meats and refined high-GI carbs, in line with the general healthy-eating advice of the 2023 International PCOS/PMOS Guideline. Always check the label and speak to your GP or dietitian.</p>'};
+})();
 </script>
 </body></html>
