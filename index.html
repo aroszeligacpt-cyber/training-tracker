@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v138 · 13 Nov 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v139 · 13 Nov 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -1886,7 +1886,7 @@ var TPL={B:[[['Porridge oats','c'],['Whey protein powder','p'],['Peanut butter',
  L:[[['Basmati rice, cooked','c'],['Chicken breast, raw','p'],['Olive oil','f'],['Broccoli, raw',150]],[['Potatoes, baked (with skin)','c'],['Tuna, canned in water (drained)','p'],['Olive oil','f'],['Sweetcorn, canned',80],['Lettuce',50]],[['Potatoes, boiled','c'],['Cod, raw','p'],['Olive oil','f'],['Green beans',150]]],
  D:[[['Pasta, dry','c'],['Beef mince 5% fat, raw','p'],['Olive oil','f'],['Pasta sauce, tomato (jar)',120]],[['Sweet potato, raw','c'],['Salmon fillet, raw','p'],['Butter','f'],['Peas, frozen',80]],[['Basmati rice, cooked','c'],['Turkey mince 7% fat, raw','p'],['Rapeseed oil','f'],['Peppers, red',100],['Onion',60]]],
  S:[[['Banana','c'],['Greek yoghurt, 0% fat','p'],['Walnuts','f']],[['Apple','c'],['Skyr, plain','p'],['Almonds','f']],[['Rice cakes','c'],['Cottage cheese','p'],['Peanut butter','f']]]};
-var SPLIT={3:[['B','Breakfast',.3],['L','Lunch',.35],['D','Dinner',.35]],4:[['B','Breakfast',.25],['L','Lunch',.3],['D','Dinner',.3],['S','Snack',.15]],5:[['B','Breakfast',.22],['S','Snack',.12],['L','Lunch',.26],['S','Snack',.12],['D','Dinner',.28]]};
+var SPLIT={2:[['B','Breakfast',.45],['D','Dinner',.55]],3:[['B','Breakfast',.3],['L','Lunch',.35],['D','Dinner',.35]],4:[['B','Breakfast',.25],['L','Lunch',.3],['D','Dinner',.3],['S','Snack',.15]],5:[['B','Breakfast',.22],['S','Snack',.12],['L','Lunch',.26],['S','Snack',.12],['D','Dinner',.28]],6:[['B','Breakfast',.2],['S','Snack',.1],['L','Lunch',.25],['S','Snack',.1],['D','Dinner',.25],['S','Snack',.1]]};
 var pl=null;
 function plIn(){S.planIn=S.planIn||{goal:'muscle',sex:'m',age:'',h:'',w:'',act:1.55,meals:4,adj:10};return S.planIn}
 var FREN={"Egg, whole, raw": "Egg"};
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v138</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v139</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4885,7 +4885,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v138 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v139 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -4986,7 +4986,7 @@ var GDF=[
  [/spice bag|takeaway|korma$|tikka masala$|chow mein|fried rice|sweet & sour chicken|salt & chilli|prawn crackers|spring roll|samosa|pilau|pizza|curry chips|battered sausage|cod in batter|big mac|cheeseburger|mcchicken|fast food|kfc|kebab|burrito|ramen|pad thai|ready meal|shepherd|cottage pie|chilli con carne|bolognese$|macaroni|fish pie|irish stew|coddle|guinness stew|bacon & cabbage|full irish|breakfast roll|sausage roll|cornish pasty|quiche|caesar wrap|meal-deal|sandwich|pierogi|gołąbki|bigos|kotlet|naleśniki|zapiekanka|krokiety|kopytka|leniwe|placki|gyros|halloumi fries|nachos|mozzarella sticks|toastie|jacket potato with|stir-fry with noodles|poke bowl|protein porridge pot|overnight oats pot|caesar salad|pasta salad|soup, chicken|tomato soup|barszcz|żurek|rosół|chicken curry|chicken fillet roll|chicken tikka pieces|calamari, fried|boxty|potato farls|potato waffles|hash browns|croquettes|potato salad|chips|fries|egg fried rice|instant noodles|rice cakes, chocolate/i,{f:'H',g:'fructans',pr:1,gi:'H'}],
  [/^sushi,/i,{f:'M',cap:150,gi:'H'}],[/sweetener \(sucralose/i,{f:'L'}],
  [/^(garlic|onion|red onion|shallots|leek|spring onion)\b|garlic bread|garlic mayonnaise|champ|colcannon|onion bhaji|onion rings|garlic chips/i,{f:'H',g:'fructans'}],
- [/\bhoney\b|agave|apple juice|apple & orange|apple sauce|stewed apple|apple chutney|smoothie|fruit cocktail|tropical fruit|dried mango|mango|watermelon|cherries|\bfigs?\b|prunes|raisins|sultanas|dates, dried|apricots?, dried|śliwki|cranberries, dried|persimmon|banana chips|barmbrack|mince pie/i,{f:'H',g:'fructose',fr:1}],
+ [/\bhoney\b|agave|\bapple juice\b|apple & orange|apple sauce|stewed apple|apple chutney|smoothie|fruit cocktail|tropical fruit|dried mango|mango|watermelon|cherries|\bfigs?\b|prunes|raisins|sultanas|dates, dried|apricots?, dried|śliwki|cranberries, dried|persimmon|banana chips|barmbrack|mince pie/i,{f:'H',g:'fructose',fr:1}],
  [/^apple\b|^pear\b|apricot\b|nectarine|^peach\b|^plum\b|blackberr|tinned peaches/i,{f:'H',g:'polyols',fr:1,gi:'L'}],
  [/^banana$|^orange$|clementine|satsuma|^kiwi|strawberr|blueberr|raspberr|^grapes|pineapple|^melon|passion fruit|papaya|dragon fruit|rhubarb|redcurrant|gooseberr|guava|frozen raspberries|mixed berries|blackcurrant|lychees?/i,{f:'L',fr:1,gi:'L'}],
  [/^grapefruit|pomegranate|^coconut, fresh|desiccated coconut/i,{f:'M',cap:40,fr:1}],
@@ -5113,7 +5113,7 @@ function gdCnt(items){var fr=0,cf=0;(items||[]).forEach(function(x){var t=gdTag(
 function gdItemsOk(items,X,base){if(!items||!items.length)return false;for(var i=0;i<items.length;i++){var x=items[i];if(gdWhy(x.name,X))return false;var cp=gdCap(x.name,X);if(cp&&x.g>cp)return false;if(x.g>650||x.g>gdMax(x.name)+2)return false}if(gdOdd(items))return false;
  if(X.c==='ibs'){var c=gdCnt(items),b=base||{fr:0,cf:0};if(c.fr+b.fr>3||c.cf+b.cf>3)return false}return true}
 // ---- realism: per-food portion maxima + meal composition ----
-var GDMX=[[/\boil\b|ghee|lard/i,20],[/^butter|spread/i,20],[/peanut butter powder/i,30],[/butter|tahini/i,32],[/almond|walnut|peanut|pecan|brazil|cashew|pistachio|hazelnut|macadamia|pine nut|seeds|chia|flax|linseed/i,35],
+var GDMX=[[/(olive|rapeseed|sunflower|vegetable|sesame|avocado|coconut|cooking) oil|^ghee$|^lard$|\boil$/i,20],[/^butter|spread/i,20],[/peanut butter powder/i,30],[/(peanut |almond |cashew )?butter$|^butter,|tahini/i,32],[/almond|walnut|peanut|pecan|brazil|cashew|pistachio|hazelnut|macadamia|pine nut|seeds|chia|flax|linseed/i,35],
  [/protein powder|whey|casein/i,40],[/^egg white|liquid egg/i,160],[/^egg$|^egg,|duck egg/i,180],[/cottage|quark|ricotta/i,250],[/cheddar|cheese|feta|mozzarella|parmesan|halloumi|brie|edam|gouda|emmental|paneer|grana|pecorino/i,50],
  [/rice cakes|crackers|crispbread/i,45],[/oatcakes/i,60],[/porridge oats|oat flour|oat bran/i,100],[/bread|sourdough|bagel|wrap|pitta|roll|tortilla/i,160],
  [/lentil|bean|chickpea|edamame|hummus/i,200],[/yog|skyr|kefir/i,300],[/milk/i,300],[/smoked salmon|ham|slices|deli/i,120],
@@ -5260,7 +5260,7 @@ function gdForm(c){var I=gdIn(c),cut=I.goal==='cut';
  return'<div class="card full hcard" id="gdform"><h3>Your goal</h3><div class="seg"><button class="'+(I.goal==='muscle'?'on':'')+'" data-gdg="muscle">💪 Build</button><button class="'+(cut?'on':'')+'" data-gdg="cut">🔥 Lose</button><button class="'+(I.goal==='maint'?'on':'')+'" data-gdg="maint">⚖️ Maintain</button></div>'+
  '<div class="g2" style="margin-top:8px"><div><label>Sex (for formula)</label><select data-gdi="sex"><option value="f"'+(I.sex==='f'?' selected':'')+'>Female</option><option value="m"'+(I.sex==='m'?' selected':'')+'>Male</option></select></div><div><label>Age</label><input type="number" inputmode="numeric" data-gdi="age" value="'+esc(I.age)+'"></div><div><label>Height (cm)</label><input type="number" inputmode="decimal" data-gdi="h" value="'+esc(I.h)+'"></div><div><label>Weight (kg)</label><input type="number" step="0.1" inputmode="decimal" data-gdi="w" value="'+esc(I.w)+'"></div></div>'+
  '<label>Activity level</label><select data-gdi="act">'+ACT.map(function(a){return'<option value="'+a[0]+'"'+(n(I.act)===a[0]?' selected':'')+'>'+a[1]+' ×'+a[0]+'</option>'}).join('')+'</select>'+
- '<div class="g2"><div><label>Meals per day</label><select data-gdi="meals">'+[3,4,5].map(function(m){return'<option'+(n(I.meals)===m?' selected':'')+'>'+m+'</option>'}).join('')+'</select></div><div><label>'+(cut?'Deficit':'Surplus')+' %</label><select data-gdi="adj">'+(cut?[10,15,20,25]:[0,5,10,15,20]).map(function(v){return'<option'+(n(I.adj)===v?' selected':'')+'>'+v+'</option>'}).join('')+'</select></div></div>'+
+ '<div class="g2"><div><label>Meals per day</label><select data-gdi="meals">'+[2,3,4,5,6].map(function(m){return'<option'+(n(I.meals)===m?' selected':'')+'>'+m+'</option>'}).join('')+'</select></div><div><label>'+(cut?'Deficit':'Surplus')+' %</label><select data-gdi="adj">'+(cut?[10,15,20,25]:[0,5,10,15,20]).map(function(v){return'<option'+(n(I.adj)===v?' selected':'')+'>'+v+'</option>'}).join('')+'</select></div></div>'+
  gdFvBox(c,'fav')+gdFvBox(c,'avoid')+'<button class="pri" data-gdmk="1" style="width:100%;margin-top:10px;min-height:50px">'+(gdDraft(c)?'↻ Create a new diet':'Create my diet')+'</button></div>'}
 function gdMealsHtml(D,mode){var T=planTot(D.mp.map(function(m){return{items:gdA(m)}})),R=D.res,a=D.x&&activeDiet(cur),isT=!!(a&&D.x&&a.id===D.x.id),dm=isT?peek(cur).meals.filter(function(m){return m.dietId===D.x.id}):[];
  var h='<div class="card full hcard" id="gdmeals"><div class="row" style="justify-content:space-between;align-items:center;flex-wrap:nowrap"><h3 style="margin:0">Meal plan</h3>'+(mode==='draft'?'<button class="sm" data-gdre="1" style="flex:0 0 auto">↻ Regenerate</button>':'')+'</div>'+
@@ -9694,8 +9694,13 @@ function v138fixMeal(m, R, X){
       items=v138removeIf(items, function(x){return v138isCook(x.name);});
       changed=true;
       if(!items.some(function(x){return v138isDeli(x.name)||v138kind(x.name)==='egg'||v138kind(x.name)==='dairy'||/tuna|cottage|cheddar|feta|hummus/i.test(x.name);})){
-        var deli='Chicken breast slices (deli)';
-        if(fByName(deli)&&v138gdOk(deli,X)) v138addFood(items, deli, 80);
+        var delis=['Chicken breast slices (deli)','Turkey breast, cooked','Tuna, canned in water (drained)','Chicken breast, cooked (grilled)','Egg','Cottage cheese'];
+        for(var di=0;di<delis.length;di++){
+          if(fByName(delis[di])&&v138gdOk(delis[di],X)&&!items.some(function(x){return x.name===delis[di];})){
+            v138addFood(items, delis[di], /egg/i.test(delis[di])?120: /cottage/i.test(delis[di])?150:80);
+            break;
+          }
+        }
       }
     }
   }
@@ -9736,13 +9741,19 @@ function v138fixMeal(m, R, X){
 function v138rebalance(mp, R, i, X){
   if(!mp||!R) return mp;
   try{
-    var sp=SPLIT[(i&&i.meals)||mp.length]||SPLIT[4];
-    var fr=sp.map(function(s){return s[2];});
-    var AV=(typeof avoidSet==='function')?avoidSet(i||{}):{};
-    if(typeof ppDay==='function') ppDay(mp, R, fr, {av:AV, add:false, keep:true, v138:1});
-    if(typeof fitDay==='function' && !v138keto(R)) fitDay(mp, R);
-    // After rebalance, run pairing once more (ppDay shouldn't add cereal, but be safe)
-    mp.forEach(function(m){v138fixMeal(m,R,X);});
+    var gut=X&&(X.c==='ibs'||X.c==='pmos');
+    if(gut){
+      // Regular fitDay/ppDay use foodCap (e.g. 100g oats) and ignore Monash/PCOS caps.
+      mp.forEach(function(m){v138fixMeal(m,R,X);});
+      if(typeof gdFit==='function') gdFit(mp,R,X);
+    }else{
+      var sp=SPLIT[(i&&i.meals)||mp.length]||SPLIT[4];
+      var fr=sp.map(function(s){return s[2];});
+      var AV=(typeof avoidSet==='function')?avoidSet(i||{}):{};
+      if(typeof ppDay==='function') ppDay(mp, R, fr, {av:AV, add:false, keep:true, v138:1});
+      if(typeof fitDay==='function' && !v138keto(R)) fitDay(mp, R);
+      mp.forEach(function(m){v138fixMeal(m,R,X);});
+    }
   }catch(e){ console.warn('v138rebalance', e); }
   mp.forEach(function(m){v138retitle(m, true);});
   return mp;
@@ -10141,4 +10152,648 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
 
 </script>
 
+
+<script>
+/* v139: IBS/PCOS meal-creator safety — Monash caps held, deli/processed out of PCOS, lactose respected when IBS is on, degenerate meals repaired */
+(function(){
+  if(typeof gdWhy!=='function'||typeof gdGen!=='function') return;
+
+  // ---- Tighter GDF tags (first match wins): deli chicken, honey-roast ham, rice noodles GI, oat milk cap ----
+  try{
+    if(typeof GDF!=='undefined'&&GDF.unshift){
+      GDF.unshift(
+        [/^chicken breast slices|\(deli\)/i, {f:'L', pr:1}],
+        [/^honey roast ham/i, {f:'H', g:'fructose', pr:1}],
+        [/^rice noodles/i, {f:'L', gi:'H'}],
+        [/oat milk/i, {f:'M', cap:60}],
+        [/mashed potato.*milk/i, {f:'M', g:'lactose', gi:'H', cap:200}]
+      );
+    }
+    if(typeof GDTC==='object'){ for(var k in GDTC) delete GDTC[k]; }
+  }catch(e){}
+
+  // buildMeal crashes when a template has fewer than 3 variable foods (e.g. a favourite is skipped).
+  if(typeof buildMeal==='function'){
+    var _bm=buildMeal;
+    buildMeal=function(tpl,tg){
+      try{
+        var vars=[];
+        (tpl||[]).forEach(function(x){ if(fByName(x[0]) && typeof x[1]!=='number') vars.push(x); });
+        if(vars.length<3){
+          var items=[];
+          (tpl||[]).forEach(function(x){
+            var f=fByName(x[0]); if(!f) return;
+            var g=typeof x[1]==='number'?x[1]:100;
+            items.push(calc(f, Math.max(5, Math.round(g/5)*5)));
+          });
+          return items;
+        }
+        return _bm.apply(this,arguments);
+      }catch(e){
+        var items=[];
+        (tpl||[]).forEach(function(x){
+          var f=fByName(x&&x[0]); if(!f) return;
+          items.push(calc(f, typeof x[1]==='number'?x[1]:100));
+        });
+        return items;
+      }
+    };
+  }
+
+  function ibsOn(){
+    try{ return typeof GM!=='undefined' && GM.on && (GM.mode==='ibs'||GM.mode==='both'||(typeof gmIbs==='function'&&gmIbs())); }
+    catch(e){ return false; }
+  }
+  function isProcessed(nm){
+    nm=String(nm||'');
+    if(/hot dog roll|burger bun/i.test(nm)) return false;
+    if(/\(deli\)|deli slices|chicken breast slices|turkey breast slices/i.test(nm)) return true;
+    return /bacon|rashers|boczek|\bham\b|szynka|polędwica|gammon|parma|serrano|prosciutto|sausage|chipolata|salami|pepperoni|chorizo|kabanos|kiełbasa|hot dog|frankfurter|pastrami|corned beef|pâté|pasztet|nuggets|fish fingers|battered|breaded|kyiv/i.test(nm);
+  }
+  var SW=/rice pudding|custard|ice cream|frozen yoghurt|cheesecake|biscuit|digestive|cookie|brownie|muffin|doughnut|pastry|croissant|pain au|waffle|pancake|scone|flapjack|(?:^| )chocolate(?!.*dark)|sweets|candy|jelly|haribo|\bjuice\b|smoothie|milkshake|hot chocolate|\bsyrup\b|\bjam\b|marmalade|lemon curd|frosties|frosted|coco pops|crunchy nut|\bhoney\b|agave|sugar(?!.*free)|fruit yoghurt/i;
+  function isSweet(nm){
+    nm=String(nm||'');
+    if(/oatcakes|rice cakes|dark chocolate|sweet potato|sweetcorn|sweet pepper|sugar[- ]free|no added sugar/i.test(nm)) return false;
+    if(/honey roast/i.test(nm)) return false; // handled as processed
+    return SW.test(nm);
+  }
+  function isJuice(nm){ return /\bjuice\b|smoothie|fruit cocktail/i.test(String(nm||'')) && !/lemon juice|lime juice/i.test(nm); }
+  function hiLactose(nm){
+    if(/lactose[- ]free/i.test(nm)) return false;
+    try{ var t=gdTag(nm); return t&&t.g==='lactose'&&t.f==='H'; }catch(e){ return false; }
+  }
+
+  var _w=gdWhy;
+  gdWhy=function(nm,X){
+    var r=_w(nm,X);
+    if(!X||X.c!=='pmos') return r;
+    if(isProcessed(nm)) return X.cache[nm]='processed meat';
+    if(isJuice(nm)||isSweet(nm)) return X.cache[nm]='sweet / sugary';
+    if(/^(rice cakes|oatcakes)\b/i.test(nm) && r==='sweet / sugary') r='refined high-GI carb';
+    if(ibsOn()&&hiLactose(nm)) return X.cache[nm]='lactose — you also have IBS on';
+    return r;
+  };
+
+  function lim(nm,X){
+    try{
+      var c=typeof gdCap==='function'?gdCap(nm,X)||0:0;
+      var m=typeof gdMax==='function'?gdMax(nm):250;
+      return c?Math.min(c,m):m;
+    }catch(e){ return 250; }
+  }
+  function rc(x,g){
+    var f=(typeof fByName==='function'&&fByName(x.name))||(typeof foodByKey==='function'&&foodByKey(x.key));
+    if(!f||typeof calc!=='function'){ x.g=g; return x; }
+    var o=calc(f, Math.max(0, Math.round(g/5)*5));
+    if(x.eaten!=null) o.eaten=x.eaten;
+    return o;
+  }
+  function okName(nm,X){ try{ return !(typeof gdWhy==='function'&&gdWhy(nm,X)); }catch(e){ return true; } }
+
+  function clampMeal(m,X){
+    if(!m||!m.items) return;
+    m.items=m.items.map(function(x){
+      var L=lim(x.name,X);
+      if(x.g>L+0.05) return rc(x,L);
+      return x;
+    }).filter(function(x){ return x.g>0 && okName(x.name,X); });
+  }
+
+  function addFood(m,nm,g,X){
+    if(!okName(nm,X)) return false;
+    var f=fByName(nm); if(!f) return false;
+    g=Math.min(g, lim(nm,X));
+    if(g<5) return false;
+    var ex=m.items.filter(function(x){return x.name===nm;})[0];
+    if(ex){
+      var ng=Math.min(lim(nm,X), ex.g+g);
+      if(ng<=ex.g) return false;
+      m.items[m.items.indexOf(ex)]=rc(ex,ng);
+      return true;
+    }
+    m.items.push(calc(f, Math.round(g/5)*5||g));
+    return true;
+  }
+
+  var PROT={
+    ibs:['Chicken breast, cooked (grilled)','Turkey breast, cooked','Egg white','Egg','Tofu, firm','Cod, cooked','Salmon fillet, cooked','Tuna, canned in water (drained)','Pea protein powder','Prawns / shrimp, cooked'],
+    pmos:['Chicken breast, cooked (grilled)','Turkey breast, cooked','Greek yoghurt, 0% fat','Cottage cheese','Egg white','Egg','Tofu, firm','Salmon fillet, cooked','Cod, cooked','Pea protein powder','Tuna, canned in water (drained)']
+  };
+  var STAP={
+    ibs:['Basmati rice, cooked','New potatoes, boiled','Quinoa, cooked','Sourdough bread','Oatcakes','Rice cakes','Rice noodles, cooked'],
+    pmos:['Brown rice, cooked','Quinoa, cooked','Wholewheat pasta, cooked','Porridge oats','Wholemeal bread','Oatcakes','New potatoes, boiled','Bulgur wheat, cooked']
+  };
+  var VEG=['Spinach, raw','Peppers, red','Courgette','Green beans','Cucumber','Tomato','Carrots, boiled','Broccoli, raw'];
+  var FRU_IBS=['Strawberries','Blueberries','Kiwi','Orange','Raspberries'];
+  var FRU_P=['Raspberries','Blueberries','Orange','Strawberries','Kiwi'];
+
+  function pick(list,X,items){
+    for(var i=0;i<list.length;i++){
+      var nm=list[i];
+      if(fByName(nm)&&okName(nm,X)&&!(items||[]).some(function(x){return x.name===nm;})) return nm;
+    }
+    return null;
+  }
+
+  function protOf(m){ try{ return (sumItems(m.items)||{}).protein||0; }catch(e){ return 0; } }
+
+  function repairMeal(m,X,R){
+    if(!m) return;
+    clampMeal(m,X);
+    var sl=m.slot||'';
+    var c=X&&X.c;
+    var items=m.items||(m.items=[]);
+    // Drop processed leftovers that slipped through
+    items=m.items=items.filter(function(x){ return okName(x.name,X); });
+
+    var names=(m.items||[]).map(function(x){return x.name;}).join(' ');
+    var hasCereal=/(porridge oats|\bowsianka\b|granola|muesli|weetabix|cream of rice|overnight oats)/i.test(names);
+    var hasCook=typeof v138isCook==='function'? (m.items||[]).some(function(x){return v138isCook(x.name);}): /mince|chicken breast|turkey breast|salmon|cod,|steak|tofu|prawn|beef|pork loin/i.test(names);
+    var breakfast=sl==='B'||hasCereal;
+    var PROT_B=['Egg white','Egg','Greek yoghurt, 0% fat','Cottage cheese','Pea protein powder','Tofu, firm','Milk, lactose-free semi-skimmed'];
+    var PROT_M=PROT[c==='pmos'?'pmos':'ibs'].filter(function(nm){return !/porridge/i.test(nm);});
+    var protList=breakfast?PROT_B:PROT_M;
+
+    if(c==='pmos' && protOf(m)<15.3){
+      var bumped=false;
+      (m.items||[]).forEach(function(x,j){
+        if(bumped) return;
+        var f=fByName(x.name);
+        if(f&&f.protein>=8&&okName(x.name,X)){
+          var need=16-protOf(m);
+          var g=Math.min(lim(x.name,X), x.g+Math.ceil((need/(f.protein/100))/5)*5);
+          if(g>x.g){ m.items[j]=rc(x,g); bumped=true; }
+        }
+      });
+      if(protOf(m)<15.3){
+        var pnm=pick(protList,X,m.items);
+        if(pnm){
+          var f=fByName(pnm), need=16-protOf(m);
+          var g=f?Math.min(lim(pnm,X), Math.max(40, Math.ceil((need/(f.protein/100)+5)/5)*5)):80;
+          addFood(m,pnm,g,X);
+        }
+      }
+    }
+
+    names=(m.items||[]).map(function(x){return x.name;}).join(' ');
+    hasCereal=/(porridge oats|\bowsianka\b|granola|muesli|weetabix|cream of rice|overnight oats)/i.test(names);
+    hasCook=typeof v138isCook==='function'? (m.items||[]).some(function(x){return v138isCook(x.name);}): /mince|chicken breast|turkey breast|salmon|cod,|steak|tofu|prawn|beef|pork loin/i.test(names);
+    breakfast=sl==='B'||hasCereal;
+    var hasStaple=/(rice|potato|quinoa|pasta|bread|oatcakes|rice cakes|noodles|bulgur|couscous|wrap|tortilla|buckwheat|millet)/i.test(names);
+    if(breakfast) hasStaple=hasStaple||/(porridge|oats|muesli|granola|weetabix)/i.test(names);
+    var hasVeg=/(spinach|pepper|courgette|green beans|cucumber|tomato|carrot|broccoli|lettuce|kale|rocket|salad)/i.test(names);
+
+    var STAP_M=(c==='pmos'?['Brown rice, cooked','Quinoa, cooked','Wholewheat pasta, cooked','Wholemeal bread','New potatoes, boiled','Bulgur wheat, cooked']:['Basmati rice, cooked','New potatoes, boiled','Quinoa, cooked','Sourdough bread','Rice noodles, cooked']);
+    var STAP_S=(c==='pmos'?['Oatcakes','Wholemeal bread']:['Oatcakes','Rice cakes','Sourdough bread']);
+    var STAP_B=(c==='pmos'?['Porridge oats','Wholemeal bread','Oatcakes']:['Porridge oats','Sourdough bread','Rice cakes','Oatcakes']);
+
+    // Never put oats onto a meat plate, or meat onto porridge.
+    if(!breakfast && !hasStaple && (sl==='L'||sl==='D')){
+      var st=pick(STAP_M,X,m.items);
+      if(st) addFood(m,st, 150, X);
+    }
+    if(sl==='S' && !hasStaple && !hasCereal){
+      var stS=pick(STAP_S,X,m.items);
+      if(stS) addFood(m,stS, 40, X);
+    }
+    if((sl==='B'||breakfast) && !hasStaple && !hasCook){
+      var stB=pick(STAP_B,X,m.items);
+      if(stB) addFood(m,stB, stB==='Porridge oats'?50:80, X);
+    }
+    if(!hasVeg && sl!=='S'){
+      var vg=pick(VEG,X,m.items);
+      if(vg) addFood(m,vg, 80, X);
+    }
+    if(!m.items.length){
+      var p=pick(sl==='B'?PROT_B:PROT_M,X,[]), s=pick(sl==='B'?STAP_B:STAP_M,X,[]), v=pick(VEG,X,[]);
+      if(p) addFood(m,p,120,X);
+      if(s) addFood(m,s,120,X);
+      if(v) addFood(m,v,80,X);
+    }
+    clampMeal(m,X);
+  }
+
+  function topupSafe(mp,R,X){
+    if(!R||typeof gdTot!=='function') return;
+    try{
+      if(typeof gdPtop==='function') gdPtop(mp,R,X);
+      if(typeof gdKfit==='function') gdKfit(mp,R,X);
+      if(typeof gdTopup==='function') gdTopup(mp,R,X);
+      if(typeof gdFrFix==='function') gdFrFix(mp,X);
+      if(X.c==='pmos'&&typeof gdPfix==='function') gdPfix(mp,X);
+    }catch(e){}
+    mp.forEach(function(m){clampMeal(m,X);});
+    // If still short on kcal, add allowed sides within caps (oil, nuts, fruit, staple)
+    try{
+      var T=gdTot(mp), dk=R.kcal-T.kcal;
+      if(dk>R.kcal*0.05){
+        var sides=X.c==='ibs'
+          ?[['Walnuts',25],['Peanut butter',20],['Olive oil',10],['Kiwi',80],['Blueberries',80],['Basmati rice, cooked',80],['Oatcakes',20],['Rice cakes',20]]
+          :[['Walnuts',25],['Almonds',10],['Peanut butter',20],['Olive oil',10],['Raspberries',80],['Brown rice, cooked',80],['Oatcakes',20],['Avocado',30]];
+        for(var i=0;i<sides.length&&(R.kcal-gdTot(mp).kcal)>R.kcal*0.05;i++){
+          var s=sides[i]; if(!okName(s[0],X)||!fByName(s[0])) continue;
+          // put on the meal with most leftover cap or last meal
+          var m=mp[mp.length-1];
+          for(var j=0;j<mp.length;j++){
+            var has=mp[j].items.filter(function(x){return x.name===s[0];})[0];
+            if(has && has.g+s[1]<=lim(s[0],X)) { m=mp[j]; break; }
+            if(!has) { m=mp[j]; }
+          }
+          addFood(m,s[0],s[1],X);
+        }
+      }
+    }catch(e){}
+    mp.forEach(function(m){clampMeal(m,X);});
+  }
+
+  function trimToTarget(mp,R,X){
+    if(!R||!R.kcal||typeof gdTot!=='function') return;
+    for(var it=0;it<80;it++){
+      var T=gdTot(mp), over=T.kcal-R.kcal;
+      if(over<=R.kcal*0.05+2) break;
+      var best=null, bestScore=-1;
+      mp.forEach(function(m){
+        var mp0=protOf(m);
+        (m.items||[]).forEach(function(x,j){
+          var f=fByName(x.name); if(!f) return;
+          var isOil=/\boil\b|ghee|(^| )butter$|mayonnaise/i.test(x.name);
+          var isNut=/walnut|almond|peanut|pecan|seed|tahini|avocado/i.test(x.name);
+          var role=typeof gdRole==='function'?gdRole(f):'';
+          var isProt=role==='p'||f.protein>=10;
+          var isCarb=role==='c';
+          var minG=isOil?5:isNut?8:isProt?50:25;
+          if(/\b(rice|pasta|potato|quinoa|noodles|couscous|bulgur)\b/i.test(x.name)) minG=/\b(raw|dry)\b/i.test(x.name)?25:60;
+          if(/oatcakes|rice cakes|chia|flax|oil/i.test(x.name)) minG=isOil?5:10;
+          if(x.g<=minG+0.05) return;
+          if(X&&X.c==='pmos'&&isProt&&(mp0-f.protein*(Math.min(10,x.g-minG))/100)<15.3) return;
+          var step=isOil?5:(x.g>80?15:10);
+          var ng=Math.max(minG, x.g-step);
+          var save=f.kcal*(x.g-ng)/100;
+          var score=save*(isOil?4:isNut?2.2:isCarb?1.6:0.6);
+          if(score>bestScore){ bestScore=score; best={m:m,j:j,x:x,ng:ng}; }
+        });
+      });
+      if(!best) break;
+      best.m.items[best.j]=rc(best.x,best.ng);
+    }
+    mp.forEach(function(m){ m.items=(m.items||[]).filter(function(x){return x.g>=4;}); });
+  }
+
+  function enforce(mp,R,X){
+    if(!mp||!X) return mp;
+    mp.forEach(function(m){ repairMeal(m,X,R); });
+    topupSafe(mp,R,X);
+    mp.forEach(function(m){ repairMeal(m,X,R); clampMeal(m,X); });
+    try{ if(typeof gdFrFix==='function') gdFrFix(mp,X); }catch(e){}
+    trimToTarget(mp,R,X);
+    // If still short after a previous clamp, a light top-up then trim again
+    try{
+      var T=gdTot(mp);
+      if(R&&R.kcal&&(R.kcal-T.kcal)>R.kcal*0.05) topupSafe(mp,R,X);
+    }catch(e){}
+    trimToTarget(mp,R,X);
+    // Final lean-protein pass — egg white is ~11 g protein / 52 kcal per 100 g, so it won't blow the budget.
+    if(X.c==='pmos'){
+      mp.forEach(function(m){
+        if(protOf(m)>=15.3) return;
+        var sl=m.slot||'';
+        var names=(m.items||[]).map(function(x){return x.name;}).join(' ');
+        var breakfast=sl==='B'||/(porridge oats|owsianka|granola|muesli|weetabix)/i.test(names);
+        var list=breakfast?['Egg white','Egg','Greek yoghurt, 0% fat','Cottage cheese','Pea protein powder','Tofu, firm']:PROT.pmos;
+        var fnd=false;
+        (m.items||[]).forEach(function(x,j){
+          if(fnd) return;
+          var f=fByName(x.name);
+          if(f&&f.protein>=8&&okName(x.name,X)){
+            var need=16-protOf(m);
+            var g=Math.min(lim(x.name,X), x.g+Math.ceil((need/(f.protein/100))/5)*5);
+            if(g>x.g){ m.items[j]=rc(x,g); fnd=true; }
+          }
+        });
+        if(protOf(m)<15.3){
+          var pnm=pick(list,X,m.items);
+          if(pnm){
+            var f=fByName(pnm), need=16-protOf(m);
+            var g=f?Math.min(lim(pnm,X), Math.max(30, Math.ceil((need/(f.protein/100))/5)*5)):40;
+            addFood(m,pnm,g,X);
+          }
+        }
+        clampMeal(m,X);
+      });
+      // Hammer: any meal still under 15.3 g protein gets egg white or cottage, full stop.
+      mp.forEach(function(m){
+        if(protOf(m)>=15.3) return;
+        var tries=['Egg white','Cottage cheese','Greek yoghurt, 0% fat','Pea protein powder','Tofu, firm','Turkey breast, cooked'];
+        for(var i=0;i<tries.length&&protOf(m)<15.3;i++){
+          var nm=tries[i];
+          if(!okName(nm,X)||!fByName(nm)) continue;
+          var f=fByName(nm), need=16.2-protOf(m);
+          var g=Math.min(lim(nm,X), Math.max(80, Math.ceil((need/(f.protein/100)+8)/5)*5));
+          addFood(m,nm,g,X);
+        }
+        clampMeal(m,X);
+      });
+      // If protein bump nudged kcal over, trim oils/nuts only
+      trimToTarget(mp,R,X);
+    }
+    mp.forEach(function(m){
+      clampMeal(m,X);
+      if(typeof v138retitle==='function') v138retitle(m,true);
+      else if(typeof gdName==='function') m.alt=gdName(m.items);
+    });
+    return mp;
+  }
+
+  // Outermost gdGen
+  var _g=gdGen;
+  gdGen=function(c,seed){
+    var d=_g.apply(this,arguments);
+    try{
+      var X=typeof gdCtx==='function'?gdCtx(c):null;
+      if(d&&d.mp&&X) enforce(d.mp,d.res,X);
+    }catch(e){ console.warn('v139 gdGen',e); }
+    return d;
+  };
+
+  if(typeof gdAlts==='function'){
+    var _al=gdAlts;
+    gdAlts=function(D,mi){
+      var L=_al.apply(this,arguments)||[];
+      try{
+        var X=D&&(D.c?gdCtx(D.c):null);
+        if(!X) return L;
+        L.forEach(function(o){
+          var fake={items:o.items, alt:o.n, slot:(D.mp[mi]||{}).slot, name:(D.mp[mi]||{}).name};
+          repairMeal(fake,X,D.res);
+          clampMeal(fake,X);
+          if(typeof v138retitle==='function') v138retitle(fake,true);
+          o.items=fake.items; o.n=fake.alt||o.n;
+        });
+        L=L.filter(function(o){ return o.items&&o.items.length&&o.items.every(function(x){return okName(x.name,X)&&x.g<=lim(x.name,X)+1;}); });
+      }catch(e){ console.warn('v139 gdAlts',e); }
+      return L;
+    };
+  }
+
+  // Polish strings for new reasons
+  try{
+    if(typeof PH!=='undefined'&&PH.unshift){
+      PH.unshift(
+        ['lactose — you also have IBS on','laktoza — masz też włączony tryb IBS'],
+        ['sweet / sugary','słodkie / cukrowe'],
+        ['processed meat','mięso przetworzone'],
+        ['refined high-GI carb','węglowodany o wysokim IG'],
+        ['refined grain — wholegrains preferred','oczyszczone ziarno — lepiej pełnoziarniste'],
+        ['regular dairy preferred (not IBS)','preferowany zwykły nabiał (nie IBS)']
+      );
+    }
+  }catch(e){}
+
+  window.V139={enforce:enforce,lim:lim,processed:isProcessed,sweet:isSweet,ibsOn:ibsOn,hiLactose:hiLactose,repairMeal:repairMeal,clampMeal:clampMeal};
+})();
+
+
+/* v139b: Scan IBS/PCOS tags — same FODMAP & PCOS logic as the meal creators; multilingual ingredients; no false greens */
+(function(){
+  if(typeof snCond!=='function') return;
+
+  // Pull every language's ingredient list from Open Food Facts
+  try{
+    if(typeof SNOFF==='string' && SNOFF.indexOf('ingredients_text_pl')<0){
+      SNOFF += ',ingredients_text_pl,ingredients_text_fr,ingredients_text_de,ingredients_text_es,ingredients_text_it';
+    }
+  }catch(e){}
+  if(typeof snMerge==='function'){
+    var _sm=snMerge;
+    snMerge=function(R,p){
+      R=_sm.apply(this,arguments);
+      try{
+        if(!p) return R;
+        var parts=[], seen={};
+        ['ingredients_text_en','ingredients_text','ingredients_text_pl','ingredients_text_fr','ingredients_text_de','ingredients_text_es','ingredients_text_it'].forEach(function(k){
+          var s=String(p[k]||'').trim();
+          if(s && !seen[s.toLowerCase()]){ seen[s.toLowerCase()]=1; parts.push(s); }
+        });
+        if(parts.length) R.ingr=parts.join('\n');
+      }catch(e){}
+      return R;
+    };
+  }
+
+  // ---- patterns (EN + PL + common EU); avoid \\b around Polish diacritics (JS \\b is ASCII-only) ----
+  var POLY=/sorbitol|mannitol|xylitol|ksylitol|maltitol|isomalt|izomalt|erythritol|erytrytol|lactitol|laktitol|polyols?|poliole?|sugar alcohols?|alkohol cukrowy|\be[ -]?(420|421|953|965|966|967|968)\b/i;
+  var ONION=/(?:^|[^a-z])(onions?|garlic|shallots?|leeks?|spring onions?|scallions?|oignons?|echalotes?|échalotes?|poireaux?|zwiebeln?|knoblauch|cebollas?|ajos?|cipolle?|aglio)(?:[^a-z]|$)|garlic powder|onion powder|onion pur[eé]e|garlic pur[eé]e|onion extract|garlic extract|cebul[aeiyąę]|czosnek|czosnku|czosnkiem|czosnkow[yae]|szalotk[ai]|koncentrat czosn/i;
+  var INULIN=/inulin|inulina|inuline|chicory|chicorée|cykoria|cykorii|fructo-?oligo|\bfos\b|oligofructose|oligofruktoza|błonnik z cykorii/i;
+  var FRUCT=/(?:^|[^a-z])(honey|miel|honig|agave|agawy)(?:[^a-z]|$)|miód|miodu|miodem|miodow[yae]|high[- ]fructose|fructose syrup|glucose-fructose|glukozowo-?fruktoz|syrop (glukozowo-)?fruktoz|sirop de (glucose-)?fructose/i;
+  // apple/pear with a left-edge that is NOT a letter — so "pineapple" does not match
+  var FRUIT=/(?:^|[^a-z])(?:apples?|pears?|mangoes?|watermelons?|cherries|cherry|dried fruit|raisins?|sultanas?|dates|prunes?)(?:[^a-z]|$)|jabłk[oaoy]|jabłko|jabłek|jabłkow[yae]|gruszk[aię]|arbuz|wiśni[ae]|czereśni|rodzynki|daktyl[ei]|suszone owoce|śliwki suszone/i;
+  var GOS=/\b(chickpeas?|hummus|houmous|hommus|lentils?|kidney beans?|baked beans|soya flour|soybeans?|soya beans?|cashews?|pistachios?)\b|ciecierzyc|cieciork|soczewic|nerkowiec|pistacj/i;
+  var VEG=/\b(cauliflower|kalafior|mushrooms?|asparagus|szparag[ii]?|artichokes?|karczoch)\b|pieczark[ai]|grzyby|grzybów|kalafiora/i;
+  var LAC=/\b(milk|lait|milch|cream|whey|skimmed milk|milk solids|lactose|laktoza|ice cream|custard|yogh?urt|jogurt|condensed|kefir|skyr|cottage|quark|buttermilk|fromage)\b|twar[oó]g|maślanka|serek|serwatka|śmietana|mleko|mleka|mlekiem|mlecznej|mleczny/i;
+  var LACFREE=/lactose[- ]free|lactofree|lactose[- ]reduced|bezlaktoz|bez laktozy|sans lactose|laktosefrei|sin lactosa|be[sz] laktoz/i;
+  var LACOKCH=/hard cheese|cheddar|parmesan|parmigiano|mozzarella|emmental|edam|gruy[eè]re|\bbrie\b|camembert|(?:^|[^a-z])butter(?:[^a-z]|$)|(?<![a-z])masło(?:[^a-z]|$)/i;
+  var PLANT=/(oat|almond|rice|coconut|pea|soya|soy|hazelnut|macadamia|cashew) milk|coconut yog|plant[- ]based milk|napój (owsiany|migdałowy|ryżowy|kokosowy)|\bno milk\b|without milk|bez mleka|salad cream/i;
+  var CHERRYTOM=/cherry tomatoes|cherry tomato|pomidork[ió]w? koktajlow/i;
+  var WH=/(?:^|[^a-z])(wheat|wheatflour|rye|spelt|blé|weizen|roggen|durum|semolina|pszenica|pszennej|pszenna|pszenny|pszenne|pszenn[ąa]|mąka pszenna|żytni|żyto|jęczmień|jęczmien|orkisz)(?:[^a-z]|$)|barley(?!\s*malt)/i;
+  var WHMALT=/barley malt|malt of barley|malted barley|aroma of malt|barley malt flavour/i;
+  var GF=/gluten[- ]free|bezgluten|sans gluten|glutenfrei|gluten free/i;
+  var SOUR=/sourdough|zakwas|na zakwasie|levain|sauerteig/i;
+  var ALC=/(?:^|[^a-z])(beer|lager|stout|wine|prosecco|cider|spirits|vodka|gin|whiskey|whisky|rum|alcohol|piwo|wino|wódka)(?:[^a-z]|$)|gin &|low-alcohol beer/i;
+  var RISKY=/\b(sausages?|kiełbasa|kielbasa|sauce|sos\b|pesto|curry|stock|gravy|soup|zupa|marinade|seasoning|przyprawy|spices|przyprawa)\b/i;
+  var P_SW=/rice pudding|custard|ice cream|frozen yoghurt|cheesecake|biscuit|digestive|cookie|brownie|muffin|doughnut|pastry|croissant|waffle|pancake|scone|flapjack|(?:^|[^a-z])chocolate(?!.*dark)|sweets|candy|jelly|gummies|haribo|marshmallow|toffee|fudge|\bjuice\b|smoothie|milkshake|hot chocolate|\bcola\b|lemonade|fizzy|energy drink|syrup|\bjam\b|marmalade|frosties|frosted|coco pops|sugar puffs|fruit yog|\b(strawberry|raspberry|peach|mango|cherry|blueberry|forest fruit|vanilla|truskawk|malinow)[\w\s-]*yog|yog[\w\s-]*(strawberry|raspberry|peach|mango|cherry|blueberry)|jogurt owocowy|owocowy jogurt|\bhoney\b|miód|nutella/i;
+  var P_SW_OK=/oatcakes|rice cakes|dark chocolate|sweet potato|sweetcorn|sweet pepper|sugar[- ]free|no added sugar|honey roast|zero sugar|diet\b|\bzero\b/i;
+  var P_PM=/\(deli\)|deli slices|chicken breast slices|turkey breast slices|bacon|rashers|boczek|\bham\b|szynka|polędwica|gammon|parma|serrano|prosciutto|sausage|chipolata|salami|pepperoni|chorizo|kabanos|kiełbasa|kielbasa|hot dog|frankfurter|parówk|pastrami|corned beef|pâté|pasztet|nuggets|fish fingers|battered|breaded|kyiv|mortadella/i;
+  var P_PM_OK=/hot dog roll|burger bun/i;
+  var P_RF=/granola(?!.*low sugar)|cream crackers|corn\s*flakes|puffed rice|rice krispies|rice cakes|instant porridge|white bread|white sliced|chleb pszenny|biały chleb|crisps|tortilla chips|pretzels|white rice|jasmine rice|sushi rice|microwave rice|rice noodles|long grain (white )?rice|biały ryż|płatki kukurydz/i;
+  var P_RF_OK=/\bbrown rice\b|wholegrain rice|wild rice|wholewheat|wholemeal|pełnoziarnist|brown long grain/i;
+
+  function xIbs(){return {c:'ibs',I:{lowf:1,trig:0,lgi:0,fav:[],avoid:[]},FE:{ex:{fructans:'high-FODMAP (elimination)',fructose:'high-FODMAP (elimination)',lactose:'high-FODMAP (elimination)',polyols:'high-FODMAP (elimination)',gos:'high-FODMAP (elimination)'},mode:'elim'},tl:{},tg:{},fv:{},av:{},cache:{}};}
+  function xPcos(){return {c:'pmos',I:{lowf:0,trig:0,lgi:1,fav:[],avoid:[]},FE:{ex:{},mode:'off'},tl:{},tg:{},fv:{},av:{},cache:{}};}
+
+  function norm(s){return String(s||'').toLowerCase().replace(/[^a-z0-9ąćęłńóśźż]+/g,' ').replace(/\s+/g,' ').trim();}
+  function mapFood(name){
+    if(typeof fByName!=='function') return '';
+    if(fByName(name)) return name;
+    if(typeof FOODS==='undefined'||!FOODS||!FOODS.length) return '';
+    var n=norm(name); if(n.length<3) return '';
+    var best='', bl=0;
+    for(var i=0;i<FOODS.length;i++){
+      var fn=FOODS[i].name, nf=norm(fn);
+      if(!nf||nf.length<3) continue;
+      if(nf===n) return fn;
+      // product contains the food name as a whole phrase (prefer longer)
+      if(nf.length>bl && n.indexOf(nf)>=0){ best=fn; bl=nf.length; }
+    }
+    // only accept a contained match of reasonable length so "ham" in "Champignons" doesn't steal
+    return bl>=8?best:'';
+  }
+
+  function gWhy(nm,X){ try{ return (typeof gdWhy==='function'&&nm)?(gdWhy(nm,X)||''):''; }catch(e){ return ''; } }
+
+  function isRefined(nm){
+    if(/rice cakes|rice-cakes/i.test(nm)) return true;
+    if(P_RF_OK.test(nm) && !/rice cakes|corn\s*flakes|white bread|crisps|white rice/i.test(nm)) return false;
+    return P_RF.test(nm);
+  }
+  function isSweetNm(nm){
+    if(P_SW_OK.test(nm)) return false;
+    return P_SW.test(nm);
+  }
+  function isProcNm(nm){
+    if(P_PM_OK.test(nm)) return false;
+    if(typeof V139==='object'&&typeof V139.processed==='function'&&V139.processed(nm)) return true;
+    return P_PM.test(nm);
+  }
+
+  function grpName(g){
+    return ({fructans:'fructans',fructose:'excess fructose',lactose:'lactose (dairy)',polyols:'polyols',gos:'beans / pulses (GOS)'})[g]||'high-FODMAP';
+  }
+
+  window.snCond=function(R){
+    R=R||{};
+    var nm=[R.name||'',R.brand||''].join(' '),
+        ing=String(R.ingr||''),
+        add=(R.add||[]).join(' '),
+        txt=nm+' '+ing+' '+add,
+        N=R.N||{}, dr=!!R.drink,
+        o={ibs:'unk',pcos:'unk',ibsWhy:'',pcosWhy:''};
+
+    // -------- IBS --------
+    var hit='';
+    if(POLY.test(txt)) hit='sweeteners (polyols)';
+    else if(ONION.test(txt)) hit='onion / garlic';
+    else if(INULIN.test(txt)) hit='inulin / chicory fibre';
+    else if(FRUCT.test(txt)) hit='excess fructose';
+    else if(FRUIT.test(txt) && !CHERRYTOM.test(nm)) hit='high-FODMAP fruit';
+    else if(GOS.test(txt)) hit='beans / pulses (GOS)';
+    else if(VEG.test(txt)) hit='high-FODMAP vegetables';
+    else if(ALC.test(nm)) hit='alcohol';
+    else if(!LACFREE.test(txt) && !LACOKCH.test(nm) && !PLANT.test(nm) && LAC.test(txt)) hit='lactose (dairy)';
+    else if(!GF.test(nm) && !SOUR.test(nm) && WH.test(txt) && !WHMALT.test(txt)) hit='wheat / rye (fructans)';
+
+    // If this is a known meal-creator food that's Low or Moderate, don't red-flag it
+    // (false red is the inverse of agreement: cream cheese, chickpeas, oat milk, tea with milk).
+    // Hard triggers from the ingredients (polyols, onion/garlic, inulin, alcohol) still win.
+    var mapped=mapFood(R.name), mtag=null;
+    try{ if(mapped&&typeof gdTag==='function') mtag=gdTag(mapped); }catch(e){}
+    var soft=hit&&hit!=='sweeteners (polyols)'&&hit!=='onion / garlic'&&hit!=='inulin / chicory fibre'&&hit!=='alcohol';
+    if(soft&&mtag&&mtag.f==='L') hit='';
+    else if(soft&&mtag&&mtag.f==='M'){
+      o.ibs='ok';
+      o.ibsWhy='Low-FODMAP in small portions'+(mtag.cap?' (≤'+mtag.cap+' g)':'');
+      hit='__portion__';
+    }
+
+    if(hit==='__portion__'){ /* already set */ }
+    else if(hit==='alcohol'){ o.ibs='bad'; o.ibsWhy='Contains alcohol — can trigger IBS symptoms'; }
+    else if(hit){ o.ibs='bad'; o.ibsWhy='Contains '+hit+' — common IBS trigger'; }
+    else if(LACFREE.test(txt)){ o.ibs='ok'; o.ibsWhy='Lactose-free dairy — usually fine'; }
+    else if(SOUR.test(nm)){ o.ibs='unk'; o.ibsWhy='Sourdough — often lower-FODMAP; check a typical portion'; }
+    else if(RISKY.test(txt) && ing.length>3){ o.ibs='unk'; o.ibsWhy='Seasoning or sauce — onion and garlic are often used, can’t be sure'; }
+    else if(ing.length>8){
+      var w2=mapped?gWhy(mapped,xIbs()):'';
+      if(w2 && mtag && mtag.f==='H'){
+        o.ibs='bad';
+        o.ibsWhy='Contains '+( /fructan/i.test(w2)?'fructans':/fructose/i.test(w2)?'excess fructose':/lactose/i.test(w2)?'lactose (dairy)':/GOS|gos/i.test(w2)?'beans / pulses (GOS)':/polyol/i.test(w2)?'polyols':'high-FODMAP')+' — common IBS trigger';
+      } else if(ing.length<28 && (R.nova===4 || /\bnutella\b|nougat|chocolate spread/i.test(nm)) && !/(salmon|chicken|turkey|beef|pork|cod|tuna|rice|oats|mleko|\bmilk\b|honey|miód|egg|jaja|flour)/i.test(ing)){
+        o.ibs='unk'; o.ibsWhy='Ingredients list looks incomplete — can’t tell';
+      } else { o.ibs='ok'; o.ibsWhy='No common FODMAP triggers in the ingredients'; }
+    }
+    else {
+      // No (or very short) ingredients: align with the meal-creator food table when we can map the name.
+      var fn=mapFood(R.name), w=fn?gWhy(fn,xIbs()):'';
+      if(w){
+        o.ibs='bad';
+        o.ibsWhy=/alcohol/i.test(w)?'Contains alcohol — can trigger IBS symptoms'
+          :/polyol/i.test(w)?'Contains sweeteners (polyols) — common IBS trigger'
+          :'Contains '+( /fructan/i.test(w)?'fructans':/fructose/i.test(w)?'excess fructose':/lactose/i.test(w)?'lactose (dairy)':/GOS|gos/i.test(w)?'beans / pulses (GOS)':/polyol/i.test(w)?'polyols':'high-FODMAP')+' — common IBS trigger';
+      } else if(fn){
+        var t=null; try{t=gdTag(fn)}catch(e){}
+        if(t&&(t.f==='L'||t.f==='M')){
+          o.ibs='ok';
+          o.ibsWhy=t.f==='M'?'Low-FODMAP in small portions'+(t.cap?' (≤'+t.cap+' g)':'') :'Low-FODMAP food';
+        } else o.ibsWhy='No ingredients list — can’t tell';
+      } else o.ibsWhy='No ingredients list — can’t tell';
+    }
+
+    // -------- PCOS --------
+    var sug=N.sug, hi=dr?11.25:22.5, lo=dr?2.5:5, pw='';
+    if(isProcNm(nm)) pw='processed meat';
+    else if(isSweetNm(nm) && !/no added sugar|sugar[- ]free|\bzero\b|\bdiet\b/i.test(nm)) pw=/yog/i.test(nm)?'sweet / sugary (fruit yoghurt)':'sweet / sugary';
+    else if(isRefined(nm)) pw='refined high-GI carbs';
+    else if(sug!=null&&sug>hi) pw='high sugar ('+(Math.round(sug*10)/10)+' g per 100 '+(dr?'ml':'g')+')';
+    else if(dr&&sug!=null&&sug>lo&&!/milk|kefir|yog/i.test(nm)) pw='sugary drink';
+    else if(R.col==='r'&&sug!=null&&sug>10) pw='sugary and low Nutri-Score';
+    else if(ALC.test(nm)) pw='alcohol';
+
+    if(!pw){
+      // Mapped food: a food the PCOS creator excludes must not be green
+      var fn2=mapFood(R.name), wp=fn2?gWhy(fn2,xPcos()):'';
+      if(wp && /processed meat|sweet|juice|refined|highly processed|higher-GI|alcohol/i.test(wp)){
+        pw=/processed/i.test(wp)?'processed meat':/sweet|juice|sugary/i.test(wp)?'sweet / sugary':/refined|higher-GI/i.test(wp)?'refined high-GI carbs':/alcohol/i.test(wp)?'alcohol':'highly processed';
+      }
+    }
+
+    if(pw){ o.pcos='bad'; o.pcosWhy=pw.charAt(0).toUpperCase()+pw.slice(1)+' — best limited with PCOS/PMOS'; }
+    else if(sug!=null&&(sug<=lo||R.col==='g'||(R.col==='o'&&sug<=12.5))){ o.pcos='ok'; o.pcosWhy=sug<=lo?'Low in sugar':'Moderate sugar, decent overall score'; }
+    else if(sug==null&&/(?:^|[^a-z])(chicken|turkey|beef|fish|salmon|tuna|cod|egg|oats|porridge|lentil|bean|quinoa|brown rice|vegetable|spinach|broccoli|nuts|almond|owsianka)(?:[^a-z]|$)/i.test(nm) && !isProcNm(nm) && !isRefined(nm)){ o.pcos='ok'; o.pcosWhy='Whole food'; }
+    else o.pcosWhy=sug==null?'No sugar figure — can’t tell':'Quite sugary — fine now and then';
+
+    // Polish reasons
+    if(typeof LANG!=='undefined' && LANG==='pl'){
+      o.ibsWhy=trPL(o.ibsWhy);
+      o.pcosWhy=trPL(o.pcosWhy);
+    }
+    return o;
+  };
+
+  var _TR=[
+    ['Contains ','Zawiera '],
+    [' — common IBS trigger',' — częsty trigger IBS'],
+    [' — best limited with PCOS/PMOS',' — lepiej ograniczyć przy PCOS/PMOS'],
+    [' — can trigger IBS symptoms',' — może nasilać objawy IBS'],
+    ['No common FODMAP triggers in the ingredients','Brak typowych triggerów FODMAP w składzie'],
+    ['Low in sugar','Niska zawartość cukru'],
+    ['No sugar figure — can’t tell','Brak danych o cukrze'],
+    ['No ingredients list — can’t tell','Brak listy składników'],
+    ['Ingredients list looks incomplete — can’t tell','Lista składników wygląda na niekompletną — niepewne'],
+    ['Sweet / sugary (fruit yoghurt)','Słodycze / owocowy jogurt'],
+    ['Sweet / sugary','Słodycze / cukier'],
+    ['sweet / sugary (fruit yoghurt)','słodycze / owocowy jogurt'],
+    ['sweet / sugary','słodycze / cukier'],
+    ['processed meat','mięso przetworzone'],
+    ['Processed meat','Mięso przetworzone'],
+    ['refined high-GI carbs','rafinowane węglowodany o wysokim IG'],
+    ['Refined high-GI carbs','Rafinowane węglowodany o wysokim IG'],
+    ['highly processed','silnie przetworzony'],
+    ['Highly processed','Silnie przetworzony'],
+    ['onion / garlic','cebulę / czosnek'],
+    ['sweeteners (polyols)','słodziki (poliole)'],
+    ['inulin / chicory fibre','inulina / błonnik z cykorii'],
+    ['excess fructose','nadmiar fruktozy'],
+    ['high-FODMAP fruit','owoce o wysokim FODMAP'],
+    ['high-FODMAP vegetables','warzywa o wysokim FODMAP'],
+    ['beans / pulses (GOS)','rośliny strączkowe (GOS)'],
+    ['lactose (dairy)','laktoza (nabiał)'],
+    ['wheat / rye (fructans)','pszenica / żyto (fruktany)'],
+    ['High sugar','Wysoki cukier'],
+    ['Sugary drink','Słodki napój'],
+    ['Sugary and low Nutri-Score','Słodki i niski Nutri-Score'],
+    ['Whole food','Produkt nieprzetworzony'],
+    ['Moderate sugar, decent overall score','Umiarkowany cukier, niezły wynik'],
+    ['Quite sugary — fine now and then','Dość dużo cukru — od czasu do czasu OK'],
+    ['Low-FODMAP food','Produkt low-FODMAP'],
+    ['Low-FODMAP in small portions','Low-FODMAP w małej porcji'],
+    ['Lactose-free dairy — usually fine','Nabiał bez laktozy — zwykle OK'],
+    ['Sourdough — often lower-FODMAP; check a typical portion','Chleb na zakwasie — często niższy FODMAP; sprawdź porcję'],
+    ['Seasoning or sauce — onion and garlic are often used, can’t be sure','Przyprawy lub sos — często jest cebula lub czosnek, niepewne'],
+    ['alcohol','alkohol'],
+    ['Alcohol','Alkohol']
+  ];
+  function trPL(s){ if(!s) return s; for(var i=0;i<_TR.length;i++) s=s.split(_TR[i][0]).join(_TR[i][1]); return s; }
+
+  try{ if(typeof V139==='object'){ V139.snCond=snCond; V139.mapFood=mapFood; } }catch(e){}
+})();
+
+</script>
 </body></html>
