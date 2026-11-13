@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v137 · 6 Nov 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v138 · 13 Nov 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -1077,7 +1077,7 @@ Seeded batch bread|265|10|40|6.5|1 slice=45
 Granary bread|245|10|42|3|1 slice=40
 Rye bread, light|259|8.5|48.3|3.3|1 slice=30
 Rye crispbread (Ryvita)|350|9|66|1.7|1 slice=10
-Baguette, white|274|10|56|1.8|1 portion=60
+Baguette, white|274|10|56|1.8|1 slice=40;1 portion=60
 Ciabatta|270|9.5|50|3.8|1 roll=80
 Brioche bun|340|9|50|11|1 bun=50
 Burger bun, white|270|9|48|4.5|1 bun=60
@@ -1097,7 +1097,7 @@ Thins / sandwich thins|245|10|43|3|1 thin=43
 Garlic bread|360|7.8|45|16|1 slice=30
 Pancakes (Scotch pancakes)|260|6|45|6|1 pancake=30
 Waffles|291|7.9|33|14|1 waffle=35
-French toast|229|7.7|25|10.8|
+French toast|229|7.7|25|10.8|1 slice=70
 Toast, white|265|9.5|52|2|1 slice=30
 Rice Krispies|383|7|84|1|1 bowl=30
 Special K|379|10|79|1.5|1 bowl=30
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v137</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v138</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4703,7 +4703,7 @@ function gmChooser(){var m=GM.mode,o=function(k,ic,t,d){return'<button class="gm
  o('both','🌿🌸','Both','Switch between IBS and PCOS/PMOS with a chip. Your food log is shared.')+
  '<p class="gmpmos">ℹ️ '+PMOS_LINE+' (renamed in 2026). You may see both names for a while.</p>'+
  '<p class="mu" style="font-size:12px">AT Fitness does not diagnose any condition. Works for anyone — the Her section isn’t needed.</p>'+(m?'<button class="sm" data-gmv="" style="width:auto">Cancel</button>':'')+'</div>'}
-function pcConsent(){return'<div class="card full hcard" id="pcconsent"><h2>🔒 Your health data</h2><p>PCOS/PMOS mode stores <b>health information</b> you choose to enter: period dates and flow, skin and hair changes, mood, energy, sleep, optional weight and waist, medicines/supplements you tick and your own lab notes.</p><ul class="pcul"><li>It stays <b>on this device only</b> (keys tt_pcos_v1 and, for period dates, the Her cycle store tt_her_v1). Nothing is uploaded.</li><li>It is used only to show your own summaries, patterns and a report you can choose to print or share.</li><li>You can turn this off, or delete all PCOS/PMOS data, any time in Settings.</li><li>AT Fitness <b>does not diagnose</b> PCOS/PMOS or any condition, and does not give medical advice.</li></ul>'+
+function pcConsent(){return'<div class="card full hcard" id="pcconsent"><h2>🔒 Your health data</h2><p>PCOS/PMOS mode stores <b>health information</b> you choose to enter: period dates and flow, skin and hair changes, mood, energy, sleep, optional weight and waist, medicines/supplements you tick and your own lab notes.</p><ul class="pcul"><li>On this device it is stored in keys tt_pcos_v1 and, for period dates, the Her cycle store tt_her_v1. <b>If you sign in and turn on backup</b>, this data is included in your cloud backup — you can turn automatic backup off, or delete the data, in Account &amp; Settings.</li><li>It is used only to show your own summaries, patterns and a report you can choose to print or share.</li><li>You can turn this off, or delete all PCOS/PMOS data, any time in Settings.</li><li>AT Fitness <b>does not diagnose</b> PCOS/PMOS or any condition, and does not give medical advice.</li></ul>'+
  '<div class="pacc"><button class="ck" data-pcck="1" aria-label="I agree"></button><span><b>I agree to AT Fitness storing this health data on my device</b><br><small class="mu">Explicit consent (GDPR Article 9). You can withdraw it in Settings.</small></span></div>'+
  '<div class="row" style="margin-top:10px"><button class="pri" data-pcconsent="1" disabled style="flex:2">Continue</button><button data-pcnc="1" style="flex:1">Not now</button></div></div>'}
 function gmOffCard(){return'<div class="card full hcard"><h2>🌿 Gut section</h2><p>Track IBS symptoms, PCOS/PMOS, or both — and share a summary with your GP. Works for everyone; the Her section isn’t needed.</p><button class="pri" data-gmon="1" style="width:100%">Turn on</button><p class="mu" style="font-size:12px;margin-top:8px">Stored on this device only. You can turn it off any time in Settings — your logs are kept.</p></div>'}
@@ -4885,7 +4885,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v137 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v138 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -6425,7 +6425,7 @@ function postH(p){var pr=p.profiles||{},me=p.user_id===S.user.id,op=C.open===p.i
  (S.ban?'':'<div class="row"><input id="clCm" placeholder="Add a comment" maxlength="1000"><button class="pri sm" data-ca="csend" data-x="'+p.id+'">Send</button></div>')+'</div>':'')+'</div>'}
 function rCommCloud(){var el=document.getElementById('t-comm');if(!el)return;document.body.classList.add('cmode');
  if(!S.sb||(S.sb&&!S.chk)){el.innerHTML='<div class="cwrap full"><div class="card"><p class="mu">Loading…</p></div></div>';sb().then(function(c){return c.auth.getSession()}).then(function(r){S.chk=1;S.user=r.data.session&&r.data.session.user||null;if(S.user&&!S.prof)return loadProf()}).then(function(){if(S.user)loadFeed();rComm()},function(e){S.chk=0;el.innerHTML='<div class="cwrap full"><div class="card"><p>'+esc(E(e))+'</p></div></div>'});return}
- if(!S.user){S.fromComm=1;S.am=S.am||'in';setTimeout(function(){if(tab==='comm'&&!S.user){tab='acct';render();scrollTo(0,0)}},0);el.innerHTML='<div class="cwrap full"><div class="card"><p class="mu">Opening sign-in…</p></div></div>';return;el.innerHTML='<div class="cwrap full"><div class="card"><h2>👥 Community</h2><p>Share meals, workouts and progress with other AT Fitness users.</p><button class="pri" data-ca="gosign" style="width:100%;margin-top:8px">Sign in to join</button><p class="mu" style="font-size:12px;margin-top:8px">Everything else in the app works without an account.</p></div></div>';return}
+ if(!S.user){S.fromComm=1;S.am=S.am||'in';el.innerHTML='<div class="cwrap full"><div class="card"><h2>👥 Community</h2><p>Share meals, workouts and progress with other AT Fitness users.</p><button class="pri" data-ca="gosign" style="width:100%;margin-top:8px">Sign in to join</button><p class="mu" style="font-size:12px;margin-top:8px">Everything else in the app works without an account.</p></div></div>';return}
  var d=C.draft,h='<div class="cl-tabs"><button class="sm'+(C.f==='all'?' on':'')+'" data-ca="f" data-x="all">Discover</button><button class="sm'+(C.f==='following'?' on':'')+'" data-ca="f" data-x="following">Following</button>'+(staff()?'<button class="sm'+(C.f==='reports'?' on':'')+'" data-ca="f" data-x="reports">🛡️ Reports</button>':'')+'</div>';
  if(S.ban)h+='<div class="card cl-ban" id="clBan">🚫 You are suspended from posting'+(S.ban.expires_at?' until '+new Date(S.ban.expires_at).toLocaleDateString():'')+(S.ban.reason?'. Reason: '+esc(S.ban.reason):'')+'</div>';
  else if(C.f!=='reports')h+='<div class="card cl-new"><textarea id="clBody" maxlength="2000" placeholder="Share a meal, workout or win…">'+esc(d.body)+'</textarea>'+(d.img?'<img class="cl-img" src="'+d.img+'" alt="Selected photo"><button class="sm" data-ca="noimg">Remove photo</button>':'')+
@@ -7758,7 +7758,7 @@ window.wpToday=function(){var R=wpRoutines();if(!R.length)return null;var p=S.wp
  var best=-1,bd='';R.forEach(function(r,i){var ld=lastDone(r.ex.map(function(e){return e.name}));if(ld&&ld<cur&&ld>bd){bd=ld;best=i}});return R[(best+1)%R.length]};
 window.wcGo=function(on){WC=on?1:0;tab='workout';wv={r:null,e:null};if(typeof RE!=='undefined')RE=null;_lt='workout';render();scrollTo(0,0)};
 var _rd=render;render=function(){if(tab==="workout"&&_lt!=="workout")_enter=1;if(tab!=='workout'&&tab!=='gen'&&tab!=='exlib')window.WC=0;_lt=tab;var r=_rd.apply(this,arguments);if(tab==='gen'&&window.WC){var hb=document.querySelector('#secbar [data-go="home"]');if(hb)hb.textContent='‹ Creator'}return r};
-function bar(){var sb=document.getElementById('secbar');if(!sb||tab!=='workout')return;var t=sb.querySelector('.apptl'),b=sb.querySelector('[data-go="home"],#wcback');if(t)t.textContent=WC?'✏️ Workout Creator':'📋 Training Plan';
+function bar(){var sb=document.getElementById('secbar');if(!sb||tab!=='workout')return;var t=sb.querySelector('.apptl'),b=sb.querySelector('[data-go="home"],#wcback');if(t)t.textContent=WC?'✏️ Workout Creator':'🏋️ My workouts';
  if(b){if(WC&&b.id!=='wcback')b.outerHTML='<button class="sm" id="wcback">‹ Plan</button>';else if(!WC&&b.id==='wcback')b.outerHTML='<button class="sm" data-go="home">‹ Home</button>'}}
 function short(t){return String(t).replace(/^✨ .* · (?=(Mon|Tue|Wed|Thu|Fri|Sat|Sun) – )/,'')}
 function shortTiles(root){[].slice.call(root.querySelectorAll('.tile [data-or] b')).forEach(function(b){b.textContent=short(b.textContent)})}
@@ -7859,6 +7859,7 @@ var _hs=herSet;herSet=function(){var h=_hs.apply(this,arguments),i=h.indexOf('</
 function pcRow(){var t=todayIso(),x=pcDay(t),W=pcWeek(),sub=(x&&x.low?'Low-energy day · ':'')+(pcLogged(t)?'Logged ✓':'Log today')+' · '+W.eq+'/150 min';
  return COLL.html('pcher','🌸 PCOS/PMOS','<div class="pcqg"><button class="sm" data-pcher="log">📝 Log today</button><button class="sm" data-pcher="rep">📄 Doctor report</button><button class="sm" data-pcher="diet">🍽️ Diet creator</button><button class="sm pri" data-pcher="home">Open ›</button></div>',{cls:'card full hcard pcher',sub:sub})}
 /* v137: PCOS/PMOS fixed under life-stage pills */
+/* v138: meal families, pairing, retitle; UI and i18n fixes */
 var _hh=herHome;herHome=function(){var h=_hh.apply(this,arguments);try{if(!gmPc()||(H.pin&&!herPinOk))return h;var ls=h.indexOf('class="lstage');if(ls>=0){var o=h.lastIndexOf('<div',ls),c=h.indexOf('</div>',ls);if(o>=0&&c>=0)return h.slice(0,c+6)+pcRow()+h.slice(c+6)}var k=h.indexOf('class="card full hcard ecard');if(k>=0){var j=h.lastIndexOf('<div',k);return h.slice(0,j)+pcRow()+h.slice(j)}return pcRow()+h}catch(e){return h}};
 document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('button');if(!b)return;var D=b.dataset;
  if(D.pcher){ev.stopImmediatePropagation();pcOpen(D.pcher);return}
@@ -8428,15 +8429,15 @@ var MLIB115=[
 /* v115: full recipe library for every generator, no-repeat rotation, no top-10 cap, Gut/PCOS weighted variety, portion caps */
 (function(){
 MLIB115.forEach(function(a){if(MLIB.some(function(t){return t.n===a[0]}))return;if(!a[4].every(function(x){return fByName(x[0])}))return;MLIB.push({id:MLIB.length,n:a[0],sl:a[1].split(' '),tg:a[2].split(' '),keto:!!a[3],it:a[4]})});
-function cap(nm){try{var m=gdMax(nm);return/whey|protein powder|casein/i.test(nm)?50:m}catch(e){return 300}}
+function foodCap(nm){try{var m=gdMax(nm);return/whey|protein powder|casein/i.test(nm)?50:m}catch(e){return 300}}
 var SIDE={c:{B:['Wholemeal bread','Banana','Porridge oats'],S:['Banana','Rice cakes','Apple'],L:['Basmati rice, cooked','Potatoes, boiled','Wholemeal bread'],D:['Potatoes, boiled','Basmati rice, cooked','Wholemeal bread']},
  p:{B:['Greek yoghurt, 0% fat','Egg white','Cottage cheese'],S:['Greek yoghurt, 0% fat','Cottage cheese'],L:['Chicken breast, raw','Greek yoghurt, 0% fat','Egg white'],D:['Chicken breast, raw','Greek yoghurt, 0% fat','Egg white']},
  f:{B:['Almonds','Peanut butter'],S:['Almonds','Walnuts'],L:['Olive oil','Avocado'],D:['Olive oil','Avocado']}};
 var VEGP=['Greek yoghurt, 0% fat','Egg white','Cottage cheese'];
 // clamp oversized foods and spread what's missing over other foods (keeps big 2,600+ kcal days realistic)
-function split(items,tg,sl,o){o=o||{};sl=sl||'L';var over=false;items=items.map(function(x){var c=cap(x.name);if(x.g>c){over=true;return calc(fByName(x.name)||foodByKey(x.key),c)}return x});if(!over)return items;
+function split(items,tg,sl,o){o=o||{};sl=sl||'L';var over=false;items=items.map(function(x){var c=foodCap(x.name);if(x.g>c){over=true;return calc(fByName(x.name)||foodByKey(x.key),c)}return x});if(!over)return items;
  var mac={c:'carbs',p:'protein',f:'fat'};['p','c','f'].forEach(function(r){if(o.keto&&r==='c')return;for(var k=0;k<3;k++){var T=sumItems(items),d=tg[mac[r]]-T[mac[r]];if(d<(r==='f'?4:8))return;
-  var L=(r==='p'&&o.veg?VEGP:SIDE[r][sl]||SIDE[r].L),done=false;for(var i=0;i<L.length&&!done;i++){var f=fByName(L[i]);if(!f||f[mac[r]]<=0)continue;if(o.av&&o.av[f.name])continue;var ex=items.filter(function(x){return x.name===f.name})[0],have=ex?ex.g:0,c=cap(f.name),g=Math.min(c,have+d/(f[mac[r]]/100));g=Math.round(g/5)*5;if(g-have<10)continue;
+  var L=(r==='p'&&o.veg?VEGP:SIDE[r][sl]||SIDE[r].L),done=false;for(var i=0;i<L.length&&!done;i++){var f=fByName(L[i]);if(!f||f[mac[r]]<=0)continue;if(o.av&&o.av[f.name])continue;var ex=items.filter(function(x){return x.name===f.name})[0],have=ex?ex.g:0,c=foodCap(f.name),g=Math.min(c,have+d/(f[mac[r]]/100));g=Math.round(g/5)*5;if(g-have<10)continue;
    items=ex?items.map(function(x){return x===ex?calc(f,g):x}):items.concat([calc(f,g)]);done=true}if(!done)return}});return items}
 window.v115split=split;
 function isVeg(t){return t&&t.tg&&t.tg.indexOf('veg')>=0}
@@ -8445,7 +8446,7 @@ var GH={};window.V115GH=GH;
 function pool(R,i,sl){var keto=R&&R.style&&R.style.id==='keto',L=MLIB.filter(function(t){return t.sl.indexOf(sl)>=0&&(!keto||t.keto)&&t.it.every(function(x){return fByName(x[0])})});
  if(i&&i.fish&&(sl==='L'||sl==='D')){var F=L.filter(function(t){return t.tg.indexOf('fish')>=0});if(F.length>=4)L=F}return L}
 // main generator base: whole library, random order, no repeats until the pool is used up
-_gm0=function(R,i,seed){var sp=SPLIT[i.meals]||SPLIT[4],keto=R&&R.style&&R.style.id==='keto',r=rng(((seed||0)*7919+Math.floor(Math.random()*1e6))%2147483647||1),today=[];
+_gm0=function(R,i,seed){var sp=SPLIT[i.meals]||SPLIT[4],keto=R&&R.style&&R.style.id==='keto',r=rng(((seed||0)*7919+1)%2147483647||1),today=[];
  return sp.map(function(s,ix){var tg={protein:R.protein*s[2],carbs:R.carbs*s[2],fat:R.fat*s[2]},kt=tg.protein*4+tg.carbs*4+tg.fat*9,P=pool(R,i,s[0]),key=(keto?'k':'')+(i.fish?'f':'')+s[0],H=GH[key]=GH[key]||[];
   if(!P.length)return{type:s[1],slot:s[0],tpl:0,items:buildMeal(TPL[s[0]][0],tg)};
   var fresh=P.filter(function(t){return H.indexOf(t.n)<0&&today.indexOf(t.n)<0});if(!fresh.length){H.length=0;fresh=P.filter(function(t){return today.indexOf(t.n)<0})}if(!fresh.length)fresh=P;
@@ -8459,8 +8460,8 @@ if(typeof fvGen1==='function'){var _fv1=fvGen1;fvGen1=function(){var mp=_fv1.app
 function trim(items,kt){var T=sumItems(items);for(var k=0;k<4&&T.kcal>kt*1.05;k++){var L=items.filter(function(x){var f=fByName(x.name);return f&&f.carbs>f.protein&&f.carbs*4>f.fat*9&&x.g>40}).sort(function(a,b){return b.kcal-a.kcal});if(!L.length)break;var x=L[0],f=fByName(x.name),cut=(T.kcal-kt)/(f.kcal/100),g=Math.max(30,Math.round((x.g-cut)/5)*5);if(g>=x.g)break;items=items.map(function(y){return y===x?calc(f,g):y});T=sumItems(items)}return items}
 if(typeof avoidSet==='function'){var _av=avoidSet;avoidSet=function(i){var A=_av.apply(this,arguments);try{if((i&&i.avoid||[]).some(function(t){return/pork|pig/i.test(t)}))FOODS.forEach(function(f){if(/\bham\b|bacon|rasher|sausage|gammon|chorizo|salami|pepperoni|prosciutto|parma ham|serrano|black pudding|white pudding|boczek|kie\u0142basa|kabanos|szynka|frankfurter|hot dog/i.test(f.name)&&!/turkey|chicken|vegan|veggie|quorn/i.test(f.name))A[f.name]=1})}catch(e){}return A}}
 function carbItems(mp){var L=[];mp.forEach(function(m){m.items.forEach(function(x,j){var f=fByName(x.name);if(f&&f.carbs>f.protein&&f.carbs*4>f.fat*9&&f.kcal>=60)L.push([m,j,f])})});return L}
-function fitDay(mp,R){for(var it=0;it<4;it++){var T=planTot(mp),d=R.kcal-T.kcal;if(Math.abs(d)<=R.kcal*0.025)return;var L=carbItems(mp);if(d<0)L=L.filter(function(q){return q[0].items[q[1]].g>40});else L=L.filter(function(q){return q[0].items[q[1]].g<cap(q[2].name)-5});if(!L.length)return;
- var tot=L.reduce(function(a,q){return a+q[0].items[q[1]].kcal},0)||1;L.forEach(function(q){var x=q[0].items[q[1]],share=d*x.kcal/tot,g=x.g+share/(q[2].kcal/100);g=Math.max(30,Math.min(cap(q[2].name),Math.round(g/5)*5));q[0].items[q[1]]=calc(q[2],g)})}}
+function fitDay(mp,R){for(var it=0;it<4;it++){var T=planTot(mp),d=R.kcal-T.kcal;if(Math.abs(d)<=R.kcal*0.025)return;var L=carbItems(mp);if(d<0)L=L.filter(function(q){return q[0].items[q[1]].g>40});else L=L.filter(function(q){return q[0].items[q[1]].g<foodCap(q[2].name)-5});if(!L.length)return;
+ var tot=L.reduce(function(a,q){return a+q[0].items[q[1]].kcal},0)||1;L.forEach(function(q){var x=q[0].items[q[1]],share=d*x.kcal/tot,g=x.g+share/(q[2].kcal/100);g=Math.max(30,Math.min(foodCap(q[2].name),Math.round(g/5)*5));q[0].items[q[1]]=calc(q[2],g)})}}
 // outermost: final portion sanity on every plan
 var _gmX=genMeals;genMeals=function(R,i,seed){var mp=_gmX.apply(this,arguments);try{var sp=SPLIT[i.meals]||SPLIT[4],keto=R.style&&R.style.id==='keto',AV=typeof avoidSet==='function'?avoidSet(i):{};mp.forEach(function(m,ix){var s=sp[ix]||sp[sp.length-1];var tg={protein:R.protein*s[2],carbs:R.carbs*s[2],fat:R.fat*s[2]};m.items=split(m.items,tg,m.slot||s[0],{keto:keto,av:AV,veg:!m.items.some(function(x){return/chicken|beef|pork|turkey|lamb|ham|bacon|steak|salmon|cod|tuna|fish|prawn|mackerel|haddock|trout/i.test(x.name)})})});fitDay(mp,R)}catch(e){console.warn(e)}return mp};
 // Gut/IBS & PCOS: weighted random among all good candidates + rotation instead of always the top score
@@ -9015,7 +9016,7 @@ var V123B=[['rice cakes',/rice cake/i,/rice cake/i],['oatcakes',/oatcake/i,/oatc
  ['rice',/(?:^|, |\b)(?:basmati|jasmine|brown|white|wild|risotto \(arborio\)) rice|^rice, /i,/\b(?:fried |basmati |brown |jasmine |wild )?rice\b(?! ?(?:cake|noodle|pudding))|risotto|biryani|paella|pilaf|sushi|poke|congee|kedgeree/i],
  ['potatoes',/potato|oven chips|wedges/i,/potato|mash|chips|wedges|hash|jacket|spanish tortilla|rösti|gnocchi|colcannon|champ\b/i],['pasta',/pasta|spaghetti|penne|macaroni|lasagne/i,/pasta|spaghetti|penne|bolognese|lasagne|macaroni|carbonara|orzo/i],
  ['noodles',/noodle/i,/noodle|ramen|pad thai|chow mein|pho\b/i],['couscous',/couscous/i,/couscous|tabbouleh/i],['quinoa',/quinoa/i,/quinoa/i],
- ['oats',/porridge oats|rolled oats|^oats|oat bran/i,/\boat|porridge|muesli|granola|overnight|flapjack|pancake/i],['granola',/granola|muesli/i,/granola|muesli|parfait/i]];
+ ['oats',/porridge oats|rolled oats|^oats|owsianka|oat bran/i,/\boats\b(?!cake)|porridge|owsianka|muesli|granola|overnight|flapjack|pancake/i],['granola',/granola|muesli/i,/granola|muesli|parfait/i]];
 var V123R=[[/walnut/i,/walnut/i,'Walnuts'],[/almond(?! milk)/i,/^almonds|almond butter|flaked almond/i,'Almonds'],[/peanut butter/i,/peanut butter/i,'Peanut butter'],[/(^|[^e])apple(?! juice| sauce)/i,/^apple\b|^apples\b/i,'Apple'],
  [/banana/i,/banana/i,'Banana'],[/pineapple/i,/pineapple/i,'Pineapple'],[/\bpear\b/i,/^pear/i,'Pear'],[/kiwi/i,/kiwi/i,'Kiwi'],[/strawberr/i,/strawberr/i,'Strawberries'],[/blueberr/i,/blueberr/i,'Blueberries'],[/raspberr/i,/raspberr/i,'Raspberries'],[/avocado/i,/avocado/i,'Avocado']];
 function v123Keto(it){var f=fByName(it.name);return f&&f.carbs>=20&&!/almond|walnut|peanut|seed|chocolate|\bnut|cocoa|pecan|hazel|cashew|macadamia|brazil/i.test(it.name)}
@@ -9424,7 +9425,7 @@ window.MUSCLEPL={"Chest":"Klatka","Back":"Plecy","Legs":"Nogi","Shoulders":"Bark
 window.fDisp=function(x){var n=typeof x==="string"?x:(x&&x.name)||"";if(!n)return"";return LANG==="pl"?(FPL[n]||n):n};
 window.exDisp=function(n){n=String(n||"");return LANG==="pl"?(EXPL[n]||n):n};
 window.musDisp=function(n){n=String(n||"");return LANG==="pl"?(MUSCLEPL[n]||n):n};
-var PH=[["Tap to open","Dotknij, aby otworzyć"],["Training Plan","Plan treningu"],["sets done","serii zrobionych"],["sets","serii"],["🏋️ Strength","🏋️ Siła"],["💪 Hypertrophy","💪 Hipertrofia"],["🏃 Running","🏃 Bieganie"],["❤️ General fitness","❤️ Ogólna sprawność"],["No history","Brak historii"],["Edit routine","Edytuj plan"],["Save","Zapisz"],["Manual","Ręcznie"],["Normal","Zwykłe"],["sets ·","serii ·"],["Start today","Zacznij dziś"],["Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).","Dane są tylko w tej przeglądarce na tym urządzeniu. Eksportuj regularnie. Zdjęcia są w pamięci przeglądarki; możesz je dołączyć do eksportu (duży plik)."],["Pick a diet for each weekday — it becomes that day’s diet automatically (targets & meals). Choosing a diet for a single day in Diet still wins for that day.","Wybierz dietę na każdy dzień tygodnia — ustawi się sama (cele i posiłki). Dieta wybrana na jeden dzień w Diecie i tak wygrywa tego dnia."],["Build your own diet meal by meal, or let the plan creator calculate one from your goal and body stats.","Złóż własną dietę posiłek po posiłku albo niech kreator policzy ją z Twojego celu i danych ciała."],["General healthy eating (2023 International Guideline) — there’s no single “PCOS diet”","Ogólne zdrowe odżywianie (wytyczne 2023) — nie ma jednej „diety na PCOS”"],["Preference only — oats, pulses, wholegrains over white bread, rice cakes or mash","Tylko preferencja — owies, strączki, pełne ziarna zamiast białego pieczywa, wafli ryżowych czy puree"],["No completed (ticked) sets in this range. Tick sets in Workout to see progress.","Brak odhaczonych serii w tym zakresie. Odhacz serie w Treningu, żeby zobaczyć postęp."],["More drop sets / supersets on isolation exercises – never on heavy lifts.","Więcej drop setów / superserii na izolacjach – nigdy na ciężkich bojach."],["No ticked sets yet. Log a workout and your history and PRs appear here.","Brak odhaczonych serii. Zapisz trening, a historia i rekordy pojawią się tutaj."],["New: Workout generator (strength, running, runners’ strength, hybrid)","Nowość: Generator treningu (siła, bieganie, siła dla biegaczy, hybrid)"],["week block with a deload, week by week, ready to save as routines.","tygodniowy blok z deloadem, tydzień po tygodniu, gotowy do zapisania jako plany."],["Fibre, wholegrains/pulses and veg favoured; protein at every meal","Faworyzowane: błonnik, pełne ziarna/strączki i warzywa; białko w każdym posiłku"],["A few drop sets / supersets on isolation exercises to save time.","Kilka drop setów / superserii na izolacjach, by zaoszczędzić czas."],["Lower-GI carbs preferred — a food preference, not a medical rule","Preferowane węglowodany o niższym IG — preferencja, nie zasada medyczna"],["Point the camera at a barcode for an instant health check.","Skieruj aparat na kod kreskowy, żeby dostać szybką ocenę."],["Colour is a general guide per 100 g, not medical advice.","Kolor to ogólna wskazówka na 100 g, nie porada medyczna."],["Disclaimer, health sources, books and further reading.","Zastrzeżenia, źródła zdrowia, książki i dalsza lektura."],["Your planned session can wait. If you feel up to it:","Zaplanowany trening może poczekać. Jeśli dasz radę:"],["No saved plans yet. Accepting a plan saves it here.","Brak zapisanych planów. Akceptacja planu zapisuje go tutaj."],["More: log meals manually, targets, My foods, reset","Więcej: loguj posiłki ręcznie, cele, Moje produkty, reset"],["One or two muscle groups per day – needs 3+ days.","Jedna–dwie partie dziennie – potrzeba 3+ dni."],["No routines yet. Create one, e.g. CHEST or LEGS.","Brak planów. Stwórz np. KLATKA lub NOGI."],["Push, pull and leg days – best for 3 or 6 days.","Dni push, pull i nóg – najlepiej na 3 lub 6 dni."],["Choose English or Polish. More languages later.","Wybierz angielski lub polski. Więcej języków później."],["No exercises yet — add from the library below.","Brak ćwiczeń — dodaj z biblioteki poniżej."],["Search name or muscle (e.g. shoulders, press)…","Szukaj nazwy lub partii (np. barki, wyciskanie)…"],["Program deleted (its routines stay in Workout)","Usunięto program (plany zostają w Treningu)"],["We pick the best style for your days and goal.","Dobieramy styl pod Twoje dni i cel."],["Daily diets built only from IBS-friendly foods","Dzienne diety tylko z produktów przyjaznych IBS"],["Or create a full plan (goal, days, equipment)","Albo stwórz pełny plan (cel, dni, sprzęt)"],["Whole body every session – best for 2–3 days.","Całe ciało co sesję – najlepiej na 2–3 dni."],["Share meals & workouts — only you can see it","Udostępniaj posiłki i treningi — widzisz tylko Ty"],["Daily diets built for general healthy eating","Dzienne diety pod ogólne zdrowe odżywianie"],["Required before adding routines to Workout","Wymagane przed dodaniem planów do Treningu"],["No cardio or watch workouts in this range.","Brak cardio ani treningów z zegarka w tym zakresie."],["No alternative for your equipment/injuries","Brak zamiennika przy Twoim sprzęcie/kontuzjach"],["Today’s diet set · targets & meals loaded","Ustawiono dzisiejszą dietę · cele i posiłki wczytane"],["Colour themes, background photo, targets","Motywy, tło, cele"],["Import Apple Watch data via Apple Health","Import z Apple Watch przez Apple Health"],["Default: calories, macros and all habits","Domyślnie: kalorie, makro i wszystkie nawyki"],["Withdraw consent & delete PCOS/PMOS data","Wycofaj zgodę i usuń dane PCOS/PMOS"],["Minimally processed foods, regular meals","Mało przetworzone produkty, regularne posiłki"],["Upper and lower days – best for 4 days.","Dni góra/dół – najlepiej na 4 dni."],["Low-energy day — gentle movement counts","Dzień niskiej energii — liczy się łagodny ruch"],["Focus muscles (optional, +4 sets/week)","Partie na fokus (opcjonalnie, +4 serie/tydzień)"],["Optional. For anyone — Her not needed.","Opcjonalne. Dla każdego — Her nie jest potrzebne."],["Enter reps in the sets so they count","Wpisz powtórzenia w seriach, żeby się liczyły"],["Custom foods appear first in search.","Własne produkty pojawiają się pierwsze w wyszukiwaniu."],["PCOS/PMOS tracking now lives in Her.","Śledzenie PCOS/PMOS jest teraz w Her."],["Gentle stretching (hips, lower back)","Delikatne rozciąganie (biodra, dół pleców)"],["Strength · muscle · running · hybrid","Siła · masa · bieganie · hybrid"],["Add burned calories to daily target","Dodaj spalone kalorie do dziennego celu"],["Flare day — gentle movement instead","Dzień zaostrzenia — lepiej łagodny ruch"],["No water habit – add one in Habits","Brak nawyku wody — dodaj w Nawykach"],["Answer a few questions — you get a","Odpowiedz na kilka pytań — dostaniesz"],["Session started – sets pre-filled","Sesja rozpoczęta – serie wypełnione"],["Progress summary · all exercises","Podsumowanie postępu · wszystkie ćwiczenia"],["All diets, deleted ones, restore","Wszystkie diety, usunięte, przywracanie"],["Notes for training, diet & life","Notatki o treningu, diecie i życiu"],["Point the camera at the barcode","Skieruj aparat na kod kreskowy"],["Groceries for your diet × days","Zakupy pod Twoją dietę × dni"],["Calories from your goal & TDEE","Kalorie z Twojego celu i TDEE"],["No exercises of your own yet.","Nie masz jeszcze własnych ćwiczeń."],["Enter reps to count this set","Wpisz powtórzenia, żeby seria się liczyła"],["Download your data as a file","Pobierz dane jako plik"],["Your scans will appear here.","Twoje skany pojawią się tutaj."],["Guidance, not medical advice","Wskazówki, nie porada medyczna"],["Normal sets only (default).","Tylko zwykłe serie (domyślnie)."],["Show weight & waist fields","Pokaż wagę i talię"],["Create your training plan","Stwórz swój plan treningu"],["Generate my training plan","Wygeneruj mój plan treningu"],["Hybrid running + strength","Hybrid bieganie + siła"],["routines added to Workout","planów dodano do Treningu"],["Read full Legal & Sources","Przeczytaj pełne Prawo i źródła"],["Search exercise or muscle","Szukaj ćwiczenia lub partii"],["Colour is a general guide","Kolor to ogólna wskazówka"],["routines updated to week","planów zaktualizowano do tygodnia"],["one-off · speak · custom","jednorazowy · dyktuj · własny"],["Home (DB + pull-up bar)","Dom (hantle + drążek)"],["New variation generated","Wygenerowano nową wersję"],["Pick a routine to train","Wybierz plan treningu"],["Groceries for your diet","Zakupy pod dietę"],["Open PCOS/PMOS in Her ›","Otwórz PCOS/PMOS w Her ›"],["Already in this routine","Już jest w tym planie"],["Weekly sets per muscle","Serie tygodniowe na partię"],["Workout volume per day","Objętość treningu dziennie"],["No data logged between","Brak danych między"],["Countdown between sets","Odliczanie między seriami"],["Create my own exercise","Stwórz własne ćwiczenie"],["Lifts · cardio · watch","Ciężary · cardio · zegarek"],["Account & cloud backup","Konto i kopia w chmurze"],["PCOS/PMOS diet creator","Kreator diety PCOS/PMOS"],["Running days per week","Dni biegania w tygodniu"],["+ Add custom exercise","+ Dodaj własne ćwiczenie"],["Pregnant / postpartum","Ciąża / po porodzie"],["Prefer lower-GI carbs","Preferuj węglowodany o niższym IG"],["Create training plan","Stwórz plan treningu"],["Added to my routines","Dodano do moich planów"],["Strength for runners","Siła dla biegaczy"],["Intensity techniques","Techniki intensywności"],["No previous sessions","Brak wcześniejszych sesji"],["Sources & disclaimer","Źródła i zastrzeżenia"],["+ Create my own diet","+ Stwórz własną dietę"],["📣 Share this session","📣 Udostępnij trening"],["Hair loss / thinning","Wypadanie / przerzedzenie włosów"],["Saved training plans","Zapisane plany treningu"],["Easy walk, 10–20 min","Spokojny spacer, 10–20 min"],["Set as Today’s diet","Ustaw jako dzisiejszą dietę"],["↻ Create a new diet","↻ Stwórz nową dietę"],["Or type the barcode","Albo wpisz kod kreskowy"],["Kcal · macros · net","Kcal · makro · netto"],["Community (preview)","Społeczność (podgląd)"],["Before you continue","Zanim przejdziesz dalej"],["Undo low-energy day","Cofnij dzień niskiej energii"],["I accept this plan","Akceptuję ten plan"],["Add to my routines","Dodaj do moich planów"],["Push / Pull / Legs","Pchanie / Ciągnięcie / Nogi"],["Mark exercise done","Oznacz ćwiczenie jako zrobione"],["Easy run + strides","Spokojny bieg + przebieżki"],["Create my own diet","Stwórz własną dietę"],["✨ Use plan creator","✨ Kreator planu"],["🎉 Session complete","🎉 Trening ukończony"],["Share this session","Udostępnij trening"],["📚 Exercise library","📚 Biblioteka ćwiczeń"],["common IBS trigger","częsty trigger IBS"],["of which saturates","w tym nasycone"],["not medical advice","nie jest poradą medyczną"],["No saved plans yet","Brak zapisanych planów"],["Start IBS tracking","Zacznij śledzenie IBS"],["Current weekly km","Aktualne km tygodniowo"],["Injuries / limits","Kontuzje / ograniczenia"],["Daily score gauge","Wskaźnik dziennego wyniku"],["Saved to My diets","Zapisano w Moich dietach"],["Create a new diet","Stwórz nową dietę"],["Not started today","Nie rozpoczęto dziś"],["Diet day complete","Dzień diety ukończony"],["Or search by name","Albo szukaj po nazwie"],["Extra hair growth","Nadmierne owłosienie"],["No data this week","Brak danych w tym tygodniu"],["Changes discarded","Zmiany odrzucone"],["Custom exercises","Własne ćwiczenia"],["New routine name","Nazwa nowego planu"],["Shoulders & core","Barki i brzuch"],["Exercise removed","Usunięto ćwiczenie"],["Exercise deleted","Usunięto ćwiczenie"],["Ankle / Achilles","Kostka / Achillesa"],["Use plan creator","Kreator planu"],["WEEKLY DIET PLAN","TYGODNIOWY PLAN DIETY"],["Save to My diets","Zapisz w Moich dietach"],["Session complete","Trening ukończony"],["Exercise library","Biblioteka ćwiczeń"],["Workout complete","Trening ukończony"],["📷 Scan a product","📷 Skanuj produkt"],["Starting camera…","Uruchamianie aparatu…"],["Calories & meals","Kalorie i posiłki"],["CREATE DIET PLAN","STWÓRZ DIETĘ"],["Create diet plan","Stwórz dietę"],["Personal trainer","Trener personalny"],["Withdraw consent","Wycofaj zgodę"],["Print / Save PDF","Drukuj / Zapisz PDF"],["Acne / oily skin","Trądzik / tłusta skóra"],["No cardio logged","Brak cardio"],["Set up your plan","Ustaw swój plan"],["Training summary","Podsumowanie treningu"],["IBS diet creator","Kreator diety IBS"],["Open PCOS/PMOS ›","Otwórz PCOS/PMOS ›"],["Rest is fine too","Odpoczynek też jest OK"],["Body-part split","Split na partie"],["General fitness","Ogólna sprawność"],["No history yet.","Brak historii."],["Note (optional)","Notatka (opcjonalnie)"],["Training report","Raport treningu"],["Chest & triceps","Klatka i triceps"],["Recommended for","Zalecane na"],["Full body (FBW)","Całe ciało (FBW)"],["Routine deleted","Usunięto plan"],["Working weights","Ciężary robocze"],["Legal & Sources","Prawo i źródła"],["Burned calories","Spalone kalorie"],["Customise gauge","Dostosuj wskaźnik"],["Backup / Export","Kopia / eksport"],["Afternoon snack","Popołudniowa przekąska"],["No routines yet","Brak planów"],["No rewards yet.","Brak nagród."],["Not enough data","Za mało danych"],["Photos & weight","Zdjęcia i waga"],["WORKOUT CREATOR","KREATOR TRENINGU"],["TRAINING REPORT","RAPORT TRENINGU"],["Menstrual Cycle","Cykl miesiączkowy"],["of which sugars","w tym cukry"],["Set up routines","Ustaw plany"],["Camera stopped.","Aparat zatrzymany."],["Home dumbbells","Hantle w domu"],["Open Workout ›","Otwórz Trening ›"],["Dumbbells only","Tylko hantle"],["Session length","Długość sesji"],["Exercise added","Dodano ćwiczenie"],["Rename routine","Zmień nazwę planu"],["Strength first","Najpierw siła"],["Reset all data","Wyczyść wszystkie dane"],["Your exercises","Twoje ćwiczenia"],["Scan a product","Skanuj produkt"],["📷 Scan another","📷 Skanuj kolejny"],["▶ Start camera","▶ Włącz aparat"],["Connect iWatch","Połącz iWatch"],["Sign in to use","Zaloguj się, aby używać"],["Low-energy day","Dzień niskiej energii"],["Period started","Okres się zaczął"],["Traffic lights","Światła"],["Energy balance","Bilans energii"],["Activity level","Poziom aktywności"],["Foods to avoid","Produkty do unikania"],["Create account","Utwórz konto"],["PCOS/PMOS mode","Tryb PCOS/PMOS"],["Private to you","Prywatne dla Ciebie"],["Upper / Lower","Góra / Dół"],["Days per week","Dni w tygodniu"],["Exercise name","Nazwa ćwiczenia"],["Copy last set","Kopiuj ostatnią serię"],["Lift progress","Postęp w ćwiczeniach"],["Est. 1RM (kg)","Szac. 1RM (kg)"],["Back & biceps","Plecy i biceps"],["Why this plan","Dlaczego ten plan"],["Half marathon","Półmaraton"],["Running first","Najpierw bieganie"],["Wrist / elbow","Nadgarstek / łokieć"],["Jump to today","Przejdź do dziś"],["No diets yet.","Brak diet."],["Speak my diet","Powiedz dietę"],["Morning snack","Poranna przekąska"],["Shopping list","Lista zakupów"],["⏸ Stop camera","⏸ Zatrzymaj aparat"],["Library & PRs","Biblioteka i rekordy"],["TRAINING PLAN","PLAN TRENINGU"],["SHOPPING LIST","LISTA ZAKUPÓW"],["Training plan","Plan treningu"],["Not backed up","Brak kopii"],["Doctor report","Raport dla lekarza"],["Meals per day","Posiłki dziennie"],["Now tracking:","Teraz śledzisz:"],["Routine saved","Plan zapisany"],["Couldn’t save","Nie udało się zapisać"],["Bone & Muscle","Kości i mięśnie"],["Block length","Długość bloku"],["Muscle group","Partia mięśniowa"],["Top set (kg)","Najcięższa seria (kg)"],["Last 4 weeks","Ostatnie 4 tygodnie"],["Interval run","Bieg interwałowy"],["Target event","Cel zawodów"],["No race date","Bez daty zawodów"],["Today’s diet","Dzisiejsza dieta"],["No diets yet","Brak diet"],["↻ Regenerate","↻ Wygeneruj ponownie"],["Add exercise","Dodaj ćwiczenie"],["My exercises","Moje ćwiczenia"],["Your rewards","Twoje nagrody"],["OK sometimes","Czasem OK"],["Recent scans","Ostatnie skany"],["Scan another","Skanuj kolejny"],["Start camera","Włącz aparat"],["Diet history","Historia diet"],["Search foods","Szukaj produktów"],["How it works","Jak to działa"],["Diet creator","Kreator diety"],["I understand","Rozumiem"],["Add to today","Dodaj do dziś"],["Period ended","Okres się skończył"],["Build muscle","Budowa masy"],["Foods I like","Produkty, które lubię"],["Intermediate","Średniozaawansowany"],["Please wait…","Proszę czekać…"],["My gut diets","Moje diety jelitowe"],["Enter a name","Wpisz nazwę"],["Diet report","Raport diety"],["Full report","Pełny raport"],["Volume (kg)","Objętość (kg)"],["Full body A","Całe ciało A"],["Full body B","Całe ciało B"],["Full body C","Całe ciało C"],["Sets × reps","Serie × powtórzenia"],["Split (bro)","Split (bro)"],["Set deleted","Usunięto serię"],["Long run on","Długi bieg w"],["Export JSON","Eksport JSON"],["Import JSON","Import JSON"],["Start today","Zacznij dziś"],["Good choice","Dobry wybór"],["Stop camera","Zatrzymaj aparat"],["CREATE PLAN","STWÓRZ PLAN"],["DIET REPORT","RAPORT DIETY"],["DAILY SCORE","WYNIK DNIA"],["Create plan","Stwórz plan"],["Gut section","Sekcja jelit"],["Lose weight","Redukcja"],["Accept plan","Zaakceptuj plan"],["View report","Zobacz raport"],["saved plans","zapisane plany"],["‹ PCOS/PMOS","‹ PCOS/PMOS"],["Hypertrophy","Hipertrofia"],["Plan style","Styl planu"],["‹ Routines","‹ Plany"],["Lower back","Dół pleców"],["No jumping","Bez skoków"],["Regenerate","Wygeneruj ponownie"],["Go to Diet","Idź do Diety"],["Log cardio","Zapisz cardio"],["Rest timer","Timer przerwy"],["Looking up","Szukam"],["per 100 ml","na 100 ml"],["never done","nigdy nie zrobione"],["Week score","Wynik tygodnia"],["Undo flare","Cofnij zaostrzenie"],["wholegrain","pełnoziarniste"],["saved plan","zapisany plan"],["‹ My diets","‹ Moje diety"],["Bodyweight","Masa ciała"],["Best reps","Najwięcej powtórzeń"],["This week","Ten tydzień"],["Last week","Poprzedni tydzień"],["Tempo run","Bieg tempowy"],["Plan name","Nazwa planu"],["days/week","dni/tydzień"],["Edit diet","Edytuj dietę"],["Diet name","Nazwa diety"],["Breakfast","Śniadanie"],["kcal left","kcal zostało"],["sets done","serii zrobionych"],["Quick add","Szybkie dodanie"],["EXERCISES","ĆWICZENIA"],["Community","Społeczność"],["Exercises","Ćwiczenia"],["Edit food","Edytuj produkt"],["Log today","Zapisz dziś"],["Flare day","Dzień zaostrzenia"],["Not found","Nie znaleziono"],["per 100 g","na 100 g"],["Saturates","Nasycone"],["last done","ostatnio"],["Your goal","Twój cel"],["Meal plan","Plan posiłków"],["Full body","Całe ciało"],["Gut · IBS","Jelita · IBS"],["Tracking:","Śledzisz:"],["Move down","W dół"],["‹ History","‹ Historia"],["Full gym","Pełna siłownia"],["Easy run","Spokojny bieg"],["Long run","Długi bieg"],["Lose fat","Redukcja tłuszczu"],["No event","Bez wydarzenia"],["Marathon","Maraton"],["Swapped:","Zamieniono:"],["skinless","bez skóry"],["My diets","Moje diety"],["Off-plan","Poza planem"],["Workouts","Treningi"],["Routines","Plany"],["MY DIETS","MOJE DIETY"],["CHECK-IN","POMIARY"],["TRAINING","TRENING"],["Settings","Ustawienia"],["Notebook","Notatnik"],["Check-in","Pomiary"],["My foods","Moje produkty"],["Add food","Dodaj produkt"],["No match","Brak wyników"],["Option B","Opcja B"],["Continue","Kontynuuj"],["Language","Język"],["Activity","Aktywność"],["Spotting","Plamienie"],["Moderate","Umiarkowany"],["Contains","Zawiera"],["Maintain","Utrzymanie"],["Generate","Generuj"],["Beginner","Początkujący"],["Advanced","Zaawansowany"],["Sign out","Wyloguj się"],["Loading…","Ładowanie…"],["Log meal","Dodaj posiłek"],["Change ⇄","Zmień ⇄"],["Download","Pobierz"],["Optional","Opcjonalne"],["Required","Wymagane"],["Disabled","Wyłączone"],["Upper A","Góra A"],["Upper B","Góra B"],["Lower A","Dół A"],["Lower B","Dół B"],["Race in","Zawody za"],["Default","Domyślna"],["History","Historia"],["Deleted","Usunięta"],["New PR!","Nowy rekord!"],["Goblets","Puchary"],["WORKOUT","TRENING"],["Account","Konto"],["Protein","Białko"],["Turn on","Włącz"],["Sign in","Zaloguj się"],["Streaks","Serie"],["Confirm","Potwierdź"],["Move up","W górę"],["Success","Sukces"],["Warning","Ostrzeżenie"],["Version","Wersja"],["Enabled","Włączone"],["See all","Zobacz wszystko"],["4 weeks","4 tygodnie"],["6 weeks","6 tygodnie"],["8 weeks","8 tygodnie"],["Hybrid","Hybrid"],["Edit ›","Edytuj ›"],["Dinner","Kolacja"],["Active","Aktywna"],["Medals","Medale"],["HABITS","NAWYKI"],["Cardio","Cardio"],["Habits","Nawyki"],["Report","Raport"],["Add to","Dodaj do"],["Target","Cel"],["Open ›","Otwórz ›"],["Period","Okres"],["Marked","Wyraźny"],["Energy","Energia"],["Sugars","Cukry"],["Female","Kobieta"],["Random","Losuj"],["Finish","Zakończ"],["Resume","Wznów"],["Remove","Usuń"],["Rename","Zmień nazwę"],["Upload","Wyślij"],["Update","Aktualizacja"],["‹ Home","‹ Start"],["Log ·","Dziennik ·"],["‹ Her","‹ Her"]];
+var PH=[["Tap to open","Dotknij, aby otworzyć"],["Training Plan","Plan treningu"],["sets done","serii zrobionych"],["sets","serii"],["🏋️ Strength","🏋️ Siła"],["💪 Hypertrophy","💪 Hipertrofia"],["🏃 Running","🏃 Bieganie"],["❤️ General fitness","❤️ Ogólna sprawność"],["No history","Brak historii"],["Edit routine","Edytuj plan"],["Save","Zapisz"],["Manual","Ręcznie"],["Normal","Zwykłe"],["sets ·","serii ·"],["Start today","Zacznij dziś"],["Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).","Dane są tylko w tej przeglądarce na tym urządzeniu. Eksportuj regularnie. Zdjęcia są w pamięci przeglądarki; możesz je dołączyć do eksportu (duży plik)."],["Pick a diet for each weekday — it becomes that day’s diet automatically (targets & meals). Choosing a diet for a single day in Diet still wins for that day.","Wybierz dietę na każdy dzień tygodnia — ustawi się sama (cele i posiłki). Dieta wybrana na jeden dzień w Diecie i tak wygrywa tego dnia."],["Build your own diet meal by meal, or let the plan creator calculate one from your goal and body stats.","Złóż własną dietę posiłek po posiłku albo niech kreator policzy ją z Twojego celu i danych ciała."],["General healthy eating (2023 International Guideline) — there’s no single “PCOS diet”","Ogólne zdrowe odżywianie (wytyczne 2023) — nie ma jednej „diety na PCOS”"],["Preference only — oats, pulses, wholegrains over white bread, rice cakes or mash","Tylko preferencja — owies, strączki, pełne ziarna zamiast białego pieczywa, wafli ryżowych czy puree"],["No completed (ticked) sets in this range. Tick sets in Workout to see progress.","Brak odhaczonych serii w tym zakresie. Odhacz serie w Treningu, żeby zobaczyć postęp."],["More drop sets / supersets on isolation exercises – never on heavy lifts.","Więcej drop setów / superserii na izolacjach – nigdy na ciężkich bojach."],["No ticked sets yet. Log a workout and your history and PRs appear here.","Brak odhaczonych serii. Zapisz trening, a historia i rekordy pojawią się tutaj."],["New: Workout generator (strength, running, runners’ strength, hybrid)","Nowość: Generator treningu (siła, bieganie, siła dla biegaczy, hybrid)"],["week block with a deload, week by week, ready to save as routines.","tygodniowy blok z deloadem, tydzień po tygodniu, gotowy do zapisania jako plany."],["Fibre, wholegrains/pulses and veg favoured; protein at every meal","Faworyzowane: błonnik, pełne ziarna/strączki i warzywa; białko w każdym posiłku"],["A few drop sets / supersets on isolation exercises to save time.","Kilka drop setów / superserii na izolacjach, by zaoszczędzić czas."],["Lower-GI carbs preferred — a food preference, not a medical rule","Preferowane węglowodany o niższym IG — preferencja, nie zasada medyczna"],["Point the camera at a barcode for an instant health check.","Skieruj aparat na kod kreskowy, żeby dostać szybką ocenę."],["Colour is a general guide per 100 g, not medical advice.","Kolor to ogólna wskazówka na 100 g, nie porada medyczna."],["Disclaimer, health sources, books and further reading.","Zastrzeżenia, źródła zdrowia, książki i dalsza lektura."],["Your planned session can wait. If you feel up to it:","Zaplanowany trening może poczekać. Jeśli dasz radę:"],["No saved plans yet. Accepting a plan saves it here.","Brak zapisanych planów. Akceptacja planu zapisuje go tutaj."],["More: log meals manually, targets, My foods, reset","Więcej: loguj posiłki ręcznie, cele, Moje produkty, reset"],["One or two muscle groups per day – needs 3+ days.","Jedna–dwie partie dziennie – potrzeba 3+ dni."],["No routines yet. Create one, e.g. CHEST or LEGS.","Brak planów. Stwórz np. KLATKA lub NOGI."],["Push, pull and leg days – best for 3 or 6 days.","Dni push, pull i nóg – najlepiej na 3 lub 6 dni."],["Choose English or Polish. More languages later.","Wybierz angielski lub polski. Więcej języków później."],["No exercises yet — add from the library below.","Brak ćwiczeń — dodaj z biblioteki poniżej."],["Search name or muscle (e.g. shoulders, press)…","Szukaj nazwy lub partii (np. barki, wyciskanie)…"],["Program deleted (its routines stay in Workout)","Usunięto program (plany zostają w Treningu)"],["We pick the best style for your days and goal.","Dobieramy styl pod Twoje dni i cel."],["Daily diets built only from IBS-friendly foods","Dzienne diety tylko z produktów przyjaznych IBS"],["Or create a full plan (goal, days, equipment)","Albo stwórz pełny plan (cel, dni, sprzęt)"],["Whole body every session – best for 2–3 days.","Całe ciało co sesję – najlepiej na 2–3 dni."],["Share meals & workouts — only you can see it","Udostępniaj posiłki i treningi — widzisz tylko Ty"],["Daily diets built for general healthy eating","Dzienne diety pod ogólne zdrowe odżywianie"],["Required before adding routines to Workout","Wymagane przed dodaniem planów do Treningu"],["No cardio or watch workouts in this range.","Brak cardio ani treningów z zegarka w tym zakresie."],["No alternative for your equipment/injuries","Brak zamiennika przy Twoim sprzęcie/kontuzjach"],["Today’s diet set · targets & meals loaded","Ustawiono dzisiejszą dietę · cele i posiłki wczytane"],["Colour themes, background photo, targets","Motywy, tło, cele"],["Import Apple Watch data via Apple Health","Import z Apple Watch przez Apple Health"],["Default: calories, macros and all habits","Domyślnie: kalorie, makro i wszystkie nawyki"],["Withdraw consent & delete PCOS/PMOS data","Wycofaj zgodę i usuń dane PCOS/PMOS"],["Minimally processed foods, regular meals","Mało przetworzone produkty, regularne posiłki"],["Upper and lower days – best for 4 days.","Dni góra/dół – najlepiej na 4 dni."],["Low-energy day — gentle movement counts","Dzień niskiej energii — liczy się łagodny ruch"],["Focus muscles (optional, +4 sets/week)","Partie na fokus (opcjonalnie, +4 serie/tydzień)"],["Optional. For anyone — Her not needed.","Opcjonalne. Dla każdego — Her nie jest potrzebne."],["Enter reps in the sets so they count","Wpisz powtórzenia w seriach, żeby się liczyły"],["Custom foods appear first in search.","Własne produkty pojawiają się pierwsze w wyszukiwaniu."],["PCOS/PMOS tracking now lives in Her.","Śledzenie PCOS/PMOS jest teraz w Her."],["Gentle stretching (hips, lower back)","Delikatne rozciąganie (biodra, dół pleców)"],["Strength · muscle · running · hybrid","Siła · masa · bieganie · hybrid"],["Add burned calories to daily target","Dodaj spalone kalorie do dziennego celu"],["Flare day — gentle movement instead","Dzień zaostrzenia — lepiej łagodny ruch"],["No water habit – add one in Habits","Brak nawyku wody — dodaj w Nawykach"],["Answer a few questions — you get a","Odpowiedz na kilka pytań — dostaniesz"],["Session started – sets pre-filled","Sesja rozpoczęta – serie wypełnione"],["Progress summary · all exercises","Podsumowanie postępu · wszystkie ćwiczenia"],["All diets, deleted ones, restore","Wszystkie diety, usunięte, przywracanie"],["Notes for training, diet & life","Notatki o treningu, diecie i życiu"],["Point the camera at the barcode","Skieruj aparat na kod kreskowy"],["Groceries for your diet × days","Zakupy pod Twoją dietę × dni"],["Calories from your goal & TDEE","Kalorie z Twojego celu i TDEE"],["No exercises of your own yet.","Nie masz jeszcze własnych ćwiczeń."],["Enter reps to count this set","Wpisz powtórzenia, żeby seria się liczyła"],["Download your data as a file","Pobierz dane jako plik"],["Your scans will appear here.","Twoje skany pojawią się tutaj."],["Guidance, not medical advice","Wskazówki, nie porada medyczna"],["Normal sets only (default).","Tylko zwykłe serie (domyślnie)."],["Show weight & waist fields","Pokaż wagę i talię"],["Create your training plan","Stwórz swój plan treningu"],["Generate my training plan","Wygeneruj mój plan treningu"],["Hybrid running + strength","Hybrid bieganie + siła"],["routines added to Workout","planów dodano do Treningu"],["Read full Legal & Sources","Przeczytaj pełne Prawo i źródła"],["Search exercise or muscle","Szukaj ćwiczenia lub partii"],["Colour is a general guide","Kolor to ogólna wskazówka"],["routines updated to week","planów zaktualizowano do tygodnia"],["one-off · speak · custom","jednorazowy · dyktuj · własny"],["Home (DB + pull-up bar)","Dom (hantle + drążek)"],["New variation generated","Wygenerowano nową wersję"],["Pick a routine to train","Wybierz plan treningu"],["Groceries for your diet","Zakupy pod dietę"],["Open PCOS/PMOS in Her ›","Otwórz PCOS/PMOS w Her ›"],["Already in this routine","Już jest w tym planie"],["Weekly sets per muscle","Serie tygodniowe na partię"],["Workout volume per day","Objętość treningu dziennie"],["No data logged between","Brak danych między"],["Countdown between sets","Odliczanie między seriami"],["Create my own exercise","Stwórz własne ćwiczenie"],["Lifts · cardio · watch","Ciężary · cardio · zegarek"],["Account & cloud backup","Konto i kopia w chmurze"],["PCOS/PMOS diet creator","Kreator diety PCOS/PMOS"],["Running days per week","Dni biegania w tygodniu"],["+ Add custom exercise","+ Dodaj własne ćwiczenie"],["Pregnant / postpartum","Ciąża / po porodzie"],["Prefer lower-GI carbs","Preferuj węglowodany o niższym IG"],["Create training plan","Stwórz plan treningu"],["Added to my routines","Dodano do moich planów"],["Strength for runners","Siła dla biegaczy"],["Intensity techniques","Techniki intensywności"],["No previous sessions","Brak wcześniejszych sesji"],["Sources & disclaimer","Źródła i zastrzeżenia"],["+ Create my own diet","+ Stwórz własną dietę"],["📣 Share this session","📣 Udostępnij trening"],["Hair loss / thinning","Wypadanie / przerzedzenie włosów"],["Saved training plans","Zapisane plany treningu"],["Easy walk, 10–20 min","Spokojny spacer, 10–20 min"],["Set as Today’s diet","Ustaw jako dzisiejszą dietę"],["↻ Create a new diet","↻ Stwórz nową dietę"],["Or type the barcode","Albo wpisz kod kreskowy"],["Kcal · macros · net","Kcal · makro · netto"],["Community (preview)","Społeczność (podgląd)"],["Before you continue","Zanim przejdziesz dalej"],["Undo low-energy day","Cofnij dzień niskiej energii"],["I accept this plan","Akceptuję ten plan"],["Add to my routines","Dodaj do moich planów"],["Push / Pull / Legs","Pchanie / Ciągnięcie / Nogi"],["Mark exercise done","Oznacz ćwiczenie jako zrobione"],["Easy run + strides","Spokojny bieg + przebieżki"],["Create my own diet","Stwórz własną dietę"],["✨ Use plan creator","✨ Kreator planu"],["🎉 Session complete","🎉 Trening ukończony"],["Share this session","Udostępnij trening"],["📚 Exercise library","📚 Biblioteka ćwiczeń"],["common IBS trigger","częsty trigger IBS"],["of which saturates","w tym nasycone"],["not medical advice","nie jest poradą medyczną"],["No saved plans yet","Brak zapisanych planów"],["Start IBS tracking","Zacznij śledzenie IBS"],["Current weekly km","Aktualne km tygodniowo"],["Injuries / limits","Kontuzje / ograniczenia"],["Daily score gauge","Wskaźnik dziennego wyniku"],["Saved to My diets","Zapisano w Moich dietach"],["Create a new diet","Stwórz nową dietę"],["Not started today","Nie rozpoczęto dziś"],["Diet day complete","Dzień diety ukończony"],["Or search by name","Albo szukaj po nazwie"],["Extra hair growth","Nadmierne owłosienie"],["No data this week","Brak danych w tym tygodniu"],["Changes discarded","Zmiany odrzucone"],["Custom exercises","Własne ćwiczenia"],["New routine name","Nazwa nowego planu"],["Shoulders & core","Barki i brzuch"],["Exercise removed","Usunięto ćwiczenie"],["Exercise deleted","Usunięto ćwiczenie"],["Ankle / Achilles","Kostka / Achillesa"],["Use plan creator","Kreator planu"],["WEEKLY DIET PLAN","TYGODNIOWY PLAN DIETY"],["Save to My diets","Zapisz w Moich dietach"],["Session complete","Trening ukończony"],["Exercise library","Biblioteka ćwiczeń"],["Workout complete","Trening ukończony"],["📷 Scan a product","📷 Skanuj produkt"],["Starting camera…","Uruchamianie aparatu…"],["Calories & meals","Kalorie i posiłki"],["CREATE DIET PLAN","STWÓRZ DIETĘ"],["Create diet plan","Stwórz dietę"],["Personal trainer","Trener personalny"],["Withdraw consent","Wycofaj zgodę"],["Print / Save PDF","Drukuj / Zapisz PDF"],["Acne / oily skin","Trądzik / tłusta skóra"],["No cardio logged","Brak cardio"],["Set up your plan","Ustaw swój plan"],["Training summary","Podsumowanie treningu"],["IBS diet creator","Kreator diety IBS"],["Open PCOS/PMOS ›","Otwórz PCOS/PMOS ›"],["Rest is fine too","Odpoczynek też jest OK"],["Body-part split","Split na partie"],["General fitness","Ogólna sprawność"],["No history yet.","Brak historii."],["Note (optional)","Notatka (opcjonalnie)"],["Training report","Raport treningu"],["Chest & triceps","Klatka i triceps"],["Recommended for","Zalecane na"],["Full body (FBW)","Całe ciało (FBW)"],["Routine deleted","Usunięto plan"],["Working weights","Ciężary robocze"],["Legal & Sources","Prawo i źródła"],["Burned calories","Spalone kalorie"],["Customise gauge","Dostosuj wskaźnik"],["Backup / Export","Kopia / eksport"],["Afternoon snack","Popołudniowa przekąska"],["No routines yet","Brak planów"],["No rewards yet.","Brak nagród."],["Not enough data","Za mało danych"],["Photos & weight","Zdjęcia i waga"],["WORKOUT CREATOR","KREATOR TRENINGU"],["TRAINING REPORT","RAPORT TRENINGU"],["Menstrual Cycle","Cykl miesiączkowy"],["of which sugars","w tym cukry"],["Set up routines","Ustaw plany"],["Camera stopped.","Aparat zatrzymany."],["Home dumbbells","Hantle w domu"],["Open Workout ›","Otwórz Trening ›"],["Dumbbells only","Tylko hantle"],["Session length","Długość sesji"],["Exercise added","Dodano ćwiczenie"],["Rename routine","Zmień nazwę planu"],["Strength first","Najpierw siła"],["Reset all data","Wyczyść wszystkie dane"],["Your exercises","Twoje ćwiczenia"],["Scan a product","Skanuj produkt"],["📷 Scan another","📷 Skanuj kolejny"],["▶ Start camera","▶ Włącz aparat"],["Connect iWatch","Połącz iWatch"],["Sign in to use","Zaloguj się, aby używać"],["Low-energy day","Dzień niskiej energii"],["Period started","Okres się zaczął"],["Traffic lights","Światła"],["Energy balance","Bilans energii"],["Activity level","Poziom aktywności"],["Foods to avoid","Produkty do unikania"],["Create account","Utwórz konto"],["PCOS/PMOS mode","Tryb PCOS/PMOS"],["Private to you","Prywatne dla Ciebie"],["Upper / Lower","Góra / Dół"],["Days per week","Dni w tygodniu"],["Exercise name","Nazwa ćwiczenia"],["Copy last set","Kopiuj ostatnią serię"],["Lift progress","Postęp w ćwiczeniach"],["Est. 1RM (kg)","Szac. 1RM (kg)"],["Back & biceps","Plecy i biceps"],["Why this plan","Dlaczego ten plan"],["Half marathon","Półmaraton"],["Running first","Najpierw bieganie"],["Wrist / elbow","Nadgarstek / łokieć"],["Jump to today","Przejdź do dziś"],["No diets yet.","Brak diet."],["Speak my diet","Powiedz dietę"],["Morning snack","Poranna przekąska"],["Shopping list","Lista zakupów"],["⏸ Stop camera","⏸ Zatrzymaj aparat"],["Library & PRs","Biblioteka i rekordy"],["TRAINING PLAN","PLAN TRENINGU"],["SHOPPING LIST","LISTA ZAKUPÓW"],["Training plan","Plan treningu"],["Not backed up","Brak kopii"],["Doctor report","Raport dla lekarza"],["Meals per day","Posiłki dziennie"],["Now tracking:","Teraz śledzisz:"],["Routine saved","Plan zapisany"],["Couldn’t save","Nie udało się zapisać"],["Bone & Muscle","Kości i mięśnie"],["Block length","Długość bloku"],["Muscle group","Partia mięśniowa"],["Top set (kg)","Najcięższa seria (kg)"],["Last 4 weeks","Ostatnie 4 tygodnie"],["Interval run","Bieg interwałowy"],["Target event","Cel zawodów"],["No race date","Bez daty zawodów"],["Today’s diet","Dzisiejsza dieta"],["No diets yet","Brak diet"],["↻ Regenerate","↻ Wygeneruj ponownie"],["Add exercise","Dodaj ćwiczenie"],["My exercises","Moje ćwiczenia"],["Your rewards","Twoje nagrody"],["OK sometimes","Czasem OK"],["Recent scans","Ostatnie skany"],["Scan another","Skanuj kolejny"],["Start camera","Włącz aparat"],["Diet history","Historia diet"],["Search foods","Szukaj produktów"],["How it works","Jak to działa"],["Diet creator","Kreator diety"],["I understand","Rozumiem"],["Add to today","Dodaj do dziś"],["Period ended","Okres się skończył"],["Build muscle","Budowa masy"],["Foods I like","Produkty, które lubię"],["Intermediate","Średniozaawansowany"],["Please wait…","Proszę czekać…"],["My gut diets","Moje diety jelitowe"],["Enter a name","Wpisz nazwę"],["Diet report","Raport diety"],["Full report","Pełny raport"],["Volume (kg)","Objętość (kg)"],["Full body A","Całe ciało A"],["Full body B","Całe ciało B"],["Full body C","Całe ciało C"],["Sets × reps","Serie × powtórzenia"],["Split (bro)","Split (bro)"],["Set deleted","Usunięto serię"],["Long run on","Długi bieg w"],["Export JSON","Eksport JSON"],["Import JSON","Import JSON"],["Start today","Zacznij dziś"],["Good choice","Dobry wybór"],["Stop camera","Zatrzymaj aparat"],["CREATE PLAN","STWÓRZ PLAN"],["DIET REPORT","RAPORT DIETY"],["DAILY SCORE","WYNIK DNIA"],["Create plan","Stwórz plan"],["Gut section","Sekcja jelit"],["Lose weight","Redukcja"],["Accept plan","Zaakceptuj plan"],["View report","Zobacz raport"],["saved plans","zapisane plany"],["‹ PCOS/PMOS","‹ PCOS/PMOS"],["Hypertrophy","Hipertrofia"],["Plan style","Styl planu"],["‹ Routines","‹ Plany"],["Lower back","Dół pleców"],["No jumping","Bez skoków"],["Regenerate","Wygeneruj ponownie"],["Go to Diet","Idź do Diety"],["Log cardio","Zapisz cardio"],["Rest timer","Timer przerwy"],["Looking up","Szukam"],["per 100 ml","na 100 ml"],["never done","nigdy nie zrobione"],["Week score","Wynik tygodnia"],["Undo flare","Cofnij zaostrzenie"],["wholegrain","pełnoziarniste"],["saved plan","zapisany plan"],["‹ My diets","‹ Moje diety"],["Bodyweight","Masa ciała"],["Best reps","Najwięcej powtórzeń"],["This week","Ten tydzień"],["Last week","Poprzedni tydzień"],["Tempo run","Bieg tempowy"],["Plan name","Nazwa planu"],["days/week","dni/tydzień"],["Edit diet","Edytuj dietę"],["Diet name","Nazwa diety"],["Breakfast","Śniadanie"],["kcal left","kcal zostało"],["sets done","serii zrobionych"],["Quick add","Szybkie dodanie"],["EXERCISES","ĆWICZENIA"],["Community","Społeczność"],["Exercises","Ćwiczenia"],["Edit food","Edytuj produkt"],["Log today","Zapisz dziś"],["Flare day","Dzień zaostrzenia"],["Not found","Nie znaleziono"],["per 100 g","na 100 g"],["Saturates","Nasycone"],["last done","ostatnio"],["Your goal","Twój cel"],["Meal plan","Plan posiłków"],["Full body","Całe ciało"],["Gut · IBS","Jelita · IBS"],["Tracking:","Śledzisz:"],["Move down","W dół"],["‹ History","‹ Historia"],["Full gym","Pełna siłownia"],["Easy run","Spokojny bieg"],["Long run","Długi bieg"],["Lose fat","Redukcja tłuszczu"],["No event","Bez wydarzenia"],["Marathon","Maraton"],["Swapped:","Zamieniono:"],["skinless","bez skóry"],["My diets","Moje diety"],["Off-plan","Poza planem"],["Workouts","Treningi"],["Routines","Plany"],["MY DIETS","MOJE DIETY"],["CHECK-IN","POMIARY"],["TRAINING","TRENING"],["Settings","Ustawienia"],["Notebook","Notatnik"],["Check-in","Pomiary"],["My foods","Moje produkty"],["Add food","Dodaj produkt"],["No match","Brak wyników"],["Option B","Opcja B"],["Continue","Kontynuuj"],["Language","Język"],["Activity","Aktywność"],["Spotting","Plamienie"],["Moderate","Umiarkowany"],["Contains","Zawiera"],["Maintain","Utrzymanie"],["Generate","Generuj"],["Beginner","Początkujący"],["Advanced","Zaawansowany"],["Sign out","Wyloguj się"],["Loading…","Ładowanie…"],["Log meal","Dodaj posiłek"],["Change ⇄","Zmień ⇄"],["Download","Pobierz"],["Optional","Opcjonalne"],["Required","Wymagane"],["Disabled","Wyłączone"],["Upper A","Góra A"],["Upper B","Góra B"],["Lower A","Dół A"],["Lower B","Dół B"],["Race in","Zawody za"],["Default","Domyślna"],["History","Historia"],["Deleted","Usunięta"],["New PR!","Nowy rekord!"],["Goblets","Puchary"],["WORKOUT","TRENING"],["Account","Konto"],["Protein","Białko"],["Turn on","Włącz"],["Sign in","Zaloguj się"],["Streaks","Seria dni"],["Confirm","Potwierdź"],["Move up","W górę"],["Success","Sukces"],["Warning","Ostrzeżenie"],["Version","Wersja"],["Enabled","Włączone"],["See all","Zobacz wszystko"],["4 weeks","4 tygodnie"],["6 weeks","6 tygodnie"],["8 weeks","8 tygodnie"],["Hybrid","Hybrid"],["Edit ›","Edytuj ›"],["Dinner","Kolacja"],["Active","Aktywna"],["Medals","Medale"],["HABITS","NAWYKI"],["Cardio","Cardio"],["Habits","Nawyki"],["Report","Raport"],["Add to","Dodaj do"],["Target","Cel"],["Open ›","Otwórz ›"],["Period","Okres"],["Marked","Wyraźny"],["Energy","Energia"],["Sugars","Cukry"],["Female","Kobieta"],["Random","Losuj"],["Finish","Zakończ"],["Resume","Wznów"],["Remove","Usuń"],["Rename","Zmień nazwę"],["Upload","Wyślij"],["Update","Aktualizacja"],["‹ Home","‹ Start"],["Log ·","Dziennik ·"],["‹ Her","‹ Her"]];
 var EXACT={"Lunch":"Obiad","Snack":"Przekąska","Eaten":"Zjedzone","Limit":"Ogranicz","Added":"Dodano","Carbs":"Węgle","Fibre":"Błonnik","Sleep":"Sen","Pause":"Pauza","About":"O aplikacji","All":"Wszystkie","Other":"Inne","Squat":"Przysiad","Save":"Zapisz","Cancel":"Anuluj","Done":"Gotowe","Delete":"Usuń","Close":"Zamknij","Back":"Wróć","Home":"Start","Today":"Dziś","Yesterday":"Wczoraj","Edit":"Edytuj","Add":"Dodaj","Yes":"Tak","No":"Nie","None":"Brak","More":"Więcej","Less":"Mniej","Show":"Pokaż","Hide":"Ukryj","Next":"Dalej","Stop":"Stop","Skip":"Pomiń","Copy":"Kopiuj","Help":"Pomoc","Name":"Nazwa","Swap":"Zamień","Fat":"Tłuszcz","Salt":"Sól","Net":"Netto","Meal":"Posiłek","Scan":"Skanuj","Gut":"Jelita","PRs":"Rekordy","Undo":"Cofnij","Flow":"Obfitość","Mood":"Nastrój","DIET":"DIETA","Check":"Sprawdź","Torch":"Latarka","Share":"Udostępnij","Print":"Drukuj","Male":"Mężczyzna","Mild":"Łagodny","Heavy":"Obfity","Light":"Lekki","Medium":"Średni","Notes":"Notatki","Age":"Wiek","Weight":"Waga","Height":"Wzrost","Water":"Woda","Clear":"Wyczyść","Search":"Szukaj","Push":"Pchanie","Pull":"Ciągnięcie","Rest":"Przerwa","From":"Od","To":"Do","Exercise":"Ćwiczenie","Equipment":"Sprzęt","Experience":"Doświadczenie","Strength":"Siła","Running":"Bieganie","Hypertrophy":"Hipertrofia","Bodyweight":"Masa ciała","Race":"Zawody","Knee":"Kolano","Shoulder":"Bark","Hip":"Biodro","RIR":"RIR","Sessions":"Sesje","Volume":"Objętość","Lifts":"Ćwiczenia","Burned":"Spalone","Custom":"Własne","Goal":"Cel","Priority":"Priorytet","Sat":"Sob","Sun":"Niedz","Mon":"Pn","Tue":"Wt","Wed":"Śr","Thu":"Czw","Fri":"Pt","Off":"Wył.","Some":"Trochę","mine":"własne","No history":"Brak historii","Normal":"Zwykłe","Manual":"Ręcznie","Edit routine":"Edytuj plan"};
 window.setLang=function(l){if(l!=="en"&&l!=="pl")return;LANG=l;try{localStorage.setItem(KEY,l)}catch(e){}
  try{document.documentElement.lang=l==="pl"?"pl":"en"}catch(e){}
@@ -9477,7 +9478,7 @@ window.i18nAll=function i18nAll(){
  if(LANG!=="pl")return;
  var root=document.getElementById("app")||document.body;
  replaceDeep(root,PH);localizeNames(root);replaceExact(root,EXACT);
- try{var mt=document.getElementById("mtog");if(mt){mt.innerHTML=mt.innerHTML.replace(/TRAINING/g,"TRENING").replace(/DIET/g,"DIETA");}}catch(e){}
+ try{var mt=document.getElementById("mtog");if(mt){mt.innerHTML=mt.innerHTML.replace(/\bTRAINING\b/g,"TRENING").replace(/\bDIET\b/g,"DIETA");}}catch(e){}
 }
 var _rn=render;render=function(){var r=_rn.apply(this,arguments);try{i18nAll()}catch(e){console.warn(e)}return r};
 var _rs=rSettings;rSettings=function(){_rs.apply(this,arguments);try{var el=document.getElementById("t-settings");if(el&&!document.getElementById("langc"))el.insertAdjacentHTML("afterbegin",langCard());if(LANG==="pl")i18nAll()}catch(e){}};
@@ -9486,4 +9487,658 @@ try{if(typeof v7Sheet==="function"){var _vs=v7Sheet;v7Sheet=function(){_vs.apply
 })();
 
 </script>
+<script>
+/* v138: meal families, pairing rules, retitle, UI and i18n fixes */
+(function(){
+'use strict';
+
+function v138isCereal(nm){
+  nm=String(nm||'');
+  if(/oatcakes?|rice cakes?|crispbread/i.test(nm)) return false;
+  return /porridge oats|owsianka|granola|muesli|weetabix|cream of rice|rolled oats|overnight oat|flapjack|cheerios|corn flakes|bran flakes|shredded wheat|shreddies|\boatt?s\b(?!cakes?)/i.test(nm);
+}
+function v138isCracker(nm){return /oatcakes?|rice cakes?|crispbread|\bcrackers?\b/i.test(String(nm||''));}
+function v138isStaple(nm){
+  nm=String(nm||'');
+  if(/rice cakes?/i.test(nm)) return false;
+  return /\brice\b|potato|potatoes|\bmash\b|pasta|spaghetti|noodle|linguine|penne|lasagne|bread|sourdough|\btoast\b(?!ed)|bagel|baguette|ciabatta|pitta|pita|\bwrap\b|tortilla|quinoa|couscous|risotto|bulgur|freekeh|gnocchi/i.test(nm);
+}
+function v138isCook(nm){
+  nm=String(nm||'');
+  if(/slices \(deli\)|\bdeli\b|ham, sliced|canned in water|smoked salmon/i.test(nm) && !/fillet/i.test(nm)) return false;
+  return /beef mince|\bmince 5%|\bmince 10%|\bmince 20%|chicken breast, raw|chicken thigh|turkey mince|turkey breast, raw|salmon fillet|cod, raw|cod fillet|prawn|shrimp|sirloin|steak, raw|pork loin|pork tenderloin|pork chop|lamb |tofu|tempeh|quorn|paneer|\bhake\b|coley|sea bass|\btrout\b|mackerel|meatball|chicken breast, cooked|turkey breast, cooked|fillet, raw|fillet, cooked|king prawn/i.test(nm);
+}
+function v138isDeli(nm){
+  return /slices \(deli\)|\bdeli\b|ham, sliced|\bham\b|turkey breast, cooked|tuna, canned|smoked salmon|parma ham|back rashers|\bbacon\b|kabanos|salami/i.test(String(nm||''));
+}
+function v138kind(nm){
+  if(v138isCereal(nm)) return 'cereal';
+  if(v138isCracker(nm)) return 'cracker';
+  if(v138isStaple(nm)) return 'staple';
+  if(v138isCook(nm)) return 'cook';
+  if(v138isDeli(nm)) return 'deli';
+  if(/skyr|yoghurt|yogurt|quark|whey protein|pea protein|casein|milk,/i.test(nm)) return 'dairy';
+  if(/\begg\b|omelette/i.test(nm)) return 'egg';
+  if(/hummus/i.test(nm)) return 'spread';
+  return 'other';
+}
+function v138family(m){
+  var sl=m&&m.slot||'';
+  if(sl==='B') return 'breakfast';
+  if(sl==='L'||sl==='D') return 'main';
+  var names=((m&&m.items)||[]).map(function(x){return x.name||''});
+  var hasC=names.some(v138isCereal), hasK=names.some(v138isCook);
+  var hasCr=names.some(v138isCracker), hasD=names.some(v138isDeli);
+  var hasDy=names.some(function(n){return v138kind(n)==='dairy'});
+  var hasFr=names.some(function(n){return /banana|berr|apple|orange|kiwi|strawberr|raspberr|blueberr|grape|mango|pineapple|pear|melon/i.test(n)});
+  if(hasC && !hasK) return 'breakfast';
+  if(hasDy && hasFr && !hasCr && !hasD && !hasK) return 'breakfast';
+  if(hasCr||hasD||hasK) return 'savoury';
+  var alt=String((m&&m.alt)||'');
+  if(/oatcake|rice cake|hummus|pitta|wrap|sandwich|deli|turkey slices|chicken slices|crispbread/i.test(alt)) return 'savoury';
+  if(/porridge|oats|muesli|granola|skyr|yoghurt|overnight|shake|chia pot|protein pancakes/i.test(alt)) return 'breakfast';
+  return 'savoury';
+}
+function v138favFits(favNm, tplNm, slot, role){
+  if(!role || role==='f' || role==='v') return false;
+  var fk=v138kind(favNm), tk=v138kind(tplNm);
+  if(fk==='cereal'){
+    if(tk!=='cereal') return false;
+    if(slot==='L'||slot==='D') return false;
+    return slot==='B' || slot==='S';
+  }
+  if(fk==='cook'){
+    if(tk!=='cook') return false;
+    return slot==='L'||slot==='D';
+  }
+  if(fk==='cracker' && tk!=='cracker') return false;
+  if(fk==='staple' && tk!=='staple') return false;
+  if(fk==='deli' && tk!=='deli') return false;
+  if(fk==='dairy' && tk!=='dairy' && tk!=='other') return false;
+  if(slot==='B' && (fk==='cook' || (typeof MAINRX==='function'?false:((typeof MAINRX!=='undefined')&&MAINRX.test(favNm))))) return false;
+  if((slot==='B'||slot==='S') && fk==='cook') return false;
+  if(fk!=='other' && tk!=='other' && fk!==tk) return false;
+  return fk===tk || (fk==='other' && tk==='other');
+}
+function v138gdOk(nm, X){
+  if(!X) return true;
+  try{if(typeof gdWhy==='function' && gdWhy(nm,X)) return false;}catch(e){}
+  return true;
+}
+function v138keto(R){return !!(R&&R.style&&R.style.id==='keto');}
+
+function v138pickStaple(m, R, X){
+  if(v138keto(R)) return null;
+  var title=String(m.alt||''), cands=[];
+  if(/pasta|spaghetti/i.test(title)) cands.push('Pasta, dry','Wholewheat pasta, dry');
+  if(/noodle/i.test(title)) cands.push('Egg noodles, dry','Rice noodles, dry');
+  if(/potato|chips|mash/i.test(title)) cands.push('Potatoes, raw','Sweet potato, raw');
+  if(/\brice\b/i.test(title)) cands.push('Basmati rice, raw','Brown rice, raw','White rice, raw');
+  if(/quinoa/i.test(title)) cands.push('Quinoa, raw','Quinoa, cooked');
+  if(/couscous/i.test(title)) cands.push('Couscous, dry');
+  if(/bread|toast|sourdough|bagel/i.test(title)) cands.push('Wholemeal bread','Sourdough bread');
+  if(/wrap|tortilla|burrito/i.test(title)) cands.push('Wholemeal wrap / tortilla');
+  if(/pitta|pita/i.test(title)) cands.push('Pitta bread, wholemeal','Pitta bread');
+  var fam=v138family(m);
+  if(fam==='savoury'){
+    cands=cands.concat(['Oatcakes','Rice cakes','Pitta bread, wholemeal','Wholemeal bread']);
+  }else{
+    cands=cands.concat(['Basmati rice, raw','Potatoes, raw','Pasta, dry','Wholemeal bread']);
+  }
+  for(var i=0;i<cands.length;i++){
+    var nm=cands[i];
+    if(fByName(nm)&&v138gdOk(nm,X)) return nm;
+  }
+  return null;
+}
+function v138addFood(items, nm, g){
+  var f=fByName(nm); if(!f||!(g>0)) return items;
+  g=Math.max(10, Math.round(g/5)*5);
+  var ex=items.filter(function(x){return x.name===f.name})[0];
+  if(ex){ items[items.indexOf(ex)]=calc(f, ex.g+g); }
+  else items.push(calc(f,g));
+  return items;
+}
+function v138removeIf(items, fn){
+  return items.filter(function(x){return !fn(x);});
+}
+function v138retitle(m, force){
+  if(!m||!m.items||!m.items.length) return m;
+  if(!force && v138titleOk(m)) return m;
+  try{
+    if(typeof gdName==='function') m.alt=gdName(m.items);
+    else{
+      var v=m.items.slice().sort(function(a,b){return b.kcal-a.kcal}).slice(0,3).map(function(x){return String(x.name).split(/[,(]/)[0].trim();});
+      v=v.filter(function(x,i){return v.indexOf(x)===i});
+      m.alt=v.length>1?v.slice(0,-1).join(', ')+' & '+v[v.length-1]:v[0]||m.alt;
+    }
+  }catch(e){}
+  return m;
+}
+function v138titleOk(m){
+  var alt=String(m.alt||'').toLowerCase();
+  if(!alt) return false;
+  var names=(m.items||[]).map(function(x){return String(x.name||'').toLowerCase()});
+  var blob=names.join(' | ');
+  var toks=[
+    ['chicken slices', /chicken slices|deli/, /chicken breast slices|deli/],
+    ['hummus', /\bhummus\b/, /hummus/],
+    ['oatcakes', /oatcakes?\b/, /oatcakes?/],
+    ['rice cakes', /rice cakes?\b/, /rice cakes?/],
+    ['pitta', /\bpitta\b|\bpita\b/, /pitta|pita/],
+    ['wrap', /\bwrap\b|\btortilla\b/, /wrap|tortilla/],
+    ['bread', /\bbread\b|\bsourdough\b|\btoast\b(?!ed)/, /bread|sourdough|\btoast\b(?!ed)|bagel|baguette/],
+    ['pasta', /\bpasta\b|\bspaghetti\b|\bnoodle/, /pasta|spaghetti|noodle/],
+    ['rice', /\brice\b(?! cakes?)/, /rice(?! cakes?)/],
+    ['potato', /\bpotato|\bpotatoes\b|\bmash\b/, /potato|potatoes|\bmash\b/],
+    ['quinoa', /\bquinoa\b/, /quinoa/],
+    ['couscous', /\bcouscous\b/, /couscous/],
+    ['muesli', /\bmuesli\b/, /muesli/],
+    ['granola', /\bgranola\b/, /granola/],
+    ['porridge', /\bporridge\b|\bovernight oats\b/, /porridge|owsianka/],
+    ['prawn', /\bprawn|\bshrimp/, /prawn|shrimp/],
+    ['tofu', /\btofu\b/, /tofu/],
+    ['tempeh', /\btempeh\b/, /tempeh/],
+    ['quinoa', /\bquinoa\b/, /quinoa/],
+    ['salmon', /\bsalmon\b/, /salmon/],
+    ['tuna', /\btuna\b/, /tuna/],
+    ['chicken', /\bchicken\b/, /chicken/],
+    ['turkey', /\bturkey\b/, /turkey/],
+    ['steak', /\bsteak\b/, /steak|sirloin/],
+    ['beef', /\bbeef\b/, /beef/],
+    ['chia', /\bchia\b/, /chia/],
+    ['skyr', /\bskyr\b/, /skyr/],
+    ['whey', /\bwhey\b|\bprotein shake\b/, /whey|protein powder|pea protein/]
+  ];
+  for(var i=0;i<toks.length;i++){
+    if(!toks[i][1].test(alt)) continue;
+    if(/spanish tortilla/i.test(alt) && toks[i][0]==='wrap') continue;
+    if(/toasted oat/i.test(alt) && toks[i][0]==='bread') continue;
+    if(/(buckwheat|millet|rice|quinoa) porridge/i.test(alt) && toks[i][0]==='porridge'){
+      if(/(buckwheat|millet|kasza|quinoa)/i.test(blob)) continue;
+    }
+    if(toks[i][0]==='chicken' && /chicken slices/.test(alt)) continue;
+    if(toks[i][0]==='beef' && /mince|steak|chilli con carne/.test(alt)) { /* still require beef in foods */ }
+    if(toks[i][0]==='oats' /*skip*/) continue;
+    if(!toks[i][2].test(blob)) return false;
+  }
+  return true;
+}
+
+function v138fixMeal(m, R, X){
+  if(!m||!m.items) return m;
+  var sl=m.slot||'', fam=v138family(m);
+  var items=m.items.slice();
+  var changed=false;
+  function has(fn){return items.some(function(x){return fn(x.name);});}
+
+  if(fam==='breakfast' || sl==='B'){
+    if(has(v138isCook)){
+      items=v138removeIf(items, function(x){return v138isCook(x.name);});
+      changed=true;
+    }
+  }
+  if(fam==='savoury' && sl==='S'){
+    if(has(v138isCereal)){
+      var cer=items.filter(function(x){return v138isCereal(x.name);});
+      items=v138removeIf(items, function(x){return v138isCereal(x.name);});
+      if(!has(v138isCracker) && !has(v138isStaple)){
+        var g=cer[0]?cer[0].g:40;
+        var crack='Oatcakes';
+        if(X && !v138gdOk(crack,X)) crack='Rice cakes';
+        if(fByName(crack) && v138gdOk(crack,X)) v138addFood(items, crack, Math.min(80, Math.max(30,g*0.5)));
+      }
+      changed=true;
+    }
+    if(has(v138isCook)){
+      items=v138removeIf(items, function(x){return v138isCook(x.name);});
+      changed=true;
+      if(!items.some(function(x){return v138isDeli(x.name)||v138kind(x.name)==='egg'||v138kind(x.name)==='dairy'||/tuna|cottage|cheddar|feta|hummus/i.test(x.name);})){
+        var deli='Chicken breast slices (deli)';
+        if(fByName(deli)&&v138gdOk(deli,X)) v138addFood(items, deli, 80);
+      }
+    }
+  }
+  if(fam==='main' || sl==='L' || sl==='D'){
+    if(has(v138isCereal)){
+      var cer2=items.filter(function(x){return v138isCereal(x.name);});
+      var ckcal=cer2.reduce(function(a,x){return a+(x.kcal||0);},0);
+      items=v138removeIf(items, function(x){return v138isCereal(x.name);});
+      if(!has(v138isStaple) && !v138keto(R)){
+        var st=v138pickStaple(m,R,X);
+        if(st){
+          var f=fByName(st);
+          var g=f&&f.kcal?Math.round((ckcal||200)/(f.kcal/100)/5)*5:80;
+          v138addFood(items, st, Math.max(40, Math.min(180,g)));
+        }
+      }
+      changed=true;
+    }
+    if(!has(v138isStaple) && !v138keto(R) && (has(v138isCook)||has(v138isDeli)||items.some(function(x){return v138kind(x.name)==='egg';}))){
+      var st2=v138pickStaple(m,R,X);
+      if(st2){
+        var f2=fByName(st2);
+        var need=0;
+        try{if(R&&R.carbs){var T=sumItems(items);need=Math.max(0,(R.carbs*( {L:.35,D:.35,S:.15,B:.15}[sl]||.3 ))-T.carbs);}}catch(e){}
+        var g2=f2&&f2.carbs?Math.round((need>20?need:40)/(f2.carbs/100)/5)*5:80;
+        v138addFood(items, st2, Math.max(40, Math.min(180,g2||80)));
+        changed=true;
+      }
+    }
+  }
+  items=items.filter(function(x){return x && x.g>0 && x.name;});
+  if(!items.length){ return m; }
+  m.items=items;
+  v138retitle(m, changed || !v138titleOk(m));
+  return m;
+}
+
+function v138rebalance(mp, R, i, X){
+  if(!mp||!R) return mp;
+  try{
+    var sp=SPLIT[(i&&i.meals)||mp.length]||SPLIT[4];
+    var fr=sp.map(function(s){return s[2];});
+    var AV=(typeof avoidSet==='function')?avoidSet(i||{}):{};
+    if(typeof ppDay==='function') ppDay(mp, R, fr, {av:AV, add:false, keep:true, v138:1});
+    if(typeof fitDay==='function' && !v138keto(R)) fitDay(mp, R);
+    // After rebalance, run pairing once more (ppDay shouldn't add cereal, but be safe)
+    mp.forEach(function(m){v138fixMeal(m,R,X);});
+  }catch(e){ console.warn('v138rebalance', e); }
+  mp.forEach(function(m){v138retitle(m, true);});
+  return mp;
+}
+
+function v138fixPlan(mp, R, i, X){
+  if(!mp) return mp;
+  mp.forEach(function(m){v138fixMeal(m,R,X);});
+  v138rebalance(mp, R, i, X);
+  mp.forEach(function(m){ v138retitle(m, true); if(typeof fixM==='function') try{fixM(m);}catch(e){} });
+  return mp;
+}
+
+// ---- fvSub: same role AND same family ----
+if(typeof fvSub==='function'){
+  var _fvSub=fvSub;
+  fvSub=function(tpl,slot,FI,AV,use,rnd){
+    var out=[],hit={};
+    (tpl||[]).forEach(function(x){
+      var f=fByName(x[0]); if(!f) return;
+      var role=typeof x[1]==='number'?(n(f.kcal)<70?'v':null):x[1];
+      var cands=(FI&&FI.used||[]).filter(function(u){
+        return u.r===role && v138favFits(u.f.name, f.name, slot, role);
+      });
+      if(cands.some(function(u){return u.f.name===f.name;})){ hit[f.name]=1; out.push(x); return; }
+      if(cands.length&&role!=='f'){
+        cands.sort(function(a,b){return (use[a.f.name]||0)-(use[b.f.name]||0)||(rnd?rnd():0)-.5;});
+        var u=cands[0];
+        if(!out.some(function(y){return y[0]===u.f.name;})){ hit[u.f.name]=1; out.push([u.f.name, typeof x[1]==='number'?x[1]:x[1]]); return; }
+      }
+      if(AV&&AV[f.name]){
+        if(typeof x[1]==='number') return;
+        var alt=(POOL[role]||[]).filter(function(nm){return !AV[nm]&&fByName(nm)&&!out.some(function(y){return y[0]===nm;})&&v138favFits(nm,f.name,slot,role);})[0];
+        if(alt) out.push([alt,x[1]]);
+        return;
+      }
+      if(FI&&FI.used&&FI.used.some(function(u){return u.f.name===f.name;})) hit[f.name]=1;
+      out.push(x);
+    });
+    return {it:out, hit:Object.keys(hit)};
+  };
+}
+
+// ---- fvTopUp: never add cook protein onto cereal, or cereal onto meat ----
+if(typeof fvTopUp==='function'){
+  var _fvTop=fvTopUp;
+  fvTopUp=function(items,tg,FI,AV){
+    items=items||[];
+    var hasC=items.some(function(x){return v138isCereal(x.name);});
+    var hasK=items.some(function(x){return v138isCook(x.name);});
+    var t=sumItems(items);
+    var add=function(nm,g){
+      var f=fByName(nm); if(!f||g<5) return;
+      var k=v138kind(nm);
+      if(k==='cook' && hasC) return;
+      if(k==='cereal' && hasK) return;
+      if(k==='cook' && items.some(function(x){return v138isCracker(x.name)||v138isDeli(x.name);})) return;
+      if(k==='cereal' && items.some(function(x){return v138isCracker(x.name)||v138isStaple(x.name);})) return;
+      g=Math.round(g/5)*5;
+      var ex=items.filter(function(x){return x.name===f.name;})[0];
+      if(ex) items[items.indexOf(ex)]=calc(f,ex.g+g);
+      else items.push(calc(f,g));
+    };
+    var pf=(FI.used.filter(function(u){return u.r==='p' && !(hasC && v138isCook(u.f.name));})[0]||{}).f;
+    var pn=pf?pf.name:(POOL.p||[]).filter(function(x){return !AV[x] && !(hasC && v138isCook(x));})[0];
+    var dp=tg.protein-t.protein;
+    if(dp>6&&pn) add(pn, dp/(fByName(pn).protein/100));
+    t=sumItems(items);
+    var on=(POOL.f||[]).filter(function(x){return !AV[x];})[0], df=tg.fat-t.fat;
+    if(df>5&&on) add(on, df/(fByName(on).fat/100));
+    return items;
+  };
+}
+
+// ---- ppFix: empty av is not "add enabled"; restore hummus; no porridge/avocado on savoury ----
+if(typeof ppFix==='function'){
+  var _ppFix=ppFix;
+  ppFix=function(items,T,ctx){
+    ctx=ctx||{};
+    var orig=(items||[]).map(function(x){return Object.assign({},x);});
+    var ctx2=Object.assign({},ctx);
+    if(ctx2.av && typeof ctx2.av==='object' && !Object.keys(ctx2.av).length && ctx2.add!==true){
+      ctx2.av=null;
+    }
+    // Never ask the inner add-path to invent porridge
+    var L;
+    try{ L=_ppFix(items,T,ctx2); }catch(e){ L=items; }
+    if(!L) L=items||[];
+    var names=function(arr){return arr.map(function(x){return x.name;});};
+    var famGuess=function(arr){
+      var fake={items:arr, slot:ctx.slot||ctx.sl||''};
+      return v138family(fake);
+    };
+    var fam=famGuess(orig.length?orig:L);
+    // Restore small/precious components that were dropped
+    var precious=/hummus|soy sauce|lemon juice|pasta sauce|pesto|mayonnaise|mustard|garlic|ginger|chilli|salsa|tzatziki|dressing|vinegar|herbs|spice|cumin|paprika|curry powder|\bham\b|parma ham/i;
+    orig.forEach(function(x){
+      if(L.some(function(y){return y.name===x.name;})) return;
+      if(precious.test(x.name) || v138kind(x.name)==='spread' || (/hummus/i.test(x.name))){
+        var f=fByName(x.name);
+        if(f) L.push(calc(f, Math.max(15, Math.min(80, Math.round((x.g||20)/5)*5))));
+      }
+    });
+    // Strip cereal that ppFix added to a savoury/main plate
+    if(fam==='main'||fam==='savoury'){
+      var addedCereal=L.filter(function(x){return v138isCereal(x.name) && !orig.some(function(y){return y.name===x.name;});});
+      if(addedCereal.length) L=L.filter(function(x){return !addedCereal.some(function(y){return y===x;});});
+    }
+    // Strip avocado that was not originally on a savoury snack
+    if(fam==='savoury'){
+      L=L.filter(function(x){
+        if(!/avocado/i.test(x.name)) return true;
+        return orig.some(function(y){return y.name===x.name;});
+      });
+    }
+    return L.length?L:items;
+  };
+}
+
+// ---- Outermost genMeals ----
+var _gm138=genMeals;
+genMeals=function(R,i,seed){
+  var mp=_gm138.apply(this,arguments);
+  try{ mp=v138fixPlan(mp,R,i,null); }catch(e){ console.warn('v138 genMeals',e); }
+  return mp;
+};
+
+// ---- gdGen: retitle + pairing after gdFit, keep IBS/PCOS filters ----
+if(typeof gdGen==='function'){
+  var _gdGen=gdGen;
+  gdGen=function(c,seed){
+    var d=_gdGen.apply(this,arguments);
+    try{
+      var X=(typeof gdCtx==='function')?gdCtx(c):null;
+      var R=d&&d.res, mp=d&&d.mp, I=X&&X.I;
+      if(mp) v138fixPlan(mp,R,I,X);
+      if(d) d.mp=mp;
+    }catch(e){ console.warn('v138 gdGen',e); }
+    return d;
+  };
+}
+
+// ---- Option B / Random ----
+if(typeof obGen==='function'){
+  var _obGen=obGen;
+  obGen=function(){
+    var g=_obGen.apply(this,arguments);
+    try{
+      if(g&&g.items){
+        var fake={items:g.items, alt:g.alt, slot:(g.slot||'')};
+        v138fixMeal(fake, (typeof pl!=='undefined'&&pl&&pl.res)||null, null);
+        g.items=fake.items; g.alt=fake.alt;
+      }
+    }catch(e){}
+    return g;
+  };
+}
+if(typeof gdSetItems==='function'){
+  var _gdSI=gdSetItems;
+  gdSetItems=function(m,o){
+    var r=_gdSI.apply(this,arguments);
+    try{ if(m) v138retitle(m,true); }catch(e){}
+    return r;
+  };
+}
+
+// ---- rPlan: retitle after swap ----
+if(typeof rPlan==='function'){
+  var _rP138=rPlan;
+  rPlan=function(){
+    try{
+      if(typeof pl!=='undefined'&&pl&&pl.mp){
+        pl.mp.forEach(function(m){v138fixMeal(m,pl.res,null); v138retitle(m,true);});
+      }
+    }catch(e){}
+    return _rP138.apply(this,arguments);
+  };
+}
+
+// ---- Gauge: give the cog its own row so it does not sit on the score text ----
+try{
+  var st=document.createElement('style');
+  st.setAttribute('data-v','138');
+  st.textContent='.gcard{position:relative;padding-top:44px!important}.gcog{position:absolute;top:8px;right:8px;z-index:3;width:36px!important;min-width:36px!important;min-height:36px!important;max-height:36px!important;padding:0!important;display:flex;align-items:center;justify-content:center;line-height:1}';
+  document.head.appendChild(st);
+}catch(e){}
+
+// ---- HT59: translate first, then shorten, in the active language ----
+try{
+  var HT59PL={'CREATE DIET PLAN':'PLAN DIETY','DIET PLAN':'PLAN DIETY','TRAINING REPORT':'RAPORT TREN.','SHOPPING LIST':'ZAKUPY','SHOPPING':'ZAKUPY','DIET REPORT':'RAPORT DIETY','CREATE PLAN':'STWÓRZ PLAN','CARDIO':'KARDIO','SCAN':'SKAN','GUT':'JELITA','EXERCISES':'ĆWICZENIA','CHECK-IN':'POMIARY','WORKOUT':'TRENING','HABITS':'NAWYKI','COMMUNITY':'SPOŁECZNOŚĆ','WATER':'WODA','MY DIETS':'MOJE DIETY'};
+  if(typeof HT59==='object'){
+    HT59['CREATE DIET PLAN']='DIET PLAN';
+    HT59['CREATE PLAN']='PLAN';
+  }
+  var _tH138=tilesHtml;
+  tilesHtml=function(m){
+    var h=_tH138.apply(this,arguments);
+    try{
+      var w=document.createElement('div'); w.innerHTML=h;
+      [].forEach.call(w.querySelectorAll('.htile'),function(b){
+        var t=b.querySelector('b'); if(!t) return;
+        var full=t.textContent, pl=typeof LANG!=='undefined'&&LANG==='pl';
+        if(pl){
+          // translate the full title first
+          if(typeof PH!=='undefined'){
+            for(var i=0;i<PH.length;i++){
+              if(PH[i][0]===full){ full=PH[i][1]; break; }
+            }
+          }
+          var short=HT59PL[t.textContent]||HT59PL[full];
+          if(short && innerWidth<900 && !b.classList.contains('tpl') && !b.classList.contains('wide')) t.textContent=short;
+          else t.textContent=full;
+        }
+      });
+      h=w.innerHTML;
+    }catch(e){}
+    return h;
+  };
+}catch(e){}
+
+// ---- Polish strings ----
+try{
+  if(typeof PH!=='undefined' && PH.push){
+    var more=[
+      ['Streaks','Seria dni'],
+      ['SCAN','SKAN'],
+      ['GUT','JELITA'],
+      ['CARDIO','KARDIO'],
+      ['CREATE DIET PLAN','STWÓRZ PLAN DIETY'],
+      ['DIET PLAN','PLAN DIETY'],
+      ['CREATE PLAN','STWÓRZ PLAN'],
+      ['Account & backup','Konto i kopia zapasowa'],
+      ['Automatic backup off','Automatyczna kopia wyłączona'],
+      ['Automatic backup','Automatyczna kopia zapasowa'],
+      ['SIGN UP','ZAŁÓŻ KONTO'],
+      ['Sign up','Załóż konto'],
+      ['Sign in to join','Zaloguj się, aby dołączyć'],
+      ['Share meals, workouts and progress with other AT Fitness users.','Dziel się posiłkami, treningami i postępami z innymi użytkownikami AT Fitness.'],
+      ['Everything else in the app works without an account.','Reszta aplikacji działa bez konta.'],
+      ['Speak your workout','Powiedz swój trening'],
+      ['Drag tiles to move them','Przeciągnij kafelki, aby je przesunąć'],
+      ['Show 🌸 Her on home','Pokaż 🌸 Her na stronie głównej'],
+      ['Open on Her by default','Otwieraj od razu w Her'],
+      ['Trainer profile','Profil trenera'],
+      ['Trainer profile on','Profil trenera włączony'],
+      ['Trainer profile off','Profil trenera wyłączony'],
+      ['I’m a personal trainer','Jestem trenerem personalnym'],
+      ['Follicular','Folicularna'],
+      ['Luteal','Luteralna'],
+      ['Menstrual','Menstruacja'],
+      ['Ovulation','Owulacja'],
+      ['Balanced','Zrównoważona'],
+      ['High-protein','Wysokobiałkowa'],
+      ['Low-carb','Niskowęglowodanowa'],
+      ['High-carb','Wysokowęglowodanowa'],
+      ['Anti-inflammatory','Przeciwzapalna'],
+      ['Gentle start','Łagodny start'],
+      ['Simple','Prosta'],
+      ['Zone','Strefa'],
+      ['Keto','Keto'],
+      ['My workouts','Moje treningi'],
+      ['Workout Creator','Kreator treningu'],
+      ['Workout','Trening'],
+      ['Community','Społeczność'],
+      ['Customise gauge','Dostosuj wskaźnik'],
+      ['Daily score gauge','Wskaźnik wyniku dnia'],
+      ['I agree to AT Fitness storing this health data on my device','Zgadzam się, aby AT Fitness przechowywał te dane zdrowotne na moim urządzeniu'],
+      ['Not now','Nie teraz'],
+      ['Your health data','Twoje dane zdrowotne']
+    ];
+    // Put longer phrases first: unshift in reverse so first is longest. PH.replaceDeep is indexOf so order of longer-first helps.
+    more.sort(function(a,b){return b[0].length-a[0].length;});
+    more.forEach(function(p){
+      // Replace existing Streaks etc.
+      var found=false;
+      for(var i=0;i<PH.length;i++){
+        if(PH[i][0]===p[0]){ PH[i][1]=p[1]; found=true; break; }
+      }
+      if(!found) PH.unshift(p);
+    });
+  }
+  if(typeof EXACT!=='undefined'){
+    EXACT['Streaks']='Seria dni';
+    EXACT['SCAN']='SKAN';
+    EXACT['GUT']='JELITA';
+    EXACT['CARDIO']='KARDIO';
+  }
+}catch(e){}
+
+// ---- FPL: fix broken half-English Polish food names ----
+try{
+  if(typeof FPL!=='undefined'){
+    var FXfix={
+      'Chicken wings, cooked':'Skrzydełka z kurczaka, gotowane',
+      'Turkey breast, cooked':'Pierś z indyka, gotowana',
+      'Chicken thigh, skinless, cooked':'Udko z kurczaka, bez skóry, gotowane',
+      'Beef mince 5% fat, cooked':'Mielona wołowina 5% tłuszczu, gotowana',
+      'Beef mince 10% fat, cooked':'Mielona wołowina 10% tłuszczu, gotowana',
+      'Beef mince 20% fat, cooked':'Mielona wołowina 20% tłuszczu, gotowana',
+      'Sirloin steak, cooked':'Stek z polędwicy, gotowany',
+      'Rib-eye steak, cooked':'Stek rib-eye, gotowany',
+      'Pork chop, cooked':'Kotlet wieprzowy, gotowany',
+      'Lamb leg, cooked':'Udziec jagnięcy, gotowany',
+      'Salmon fillet, cooked':'Filet z łososia, gotowany',
+      'Cod, cooked (baked)':'Dorsz, pieczony',
+      'Prawns, cooked':'Krewetki, gotowane',
+      'Egg, boiled':'Jajko, gotowane na twardo',
+      'Almond milk, unsweetened':'Mleko migdałowe, niesłodzone',
+      'Egg noodles, cooked':'Makaron jajeczny, gotowany',
+      'Tea with milk':'Herbata z mlekiem',
+      'Chicken fillet roll':'Roladka z filetu kurczaka',
+      'Alaska pollock, cooked':'Mintaj, gotowany',
+      'Hake, cooked (baked)':'Morszczuk, pieczony',
+      'Haddock, cooked':'Łupacz, gotowany',
+      'Tuna steak, cooked':'Stek z tuńczyka, gotowany',
+      'Mackerel, cooked':'Makrela, gotowana',
+      'Sea bass, cooked':'Labrax, gotowany',
+      'Trout, rainbow farmed, cooked':'Pstrąg tęczowy, gotowany',
+      'Tilapia, cooked':'Tilapia, gotowana',
+      'Plaice / sole, cooked':'Flądra / sola, gotowana',
+      'Halibut, cooked':'Halibut, gotowany',
+      'Monkfish, cooked':'Żabnica, gotowana',
+      'Coley / saithe, cooked':'Czarniak, gotowany',
+      'Swordfish, cooked':'Miecznik, gotowany',
+      'King prawns, cooked':'Krewetki królewskie, gotowane',
+      'Crab meat, cooked':'Mięso z kraba, gotowane',
+      'Mussels, cooked (meat)':'Małże, gotowane (mięso)',
+      'Scallops, cooked':'Przegrzebki, gotowane',
+      'Octopus, cooked':'Ośmiornica, gotowana',
+      'Lobster, cooked':'Homar, gotowany',
+      'Breaded/battered fish fillet, cooked':'Filet rybny panierowany, smażony',
+      'Beef fillet steak, raw':'Polędwica wołowa, surowa',
+      'Beef brisket, cooked':'Mostek wołowy, gotowany',
+      'Pork ribs, cooked':'Żeberka wieprzowe, gotowane',
+      'Lamb kofta, cooked':'Kofta jagnięca, gotowana',
+      'Protein milk (high-protein)':'Mleko wysokobiałkowe',
+      'Cream cheese, Philadelphia original':'Serek śmietankowy Philadelphia, oryginalny',
+      'Protein shake, ready-to-drink':'Koktajl białkowy, gotowy do picia',
+      'Tea, black, no milk':'Herbata czarna, bez mleka',
+      'Oat milk, barista':'Mleko owsiane, barista',
+      'Soya milk, sweetened':'Mleko sojowe, słodzone',
+      'Chicken curry with rice (takeaway)':'Curry z kurczakiem i ryżem (na wynos)',
+      'Salt & chilli chicken':'Kurczak sól i chilli',
+      'Chicken caesar wrap (shop)':'Wrap Cezar z kurczakiem (gotowy)',
+      'Onion rings, battered':'Krążki cebulowe w cieście',
+      'Ham & cheese toastie':'Tost z szynką i serem',
+      'Chicken & veg stir-fry with noodles':'Stir-fry z kurczakiem, warzywami i makaronem',
+      'Protein porridge pot (ready)':'Owsianka białkowa (gotowa)',
+      'Chicken Caesar salad (shop)':'Sałatka Cezar z kurczakiem (gotowa)',
+      'Pasta salad (shop)':'Sałatka makaronowa (gotowa)',
+      'Soup, chicken & vegetable (fresh)':'Zupa drobiowo-warzywna (świeża)',
+      'Cream of rice, dry':'Krem ryżowy, suchy',
+      'Carrots, boiled':'Marchew, gotowana',
+      'Broccoli, boiled':'Brokuł, gotowany',
+      'Basa / pangasius fillet, raw':'Basa / pangasius, filet surowy',
+      'Buckwheat groats (kasza gryczana), dry':'Kasza gryczana, sucha',
+      'Buckwheat (kasza gryczana), cooked':'Kasza gryczana, gotowana',
+      'Millet (kasza jaglana), dry':'Kasza jaglana, sucha',
+      'Millet (kasza jaglana), cooked':'Kasza jaglana, gotowana',
+      'Pearl barley groats (kasza jęczmienna), cooked':'Kasza jęczmienna, gotowana',
+      'Semolina (kasza manna), dry':'Kasza manna, sucha'
+    };
+    Object.keys(FXfix).forEach(function(k){FPL[k]=FXfix[k];});
+  }
+}catch(e){}
+
+// ---- calcPlan: refuse empty stats (no negative BMR) ----
+if(typeof calcPlan==='function'){
+  var _cp138=calcPlan;
+  calcPlan=function(i){
+    if(!i||!(n(i.age)>0&&n(i.h)>0&&n(i.w)>0)){
+      var r=_cp138.apply(this,arguments);
+      if(r&&r.bmr<0){ r.bmr=0; r.tdee=0; r.kcal=0; r.warn=r.warn||'Enter age, height and weight'; }
+      return r;
+    }
+    return _cp138.apply(this,arguments);
+  };
+}
+
+// ---- mlab robustness ----
+if(typeof mlab==='function'){
+  var _ml138=mlab;
+  mlab=function(m){
+    try{
+      var s=_ml138.apply(this,arguments);
+      if(s&&/undefined/.test(s)) return (m&&m.name)||('Meal '+(m&&m.no||'')).replace(/Meal $/,'Meal');
+      return s;
+    }catch(e){ return (m&&m.name)||('Meal '+(m&&m.no||'')); }
+  };
+}
+
+window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:v138kind,family:v138family,favFits:v138favFits,fixPlan:v138fixPlan,fixMeal:v138fixMeal,retitle:v138retitle,titleOk:v138titleOk,
+  reset:function(){ try{ if(typeof GH!=='undefined'){Object.keys(GH).forEach(function(k){GH[k]=[];});} if(typeof FVH!=='undefined'){Object.keys(FVH).forEach(function(k){FVH[k]=[];});} if(typeof GDH!=='undefined'){Object.keys(GDH).forEach(function(k){GDH[k]=[];});} if(window.V115GH){Object.keys(window.V115GH).forEach(function(k){window.V115GH[k]=[];});} }catch(e){} }
+};
+})();
+
+</script>
+
 </body></html>
