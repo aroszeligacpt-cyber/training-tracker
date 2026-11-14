@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v149 · 14 Nov 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v150 · 14 Nov 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v149</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v150</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4885,7 +4885,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v149 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v150 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -11674,6 +11674,9 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
   // Normal (non-gut) diets: realistic portion caps only — no FODMAP caps.
   function nlim(nm){
     var f=null; try{ f=fByName(nm); }catch(e){}
+    var cl=cond150(nm); if(cl) return cl;
+    if(PGL>450&&/chicken breast|turkey breast|\bcod\b|pollock|hake|coley|haddock|prawn|shrimp/i.test(nm)&&!/cooked|sandwich|wrap/i.test(nm)) return 400; /* v150: 2-meal days — one bigger lean portion instead of two meats */
+    if(/yogh?urt|skyr|jogurt/i.test(nm)&&!/drink|frozen/i.test(nm)) return 300;
     if(/\boil\b|ghee|mayonnaise/i.test(nm)) return 25;
     if(f&&f.fat>80) return 30;
     if(/peanut butter|almond butter|nut butter|tahini|walnut|almond|cashew|peanuts|hazelnut|pistachio|seeds?\b|chia|flax/i.test(nm)) return 50;
@@ -11705,29 +11708,48 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
   var PLANT148=/quorn|tofu|tempeh|seitan|soy(a)? mince|vegan|veggie|meat-free|falafel/i, ANIM148=/chicken|turkey|beef|pork|lamb|mince|steak|sirloin|salmon|\bcod\b|tuna|fish|prawn|shrimp|\bham\b|bacon|rasher|sausage|hake|coley|pollock|sea bass|trout|mackerel|sardine|duck|liver|chorizo|salami|kabanos|meatball/i;
   function isPlant148(nm){ return PLANT148.test(nm); }
   function isAnim148(nm){ return ANIM148.test(nm)&&!PLANT148.test(nm); }
+  var FLESH150=/chicken|turkey|beef|pork|lamb|steak|sirloin|salmon|\bcod\b|tuna|hake|coley|pollock|sea bass|trout|mackerel|sardine|kipper|duck|\bham\b|bacon|rasher|sausage|chorizo|salami|kabanos|meatball|liver|venison|mince|fish|haddock|plaice|tilapia|basa|anchov/i;
+  function isFlesh150(nm){ return FLESH150.test(nm)&&!PLANT148.test(nm)&&!/prawn|shrimp|sauce|stock|egg|sandwich|wrap/i.test(nm); }
+  function flesh150(items){ return items.filter(function(x){ return isFlesh150(x.name); }).length; }
   function mix148(items){ return items.some(function(x){ return isPlant148(x.name); })&&items.some(function(x){ return isAnim148(x.name); }); }
-  function unmix148(mm){ if(!mix148(mm.items)) return false; var pp=0,pa=0; mm.items.forEach(function(x){ if(isPlant148(x.name)) pp+=x.protein||0; else if(isAnim148(x.name)) pa+=x.protein||0; }); var dropPlant=pa>=pp; mm.items=mm.items.filter(function(x){ return dropPlant?!isPlant148(x.name):!isAnim148(x.name); }); return true; }
-  function grow149(mm,t){ // fill toward t with the plate's own non-protein foods, carb first, each within its cap
-    var ord=mm.items.map(function(x,q){ return q; }).filter(function(q){ return !protFood(mm.items[q].name); }).sort(function(a,b){ return (fam(mm.items[b].name)?1:0)-(fam(mm.items[a].name)?1:0); });
+  function unmix148(mm){ var ch=false;
+    if(flesh150(mm.items)>1){ var keep=-1,kp=-1; mm.items.forEach(function(x,q){ if(isFlesh150(x.name)&&(x.protein||0)>kp){ kp=x.protein||0; keep=q; } }); mm.items=mm.items.filter(function(x,q){ return q===keep||!isFlesh150(x.name); }); ch=true; }
+    if(!mix148(mm.items)) return ch; var pp=0,pa=0; mm.items.forEach(function(x){ if(isPlant148(x.name)) pp+=x.protein||0; else if(isAnim148(x.name)) pa+=x.protein||0; }); var dropPlant=pa>=pp; mm.items=mm.items.filter(function(x){ return dropPlant?!isPlant148(x.name):!isAnim148(x.name); }); return true; }
+  function grow149(mm,t,noFat){ // fill toward t with the plate's own non-protein foods, carb first, each within its cap
+    var ord=mm.items.map(function(x,q){ return q; }).filter(function(q){ var f=fByName(mm.items[q].name); return !protFood(mm.items[q].name)&&!(noFat&&f&&f.fat>=8); }).sort(function(a,b){ return (fam(mm.items[b].name)?1:0)-(fam(mm.items[a].name)?1:0); });
     ord.forEach(function(q){ var need=t-kc(mm); if(need<=t*0.01) return; var x=mm.items[q], f=fByName(x.name); if(!f||!(f.kcal>0)) return; var g=Math.min(nlim(x.name), x.g+need/(f.kcal/100)); if(g>x.g+4){ mm.items[q]=rc(x,g); prodCap148(mm); } });
   }
-  function fill149(mm,t){
-    grow149(mm,t);
-    for(var z=0;z<2&&kc(mm)<t*0.965;z++){ var sl=(mm.slot==='B'||mm.slot==='S')?mm.slot:'L', L1=F148[sl].concat(K148[sl]), ok=false;
+  function fill149(mm,t,noFat){
+    grow149(mm,t,noFat);
+    for(var z=0;z<2&&kc(mm)<t*0.965;z++){ var sl=(mm.slot==='B'||mm.slot==='S')?mm.slot:'L', L1=noFat?K148[sl]:F148[sl].concat(K148[sl]), ok=false;
       if(mm.items.length>=6){ var li=-1,ld=1e9; mm.items.forEach(function(x,q){ if(!isProd148(x.name)) return; var f=fByName(x.name); if(f&&f.kcal<ld){ ld=f.kcal; li=q; } }); if(li>=0&&mm.items.filter(function(x){return isProd148(x.name);}).length>1) mm.items.splice(li,1); }
       if(mm.items.length<6){ for(var q=0;q<L1.length;q++){ if(canAdd(mm,L1[q][0],false)){ var f=fByName(L1[q][0]); add147(mm,L1[q][0],Math.min(L1[q][1]*2.5,(t-kc(mm))/((f.kcal||100)/100))); ok=true; break; } } }
-      if(!ok) break; grow149(mm,t);
+      if(!ok) break; grow149(mm,t,noFat);
     }
   }
   function prodCap148(mm){ var tot=0; mm.items.forEach(function(x){ if(isProd148(x.name)) tot+=x.g; }); if(tot<=400) return false; var f=400/tot; mm.items=mm.items.map(function(x){ return isProd148(x.name)?rc(x,Math.max(20,Math.floor(x.g*f/5)*5)):x; }); return true; }
   function nItems148(mm){ var ch=false; while(mm.items.length>6){ var ix=-1,lo=1e9; mm.items.forEach(function(x,q){ if(protFood(x.name)&&(x.protein||0)>=8) return; if(fam(x.name)) return; if((x.kcal||0)<lo){ lo=x.kcal||0; ix=q; } }); if(ix<0) break; mm.items.splice(ix,1); ch=true; } return ch; }
   function lim(nm,X){ if(!X) return nlim(nm); try{ return window.V140&&V140.lim?V140.lim(nm,X):250; }catch(e){ return 250; } }
   function rc(x,g){ var f=fByName(x.name); if(!f) return x; var o=calc(f,Math.max(5,Math.round(g/5)*5)); if(x.eaten!=null)o.eaten=x.eaten; return o; }
+  /* v150: condiments, dressings and cooking sauces — realistic caps */
+  var NOTCOND150=/sardine|anchov|tuna|sandwich|wrap|jacket|kebab|\bham\b|cashew|popcorn|potato|doughnut|soya (beans|milk|mince|yoghurt)|butter beans|buttermilk|maślanka|peanut butter|almond butter|cashew butter|coconut butter|squash|kopytka|nutella|boiled sweets/i;
+  function cond150(nm){
+    if(NOTCOND150.test(nm)) return 0;
+    if(/ketchup|mustard|musztarda/i.test(nm)) return 20;
+    if(/stock cube/i.test(nm)) return 10;
+    if(/balsamic|vinegar|worcestershire|fish sauce|hot sauce|tabasco|sriracha/i.test(nm)) return 15;
+    if(/carbonara|gravy/i.test(nm)) return 100;
+    if(/pasta sauce|bolognese sauce|passata/i.test(nm)) return 150;
+    if(/curry sauce|korma|tikka masala sauce|sweet & sour sauce|\(jar\)/i.test(nm)) return 120;
+    if(/salsa/i.test(nm)) return 60;
+    if(/sauce|dressing|vinaigrette|mayonnaise|aioli|pesto|chutney|hoisin|teriyaki|satay|spread|tahini|syrup|honey|\bjam\b/i.test(nm)) return 30;
+    return 0;
+  }
   function isOil(nm){ return /\boil\b|ghee|(^| )butter$|mayonnaise/i.test(nm); }
   var MINF=1; // v147: realistic minimums shrink for small snacks
   function minG(nm){ var b=minG0(nm); return MINF<1&&!isOil(nm)?Math.max(5,Math.round(b*MINF/5)*5):b; }
   function minG0(nm){
-    if(isOil(nm)) return 5;
+    if(isOil(nm)||(cond150(nm)&&cond150(nm)<=30)) return 5;
     if(/walnut|almond|peanut|seed|chia|flax|tahini/i.test(nm)) return 8;
     if(/oatcakes|rice cakes/i.test(nm)) return 20;
     if(fam(nm)) return /\b(raw|dry)\b/i.test(nm)?30:60;
@@ -11975,7 +11997,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
   function clampPG(mm){ try{ var S=V143.srcInfo(mm); if(S.g<=PGL) return false; var f=PGL/S.g; mm.items=mm.items.map(function(x){ var a={items:[x]}; return V143.srcInfo(a).n?rc(x,Math.max(minG(x.name),Math.floor(x.g*f/5)*5)):x; }); return true; }catch(e){ return false; } }
   function fitPG(mm,kT){ fit(mm,kT,null); for(var z=0;z<3&&clampPG(mm);z++){ fit(mm,kT,true); } }
   var PGL=450;
-  var P147={B:[['Greek yoghurt, 0% fat',170],['Skyr, plain',150],['Egg',120],['Cottage cheese',150]],L:[['Chicken breast, raw',150],['Turkey breast, raw',150],['Salmon fillet, raw',130],['Tofu, firm',150],['Egg',120]],S:[['Skyr, plain',150],['Greek yoghurt, 0% fat',150],['Cottage cheese',150],['Egg',60]]};
+  var P147={B:[['Greek yoghurt, 0% fat',170],['Skyr, plain',150],['Egg',120],['Cottage cheese',150]],L:[['Chicken breast, raw',150],['Turkey breast, raw',150],['Salmon fillet, raw',130],['Prawns / shrimp, raw',150],['Egg',120],['Tofu, firm',150]],S:[['Skyr, plain',150],['Greek yoghurt, 0% fat',150],['Cottage cheese',150],['Egg',60]]};
   var X147={B:[['Peanut butter',20],['Banana',120],['Walnuts',20],['Milk, semi-skimmed',200]],L:[['Olive oil',10],['Avocado',80],['Almonds',25],['Cheddar cheese',30]],S:[['Almonds',20],['Banana',120],['Peanut butter',20],['Apple',150]]};
   // v148: fill by need — fat sides only while fat is short, carb sides otherwise
   var F148={B:[['Peanut butter',20],['Walnuts',20],['Avocado',60]],L:[['Olive oil',10],['Avocado',80],['Cheddar cheese',30],['Almonds',25]],S:[['Peanut butter',20],['Almonds',20],['Walnuts',20]]};
@@ -11983,7 +12005,9 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
   var HOT148=/chilli|chili|curry|stew|mince|bolognese|goulash|soup|quorn|beans|stir.?fry|casserole|ragu|sauce|gulasz|zupa|potrawka|leczo|fasol/i;
   var YOG148=/yogh?urt|skyr|quark|fromage|jogurt|twaróg|serek/i;
   function hot148(mm){ return (mm.items||[]).some(function(x){ try{ if(window.V138&&V138.isCook(x.name)) return true; }catch(e){} return HOT148.test(x.name)&&!YOG148.test(x.name); }); }
-  function noYog148(mm){ if(mm.slot==='B'||mm.slot==='S'){ // no cooking oil poured over yoghurt, porridge or fruit
+  function sav150(mm){ return (mm.items||[]).some(function(x){ var f=fam(x.name); if(/pudding|rice cakes?/i.test(x.name)) return false; return f==='rice'||f==='pasta'||f==='potato'||f==='spot'||f==='grain'||/soy sauce|pasta sauce|curry|noodle|onion|garlic|broccoli|peppers|courgette|mushroom/i.test(x.name); }); }
+  function noYog148(mm){ if((mm.slot==='B'||mm.slot==='S')&&sav150(mm)&&mm.items.some(function(x){ return YOG148.test(x.name); })){ mm.items=mm.items.filter(function(x){ return !YOG148.test(x.name); }); return true; }
+    if(mm.slot==='B'||mm.slot==='S'){ // no cooking oil poured over yoghurt, porridge or fruit
       if(mm.items.some(function(x){ return /\boil\b/i.test(x.name); })&&mm.items.some(function(x){ return YOG148.test(x.name)||fam(x.name)==='oats'; })&&!mm.items.some(function(x){ return /^egg|bacon|rasher|sausage|tomato|spinach|mushroom|pepper|courgette|onion|ham\b|salmon|tofu/i.test(x.name); })){ mm.items=mm.items.filter(function(x){ return !/\boil\b/i.test(x.name); }); return true; }
       return false; }
     var n0=mm.items.length;
@@ -12036,7 +12060,8 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
     if(mm.items.some(function(x){ return x.name===nm; })) return false;
     var t={items:mm.items.concat([calc(f,50)]),slot:mm.slot};
     if(Object.keys(fams(t)).length>1) return false;
-    if(mix148(t.items)) return false;
+    if(mix148(t.items)||flesh150(t.items)>1) return false;
+    if(YOG148.test(nm)&&sav150(mm)) return false;
     if(fam(nm)==='oats'&&mm.slot&&mm.slot!=='B') return false;
     if(!srcOk(t,mm)) return false;
     try{ if(window.V138&&V138.isCook(nm)&&mm.slot==='B') return false; if(window.V138&&V138.isCereal(nm)&&mm.items.some(function(x){return V138.isCook(x.name);})) return false; }catch(e){}
@@ -12097,7 +12122,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
     }finally{ MINF=m0; }
     return ch;
   }
-  window.V147={size:size147,hasProt:hasProt,protFood:protFood,setAV:function(a){AV147=a;}}; window.V148P={isProd:isProd148,mix:mix148,nlim:nlim};
+  window.V147={size:size147,hasProt:hasProt,protFood:protFood,setAV:function(a){AV147=a;}}; window.V148P={isProd:isProd148,mix:mix148,nlim:function(nm){ var p0=PGL; try{ PGL=(window.pl&&pl.mp&&pl.mp.length<=2)?550:450; return nlim(nm); } finally{ PGL=p0; } },flesh:flesh150};
   function protG(items){ var p=0; (items||[]).forEach(function(x){ p+=x.protein||0; }); return p; }
   function nOk(r,kT,pMin){ var k=kc({items:r.items}); return !r.changed&&Object.keys(fams({items:r.items})).length<2&&Math.abs(k-kT)<=kT*0.06&&protG(r.items)>=pMin; }
   if(typeof obGen==='function'){
@@ -12140,7 +12165,9 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
               try{ if(r.cut||(window.V138&&V138.titleOk&&!V138.titleOk({items:r.items,alt:q.t.n,slot:sl}))){ q.t=Object.assign({},q.t,{n:gdName(r.items)}); } }catch(e){}
               (nOk(r,kT,pMin)?good:rest).push(q);
             });
-            L=good.length>=3?good:good.concat(rest.filter(function(q){ return Object.keys(fams(q)).length<2&&Math.abs(q.tot.kcal-kT)<=kT*0.1; }));
+            var r2=rest.filter(function(q){ return Object.keys(fams(q)).length<2&&!mix148(q.items)&&flesh150(q.items)<2; }).sort(function(a,b){ return Math.abs(a.tot.kcal-kT)-Math.abs(b.tot.kcal-kT); });
+            L=good.length>=3?good:good.concat(r2.filter(function(q){ return Math.abs(q.tot.kcal-kT)<=kT*0.1; }));
+            if(!L.length) L=r2.filter(function(q){ return Math.abs(q.tot.kcal-kT)<=kT*0.15; }).slice(0,3); /* v150: 2-meal days — closest fits rather than "no other" */
           }
         }
       }catch(e){ console.warn('v142 msGen',e); }
@@ -12167,23 +12194,8 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
       return _mu.call(this,o);
     };
   }
-  // Normal plan generator: keep each generated meal close to its share of the day (breakfast 25–30 %, etc.).
-  if(typeof genMeals==='function'){
-    var _gmx=genMeals;
-    genMeals=function(R,i,seed){
-      var mp=_gmx.apply(this,arguments);
-      try{ AV147=typeof avoidSet==='function'?avoidSet(i||{}):{}; }catch(e){ AV147=null; }
-      try{ if(R) R._n2=(mp&&mp.length<=2); }catch(e){}
-      try{
-        var sp=SPLIT[(i&&i.meals)||(mp&&mp.length)]||SPLIT[4];
-        if(mp&&R&&R.kcal&&sp&&sp.length===mp.length){
-          mp.forEach(function(m,ix){
-            var t=R.kcal*sp[ix][2], k=kc(m); if(!(k>0)) return;
-            var bad=!hasProt(m)||(window.V143&&V143.srcInfo(m).g>((mp.length<=2)?550:450))||Math.abs(k-t)>t*0.035||Object.keys(fams(m)).length>1||(window.V143&&V143.srcInfo(m).n>2)||(m.slot&&m.slot!=='B'&&(m.items||[]).some(function(x){return fam(x.name)==='oats';}))
-              ||(R.protein>0&&pOf(m)<R.protein*sp[ix][2]*0.9)||(R.fat>0&&fOf(m)>R.fat*sp[ix][2]*1.35)||(m.slot!=='B'&&m.slot!=='S'&&hot148(m)&&m.items.some(function(x){return YOG148.test(x.name);}))
-              ||(R.protein>0&&pOf(m)>R.protein*sp[ix][2]*1.35)||m.items.length>6||mix148(m.items)||m.items.some(function(x){return x.g>nlim(x.name)+0.5;})||m.items.some(function(x){return isProd148(x.name)&&x.g>nlim(x.name)+0.5;})||m.items.reduce(function(a,x){return a+(isProd148(x.name)?x.g:0);},0)>400;
-            if(bad||Math.abs(k-t)>t*0.07){ var r=nFinish(m.items,m.slot,t,R); m.items=r.items; if(r.cut&&typeof gdName==='function') m.alt=gdName(m.items); }
-          });
+  /* v149/v150: day-level balancing (protein, fat, kcal) — used after generation and after Random / Option B / Swap */
+  function dayBal149(mp,R,sp){
           /* v148: day protein still short — swap the least protein-dense source for lean chicken / turkey (mains) or whey / ham (breakfast, snack) */
           try{
             var dP=function(){ var p=0; mp.forEach(function(m){ p+=pOf(m); }); return p; }, tried={};
@@ -12203,10 +12215,21 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
                 var lo=-1,dl=0.62; mm.items.forEach(function(x,q){ if(!V143.isSrc(x.name)||/chicken breast|turkey breast/i.test(x.name)) return; var f=fByName(x.name); if(!f) return; var d=f.protein*4/Math.max(1,f.kcal); if(d<dl){ dl=d; lo=q; } });
                 var rest=lo>=0?{items:mm.items.filter(function(x,q){return q!==lo&&!(isPlant148(mm.items[lo].name)&&isPlant148(x.name));}),slot:mm.slot}:mm, g0=lo>=0?mm.items[lo].g:120;
                 ['Chicken breast, raw','Turkey breast, raw'].some(function(nm){ if(!canAdd(rest,nm,false)) return false; mm.items=rest.items.slice(); add147(mm,nm,Math.min(nlim(nm),Math.max(g0,120))); done=true; return true; });
-              } else { done=swapPow148(mm,false); }
+              } else { done=swapPow148(mm,false);
+                if(!done&&!mm.items.some(function(x){ return /whey|protein powder/i.test(x.name); })&&fByName('Whey protein powder')&&!av147()['Whey protein powder']){
+                  var wl=-1,wd=9; mm.items.forEach(function(x,q){ if(!V143.isSrc(x.name)) return; var f=fByName(x.name); if(f&&f.protein/100<wd){ wd=f.protein/100; wl=q; } });
+                  var r3={items:mm.items.filter(function(x,q){ return q!==wl||V143.srcInfo(mm).n<2; }),slot:mm.slot};
+                  if(canAdd(r3,'Whey protein powder',false)){ mm.items=r3.items; add147(mm,'Whey protein powder',40); done=true; }
+                }
+                if(!done&&sav150(mm)&&!flesh150(mm.items)&&fByName('Ham, sliced')){ /* savoury breakfast with a shake already: lean ham replaces the weakest food source */
+                  var wl2=-1,wd2=9; mm.items.forEach(function(x,q){ if(!V143.isSrc(x.name)||/whey|protein powder/i.test(x.name)) return; var f=fByName(x.name); if(f&&f.protein/100<wd2){ wd2=f.protein/100; wl2=q; } });
+                  var r4={items:mm.items.filter(function(x,q){ return q!==wl2; }),slot:mm.slot};
+                  if(canAdd(r4,'Ham, sliced',false)){ mm.items=r4.items; add147(mm,'Ham, sliced',150); done=true; }
+                }
+              }
               if(!done) continue;
               fit(mm,t,null,true); clampPG(mm); try{ size147(mm,t,R); nItems148(mm); prodCap148(mm); }catch(e){} 
-              if(pOf(mm)>pOf(m)+2&&Math.abs(kc(mm)-t)<=t*0.035&&Object.keys(fams(mm)).length<=1&&V143.srcInfo(mm).n<=2&&!mix148(mm.items)){ m.items=mm.items; if(typeof gdName==='function') m.alt=gdName(m.items); }
+              if(pOf(mm)>pOf(m)+2&&Math.abs(kc(mm)-t)<=t*0.05&&Object.keys(fams(mm)).length<=1&&V143.srcInfo(mm).n<=2&&!mix148(mm.items)&&flesh150(mm.items)<2){ m.items=mm.items; if(typeof gdName==='function') m.alt=gdName(m.items); }
             }
           }catch(e){ console.warn('v148 lean',e); }
           /* v148: day fat way over — trim oil / nuts / avocado / cheese and give the calories to the plate's carb */
@@ -12221,6 +12244,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
               var ci=-1; mm.items.forEach(function(x,q){ if(fam(x.name)&&ci<0) ci=q; });
               if(ci>=0){ var xc=mm.items[ci], fc=fByName(xc.name); mm.items[ci]=rc(xc,Math.min(nlim(xc.name),xc.g+(t-kc(mm))/((fc.kcal||100)/100))); }
               if(Math.abs(kc(mm)-t)>t*0.035){ var lp=-1,ld=0; mm.items.forEach(function(x,q){ var f=fByName(x.name); if(!f||!V143.isSrc(x.name)||f.protein*4<f.kcal*0.6||x.g>=nlim(x.name)-4) return; if(f.protein>ld){ ld=f.protein; lp=q; } }); if(lp>=0){ var xl=mm.items[lp], fl=fByName(xl.name), room=PGL-V143.srcInfo(mm).g; if(room>5) mm.items[lp]=rc(xl,Math.min(nlim(xl.name),xl.g+room,xl.g+(t-kc(mm))/((fl.kcal||100)/100))); } }
+              if(kc(mm)<t*0.965) fill149(mm,t,true);
               if(fOf(mm)<fOf(m)-3&&Math.abs(kc(mm)-t)<=t*0.06&&(pOf(mm)>=pOf(m)-3||dP()-(pOf(m)-pOf(mm))>=R.protein*0.9)){ m.items=mm.items; if(typeof gdName==='function') m.alt=gdName(m.items); } else break;
             }
           }catch(e){ console.warn('v148 fat',e); }
@@ -12274,9 +12298,31 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
                 mm.items.forEach(function(x,q){ var f=fByName(x.name); if(!f||f.fat<25) return; var L=nlim(x.name); if(x.g>=L-4) return; mm.items[q]=rc(x,Math.min(L,x.g+Math.max(10,(R.fat*0.75-dF3())/(f.fat/100)))); });
                 var ci=-1; mm.items.forEach(function(x,q){ if(fam(x.name)&&ci<0) ci=q; });
                 if(ci>=0){ var xc=mm.items[ci], fc=fByName(xc.name); mm.items[ci]=rc(xc,Math.max(minG(xc.name),xc.g-(kc(mm)-k0)/((fc.kcal||100)/100))); }
-                if(fOf(mm)>fOf(m)+2&&Math.abs(kc(mm)-k0)<=k0*0.03){ m.items=mm.items; any=true; } });
+                if(!(fOf(mm)>fOf(m)+2)&&mm.items.length<6){ var sl=(mm.slot==='B'||mm.slot==='S')?mm.slot:'L'; for(var q5=0;q5<F148[sl].length;q5++){ var nm5=F148[sl][q5][0]; if(canAdd(mm,nm5,false)){ add147(mm,nm5,F148[sl][q5][1]*1.5); break; } }
+                  var ci5=-1; mm.items.forEach(function(x,q){ if(fam(x.name)&&ci5<0) ci5=q; }); if(ci5>=0){ var xc5=mm.items[ci5], fc5=fByName(xc5.name); mm.items[ci5]=rc(xc5,Math.max(minG(xc5.name),xc5.g-(kc(mm)-k0)/((fc5.kcal||100)/100))); } }
+                if(fOf(mm)>fOf(m)+2&&Math.abs(kc(mm)-k0)<=k0*0.035){ m.items=mm.items; any=true; } });
               if(!any) break; }
           }catch(e){ console.warn('v149 lowfat',e); }
+  }
+  window.V150={dayBal:function(mp,R){ var sp=SPLIT[mp.length]; if(sp&&R&&R.kcal) dayBal149(mp,R,sp); }};
+  // Normal plan generator: keep each generated meal close to its share of the day (breakfast 25–30 %, etc.).
+  if(typeof genMeals==='function'){
+    var _gmx=genMeals;
+    genMeals=function(R,i,seed){
+      var mp=_gmx.apply(this,arguments);
+      try{ AV147=typeof avoidSet==='function'?avoidSet(i||{}):{}; }catch(e){ AV147=null; }
+      try{ if(R) R._n2=(mp&&mp.length<=2); }catch(e){}
+      try{
+        var sp=SPLIT[(i&&i.meals)||(mp&&mp.length)]||SPLIT[4];
+        if(mp&&R&&R.kcal&&sp&&sp.length===mp.length){
+          mp.forEach(function(m,ix){
+            var t=R.kcal*sp[ix][2], k=kc(m); if(!(k>0)) return;
+            var bad=!hasProt(m)||(window.V143&&V143.srcInfo(m).g>((mp.length<=2)?550:450))||Math.abs(k-t)>t*0.035||Object.keys(fams(m)).length>1||(window.V143&&V143.srcInfo(m).n>2)||(m.slot&&m.slot!=='B'&&(m.items||[]).some(function(x){return fam(x.name)==='oats';}))
+              ||(R.protein>0&&pOf(m)<R.protein*sp[ix][2]*0.9)||(R.fat>0&&fOf(m)>R.fat*sp[ix][2]*1.35)||(m.slot!=='B'&&m.slot!=='S'&&hot148(m)&&m.items.some(function(x){return YOG148.test(x.name);}))
+              ||(R.protein>0&&pOf(m)>R.protein*sp[ix][2]*1.35)||m.items.length>6||mix148(m.items)||flesh150(m.items)>1||(sav150(m)&&m.items.some(function(x){return YOG148.test(x.name);}))||m.items.some(function(x){return x.g>nlim(x.name)+0.5;})||m.items.some(function(x){return isProd148(x.name)&&x.g>nlim(x.name)+0.5;})||m.items.reduce(function(a,x){return a+(isProd148(x.name)?x.g:0);},0)>400;
+            if(bad||Math.abs(k-t)>t*0.07){ var r=nFinish(m.items,m.slot,t,R); m.items=r.items; if(r.cut&&typeof gdName==='function') m.alt=gdName(m.items); }
+          });
+          dayBal149(mp,R,sp);
         }
       }catch(e){ console.warn('v142 genMeals',e); }
       AV147=null;
@@ -12778,6 +12824,14 @@ window.v146whyPL=function(r){
     return best;
   };
   window.V148={gdGen:gdGen};
+})();
+</script>
+<script>
+/* v150: after Random / Option B / Swap on the plan, run the same day-level protein / fat / kcal balancing as generation */
+(function(){
+  function bal(){ try{ if(typeof pl!=='undefined'&&pl&&pl.mp&&pl.res&&window.V150){ var s0=JSON.stringify(pl.mp.map(function(m){ return m.items.map(function(x){ return x.name+x.g; }); })); V150.dayBal(pl.mp,pl.res); return JSON.stringify(pl.mp.map(function(m){ return m.items.map(function(x){ return x.name+x.g; }); }))!==s0; } }catch(e){ console.warn('v150 bal',e); } return false; }
+  if(typeof obDone==='function'){ var _od=obDone; obDone=function(k){ if(String(k||'').indexOf('p|')===0) bal(); return _od.apply(this,arguments); }; }
+  if(typeof msUse==='function'){ var _mu=msUse; msUse=function(o){ var k0=(typeof MS!=='undefined'&&MS)?MS.k:null; var r=_mu.apply(this,arguments); if(k0==='p'&&bal()){ try{ if(pl.acc&&pl.did&&typeof syncDiet==='function') syncDiet(true); save(); }catch(e){} rPlan(); } return r; }; }
 })();
 </script>
 <script>
