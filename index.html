@@ -11672,7 +11672,9 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
   };
   function okName(nm,X){ try{ return !(typeof gdWhy==='function'&&gdWhy(nm,X)); }catch(e){ return true; } }
   // Normal (non-gut) diets: realistic portion caps only — no FODMAP caps.
-  function nlim(nm){
+  var H2F=false; /* v150: heavy 2-meal day (>2,600 kcal) — carbs may go 30 % bigger */
+  function nlim(nm){ var L=nlim0(nm); if(H2F&&fam(nm)) L=Math.min(500,Math.round(L*1.3/5)*5); if(H2F&&(/^butter$|ghee/i.test(nm)||/^avocado/i.test(nm))) L=Math.min(L,/^avocado/i.test(nm)?100:15); return L; }
+  function nlim0(nm){
     var f=null; try{ f=fByName(nm); }catch(e){}
     var cl=cond150(nm); if(cl) return cl;
     if(PGL>450&&/chicken breast|turkey breast|\bcod\b|pollock|hake|coley|haddock|prawn|shrimp/i.test(nm)&&!/cooked|sandwich|wrap/i.test(nm)) return 400; /* v150: 2-meal days — one bigger lean portion instead of two meats */
@@ -11986,6 +11988,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
     try{ if(kT>0&&size147(mm,kT,res)) cut=true; }catch(e){ console.warn('v147 size',e); }
     try{ if(unmix148(mm)){ cut=true; if(kT>0) size147(mm,kT,res); } }catch(e){}
     try{ if(nItems148(mm)){ cut=true; if(kT>0) size147(mm,kT,res); } if(nItems148(mm)) cut=true; if(prodCap148(mm)){ cut=true; if(kT>0) fit(mm,kT,null,true); } }catch(e){ console.warn('v148 plate',e); }
+    try{ if(!hasProt(mm)){ var bi=-1,bp=0; mm.items.forEach(function(x,q){ var f=fByName(x.name); if(f&&protFood(x.name)&&f.protein>bp){ bp=f.protein; bi=q; } }); if(bi>=0){ var x=mm.items[bi], k1=kc(mm); mm.items[bi]=rc(x,Math.max(x.g,Math.ceil(500/bp/5)*5)); var ci=-1; mm.items.forEach(function(y,q){ if(fam(y.name)&&ci<0) ci=q; }); if(ci>=0){ var xc=mm.items[ci], fc=fByName(xc.name); mm.items[ci]=rc(xc,Math.max(minG(xc.name),xc.g-(kc(mm)-k1)/((fc.kcal||100)/100))); } cut=true; } } }catch(e){}
     return {items:mm.items,cut:cut,changed:changed||cut};
   }
   /* v147: every normal meal has a protein food and lands on its kcal share — add a protein or a calorie-dense side within realistic caps, shrink minimums for small snacks. */
@@ -12003,7 +12006,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
   var F148={B:[['Peanut butter',20],['Walnuts',20],['Avocado',60]],L:[['Olive oil',10],['Avocado',80],['Cheddar cheese',30],['Almonds',25]],S:[['Peanut butter',20],['Almonds',20],['Walnuts',20]]};
   var K148={B:[['Banana',120],['Wholemeal bread',60],['Milk, semi-skimmed',200],['Apple',150]],L:[['Basmati rice, raw',60],['Potatoes, raw',200],['Pasta, dry',60],['Green beans',150]],S:[['Banana',120],['Apple',150],['Oatcakes',30],['Wholemeal bread',60]]};
   var HOT148=/chilli|chili|curry|stew|mince|bolognese|goulash|soup|quorn|beans|stir.?fry|casserole|ragu|sauce|gulasz|zupa|potrawka|leczo|fasol/i;
-  var YOG148=/yogh?urt|skyr|quark|fromage|jogurt|twaróg|serek/i;
+  var YOG148=/yogh?urt|skyr|quark|fromage|jogurt|twaróg|serek|cottage/i;
   function hot148(mm){ return (mm.items||[]).some(function(x){ try{ if(window.V138&&V138.isCook(x.name)) return true; }catch(e){} return HOT148.test(x.name)&&!YOG148.test(x.name); }); }
   function sav150(mm){ return (mm.items||[]).some(function(x){ var f=fam(x.name); if(/pudding|rice cakes?/i.test(x.name)) return false; return f==='rice'||f==='pasta'||f==='potato'||f==='spot'||f==='grain'||/soy sauce|pasta sauce|curry|noodle|onion|garlic|broccoli|peppers|courgette|mushroom/i.test(x.name); }); }
   function noYog148(mm){ if((mm.slot==='B'||mm.slot==='S')&&sav150(mm)&&mm.items.some(function(x){ return YOG148.test(x.name); })){ mm.items=mm.items.filter(function(x){ return !YOG148.test(x.name); }); return true; }
@@ -12070,7 +12073,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
   function add147(mm,nm,g){ var f=fByName(nm); var L=nlim(nm); mm.items.push(calc(f,Math.min(L,Math.max(5,Math.round(g/5)*5)))); }
   function size147(mm,kT,res){
     var ch=false, sl=mm.slot==='B'?'B':(mm.slot==='S'?'S':'L'), keto=!!(res&&res.style&&res.style.id==='keto');
-    PGL=(res&&res._n2)?550:450;
+    PGL=(res&&res._n2)?550:450; H2F=!!(res&&res._n2&&res.kcal>2600);
     var m0=MINF; MINF=kT<420?Math.max(0.3,kT/420):1;
     try{
       if(clampPG(mm)){ ch=true; fitPG(mm,kT); }
@@ -12122,7 +12125,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
     }finally{ MINF=m0; }
     return ch;
   }
-  window.V147={size:size147,hasProt:hasProt,protFood:protFood,setAV:function(a){AV147=a;}}; window.V148P={isProd:isProd148,mix:mix148,nlim:function(nm){ var p0=PGL; try{ PGL=(window.pl&&pl.mp&&pl.mp.length<=2)?550:450; return nlim(nm); } finally{ PGL=p0; } },flesh:flesh150};
+  window.V147={size:size147,hasProt:hasProt,protFood:protFood,setAV:function(a){AV147=a;}}; window.V148P={isProd:isProd148,mix:mix148,nlim:function(nm){ var p0=PGL,h0=H2F; try{ PGL=(window.pl&&pl.mp&&pl.mp.length<=2)?550:450; H2F=!!(window.pl&&pl.mp&&pl.mp.length<=2&&pl.res&&pl.res.kcal>2600); return nlim(nm); } finally{ PGL=p0; H2F=h0; } },flesh:flesh150};
   function protG(items){ var p=0; (items||[]).forEach(function(x){ p+=x.protein||0; }); return p; }
   function nOk(r,kT,pMin){ var k=kc({items:r.items}); return !r.changed&&Object.keys(fams({items:r.items})).length<2&&Math.abs(k-kT)<=kT*0.06&&protG(r.items)>=pMin; }
   if(typeof obGen==='function'){
@@ -12196,6 +12199,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
   }
   /* v149/v150: day-level balancing (protein, fat, kcal) — used after generation and after Random / Option B / Swap */
   function dayBal149(mp,R,sp){
+          H2F=!!(R&&mp.length<=2&&R.kcal>2600);
           /* v148: day protein still short — swap the least protein-dense source for lean chicken / turkey (mains) or whey / ham (breakfast, snack) */
           try{
             var dP=function(){ var p=0; mp.forEach(function(m){ p+=pOf(m); }); return p; }, tried={};
@@ -12205,16 +12209,22 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
               if(bi<0) break; tried[bi]=(tried[bi]||0)+1;
               var m=mp[bi], t=R.kcal*sp[bi][2], sl=(m.slot==='B'||m.slot==='S')?m.slot:'L', mm={items:m.items.slice(),slot:m.slot}, done=false;
               PGL=(R._n2)?550:450;
-              if(sl==='L'&&mm.items.some(function(x){return isPlant148(x.name);})&&!mm.items.some(function(x){return isAnim148(x.name);})&&V143.srcInfo(mm).n<2){
+              if(sl==='L'&&mm.items.some(function(x){return isPlant148(x.name);})&&!mm.items.some(function(x){return isAnim148(x.name);})){
                 var mt={items:mm.items.slice(),slot:mm.slot}, okT=false;
-                ['Tofu, firm','Quorn pieces','Quorn mince'].some(function(nm){ if(!canAdd(mt,nm,false)) return false; var room=PGL-V143.srcInfo(mt).g; if(room<60) return false; add147(mt,nm,Math.min(200,room)); okT=true; return true; });
-                if(okT){ fit(mt,t,null,true); clampPG(mt); try{ size147(mt,t,R); nItems148(mt); prodCap148(mt); }catch(e){}
-                  if(pOf(mt)>pOf(m)+2&&Math.abs(kc(mt)-t)<=t*0.035&&Object.keys(fams(mt)).length<=1&&V143.srcInfo(mt).n<=2&&!mix148(mt.items)){ m.items=mt.items; if(typeof gdName==='function') m.alt=gdName(m.items); continue; } }
+                if(V143.srcInfo(mt).n>=2){ var wq=-1,wv=9; mt.items.forEach(function(x,q){ if(!V143.isSrc(x.name)||isPlant148(x.name)) return; var f=fByName(x.name); if(f&&f.protein/100<wv){ wv=f.protein/100; wq=q; } }); if(wq>=0) mt.items.splice(wq,1); }
+                ['Tofu, firm','Tempeh','Soya mince, dry (TVP)','Edamame beans, shelled','Quorn pieces','Quorn mince'].some(function(nm){ if(!canAdd(mt,nm,false)) return false; var room=PGL-V143.srcInfo(mt).g; if(room<60) return false; add147(mt,nm,Math.min(200,room)); okT=true; return true; });
+                if(okT){ fit(mt,t,null,true); clampPG(mt); try{ size147(mt,t,R); nItems148(mt); prodCap148(mt); if(kc(mt)<t*0.965) fill149(mt,t,true); if(kc(mt)<t*0.965) fill149(mt,t); }catch(e){}
+                  if(pOf(mt)>pOf(m)+2&&Math.abs(kc(mt)-t)<=t*0.05&&Object.keys(fams(mt)).length<=1&&V143.srcInfo(mt).n<=2&&!mix148(mt.items)){ m.items=mt.items; if(typeof gdName==='function') m.alt=gdName(m.items); continue; } }
               }
               if(sl==='L'){
-                var lo=-1,dl=0.62; mm.items.forEach(function(x,q){ if(!V143.isSrc(x.name)||/chicken breast|turkey breast/i.test(x.name)) return; var f=fByName(x.name); if(!f) return; var d=f.protein*4/Math.max(1,f.kcal); if(d<dl){ dl=d; lo=q; } });
+                var hasF=flesh150(mm.items)>0, lo=-1,dl=0.62; mm.items.forEach(function(x,q){ if(!V143.isSrc(x.name)||/chicken breast|turkey breast/i.test(x.name)) return; if(hasF&&!isFlesh150(x.name)) return; var f=fByName(x.name); if(!f) return; var d=f.protein*4/Math.max(1,f.kcal); if(d<dl){ dl=d; lo=q; } });
                 var rest=lo>=0?{items:mm.items.filter(function(x,q){return q!==lo&&!(isPlant148(mm.items[lo].name)&&isPlant148(x.name));}),slot:mm.slot}:mm, g0=lo>=0?mm.items[lo].g:120;
                 ['Chicken breast, raw','Turkey breast, raw'].some(function(nm){ if(!canAdd(rest,nm,false)) return false; mm.items=rest.items.slice(); add147(mm,nm,Math.min(nlim(nm),Math.max(g0,120))); done=true; return true; });
+                if(!done){ /* lean meat already on the plate: a complementary second protein instead of another meat */
+                  var c2=['Prawns / shrimp, raw','Egg white','Tuna, canned in water (drained)','Lentils, green/brown, dry'], wk=-1,wv2=9; mm.items.forEach(function(x,q){ if(!V143.isSrc(x.name)||isFlesh150(x.name)) return; var f=fByName(x.name); if(f&&f.protein/100<wv2){ wv2=f.protein/100; wk=q; } });
+                  var r5={items:mm.items.filter(function(x,q){ return q!==wk||V143.srcInfo(mm).n<2; }),slot:mm.slot};
+                  c2.some(function(nm){ if(!fByName(nm)||!canAdd(r5,nm,false)) return false; var room=PGL-V143.srcInfo(r5).g; if(room<50) return false; mm.items=r5.items.slice(); add147(mm,nm,Math.min(nlim(nm),room,/lentil/i.test(nm)?60:200)); done=true; return true; });
+                }
               } else { done=swapPow148(mm,false);
                 if(!done&&!mm.items.some(function(x){ return /whey|protein powder/i.test(x.name); })&&fByName('Whey protein powder')&&!av147()['Whey protein powder']){
                   var wl=-1,wd=9; mm.items.forEach(function(x,q){ if(!V143.isSrc(x.name)) return; var f=fByName(x.name); if(f&&f.protein/100<wd){ wd=f.protein/100; wl=q; } });
@@ -12228,24 +12238,25 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
                 }
               }
               if(!done) continue;
-              fit(mm,t,null,true); clampPG(mm); try{ size147(mm,t,R); nItems148(mm); prodCap148(mm); }catch(e){} 
+              fit(mm,t,null,true); clampPG(mm); try{ size147(mm,t,R); nItems148(mm); prodCap148(mm); if(kc(mm)<t*0.965) fill149(mm,t,true); if(kc(mm)<t*0.965) fill149(mm,t); }catch(e){} 
               if(pOf(mm)>pOf(m)+2&&Math.abs(kc(mm)-t)<=t*0.05&&Object.keys(fams(mm)).length<=1&&V143.srcInfo(mm).n<=2&&!mix148(mm.items)&&flesh150(mm.items)<2){ m.items=mm.items; if(typeof gdName==='function') m.alt=gdName(m.items); }
             }
           }catch(e){ console.warn('v148 lean',e); }
           /* v148: day fat way over — trim oil / nuts / avocado / cheese and give the calories to the plate's carb */
           try{
             PGL=(R._n2)?550:450; var dF=function(){ var f=0; mp.forEach(function(m){ f+=fOf(m); }); return f; };
-            for(var fz2=0;fz2<6&&R.fat>0&&dF()>R.fat*1.35;fz2++){
-              var wi=-1,wx=0; mp.forEach(function(m,ix){ var x=fOf(m)-R.fat*sp[ix][2]; if(x>wx){ wx=x; wi=ix; } }); if(wi<0) break;
+            var fTr={};
+            for(var fz2=0;fz2<16&&R.fat>0&&dF()>R.fat*1.35;fz2++){
+              var wi=-1,wx=0; mp.forEach(function(m,ix){ if(fTr[ix]) return; var x=fOf(m)-R.fat*sp[ix][2]; if(x>wx){ wx=x; wi=ix; } }); if(wi<0) break;
               var m=mp[wi], t=R.kcal*sp[wi][2], mm={items:m.items.slice(),slot:m.slot};
-              var fi=-1,fb=0; mm.items.forEach(function(x,q){ var f=fByName(x.name); if(!f||f.fat<8||protFood(x.name)&&f.protein*4>=f.kcal*0.42) return; if(x.fat>fb){ fb=x.fat; fi=q; } }); if(fi<0) break;
-              var xf=mm.items[fi], fgf=fByName(xf.name).fat/100, cut=Math.min(xf.g, Math.max(10,(fOf(mm)-R.fat*sp[wi][2])/fgf)), g2=xf.g-cut, k0=kc(mm);
+              var np=mm.items.filter(function(x){ return protFood(x.name); }).length; var fi=-1,fb=0; mm.items.forEach(function(x,q){ var f=fByName(x.name); if(!f||f.fat<8||fTr[wi+'|'+x.name]||protFood(x.name)&&(f.protein*4>=f.kcal*0.42||np<2)) return; if(x.fat>fb){ fb=x.fat; fi=q; } }); if(fi<0){ fTr[wi]=1; continue; }
+              var xf=mm.items[fi], fgf=fByName(xf.name).fat/100, cut=Math.min(xf.g*0.5, Math.max(10,(fOf(mm)-R.fat*sp[wi][2])/fgf)), g2=xf.g-cut, k0=kc(mm);
               if(g2<minG(xf.name)) mm.items.splice(fi,1); else mm.items[fi]=rc(xf,g2);
               var ci=-1; mm.items.forEach(function(x,q){ if(fam(x.name)&&ci<0) ci=q; });
               if(ci>=0){ var xc=mm.items[ci], fc=fByName(xc.name); mm.items[ci]=rc(xc,Math.min(nlim(xc.name),xc.g+(t-kc(mm))/((fc.kcal||100)/100))); }
               if(Math.abs(kc(mm)-t)>t*0.035){ var lp=-1,ld=0; mm.items.forEach(function(x,q){ var f=fByName(x.name); if(!f||!V143.isSrc(x.name)||f.protein*4<f.kcal*0.6||x.g>=nlim(x.name)-4) return; if(f.protein>ld){ ld=f.protein; lp=q; } }); if(lp>=0){ var xl=mm.items[lp], fl=fByName(xl.name), room=PGL-V143.srcInfo(mm).g; if(room>5) mm.items[lp]=rc(xl,Math.min(nlim(xl.name),xl.g+room,xl.g+(t-kc(mm))/((fl.kcal||100)/100))); } }
               if(kc(mm)<t*0.965) fill149(mm,t,true);
-              if(fOf(mm)<fOf(m)-3&&Math.abs(kc(mm)-t)<=t*0.06&&(pOf(mm)>=pOf(m)-3||dP()-(pOf(m)-pOf(mm))>=R.protein*0.9)){ m.items=mm.items; if(typeof gdName==='function') m.alt=gdName(m.items); } else break;
+              if(fOf(mm)<fOf(m)-3&&(Math.abs(kc(mm)-t)<=t*0.06||(H2F&&Math.abs(kc(mm)-t)<=t*0.12&&(function(){ var d=0; mp.forEach(function(q){ d+=q===m?kc(mm):kc(q); }); return d>=R.kcal*0.93; })()))&&(pOf(mm)>=pOf(m)-3||dP()-(pOf(m)-pOf(mm))>=R.protein*0.9)){ m.items=mm.items; if(typeof gdName==='function') m.alt=gdName(m.items); } else fTr[wi+'|'+xf.name]=1;
             }
           }catch(e){ console.warn('v148 fat',e); }
           try{ mp.forEach(function(m){ m.items=m.items.map(function(x){ var L=nlim(x.name); return x.g>L+0.5?rc(x,L):x; }); if(unmix148(m)) { try{ size147(m,R.kcal*sp[mp.indexOf(m)][2],R); }catch(e){} } }); }catch(e){}
@@ -12270,7 +12281,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
               var xh=mm.items[hi], fh=fByName(xh.name), gh=Math.max(Math.max(60,minG(xh.name)), xh.g-(pOf(mm)-R.protein*sp[wi][2]*1.1)/(fh.protein/100));
               if(gh>=xh.g-4) break; mm.items[hi]=rc(xh,gh);
               fill149(mm,t);
-              if(pOf(mm)<pOf(m)-3&&Math.abs(kc(mm)-t)<=t*0.035){ m.items=mm.items; if(typeof gdName==='function') m.alt=gdName(m.items); } else break;
+              if(pOf(mm)<pOf(m)-3&&Math.abs(kc(mm)-t)<=t*0.05){ m.items=mm.items; if(typeof gdName==='function') m.alt=gdName(m.items); } else break;
             }
           }catch(e){ console.warn('v149 ph',e); }
           /* v149: meal still short (all at caps): grow non-protein sides, swap the lightest veg/fruit for a calorie-dense side */
@@ -12303,6 +12314,10 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
                 if(fOf(mm)>fOf(m)+2&&Math.abs(kc(mm)-k0)<=k0*0.035){ m.items=mm.items; any=true; } });
               if(!any) break; }
           }catch(e){ console.warn('v149 lowfat',e); }
+          /* v150: last word on plate realism — veg/fruit piles and item count, then refill with carbs */
+          try{ mp.forEach(function(m,ix){ var t=R.kcal*sp[ix][2], a=prodCap148(m), b=nItems148(m); if((a||b)&&kc(m)<t*0.965){ fill149(m,t,true); if(kc(m)<t*0.965) fill149(m,t); } }); }catch(e){ console.warn('v150 last',e); }
+          try{ mp.forEach(function(m){ if(hasProt(m)) return; var bi=-1,bp=0; m.items.forEach(function(x,q){ var f=fByName(x.name); if(f&&protFood(x.name)&&f.protein>bp){ bp=f.protein; bi=q; } }); if(bi>=0){ var x=m.items[bi], k1=kc(m); m.items[bi]=rc(x,Math.max(x.g,Math.ceil(500/bp/5)*5)); var ci=-1; m.items.forEach(function(y,q){ if(fam(y.name)&&ci<0) ci=q; }); if(ci>=0){ var xc=m.items[ci], fc=fByName(xc.name); m.items[ci]=rc(xc,Math.max(minG(xc.name),xc.g-(kc(m)-k1)/((fc.kcal||100)/100))); } } }); }catch(e){}
+          H2F=false;
   }
   window.V150={dayBal:function(mp,R){ var sp=SPLIT[mp.length]; if(sp&&R&&R.kcal) dayBal149(mp,R,sp); }};
   // Normal plan generator: keep each generated meal close to its share of the day (breakfast 25–30 %, etc.).
