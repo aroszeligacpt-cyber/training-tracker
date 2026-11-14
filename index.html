@@ -9776,7 +9776,7 @@ if(typeof fvSub==='function'){
       var f=fByName(x[0]); if(!f) return;
       var role=typeof x[1]==='number'?(n(f.kcal)<70?'v':null):x[1];
       var cands=(FI&&FI.used||[]).filter(function(u){
-        return u.r===role && v138favFits(u.f.name, f.name, slot, role);
+        return u.r===role && v138favFits(u.f.name, f.name, slot, role) && !(u.r==='c'&&((use&&use[u.f.name]||0)>=Math.max(1,Math.ceil((window._fvN||4)/2))||(slot==='B'&&!/porridge|oat|granola|muesli|bread|toast|bagel|crumpet|weetabix|cereal|pancake|banana|wrap|tortilla/i.test(u.f.name)&&!(rnd&&rnd()<0.2))));
       });
       if(cands.some(function(u){return u.f.name===f.name;})){ hit[f.name]=1; out.push(x); return; }
       if(cands.length&&role!=='f'){
