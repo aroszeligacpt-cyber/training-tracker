@@ -12988,6 +12988,7 @@ document.addEventListener('click',function(ev){var t=ev.target.closest&&ev.targe
  if(D.lyapply){var all=PK.all,a=all||PK.train,b=all||PK.diet;if(!a&&!b){a=true;b=true}LY.sec.train=a;LY.sec.diet=b;setHer(all||PK.her);if(all){LY.sec.comm=true;LY.sec.scan=true}else{LY.sec.scan=b}after();PK=null;lyPaint();msg(T('Your app is set up','Aplikacja ustawiona'));return}
  if(D.lyreset){LY=lyDef();window.LY=LY;try{if(S.tileOrd){delete S.tileOrd;save()}}catch(e){}after();PK=null;lyPaint();msg(T('Back to default','Przywrócono domyślne'));return}
  if(D.lyord){lyClose();tab='home';render();scrollTo(0,0);try{HW.on=true;hwApply()}catch(e){}return}},true);
+window.addEventListener('click',function(ev){if(ev.target.closest&&ev.target.closest('#hwdone,#hwreset'))setTimeout(function(){if(tab==='home'){try{cmTiles()}catch(e){}}},60)},true);
 var st=document.createElement('style');st.setAttribute('data-v','153');st.textContent=
  'body.ly-notrain #t-report [data-rpk="train"],body.ly-nodiet #t-report [data-rpk="diet"],body.ly-notrain #t-report [data-rpk="all"],body.ly-nodiet #t-report [data-rpk="all"]{display:none!important}body.ly-noshelf #cmrow .v7sh{display:none!important}body.ly-nopill #cmrow #cmGo{display:none!important}body.ly-noshelf.ly-nopill #cmrow{display:none!important}body.ly-nowat #t-home .gcard .gb.lywat{display:none!important}'+
  '.mtog.ly2 button.on{color:#fff}.mtog.ly2.p1 .knob{transform:translateX(100%)}'+
