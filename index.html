@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v152 · 19 Nov 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v153 · 19 Nov 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v152</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v153</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4885,7 +4885,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v152 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v153 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -12916,6 +12916,95 @@ window.v146whyPL=function(r){
   '#t-home .herb small{display:none}'+
  '}';document.head.appendChild(st);
  if(typeof tab!=='undefined'&&tab==='home')render();
+})();
+</script>
+<script>/* v153: Customise my app — show/hide sections, home tiles and extras (tt_layout_v1); Her uses the existing H.show switch */
+(function(){
+var LYK='tt_layout_v1';
+function lyDef(){return{sec:{train:true,diet:true,comm:true,scan:true},hide:[],ex:{shelf:true,cmpill:true,water:true}}}
+function lyLoad(){var d=lyDef();try{var x=JSON.parse(localStorage.getItem(LYK)||'null');if(x&&typeof x==='object'){['sec','ex'].forEach(function(g){if(x[g]&&typeof x[g]==='object')for(var k in d[g])if(typeof x[g][k]==='boolean')d[g][k]=x[g][k]});if(Array.isArray(x.hide))d.hide=x.hide.filter(function(s){return typeof s==='string'})}}catch(e){}if(!d.sec.train&&!d.sec.diet)d.sec.train=true;return d}
+window.LY=lyLoad();
+function lySave(){try{localStorage.setItem(LYK,JSON.stringify(LY))}catch(e){}}
+function pl(){return typeof LANG!=='undefined'&&LANG==='pl'}
+function T(en,p){return pl()?p:en}
+window.lyOn=function(k){return LY.sec[k]!==false};
+function exOn(k){return LY.ex[k]!==false}
+var TL={'HABITS':['Habits','Nawyki'],'TRAINING PLAN':['Training plan','Plan treningu'],'WORKOUT CREATOR':['Workout creator','Kreator treningu'],'CARDIO':['Cardio','Kardio'],'EXERCISES':['Exercises','Ćwiczenia'],'CHECK-IN':['Check-in','Pomiary i zdjęcia'],'TRAINING REPORT':['Training report','Raport treningu'],'DIET':['Diet (today)','Dieta (dziś)'],'CREATE DIET PLAN':['Create diet plan','Plan diety'],'MY DIETS':['My diets','Moje diety'],'SHOPPING LIST':['Shopping list','Zakupy'],'DIET REPORT':['Diet report','Raport diety'],'WORKOUT':['Workout','Trening'],'CREATE PLAN':['Create plan','Utwórz plan']};
+var SKIP={'GUT':1,'SCAN':1,'COMMUNITY':1};
+function tLab(t){var x=TL[t];return x?T(x[0],x[1]):t.charAt(0)+t.slice(1).toLowerCase()}
+function tileHidden(m,x){if(!x)return false;if(x.t==='SCAN'&&!lyOn('scan'))return true;if(x.t==='COMMUNITY'&&!lyOn('comm'))return true;return LY.hide.indexOf(x.t)>=0}
+// tiles: drop hidden ones (data stays untouched)
+var _th=tilesHtml;tilesHtml=function(m){var h=_th.apply(this,arguments);try{var w=document.createElement('div');w.innerHTML=h;[].forEach.call(w.querySelectorAll('.htile[data-ht]'),function(b){var p=b.dataset.ht.split('|'),x=HTILES[p[0]]&&HTILES[p[0]][+p[1]];if(tileHidden(p[0],x))b.remove()});h=w.innerHTML}catch(e){}return h};
+// modes: Training / Diet sections
+var _sm=swModes;swModes=function(){var M=_sm.apply(this,arguments).filter(function(m){return m==='her'||lyOn(m==='train'?'train':'diet')});return M.length?M:['train']};
+function fixMode(){var M=swModes();if(M.indexOf(hmode)<0)hmode=M[0]}
+var _mt=modeToggle;modeToggle=function(){fixMode();var M=swModes();if(M.length<2)return'<div class="mtog full lynone" id="mtog" style="display:none" aria-hidden="true"></div>';if(M.length===3||(M[0]==='train'&&M[1]==='diet'))return _mt.apply(this,arguments);
+ var L={train:T('🏋️ TRAINING','🏋️ TRENING'),diet:T('🍽️ DIET','🍽️ DIETA'),her:'🌸 HER'};var i=M.indexOf(hmode);
+ return'<div class="mtog full ly2'+(i===1?' p1':'')+(hmode==='her'?' her':'')+'" id="mtog" role="tablist" aria-label="Home mode"><i class="knob"></i>'+M.map(function(m,j){return'<button data-hm="'+m+'" class="'+(j===i?'on':'')+'">'+L[m]+'</button>'}).join('')+'</div>'};
+var _sd=swDots;swDots=function(){return swModes().length<2?'':_sd.apply(this,arguments)};
+document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('#mtog.ly2 [data-hm]');if(!b)return;ev.preventDefault();ev.stopImmediatePropagation();if(b.dataset.hm!==hmode){hmode=b.dataset.hm;render()}},true);
+var _stm=setMode;setMode=function(m){_stm.apply(this,arguments);try{var t=document.getElementById('mtog');if(t&&t.classList.contains('ly2')){var M=swModes(),i=M.indexOf(hmode);t.classList.toggle('p1',i===1);[].forEach.call(t.querySelectorAll('button'),function(x){x.classList.toggle('on',x.dataset.hm===hmode)})}}catch(e){}};
+function bodyCls(){var c=document.body.classList;c.toggle('ly-noshelf',!exOn('shelf'));c.toggle('ly-nopill',!exOn('cmpill')||!lyOn('comm'));c.toggle('ly-nowat',!exOn('water'));c.toggle('ly-notrain',!lyOn('train'));c.toggle('ly-nodiet',!lyOn('diet'))}
+var _rh=rHome;rHome=function(){fixMode();_rh.apply(this,arguments);try{bodyCls();var el=document.getElementById('t-home');if(!el)return;if(swModes().length<2){var d=el.querySelector('.hdots');d&&d.remove()}
+ [].forEach.call(el.querySelectorAll('.gcard .gb'),function(g){var b=g.querySelector('.gbh b');if(b&&/^(Water|Woda)$/.test(b.textContent.trim()))g.classList.add('lywat')})}catch(e){}};
+// reports: no hidden section, no switch to it
+var _rr=rReport;rReport=function(){if(rp.kind==='train'&&!lyOn('train'))rp.kind='diet';if(rp.kind==='diet'&&!lyOn('diet'))rp.kind='train';_rr.apply(this,arguments);try{if(!lyOn('train')||!lyOn('diet')){var b=document.querySelector('#t-report .rpk button[data-rpk]');b&&b.remove()}}catch(e){}};
+var _or=openReport;openReport=function(k){if(k==='train'&&!lyOn('train'))k='diet';if(k==='diet'&&!lyOn('diet'))k='train';return _or.call(this,k)};
+// menu: hide entries of hidden sections
+var MH={'Community':'comm','Shopping list':'diet','Rest timer':'train'};
+var _mo=menuOpen;menuOpen=function(){var r=_mo.apply(this,arguments);try{[].forEach.call(document.querySelectorAll('#hmenu .mitem[data-mi]'),function(b){var x=MENU[+b.dataset.mi],k=x&&MH[x.label];if(k&&!lyOn(k))b.style.display='none'})}catch(e){}return r};
+// Settings entry
+var _rs=rSettings;rSettings=function(){_rs.apply(this,arguments);try{var el=document.getElementById('t-settings');if(el&&!document.getElementById('lysetc'))el.insertAdjacentHTML('afterbegin','<div class="card" id="lysetc"><h2>🧩 '+T('Customise my app','Dostosuj aplikację')+'</h2><p class="mu" style="font-size:13px;margin:0 0 8px">'+T('Hide what you don’t use. Nothing is deleted.','Ukryj to, czego nie używasz. Nic nie jest usuwane.')+'</p><button class="pri" data-lyopen="1" style="width:100%">🧩 '+T('Customise my app','Dostosuj aplikację')+'</button></div>')}catch(e){}};
+// ---- sheet ----
+var PK=null;
+function sw(id,on,lab,dis){return'<button class="lysw'+(on?' on':'')+(dis?' dis':'')+'" data-ly="'+id+'" role="switch" aria-checked="'+(!!on)+'"'+(dis?' aria-disabled="true"':'')+'><span class="lyl">'+lab+'</span><i></i></button>'}
+function tileList(m){var out=[];(HTILES[m]||[]).forEach(function(x){if(x&&!SKIP[x.t]&&out.indexOf(x.t)<0)out.push(x.t)});return out}
+function lyHtml(){var her=herShow(),tr=lyOn('train'),di=lyOn('diet');
+ if(!PK)PK={train:tr,diet:di,her:her,all:tr&&di&&her};
+ var ch=function(k,lab){return'<button class="lych'+(PK[k]?' on':'')+'" data-lypk="'+k+'">'+lab+'</button>'};
+ var trT=tileList('train'),diT=tileList('diet').filter(function(t){return trT.indexOf(t)<0});
+ return'<div class="lyback" data-lyx="1"></div><div class="lypanel" role="dialog" aria-label="'+T('Customise my app','Dostosuj aplikację')+'"><div class="lyhead"><b>🧩 '+T('Customise my app','Dostosuj aplikację')+'</b><button class="sm" data-lyx="1" aria-label="'+T('Close','Zamknij')+'">✕</button></div><div class="lybody">'+
+ '<div class="lycard"><h3>'+T('What will you use AT for?','Do czego będziesz używać AT?')+'</h3><div class="lychips">'+ch('train',T('🏋️ Training','🏋️ Trening'))+ch('diet',T('🍽️ Diet','🍽️ Dieta'))+ch('her',T('🌸 Cycle (Her)','🌸 Cykl (Her)'))+ch('all',T('✨ Everything','✨ Wszystko'))+'</div><button class="pri lyapply" data-lyapply="1">'+T('Set up my app','Ustaw aplikację')+'</button></div>'+
+ '<div class="lycard"><h3>'+T('Sections','Sekcje')+'</h3>'+sw('s:train',tr,T('🏋️ Training','🏋️ Trening'),!di)+sw('s:diet',di,T('🍽️ Diet','🍽️ Dieta'),!tr)+sw('s:her',her,'🌸 Her')+sw('s:comm',lyOn('comm'),T('👥 Community','👥 Społeczność'))+sw('s:scan',lyOn('scan'),T('📷 Scanner','📷 Skaner'))+'<p class="mu lynote">'+T('Training or Diet must stay on.','Trening lub Dieta musi zostać włączona.')+'</p></div>'+
+ '<div class="lycard"><h3>'+T('Home tiles · Training','Kafelki · Trening')+'</h3>'+trT.map(function(t){return sw('t:'+t,LY.hide.indexOf(t)<0,tLab(t),!tr&&t!=='HABITS')}).join('')+'</div>'+
+ '<div class="lycard"><h3>'+T('Home tiles · Diet','Kafelki · Dieta')+'</h3>'+diT.map(function(t){return sw('t:'+t,LY.hide.indexOf(t)<0,tLab(t),!di)}).join('')+'</div>'+
+ '<div class="lycard"><h3>'+T('Home extras','Dodatki na stronie głównej')+'</h3>'+sw('e:shelf',exOn('shelf'),T('🏆 Rewards shelf','🏆 Półka nagród'))+sw('e:cmpill',exOn('cmpill'),T('👥 Community button','👥 Przycisk Społeczności'),!lyOn('comm'))+sw('e:water',exOn('water'),T('💧 Water in the gauge','💧 Woda we wskaźniku'))+'</div>'+
+ '<div class="lycard"><h3>'+T('Tile order','Kolejność kafelków')+'</h3><p class="mu lynote">'+T('Or press and hold any tile on Home.','Albo przytrzymaj kafelek na stronie głównej.')+'</p><button data-lyord="1" style="width:100%">↕️ '+T('Edit order','Zmień kolejność')+'</button></div>'+
+ '<button class="lyreset" data-lyreset="1">↺ '+T('Reset to default','Przywróć domyślne')+'</button></div></div>'}
+window.lyOpen=function(){PK=null;var m=document.getElementById('lysheet');if(!m){m=document.createElement('div');m.id='lysheet';document.body.appendChild(m)}m.innerHTML=lyHtml();document.body.classList.add('lyopen')};
+function lyPaint(){var m=document.getElementById('lysheet');if(!m)return;var b=m.querySelector('.lybody'),y=b?b.scrollTop:0;m.innerHTML=lyHtml();var b2=m.querySelector('.lybody');if(b2)b2.scrollTop=y}
+function lyClose(){var m=document.getElementById('lysheet');m&&m.remove();document.body.classList.remove('lyopen');PK=null}
+function setHer(on){if(on===herShow())return;H.show=!!on;if(!H.show&&hmode==='her')hmode='train';try{herSave()}catch(e){}try{herSchedPill()}catch(e){}}
+function after(){lySave();fixMode();bodyCls();render()}
+function msg(s){try{toast(s)}catch(e){}}
+document.addEventListener('click',function(ev){var t=ev.target.closest&&ev.target.closest('[data-lyopen],[data-lyx],[data-ly],[data-lypk],[data-lyapply],[data-lyreset],[data-lyord]');if(!t)return;ev.preventDefault();ev.stopImmediatePropagation();var D=t.dataset;
+ if(D.lyopen){lyOpen();return}if(D.lyx){lyClose();return}
+ if(D.ly){if(t.classList.contains('dis')){msg(T('Training or Diet must stay on','Trening lub Dieta musi zostać włączona'));return}var p=D.ly.split(':'),k=p[0],id=p.slice(1).join(':');
+  if(k==='s'){if(id==='her')setHer(!herShow());else{var nv=!lyOn(id);if(!nv&&((id==='train'&&!lyOn('diet'))||(id==='diet'&&!lyOn('train')))){msg(T('Training or Diet must stay on','Trening lub Dieta musi zostać włączona'));return}LY.sec[id]=nv}}
+  else if(k==='t'){var i=LY.hide.indexOf(id);if(i>=0)LY.hide.splice(i,1);else LY.hide.push(id)}
+  else if(k==='e'){LY.ex[id]=!exOn(id)}
+  after();PK=null;lyPaint();return}
+ if(D.lypk){var q=D.lypk;if(q==='all'){var v=!PK.all;PK={train:v,diet:v,her:v,all:v}}else{PK[q]=!PK[q];PK.all=PK.train&&PK.diet&&PK.her}lyPaint();return}
+ if(D.lyapply){var all=PK.all,a=all||PK.train,b=all||PK.diet;if(!a&&!b){a=true;b=true}LY.sec.train=a;LY.sec.diet=b;setHer(all||PK.her);if(all){LY.sec.comm=true;LY.sec.scan=true}else{LY.sec.scan=b}after();PK=null;lyPaint();msg(T('Your app is set up','Aplikacja ustawiona'));return}
+ if(D.lyreset){LY=lyDef();window.LY=LY;try{if(S.tileOrd){delete S.tileOrd;save()}}catch(e){}after();PK=null;lyPaint();msg(T('Back to default','Przywrócono domyślne'));return}
+ if(D.lyord){lyClose();tab='home';render();scrollTo(0,0);try{HW.on=true;hwApply()}catch(e){}return}},true);
+var st=document.createElement('style');st.setAttribute('data-v','153');st.textContent=
+ 'body.ly-notrain #t-report [data-rpk="train"],body.ly-nodiet #t-report [data-rpk="diet"],body.ly-notrain #t-report [data-rpk="all"],body.ly-nodiet #t-report [data-rpk="all"]{display:none!important}body.ly-noshelf #cmrow .v7sh{display:none!important}body.ly-nopill #cmrow #cmGo{display:none!important}body.ly-noshelf.ly-nopill #cmrow{display:none!important}body.ly-nowat #t-home .gcard .gb.lywat{display:none!important}'+
+ '.mtog.ly2 button.on{color:#fff}.mtog.ly2.p1 .knob{transform:translateX(100%)}'+
+ 'body.lyopen{overflow:hidden}#lysheet{position:fixed;inset:0;z-index:80}.lyback{position:absolute;inset:0;background:rgba(0,0,0,.6);animation:lyF .2s ease}'+
+ '.lypanel{position:absolute;left:0;right:0;bottom:0;top:max(24px,env(safe-area-inset-top));max-width:560px;margin:0 auto;background:var(--bg,#0b0b10);border:1px solid var(--t3,#333);border-bottom:0;border-radius:22px 22px 0 0;display:flex;flex-direction:column;animation:lyU .28s cubic-bezier(.2,.9,.3,1)}'+
+ '.lyhead{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid var(--t3,#333)}.lyhead b{font-size:17px}.lyhead button{width:auto;min-width:40px}'+
+ '.lybody{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:10px 12px calc(24px + env(safe-area-inset-bottom))}'+
+ '.lycard{background:var(--card,#16161e);border:1px solid var(--t3,#2a2a36);border-radius:18px;padding:12px 14px;margin:0 0 10px}.lycard h3{margin:0 0 6px;font-size:14px;letter-spacing:.02em}'+
+ '.lysw{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:46px;padding:6px 2px;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.06);box-shadow:none;border-radius:0;text-align:left;color:inherit;font-weight:600;font-size:15px;transition:opacity .2s}'+
+ '.lysw:last-of-type{border-bottom:0}.lysw .lyl{flex:1;min-width:0}.lysw i{flex:0 0 auto;position:relative;width:46px;height:28px;border-radius:14px;background:rgba(255,255,255,.14);transition:background .25s}'+
+ '.lysw i:after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .28s cubic-bezier(.5,1.6,.5,1)}.lysw.on i{background:var(--grad,linear-gradient(135deg,#7c3aed,#c026d3));box-shadow:0 0 12px color-mix(in srgb,var(--ac,#a855f7) 55%,transparent)}.lysw.on i:after{transform:translateX(18px)}'+
+ '.lysw:active i{transform:scale(.92)}.lysw.dis{opacity:.45}.lynote{font-size:12px;margin:6px 0 4px}'+
+ '.lychips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 10px}.lych{min-height:44px;padding:8px 6px;border-radius:14px;font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:transform .15s}.lych:active{transform:scale(.96)}.lych.on{background:var(--grad,linear-gradient(135deg,#7c3aed,#c026d3));color:#fff;border-color:transparent;box-shadow:0 0 14px color-mix(in srgb,var(--ac,#a855f7) 45%,transparent)}'+
+ '.lyapply{width:100%}.lyreset{width:100%;margin:2px 0 8px;min-height:46px;border-radius:16px;background:none;border:1px solid var(--t3,#444);color:var(--mu,#aaa);font-weight:700}.lyreset:active{transform:scale(.98)}'+
+ '@keyframes lyU{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}@keyframes lyF{from{opacity:0}}';
+document.head.appendChild(st);
+if(typeof tab!=='undefined'){fixMode();try{bodyCls()}catch(e){}render()}
 })();
 </script>
 </body></html>
