@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v155 · 19 Nov 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v156 · 21 Nov 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v155</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v156</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4885,7 +4885,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v155 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v156 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -13156,5 +13156,320 @@ document.head.appendChild(st);
 
 try{if(typeof tab!=='undefined'){if(tab==='exlib')rExlib();else if(tab==='workout')rWorkout();hookMus();fitTech()}}catch(e){}
 })();
+</script>
+
+<script>
+/* v156: Seal-the-ring celebrations (diet medal / workout goblet); Diet Plan ticks; no toast delay; Polish copy; drop/superset descriptions */
+(function(){
+if(typeof v10Show!=='function'||typeof v7SyncDiet!=='function')return;
+
+function pl(){return typeof LANG!=='undefined'&&LANG==='pl'}
+
+function plCount(n,one,few,many){
+  n=Math.abs(+n||0);
+  if(n===1)return one;
+  var m=n%10,te=n%100;
+  if(m>=2&&m<=4&&!(te>=12&&te<=14))return few;
+  return many;
+}
+function reduce(){try{return !!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)}catch(e){return false}}
+
+function copy(k){
+  var P=pl();
+  if(k==='m')return{
+    title:P?'Dzień ukończony':'Day complete',
+    sub:P?'Wszystkie posiłki odhaczone. Dotrzymujesz obietnic danych sobie.':'Every meal ticked. You kept every promise today.',
+    go:P?'Kontynuuj':'Continue',
+    kick:function(s,n){return P?(s+' '+plCount(s,'dzień','dni','dni')+' z rzędu · Medal #'+n):(s+'-day streak · Medal #'+n)},
+    kcal:'kcal', pHit:P?'Białko ✓':'Protein hit ✓', protein:P?'Białko':'Protein',
+    streak:P?'Seria diety':'Diet streak', days:P?'dni':'days', day:P?'dzień':'day'
+  };
+  if(k==='g')return{
+    title:P?'Trening ukończony':'Workout complete',
+    sub:P?'Wszystkie zaplanowane serie zrobione. Kolejny trening zaliczony.':'Every planned set done. You showed up.',
+    go:P?'Kontynuuj':'Continue',
+    kick:function(s,n){return P?(s+' '+plCount(s,'trening','treningi','treningów')+' z rzędu · Puchar #'+n):(s+'-session streak · Goblet #'+n)},
+    vol:P?'Objętość':'Volume',
+    setN:function(n){return P?plCount(n,'seria','serie','serii'):(n===1?'set':'sets')},
+    exN:function(n){return P?plCount(n,'ćwiczenie','ćwiczenia','ćwiczeń'):(n===1?'exercise':'exercises')},
+    dur:P?'Czas':'Duration', pr:P?'nowy rekord':'new PR', prs:P?'nowe rekordy':'new PRs',
+    noPr:P?'Bez nowego rekordu':'No new PRs'
+  };
+  return{
+    title:P?'Nowy rekord!':'New PR!',
+    sub:'',
+    go:P?'Kontynuuj':'Continue',
+    kick:function(s,n){return P?(s+' '+plCount(s,'tydzień','tygodnie','tygodni')+' z rzędu · Rekord #'+n):(s+'-week streak · PR #'+n)}
+  };
+}
+
+function tickNum(el,from,to){
+  if(!el)return;
+  if(reduce()||from===to){el.textContent=String(to);return}
+  el.textContent=String(from);
+  var t0=performance.now(),start=1900,dur=500;
+  (function step(now){
+    var p=Math.min(1,(now-t0-start)/dur);
+    if(p<0){requestAnimationFrame(step);return}
+    el.textContent=String(Math.round(from+(to-from)*p));
+    if(p<1)requestAnimationFrame(step);
+  })(t0);
+}
+
+function dietStats(C){
+  var t=totals(cur),g=TG(cur),meals=peek(cur).meals||[];
+  var ateN=meals.filter(function(m){return typeof ate==='function'?ate(m):m.eaten!==false}).length;
+  var pHit=n(g.protein)>0&&Math.round(t.protein)>=Math.round(g.protein);
+  var s=Math.max(1,typeof v8DStreak==='function'?v8DStreak():1);
+  var days=s===1?C.day:C.days;
+  return[
+    {b:nf(Math.round(t.kcal))+' / '+nf(g.kcal),s:C.kcal},
+    {b:nf(Math.round(t.protein))+' / '+nf(g.protein)+' g',s:pHit?C.pHit:C.protein,hit:pHit},
+    {b:String(s)+' '+days,s:C.streak},
+    {b:ateN+' / '+meals.length,s:pl()?plCount(meals.length,'posiłek','posiłki','posiłków'):(meals.length===1?'meal':'meals')}
+  ];
+}
+
+function wkStats(C,I){
+  var q=typeof v123Sum==='function'?v123Sum():{ex:0,sets:0,vol:0,mins:null,prs:[]};
+  var prs=[], seen={};
+  function add(p){if(!p||!p.n||seen[p.n])return;seen[p.n]=1;prs.push(p)}
+  (I&&I.prs||[]).forEach(add);
+  (q.prs||[]).forEach(function(p){add({n:p.n,main:p.v?('e1RM '+nf(p.v)+' kg'):'',e1:p.v})});
+  try{var R=v10R(),T=todayIso();(R.pr||[]).forEach(function(p){if(p.d===T)add({n:p.n,main:p.txt||(p.v?('e1RM '+nf(p.v)+' kg'):''),e1:p.v})})}catch(e){}
+  var setLab=C.setN(q.sets);
+  var exLab=C.exN(q.ex);
+  var prLab=prs.length===1?C.pr:(pl()?plCount(prs.length,'nowy rekord','nowe rekordy','nowych rekordów'):C.prs);
+  var prB=prs.length?(String(prs.length)+' '+prLab):C.noPr;
+  return{
+    cells:[
+      {b:nf(q.vol)+' kg',s:C.vol},
+      {b:String(q.sets)+' '+setLab,s:String(q.ex)+' '+exLab},
+      {b:q.mins?q.mins+' min':'–',s:C.dur},
+      {b:prB,s:pl()?'Rekordy':'PRs',hit:prs.length>0,pr:1}
+    ],
+    prs:prs
+  };
+}
+
+v10Show=function(k,I){
+  V10.on=true;
+  I=I||{};
+  var C=copy(k);
+  var s=Math.max(1,v10Streak(k));
+  var R=v10R();
+  var cnt=k==='g'?R.wg.length:k==='m'?R.dm.length:R.pr.length;
+  var from=s>1?s-1:0;
+  var icon=v7Ic(k,100);
+  var cells,extra='';
+  if(k==='m')cells=dietStats(C);
+  else if(k==='g'){var W=wkStats(C,I);cells=W.cells;
+    if(W.prs.length){
+      extra='<div class="v156prs">'+W.prs.map(function(p){
+        return'<div>'+v7Ic('p',22)+'<span><b>'+esc(typeof exDisp==='function'?exDisp(p.n):p.n)+'</b>'+(p.main?'<small>'+esc(p.main)+'</small>':'')+'</span></div>';
+      }).join('')+'</div>';
+    }
+  }else{
+    cells=[
+      {b:'e1RM '+nf(I.e1)+' kg',s:I.n?(typeof exDisp==='function'?exDisp(I.n):I.n):''},
+      {b:I.main||'',s:I.prev?('+'+nf(Math.round((I.e1-I.prev)*10)/10)+' kg'):''}
+    ];
+  }
+  var stats=cells.map(function(c){
+    return'<div class="s'+(c.hit?' hit':'')+'"><b>'+esc(c.b)+'</b><small>'+esc(c.s)+'</small></div>';
+  }).join('');
+  var o=document.getElementById('v10cel');if(o)o.remove();
+  document.body.insertAdjacentHTML('beforeend',
+    '<div id="v10cel" class="v10cel v10'+k+' v156cel" role="alertdialog" aria-label="'+esc(C.title)+'" data-k="'+k+'" data-v="156">'+
+      '<div class="v156glow"></div>'+
+      '<div class="v10in">'+
+        '<div class="v156hero"><div class="v156ringbox">'+
+          '<svg class="v156ring" viewBox="0 0 168 168" aria-hidden="true"><circle class="v156track" cx="84" cy="84" r="65"/><circle class="v156arc" cx="84" cy="84" r="65"/></svg>'+
+          '<div class="v156icon">'+icon+'</div>'+
+          '<div class="v156sn" id="v156sn">'+from+'</div>'+
+        '</div></div>'+
+        '<small class="v10kick">'+esc(C.kick(s,cnt))+'</small>'+
+        '<h2>'+esc(C.title)+'</h2>'+
+        (C.sub?'<p class="v10l">'+esc(C.sub)+'</p>':'')+
+        (k==='p'&&I.n?'<p class="v10l"><b>'+esc(C.title)+'</b> · '+esc((typeof exDisp==='function'?exDisp(I.n):I.n)+(I.main?(' · '+I.main):''))+'</p>':'')+
+        '<div class="v10wk">'+v10Week(k)+'</div>'+
+        '<div class="v156stats">'+stats+'</div>'+extra+
+        '<button class="pri v10ok" id="v10ok" type="button">'+esc(C.go)+'</button>'+
+      '</div></div>');
+  v7Fx('big');
+  clearTimeout(V10.h);V10.h=null; // no auto-close
+  tickNum(document.getElementById('v156sn'),from,s);
+  var btn=document.getElementById('v10ok');
+  if(btn)btn.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();v156.allow=true;v10Close(true)});
+};
+
+/* Close only via Continue (or programmatic force). Backdrop clicks do nothing. */
+var v156={allow:false,ptr:null,t:0};
+document.addEventListener('pointerdown',function(ev){
+  v156.ptr=ev.target;v156.t=Date.now();
+},true);
+
+var _v10Close=v10Close;
+v10Close=function(force){
+  var o=document.getElementById('v10cel');
+  if(!o){V10.on=false;return}
+  var recent=v156.ptr&&(Date.now()-v156.t<800);
+  var onOv=recent&&o.contains(v156.ptr);
+  var onBtn=onOv&&v156.ptr.closest&&v156.ptr.closest('#v10ok');
+  if(o.classList.contains('v156cel')&&force!==true&&onOv&&!onBtn&&!v156.allow){
+    return;
+  }
+  v156.allow=false;v156.ptr=null;
+  clearTimeout(V10.h);
+  o.classList.add('out');
+  var closing=o, after=V10.afterFin;
+  V10.afterFin=null;
+  setTimeout(function(){
+    if(closing&&closing.parentNode)closing.remove();
+    var live=document.getElementById('v10cel');
+    if(live&&live!==closing)return;
+    V10.on=false;
+    try{if(after)after()}catch(e){}
+    v10Next();
+  },300);
+};
+
+/* Skip mid-workout PR overlay when the session is also completing — show PRs on the goblet screen. */
+var _v10Cel=v10Cel;
+v10Cel=function(k,info){
+  try{
+    if(k==='p'&&typeof v10WOk==='function'&&v10WOk(cur)&&!(v10R().wcel&&v10R().wcel[cur])){
+      V10.pendingPR=V10.pendingPR||[];V10.pendingPR.push(info||{});
+      return;
+    }
+    if(k==='g'&&V10.pendingPR&&V10.pendingPR.length){
+      info=Object.assign({},info||{},{prs:V10.pendingPR});
+      V10.pendingPR=null;
+    }
+  }catch(e){}
+  return _v10Cel(k,info);
+};
+
+/* Diet sync: celebrate immediately, drop Protein hit toast when the medal overlay fires. */
+v7SyncDiet=function(pop){
+  try{
+    var d=cur;if(d>todayIso())return;
+    var R=v7R();R.cel=R.cel||{};
+    var has=R.dm.some(function(x){return x.d===d}),ok=v7DietOk(d),ch=false,ph=false;
+    if(ok&&!has){R.dm.push({d:d});ch=true;if(pop&&!R.cel[d]){R.cel[d]=1;V7.mq=1}}
+    else if(!ok&&has){R.dm=R.dm.filter(function(x){return x.d!==d});ch=true}
+    var t=totals(d),g=TG(d);
+    if(pop&&d===todayIso()&&n(g.protein)>0&&Math.round(t.protein)>=Math.round(g.protein)&&!R.ph[d]){
+      R.ph[d]=1;ch=true;ph=true;
+    }
+    if(ch)save();
+    if(V7.mq){V7.mq=0;v10Cel('m')}
+    else if(ph){v7Toast(pl()?'Białko ✓':'Protein hit ✓')}
+  }catch(e){console.warn(e)}
+};
+
+var _v7Toast=v7Toast;
+v7Toast=function(m){
+  if(m==='Protein hit ✓'&&pl())m='Białko ✓';
+  return _v7Toast(m);
+};
+
+/* Diet Plan ticks also trigger diet rewards. */
+document.addEventListener('click',function(ev){
+  var b=ev.target&&ev.target.closest&&ev.target.closest('button');
+  if(!b||(b.dataset.v5me==null&&b.dataset.v5ie==null))return;
+  setTimeout(function(){try{v7SyncDiet(true)}catch(e){}},0);
+},true);
+
+/* Finish workout: if a goblet celebration is due, show it first, then the summary sheet. */
+var _v156fin=v123FinOpen;
+v123FinOpen=function(){
+  try{
+    if(typeof v10WOk==='function'&&v10WOk(cur)&&!(v10R().wcel&&v10R().wcel[cur])){
+      var args=arguments,self=this;
+      V10.afterFin=function(){_v156fin.apply(self,args)};
+      v10SyncW(true);
+      return;
+    }
+  }catch(e){}
+  return _v156fin.apply(this,arguments);
+};
+
+/* ---- Polish drop-set / superset descriptions under the exercise name ---- */
+function v156TechPL(root){
+  if(!pl()||!root)return;
+  var reps=[
+    [/last set: drop ~20–30% weight, go to near failure, 1–2 drops/g,'ostatnia seria: zrzut ~20–30% ciężaru, prawie do załamania, 1–2 zrzuty'],
+    [/go straight to it \(no rest\), then rest/g,'od razu do niego (bez odpoczynku), potem odpoczynek'],
+    [/do it right after, then rest/g,'zrób je zaraz potem, potem odpoczynek'],
+    [/go straight to (.+?) \(no rest\), then rest/g,'od razu do $1 (bez odpoczynku), potem odpoczynek'],
+    [/right after (.+?), then rest before the next round/g,'zaraz po $1, potem odpoczynek przed następną rundą'],
+    [/Superset needs a next exercise/g,'Superseria wymaga następnego ćwiczenia'],
+    [/alternate the two, rest after both/g,'naprzemiennie te dwa, odpoczynek po obu'],
+    [/\bDrop set\b/g,'Zrzut'],
+    [/\bSuperset\b/g,'Superseria']
+  ];
+  var sel='.wtn,.wssl,.wdet,small.wtn';
+  [].forEach.call(root.querySelectorAll(sel),function(el){
+    var h=el.innerHTML,n0=h;
+    reps.forEach(function(p){h=h.replace(p[0],p[1])});
+    if(h!==n0)el.innerHTML=h;
+  });
+}
+
+var _rw156=rWorkout;
+rWorkout=function(){
+  var r=_rw156.apply(this,arguments);
+  try{v156TechPL(document.getElementById('t-workout'))}catch(e){}
+  return r;
+};
+if(typeof rGen==='function'){
+  var _rg156=rGen;
+  rGen=function(){var r=_rg156.apply(this,arguments);try{v156TechPL(document.getElementById('t-gen'))}catch(e){}return r};
+}
+
+var css=document.createElement('style');
+css.setAttribute('data-v','156');
+css.textContent=
+  '.v156cel .v10fire{display:none}'+
+  '.v156glow{position:absolute;left:0;right:0;bottom:0;height:55%;pointer-events:none;background:radial-gradient(ellipse at 50% 100%,color-mix(in srgb,var(--k) 36%,transparent),transparent 68%)}'+
+  '.v156cel .v10in{width:min(342px,90vw)}'+
+  '.v156hero{position:relative;height:176px;display:flex;align-items:center;justify-content:center;margin:0 0 4px}'+
+  '.v156ringbox{position:relative;width:168px;height:168px}'+
+  '.v156ring{width:168px;height:168px;transform:rotate(-90deg);display:block}'+
+  '.v156track{fill:none;stroke:rgba(255,255,255,.1);stroke-width:8}'+
+  '.v156arc{fill:none;stroke:var(--k,#22c66e);stroke-width:8;stroke-linecap:round;stroke-dasharray:408;stroke-dashoffset:408;animation:v156draw 1.55s .15s cubic-bezier(.2,.8,.2,1) forwards;filter:drop-shadow(0 0 8px var(--k,#22c66e))}'+
+  '@keyframes v156draw{to{stroke-dashoffset:0}}'+
+  '.v156icon{position:absolute;inset:0;margin:auto;width:100px;height:100px;opacity:0;transform:scale(.4);animation:v156pop .7s 1.45s cubic-bezier(.2,1.5,.4,1) forwards;filter:drop-shadow(0 8px 24px color-mix(in srgb,var(--k) 50%,transparent))}'+
+  '.v156icon svg{width:100px;height:100px;display:block}'+
+  '@keyframes v156pop{to{opacity:1;transform:scale(1)}}'+
+  '.v156sn{position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);font-size:13px;font-weight:900;color:#fff;background:color-mix(in srgb,var(--k) 85%,#000);padding:2px 10px;border-radius:999px;min-width:52px;text-align:center;opacity:0;animation:v156pop .4s 1.9s both}'+
+  '.v156cel .v10kick,.v156cel h2,.v156cel .v10l,.v156cel .v10wk,.v156cel .v156stats,.v156cel .v156prs,.v156cel .v10ok{animation:v156rise .5s ease both}'+
+  '.v156cel .v10kick{animation-delay:1.7s;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;line-height:1.3;white-space:normal}'+
+  '.v156cel h2{animation-delay:1.85s;margin:0 0 6px;font-size:clamp(24px,7.4vw,32px);line-height:1.15;font-weight:900;color:#fff;text-wrap:balance;letter-spacing:-.02em;text-shadow:none}'+
+  '.v156cel .v10l{animation-delay:1.95s;margin:0 0 10px;font-size:14px;font-weight:600;color:#eee;text-wrap:balance}'+
+  '.v156cel .v10wk{animation-delay:2.05s;margin:0 0 10px;gap:5px}'+
+  '.v156cel .v10wk .dd{width:32px;height:42px;flex:0 1 32px;border-radius:10px;font-size:14px}'+
+  '.v156cel .v156stats{animation-delay:2.15s;display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0 0 12px}'+
+  '.v156cel .v156stats .s{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:8px 8px 7px;min-width:0;text-align:center}'+
+  '.v156cel .v156stats b{display:block;font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
+  '.v156cel .v156stats small{display:block;font-size:11px;color:var(--mu,#9a94ad);font-weight:600;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
+  '.v156cel .v156stats .hit b{color:var(--ok,#22c66e)}'+
+  '.v156prs{animation-delay:2.2s;display:grid;gap:6px;margin:0 0 12px}'+
+  '.v156prs > div{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:10px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.35);text-align:left}'+
+  '.v156prs b{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
+  '.v156prs small{display:block;font-size:11px;color:var(--mu,#9a94ad)}'+
+  '.v156cel .v10ok{animation-delay:2.3s;width:100%}'+
+  '@keyframes v156rise{from{transform:translateY(14px);opacity:0}}'+
+  '@media (prefers-reduced-motion:reduce){'+
+    '.v156cel .v156arc,.v156cel .v156icon,.v156cel .v156sn,.v156cel .v10kick,.v156cel h2,.v156cel .v10l,.v156cel .v10wk,.v156cel .v156stats,.v156cel .v156prs,.v156cel .v10ok{animation:none!important;transition:none!important}'+
+    '.v156cel .v156arc{stroke-dashoffset:0}'+
+    '.v156cel .v156icon,.v156cel .v156sn{opacity:1;transform:none}'+
+  '}';
+document.head.appendChild(css);
+
+try{if(typeof tab!=='undefined'&&tab==='workout'){v156TechPL(document.getElementById('t-workout'))}}catch(e){}
+})();
+
 </script>
 </body></html>
