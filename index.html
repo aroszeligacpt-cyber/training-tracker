@@ -8506,10 +8506,10 @@ var MLIB115=[
 ['Quark & blueberry overnight oats with pumpkin seeds', 'B', 'sweet veg nocook', 0, [['Porridge oats', 'c'], ['Quark', 'p'], ['Pumpkin seeds', 'f'], ['Blueberries', 80], ['Milk, semi-skimmed', 100]]],
 ['Cottage cheese & tomato on rye crispbread with seeds', 'B S', 'sav veg quick nocook', 0, [['Rye crispbread (Ryvita)', 'c'], ['Cottage cheese', 'p'], ['Mixed seeds', 'f'], ['Tomato', 80]]],
 ['Quinoa, chickpea & halloumi salad', 'L D', 'sav veg quick', 0, [['Quinoa, cooked', 'c'], ['Halloumi', 'p'], ['Olive oil', 'f'], ['Chickpeas, canned (drained)', 80], ['Cucumber', 60]]],
-['Falafel & hummus wholemeal pitta with yoghurt dip', 'L', 'sav veg quick', 0, [['Pitta bread, wholemeal', 'c'], ['Greek yoghurt, 0% fat', 'p'], ['Hummus', 'f'], ['Falafel', 90], ['Cucumber', 50]]],
+['Falafel & halloumi pitta bread with hummus', 'L', 'sav veg quick', 0, [['Pitta bread, wholemeal', 'c'], ['Halloumi', 'p'], ['Hummus', 'f'], ['Falafel', 90], ['Cucumber', 50]]],
 ['Tofu & edamame rice bowl', 'L D', 'sav veg quick', 0, [['Basmati rice, cooked', 'c'], ['Tofu, firm', 'p'], ['Sesame oil', 'f'], ['Edamame beans, shelled', 60], ['Soy sauce', 10]]],
 ['Quorn & bean chilli with brown rice', 'L D', 'sav veg', 0, [['Brown rice, cooked', 'c'], ['Quorn mince', 'p'], ['Avocado', 'f'], ['Kidney beans, canned (drained)', 80], ['Tomatoes, canned (chopped)', 100]]],
-['Red lentil dal with basmati rice & yoghurt', 'L D', 'sav veg', 0, [['Basmati rice, cooked', 'c'], ['Greek yoghurt, 0% fat', 'p'], ['Rapeseed oil', 'f'], ['Lentils, cooked', 150], ['Spinach, raw', 40]]],
+['Red lentil dal with paneer & basmati rice', 'L D', 'sav veg', 0, [['Basmati rice, cooked', 'c'], ['Paneer', 'p'], ['Rapeseed oil', 'f'], ['Lentils, cooked', 150], ['Spinach, raw', 40]]],
 ['Paneer tikka with basmati rice & peppers', 'L D', 'sav veg', 0, [['Basmati rice, cooked', 'c'], ['Paneer', 'p'], ['Rapeseed oil', 'f'], ['Peppers, red', 80], ['Red onion', 30]]],
 ['Halloumi & roast veg couscous', 'L D', 'sav veg quick', 0, [['Couscous, cooked', 'c'], ['Halloumi', 'p'], ['Olive oil', 'f'], ['Courgette', 80], ['Peppers, red', 60]]],
 ['Tempeh & broccoli satay noodles with peanut butter', 'L D', 'sav veg quick', 0, [['Egg noodles, cooked', 'c'], ['Tempeh', 'p'], ['Peanut butter', 'f'], ['Broccoli, raw', 80], ['Soy sauce', 10]]],
@@ -8522,7 +8522,7 @@ var MLIB115=[
 ['Teriyaki tofu brown rice bowl with edamame & sesame seeds', 'L', 'sav veg quick', 0, [['Brown rice, cooked', 'c'], ['Tofu, firm', 'p'], ['Sesame seeds', 'f'], ['Edamame beans, shelled', 60], ['Soy sauce', 10]]],
 ['Lentil pasta with Quorn & tomato sauce', 'L D', 'sav veg quick', 0, [['Lentil pasta, dry', 'c'], ['Quorn mince', 'p'], ['Olive oil', 'f'], ['Pasta sauce, tomato (jar)', 100], ['Parmesan', 10]]],
 ['Plant-based burger with sweet potato wedges', 'L D', 'sav veg', 0, [['Sweet potato, baked', 'c'], ['Plant-based burger (pea protein)', 'p'], ['Light mayonnaise', 'f'], ['Lettuce', 30], ['Tomato', 50]]],
-['Feta & lentil salad with new potatoes', 'L', 'sav veg', 0, [['New potatoes, boiled', 'c'], ['Greek yoghurt, 0% fat', 'p'], ['Feta', 'f'], ['Lentils, puy, cooked', 100], ['Rocket', 30]]],
+['Lentil, feta & egg salad with new potatoes', 'L', 'sav egg veg', 0, [['New potatoes, boiled', 'c'], ['Egg, boiled', 'p'], ['Feta', 'f'], ['Lentils, puy, cooked', 100], ['Rocket', 30]]],
 ['Spanish potato omelette with peppers', 'L D', 'sav egg veg', 0, [['Potatoes, boiled', 'c'], ['Egg', 'p'], ['Olive oil', 'f'], ['Onion', 40], ['Peppers, red', 40]]],
 ['Edamame, egg & rice noodle salad', 'L', 'sav egg veg quick', 0, [['Rice noodles, cooked', 'c'], ['Egg, boiled', 'p'], ['Peanut butter', 'f'], ['Edamame beans, shelled', 60], ['Cucumber', 60]]],
 ['Quorn & veg stir-fry with basmati rice', 'D L', 'sav veg quick', 0, [['Basmati rice, cooked', 'c'], ['Quorn pieces', 'p'], ['Rapeseed oil', 'f'], ['Peppers, red', 60], ['Broccoli, raw', 60], ['Soy sauce', 10]]],
@@ -8555,11 +8555,11 @@ function foodCap(nm){try{var m=gdMax(nm);return/whey|protein powder|casein/i.tes
 var SIDE={c:{B:['Wholemeal bread','Banana','Porridge oats'],S:['Banana','Rice cakes','Apple'],L:['Basmati rice, cooked','Potatoes, boiled','Wholemeal bread'],D:['Potatoes, boiled','Basmati rice, cooked','Wholemeal bread']},
  p:{B:['Greek yoghurt, 0% fat','Egg white','Cottage cheese'],S:['Greek yoghurt, 0% fat','Cottage cheese'],L:['Chicken breast, raw','Greek yoghurt, 0% fat','Egg white'],D:['Chicken breast, raw','Greek yoghurt, 0% fat','Egg white']},
  f:{B:['Almonds','Peanut butter'],S:['Almonds','Walnuts'],L:['Olive oil','Avocado'],D:['Olive oil','Avocado']}};
-var VEGP=['Greek yoghurt, 0% fat','Egg white','Cottage cheese'];
+var VEGP=['Greek yoghurt, 0% fat','Egg white','Cottage cheese'],VEGPH=['Egg','Edamame beans, shelled','Tofu, firm'];
 // clamp oversized foods and spread what's missing over other foods (keeps big 2,600+ kcal days realistic)
 function split(items,tg,sl,o){o=o||{};sl=sl||'L';var over=false;items=items.map(function(x){var c=foodCap(x.name);if(x.g>c){over=true;return calc(fByName(x.name)||foodByKey(x.key),c)}return x});if(!over)return items;
  var mac={c:'carbs',p:'protein',f:'fat'};['p','c','f'].forEach(function(r){if(o.keto&&r==='c')return;for(var k=0;k<3;k++){var T=sumItems(items),d=tg[mac[r]]-T[mac[r]];if(d<(r==='f'?4:8))return;
-  var L=(r==='p'&&o.veg?VEGP:SIDE[r][sl]||SIDE[r].L),done=false;for(var i=0;i<L.length&&!done;i++){var f=fByName(L[i]);if(!f||f[mac[r]]<=0)continue;if(o.av&&o.av[f.name])continue;var ex=items.filter(function(x){return x.name===f.name})[0],have=ex?ex.g:0,c=foodCap(f.name),g=Math.min(c,have+d/(f[mac[r]]/100));g=Math.round(g/5)*5;if(g-have<10)continue;
+  var L=(r==='p'&&o.veg?((sl==='L'||sl==='D')?VEGPH:VEGP):SIDE[r][sl]||SIDE[r].L),done=false;for(var i=0;i<L.length&&!done;i++){var f=fByName(L[i]);if(!f||f[mac[r]]<=0)continue;if(o.av&&o.av[f.name])continue;var ex=items.filter(function(x){return x.name===f.name})[0],have=ex?ex.g:0,c=foodCap(f.name),g=Math.min(c,have+d/(f[mac[r]]/100));g=Math.round(g/5)*5;if(g-have<10)continue;
    items=ex?items.map(function(x){return x===ex?calc(f,g):x}):items.concat([calc(f,g)]);done=true}if(!done)return}});return items}
 window.v115split=split;
 function isVeg(t){return t&&t.tg&&t.tg.indexOf('veg')>=0}
@@ -9136,7 +9136,7 @@ document.addEventListener('click',function(ev){var t=ev.target;if(!t.closest)ret
 var V123B=[['rice cakes',/rice cake/i,/rice cake/i],['oatcakes',/oatcake/i,/oatcake/i],['crispbread',/crispbread|ryvita/i,/crispbread|ryvita/i],['crackers',/cracker/i,/cracker/i],
  ['toast',/\bbread\b|sourdough|bagel|crumpet/i,/bread|toast|sandwich|toastie|sourdough|bagel|crumpet|bruschetta|butty/i],['pitta',/pitta/i,/pitta|kebab|gyros/i],['wrap',/wrap|tortilla/i,/wrap|taco|tortilla|burrito|quesadilla|fajita/i],
  ['rice',/(?:^|, |\b)(?:basmati|jasmine|brown|white|wild|risotto \(arborio\)) rice|^rice, /i,/\b(?:fried |basmati |brown |jasmine |wild )?rice\b(?! ?(?:cake|noodle|pudding))|risotto|biryani|paella|pilaf|sushi|poke|congee|kedgeree/i],
- ['potatoes',/potato|oven chips|wedges/i,/potato|mash|chips|wedges|hash|jacket|spanish tortilla|rösti|gnocchi|colcannon|champ\b/i],['pasta',/pasta|spaghetti|penne|macaroni|lasagne/i,/pasta|spaghetti|penne|bolognese|lasagne|macaroni|carbonara|orzo/i],
+ ['potatoes',/potato|oven chips|wedges/i,/potato|mash|chips|wedges|hash|jacket|spanish tortilla|rösti|gnocchi|colcannon|champ\b/i],['pasta',/pasta(?! sauce)|spaghetti|penne|macaroni|lasagne/i,/pasta|spaghetti|penne|bolognese|lasagne|macaroni|carbonara|orzo/i],
  ['noodles',/noodle/i,/noodle|ramen|pad thai|chow mein|pho\b/i],['couscous',/couscous/i,/couscous|tabbouleh/i],['quinoa',/quinoa/i,/quinoa/i],
  ['oats',/porridge oats|rolled oats|^oats|owsianka|oat bran/i,/\boats\b(?!cake)|porridge|owsianka|muesli|granola|overnight|flapjack|pancake/i],['granola',/granola|muesli/i,/granola|muesli|parfait/i]];
 var V123R=[[/walnut/i,/walnut/i,'Walnuts'],[/almond(?! milk)/i,/^almonds|almond butter|flaked almond/i,'Almonds'],[/peanut butter/i,/peanut butter/i,'Peanut butter'],[/(^|[^e])apple(?! juice| sauce)/i,/^apple\b|^apples\b/i,'Apple'],
@@ -12070,7 +12070,7 @@ window.V138={isCereal:v138isCereal,isCook:v138isCook,isStaple:v138isStaple,kind:
       if(p[0]==='p'&&typeof pl!=='undefined'&&pl){ all=pl.mp; res=pl.res; }
       else if(p[0]==='x'){ var x=dietById(p[1]); if(x){ all=x.mp; res=x.res; } }
       else if(p[0]==='b'&&typeof bd!=='undefined'&&bd){ all=bd.meals; res=bd.res||null; }
-      else if(p[0]==='d'){ all=day(cur).meals; }
+      else if(p[0]==='d'){ all=day(cur).meals; try{ var dm=all[+p[2]], dx=dm&&dm.dietId&&dietById(dm.dietId); if(dx&&dx.res) res=dx.res; }catch(e){} } /* v158: day meals know their diet (keto stays keto) */
     }catch(e){}
     return {k:p[0],i:+p[2],all:all||[],res:res};
   }
@@ -13831,7 +13831,7 @@ function vegItems(items){return (items||[]).every(function(x){return !isMeat(x.n
 window.V158={isMeat:isMeat,meatSet:meatSet,vegRecipe:vegRecipe,vegItems:vegItems};
 
 // realistic portions for vegetarian protein foods
-try{GDMX.unshift([/paneer|halloumi(?! fries)/i,120],[/soya mince, dry|\btvp\b/i,60],[/falafel/i,180],[/quorn/i,250],[/veggie burger|plant-based burger/i,230],[/vegan sausages/i,200]);}catch(e){}
+try{GDMX.unshift([/mozzarella(?! sticks)/i,125],[/paneer|halloumi(?! fries)/i,120],[/soya mince, dry|\btvp\b/i,60],[/falafel/i,180],[/quorn/i,250],[/veggie burger|plant-based burger/i,230],[/vegan sausages/i,200]);}catch(e){}
 try{PPR.unshift([/paneer|halloumi(?! fries)/i,40,120,10],[/soya mince, dry|\btvp\b/i,25,60,5],[/falafel/i,60,180,20],[/veggie burger|plant-based burger/i,90,230,10],[/vegan sausages/i,50,200,50,'sausage']);}catch(e){}
 
 // avoid set: vegetarian plans avoid every meat & fish food (covers sides, swaps, top-ups and favourites)
@@ -13869,16 +13869,17 @@ function ketoTrim(mp,R,veg){if(!R||!R.style||R.style.id!=='keto'||!mp)return;var
   mp.forEach(function(m){(m.items||[]).forEach(function(x,j){var f=fByName(x.name);if(!f||f.carbs<1.5)return;var c=nc(x);if(c<1)return;var kind,mn;
    if(/lemon|lime|garlic|soy sauce|salsa|onion|tomatoes, canned|gherkin/i.test(x.name))return;
    if(f.fat*9>=f.kcal*0.5&&f.protein*4<f.kcal*0.3){kind='fat';mn=/avocado/i.test(x.name)?30:10;}
+   else if(veg&&f.carbs>=4&&/tempeh|quorn|edamame|yogh?urt|skyr|quark/i.test(x.name)){kind='pc';mn=/yogh?urt|skyr|quark/i.test(x.name)?100:80;}
    else if(f.protein*4>=f.kcal*0.4||f.fat*9>=f.kcal*0.5)return;
    else{kind='veg';mn=40;}
    if(x.g<=mn)return;if(!best||c>best.c)best={m:m,j:j,x:x,f:f,mn:mn,kind:kind,c:c};});});
   if(!best)return;var per=Math.max(0.5,best.c/best.x.g),need=Math.max(N.n-lim,N.g-gmax,1),g=Math.max(best.mn,Math.floor((best.x.g-need/per)/5)*5);if(g>=best.x.g)g=Math.max(best.mn,best.x.g-10);
   var lost=best.f.kcal*(best.x.g-g)/100;best.m.items[best.j]=Object.assign({},best.x,calc(best.f,g));
   if(best.kind==='fat'&&lost>20){var m=best.m,oi=-1;m.items.forEach(function(y,q){if(OIL.test(y.name)&&oi<0)oi=q;});var of=oi>=0?fByName(m.items[oi].name):fByName(m.slot==='B'||m.slot==='S'?'Butter':'Olive oil');
-   if(of){var have=oi>=0?m.items[oi].g:0,ng=Math.min(25,Math.round((have+lost/(of.kcal/100))/5)*5);if(ng>have){if(oi>=0)m.items[oi]=Object.assign({},m.items[oi],calc(of,ng));else if(!/yogh?urt|skyr|quark|whey|oats|berr|banana|apple|milk/i.test(m.items.map(function(y){return y.name}).join(' ')))m.items.push(calc(of,ng));}}}}}
+   if(of){var have=oi>=0?m.items[oi].g:0,ng=Math.min(20,Math.round((have+lost/(of.kcal/100))/5)*5);if(ng>have){if(oi>=0)m.items[oi]=Object.assign({},m.items[oi],calc(of,ng));else if(!/yogh?urt|skyr|quark|whey|oats|berr|banana|apple|milk/i.test(m.items.map(function(y){return y.name}).join(' ')))m.items.push(calc(of,ng));}}}}}
 window.V158.ketoTrim=ketoTrim;
 // keto: calories lost to carb trimming come back as fat on savoury plates
-function ketoFill(mp,R){if(!R||!R.style||R.style.id!=='keto'||!mp)return;var F=[['Olive oil',25],['Butter',20],['Cheddar cheese',50]];
+function ketoFill(mp,R){if(!R||!R.style||R.style.id!=='keto'||!mp)return;var F=[['Olive oil',20],['Butter',20],['Cheddar cheese',50]];
  for(var k=0;k<12;k++){var T=planTot(mp),d=R.kcal*0.97-T.kcal;if(d<=20)return;var done=false;
   mp.forEach(function(m){if(done)return;var N=(m.items||[]).map(function(y){return y.name;}).join(' ');if(/yogh?urt|skyr|quark|whey|oats|berr|banana|apple|milk/i.test(N))return;if(m.slot==='S')return;
    for(var q=0;q<F.length&&!done;q++){var f=fByName(F[q][0]);if(!f)continue;if(F[q][0]==='Butter'&&/olive oil/i.test(N))continue;if(F[q][0]==='Olive oil'&&/butter/i.test(N)&&!/olive oil/i.test(N))continue;var ix=-1;m.items.forEach(function(y,j){if(y.name===F[q][0])ix=j;});var have=ix>=0?m.items[ix].g:0,ng=Math.min(F[q][1],Math.round((have+d/(f.kcal/100))/5)*5);if(ng-have<5)continue;
