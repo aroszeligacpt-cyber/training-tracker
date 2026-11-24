@@ -8572,9 +8572,9 @@ _gm0=function(R,i,seed){var sp=SPLIT[i.meals]||SPLIT[4],keto=R&&R.style&&R.style
  return sp.map(function(s,ix){var tg={protein:R.protein*s[2],carbs:R.carbs*s[2],fat:R.fat*s[2]},kt=tg.protein*4+tg.carbs*4+tg.fat*9,P=pool(R,i,s[0]),key=(keto?'k':'')+(i.fish?'f':'')+s[0],H=GH[key]=GH[key]||[];
   if(!P.length)return{type:s[1],slot:s[0],tpl:0,items:buildMeal(TPL[s[0]][0],tg)};
   var fresh=P.filter(function(t){return H.indexOf(t.n)<0&&today.indexOf(t.n)<0});if(!fresh.length){H.length=0;fresh=P.filter(function(t){return today.indexOf(t.n)<0})}if(!fresh.length)fresh=P;
-  var C=shuffle(fresh,r).concat(shuffle(P,r)),best=null;
+  var P2=P.filter(function(t){return today.indexOf(t.n)<0}),C=shuffle(fresh,r).concat(shuffle(P2.length?P2:P,r)),best=null;
   for(var q=0;q<C.length;q++){var t=C[q],it=buildMeal(t.it,tg);if(!it.length)continue;it=split(it,tg,s[0],{keto:keto,veg:isVeg(t)});var T=sumItems(it),e=Math.abs(T.kcal-kt)/kt+Math.max(0,tg.protein-T.protein)/Math.max(1,tg.protein);
-   if(!best||e<best.e)best={t:t,it:it,e:e};if(Math.abs(T.kcal-kt)/kt<0.1&&T.protein>=tg.protein*0.85){best={t:t,it:it,e:e};break}}
+   if(!best||e<best.e)best={t:t,it:it,e:e};if(Math.abs(T.kcal-kt)/kt<(keto?0.3:0.1)&&T.protein>=tg.protein*0.85){best={t:t,it:it,e:e};break}}
   H.push(best.t.n);today.push(best.t.n);return{type:s[1],slot:s[0],tpl:0,alt:best.t.n,items:best.it}})};
 // favourites/avoid path: more variety among good candidates
 var FVH={};if(typeof fvTpls==='function'){var _fvT=fvTpls;fvTpls=function(R,i,slot){var L=_fvT.apply(this,arguments).filter(function(t){return t.n}),H=FVH[slot]=FVH[slot]||[],F=L.filter(function(t){return H.indexOf(t.n)<0});if(F.length<3){H.length=0;F=L}return F}}
@@ -13861,13 +13861,54 @@ var SIMV={L:[{n:'Tofu, rice & broccoli',it:[['Basmati rice, raw','c'],['Tofu, fi
  {n:'Eggs, potatoes & green beans',it:[['Potatoes, raw','c'],['Egg','p'],['Butter','f'],['Green beans',150]]}]};
 
 // generator: vegetarian plans draw only from meat-free recipes
+function ketoTrim(mp,R,veg){if(!R||!R.style||R.style.id!=='keto'||!mp)return;var lim=veg?50:Math.min(50,Math.max(20,R.carbs||0))+3,gmax=veg?999:60;
+ var nc=function(x){var f=fByName(x.name);return (x.carbs||0)-(f&&f.fibre?f.fibre*x.g/100:0);};
+ var net=function(){var c=0,n=0;mp.forEach(function(m){(m.items||[]).forEach(function(x){c+=x.carbs||0;n+=nc(x);});});return{g:c,n:n};};
+ var OIL=/olive oil|rapeseed oil|coconut oil|sesame oil|^butter$/i;
+ for(var k=0;k<30;k++){var N=net();if(N.n<=lim&&N.g<=gmax)return;var best=null;
+  mp.forEach(function(m){(m.items||[]).forEach(function(x,j){var f=fByName(x.name);if(!f||f.carbs<1.5)return;var c=nc(x);if(c<1)return;var kind,mn;
+   if(/lemon|lime|garlic|soy sauce|salsa|onion|tomatoes, canned|gherkin/i.test(x.name))return;
+   if(f.fat*9>=f.kcal*0.5&&f.protein*4<f.kcal*0.3){kind='fat';mn=/avocado/i.test(x.name)?30:10;}
+   else if(f.protein*4>=f.kcal*0.4||f.fat*9>=f.kcal*0.5)return;
+   else{kind='veg';mn=40;}
+   if(x.g<=mn)return;if(!best||c>best.c)best={m:m,j:j,x:x,f:f,mn:mn,kind:kind,c:c};});});
+  if(!best)return;var per=Math.max(0.5,best.c/best.x.g),need=Math.max(N.n-lim,N.g-gmax,1),g=Math.max(best.mn,Math.floor((best.x.g-need/per)/5)*5);if(g>=best.x.g)g=Math.max(best.mn,best.x.g-10);
+  var lost=best.f.kcal*(best.x.g-g)/100;best.m.items[best.j]=Object.assign({},best.x,calc(best.f,g));
+  if(best.kind==='fat'&&lost>20){var m=best.m,oi=-1;m.items.forEach(function(y,q){if(OIL.test(y.name)&&oi<0)oi=q;});var of=oi>=0?fByName(m.items[oi].name):fByName(m.slot==='B'||m.slot==='S'?'Butter':'Olive oil');
+   if(of){var have=oi>=0?m.items[oi].g:0,ng=Math.min(25,Math.round((have+lost/(of.kcal/100))/5)*5);if(ng>have){if(oi>=0)m.items[oi]=Object.assign({},m.items[oi],calc(of,ng));else if(!/yogh?urt|skyr|quark|whey|oats|berr|banana|apple|milk/i.test(m.items.map(function(y){return y.name}).join(' ')))m.items.push(calc(of,ng));}}}}}
+window.V158.ketoTrim=ketoTrim;
+// keto: calories lost to carb trimming come back as fat on savoury plates
+function ketoFill(mp,R){if(!R||!R.style||R.style.id!=='keto'||!mp)return;var F=[['Olive oil',25],['Butter',20],['Cheddar cheese',50]];
+ for(var k=0;k<12;k++){var T=planTot(mp),d=R.kcal*0.97-T.kcal;if(d<=20)return;var done=false;
+  mp.forEach(function(m){if(done)return;var N=(m.items||[]).map(function(y){return y.name;}).join(' ');if(/yogh?urt|skyr|quark|whey|oats|berr|banana|apple|milk/i.test(N))return;if(m.slot==='S')return;
+   for(var q=0;q<F.length&&!done;q++){var f=fByName(F[q][0]);if(!f)continue;if(F[q][0]==='Butter'&&/olive oil/i.test(N))continue;if(F[q][0]==='Olive oil'&&/butter/i.test(N)&&!/olive oil/i.test(N))continue;var ix=-1;m.items.forEach(function(y,j){if(y.name===F[q][0])ix=j;});var have=ix>=0?m.items[ix].g:0,ng=Math.min(F[q][1],Math.round((have+d/(f.kcal/100))/5)*5);if(ng-have<5)continue;
+    if(ix>=0)m.items[ix]=Object.assign({},m.items[ix],calc(f,ng));else m.items.push(calc(f,ng));done=true;}});
+  if(!done)return;}}
+window.V158.ketoFill=ketoFill;
+// vegetarian protein top-up: lean meat-free protein first, carbs give way so calories stay on target
+function vegProt(mp,R){if(!R||!mp)return;var keto=R.style&&R.style.id==='keto';
+ var cap=function(nm){var r=ppRule(nm);return r?r.max:200;};
+ for(var k=0;k<12;k++){var T=planTot(mp),gap=R.protein*0.95-T.protein;if(gap<=3)return;
+  var best=null;mp.forEach(function(m){var s=sumItems(m.items||[]);var d=s.kcal>0?s.protein*4/s.kcal:1;if(!best||d<best.d)best={m:m,d:d};});if(!best)return;var m=best.m,sl=m.slot==='D'?'L':m.slot,N=m.items.map(function(x){return x.name;}).join(' ');
+  var sweet=/yogh?urt|skyr|quark|oats|granola|banana|berr|apple|whey|milk/i.test(N)&&!/egg|tofu|cheddar|spinach|tomato|mushroom|halloumi/i.test(N);
+  var L=sl==='L'?(keto?['Tofu, firm','Paneer','Halloumi','Egg white']:['Tofu, firm','Tempeh','Quorn pieces','Quorn mince','Paneer','Halloumi','Edamame beans, shelled']):sweet?['Whey protein powder','Skyr, plain','Greek yoghurt, 0% fat','Quark']:['Egg white','Egg','Cottage cheese','Tofu, firm'];
+  var done=false;
+  for(var q=0;q<L.length&&!done;q++){var nm=L[q],f=fByName(nm);if(!f)continue;var ex=null,ix=-1;m.items.forEach(function(x,j){if(x.name===nm){ex=x;ix=j;}});
+   if(!ex&&q<L.length-1&&sl==='L'&&nm!=='Edamame beans, shelled'&&nm!=='Egg white')continue; // add only edamame as a new side on hot plates; grow what is already there
+   if(!ex&&sl!=='L'&&q>0&&!sweet&&nm!=='Egg white')continue;
+   var have=ex?ex.g:0,c=cap(nm),add=Math.min(c-have,gap/(f.protein/100));add=Math.floor(add/5)*5;if(add<10)continue;
+   var it=calc(f,have+add);if(ex)m.items[ix]=Object.assign({},ex,it);else m.items.push(it);done=true;
+   // keep calories: trim the starch (or fat on keto) on this plate
+   var kc=f.kcal*add/100;m.items.forEach(function(x,j){if(kc<=5)return;var g=fByName(x.name);if(!g||x===it)return;var isC=keto?(g.fat*9>g.kcal*0.7&&g.protein<5):(g.carbs*4>g.kcal*0.6&&g.protein*4<g.kcal*0.25);if(!isC)return;var r=ppRule(x.name),mn=r?r.min:30,cut=Math.min(x.g-mn,kc/(g.kcal/100));cut=Math.floor(cut/5)*5;if(cut<5)return;m.items[j]=Object.assign({},x,calc(g,x.g-cut));kc-=g.kcal*cut/100;});}
+  if(!done)return;}}
+window.V158.vegProt=vegProt;
 var _gm=genMeals;genMeals=function(R,i,seed){
- if(!i||!i.veg)return _gm.apply(this,arguments);
+ if(!i||!i.veg){var mp0=_gm.apply(this,arguments);try{ketoTrim(mp0,R);ketoFill(mp0,R);}catch(e){}return mp0;}
  var self=this,a=Array.prototype.slice.call(arguments),i2=Object.assign({},i,{fish:false});a[1]=i2;
  var keto=!!(R&&R.style&&R.style.id==='keto'),sL=null;
  try{if(typeof SIMPLE!=='undefined'&&SIMPLE.L){sL=SIMPLE.L;SIMPLE.L=SIMV.L.filter(function(t){return t.it.every(function(x){return fByName(x[0]);});});}}catch(e){}
  var mp;try{mp=withVegLib(function(){return _gm.apply(self,a);});}finally{if(sL)SIMPLE.L=sL;}
- try{(mp||[]).forEach(function(m){vegFixMeal(m,keto);});}catch(e){console.warn(e);}
+ try{(mp||[]).forEach(function(m){vegFixMeal(m,keto);});ketoTrim(mp,R,true);vegProt(mp,R);ketoTrim(mp,R,true);ketoFill(mp,R);}catch(e){console.warn(e);}
  return mp;};
 
 // swap sheet / Option B / 🎲 Random: know whether the meal belongs to a vegetarian diet
