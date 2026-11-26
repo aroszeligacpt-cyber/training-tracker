@@ -579,7 +579,7 @@ function targetsCard(){var T=S.targets;return '<div class="card"><h2>Daily nutri
 function habitsEditCard(){return '<div class="card"><h2>Habits</h2>'+S.habits.map(function(h,i){return'<div class="hab" style="flex-wrap:wrap"><input style="flex:2;min-width:120px" data-hn="'+i+'" value="'+esc(h.name)+'"><select style="flex:1;min-width:90px" data-ht="'+i+'"><option value="num"'+(h.type==='num'?' selected':'')+'>Number</option><option value="bool"'+(h.type==='bool'?' selected':'')+'>Yes/No</option></select>'+
   (h.type==='num'?'<input style="width:90px;flex:1" type="number" inputmode="decimal" data-htg="'+i+'" value="'+h.target+'" title="Target"><input style="width:70px;flex:1" data-hu="'+i+'" value="'+esc(h.unit)+'" placeholder="unit">':'')+'<button class="dang sm" style="flex:0" data-hdel="'+i+'">✕</button></div>'}).join('')+
  '<button class="pri" id="hAdd" style="margin-top:10px;width:100%">+ Add habit</button></div>'}
-function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v158 · 24 Nov 2026</p>'}
+function rSettings(){document.getElementById('t-settings').innerHTML='<div class="card"><button class="pri" style="width:100%" data-go="legal">⚖️ Legal & Sources</button><p class="mu" style="font-size:12px;margin-top:8px">Disclaimer, health sources, books and further reading.</p></div>'+themeCard()+'<div class="card"><h2>🔥 Burned calories</h2><div class="pacc"><button class="ck'+(ui().burnT?' on':'')+'" id="burnT" aria-label="Add burned calories to daily target">'+(ui().burnT?'✓':'')+'</button><span><b>Add burned calories to daily target</b><br>'+c61BurnNote()+'</span></div></div>'+storageCard()+'<div class="card"><h2>Backup</h2><div class="row"><button id="exp">Export JSON</button><button id="impB">Import JSON</button></div><input type="file" id="imp" accept="application/json,.json" style="display:none"><button class="dang" id="reset" style="margin-top:10px;width:100%">Reset all data</button></div>'+resetCard()+'<div><p class="mu">Data is stored only in this browser on this device. Export regularly to back up. Photos are kept in browser storage; you can include them in the export (large file).</p></div><p class="mu full" style="text-align:center">AT Fitness v159 · 26 Nov 2026</p>'}
 // events
 document.addEventListener('click',function(ev){var b=ev.target.closest('button,[data-day]');if(!b)return;var D=b.dataset,h;
  if(D.t){tab=D.t;render();scrollTo(0,0);return}
@@ -2574,7 +2574,7 @@ function rLegal(){
   h+='<div class="lbook"><b>Blood</b> — Dr Jen Gunter (2023)<br><span class="mu">Periods, hormones and reproductive health.</span><br>'+A('https://openlibrary.org/works/OL34262504W','Open Library')+'</div>';
   h+='<div class="lbook"><b>Why Did No One Tell Me?</b> — Emma Brockwell (2021)<br><span class="mu">Women’s-health physiotherapist; co-author of UK postnatal return-to-running guidelines.</span><br>'+A('https://openlibrary.org/works/OL25245586W','Open Library')+' · '+A('https://www.instagram.com/emmabrockwellphysio/','Instagram')+'</div>';
   h+='<p class="mu" style="font-size:12px;margin-top:8px">Books linked via Open Library catalogue records (titles/authors verified). Expert profiles also listed in <code>her_fact_check.md</code>.</p></div>';
-  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v158</p>';
+  h+='<p class="mu" style="text-align:center;font-size:12px">AT Fitness v159</p>';
   document.getElementById('t-legal').innerHTML=h;
 }
 document.addEventListener('click',function(ev){
@@ -4885,7 +4885,7 @@ function pcRep(){var M=PCX.rep||3,to=todayIso(),from=add(to,-Math.round(M*30.4)+
  '<h3>Lab notes (as typed by the patient, not interpreted)</h3>'+(labs.length?'<ul style="font-size:12.5px">'+labs.map(function(l){return'<li><b>'+fmt(l.d,{day:'numeric',month:'short',year:'numeric'})+':</b> '+esc(l.t)+'</li>'}).join('')+'</ul>':'<p class="mu">None.</p>')+
  '<h3>Questions for my GP</h3><textarea id="pcqs" class="noprint" rows="3" placeholder="Write your own questions">'+esc(PCX.qs||'')+'</textarea>'+(PCX.qs?'<p class="pcqp" style="font-size:13px;white-space:pre-wrap">'+esc(PCX.qs)+'</p>':'')+
  '<p style="font-size:12.5px;margin:6px 0 2px">Topics often covered at a review (NICE draft guideline):</p><ul style="font-size:12.5px"><li>My cycle pattern and any bleeding concerns</li><li>Skin, excess hair or hair loss and options</li><li>Medicines or supplements I’m taking</li><li>Blood pressure, blood sugar and cholesterol checks — when are mine due?</li><li>Mood, anxiety or body image</li><li>Sleep, snoring or daytime tiredness</li><li>Plans for pregnancy, if relevant</li></ul>'+
- '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v158 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
+ '<p class="mu" style="font-size:11px;margin-top:10px">AT Fitness v159 · Self-recorded data for discussion with a clinician. AT Fitness does not diagnose or give medical advice. PMOS (Polyendocrine Metabolic Ovarian Syndrome) is the new name for PCOS.</p></div>'}
 // ---- home ----
 function pcTileSub(){if(!GM.mode)return'Choose IBS or PCOS/PMOS';if(!PCX.consent)return'PCOS/PMOS · set up';var t=todayIso(),x=pcDay(t),W=pcWeek();return x&&x.low?'Low-energy day · go easy':(pcLogged(t)?'PCOS/PMOS · logged ✓':'PCOS/PMOS · log today')+' · '+W.eq+'/150 min'}
 function pcHome(){var t=todayIso(),x=pcDay(t)||{},l=pcHL(t)||{},C=pcCyc(),tip=pcTip(),due=pcRemDue(),low=!!x.low;
@@ -13932,6 +13932,175 @@ document.addEventListener('click',function(ev){var b=ev.target.closest&&ev.targe
 var _rp=rPlan;rPlan=function(){var r=_rp.apply(this,arguments);try{var fb=document.querySelector('#t-plan [data-pfish]'),row=fb&&fb.closest('.pacc');if(row&&!document.querySelector('[data-pveg]')){var v=!!plIn().veg,pl_=LANG==='pl';
  row.insertAdjacentHTML('beforebegin','<div class="pacc v158veg"><button class="ck'+(v?' on':'')+'" data-pveg="1" aria-label="'+(pl_?'Dieta wegetariańska':'Vegetarian')+'">'+(v?'✓':'')+'</button><span><b>🌱 '+(pl_?'Wegetariańska':'Vegetarian')+'</b><br><small class="mu">'+(pl_?'Bez mięsa i ryb — białko z jajek, nabiału, tofu, tempeh, Quorn i strączków':'No meat or fish — protein from eggs, dairy, tofu, tempeh, Quorn & beans')+'</small></span></div>');
  if(v)row.style.display='none';}}catch(e){console.warn(e);}return r;};
+})();
+</script>
+
+
+<script>
+/* v159: swipe-to-dismiss for every toast / undo / celebration pop */
+(function(){
+  var css=document.createElement('style');
+  css.id='v159swcss';
+  css.textContent=
+    '.toast.s{pointer-events:auto}'+
+    '.toast{max-width:92vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'+
+    '#toast,#undo,.v7pop,.v7ph,#v10cel .v10in{touch-action:pan-y;-webkit-user-select:none;user-select:none}'+
+    '#toast.sw,#undo.sw,.v7pop.sw,.v7ph.sw,#v10cel.sw .v10in{transition:none!important;animation:none!important}';
+  document.head.appendChild(css);
+
+  var TH=10, FRAC=0.3, FLICK=0.55, TAP=8, G=null;
+
+  function shown(el){
+    if(!el||!el.isConnected)return false;
+    if(el.id==='toast'||el.id==='undo')return el.classList.contains('s');
+    if(el.id==='v7pop'||el.id==='v7ph'||el.id==='v10cel')return !el.classList.contains('out');
+    return true;
+  }
+  function moveEl(el){return (el.id==='v10cel'&&el.querySelector('.v10in'))||el}
+  function restTx(el){
+    if(el.id==='undo')return el.classList.contains('s')?'translate(-50%,0)':'translate(-50%,140%)';
+    if(el.id==='v7pop'||el.id==='v7ph')return 'translate(-50%,0) scale(1)';
+    if(el.id==='v10cel')return '';
+    return 'translateX(-50%)';
+  }
+  function fade(dx,w){return Math.max(0.18,1-Math.abs(dx)/Math.max(w,1)*0.95)}
+  function shift(el,dx,op){
+    var m=moveEl(el), r=restTx(el);
+    if(el.id==='v10cel'){
+      m.style.transform='translateX('+dx+'px)';
+      el.style.opacity=op==null?'':String(op);
+      return;
+    }
+    if(r.indexOf('translate(-50%')>=0)m.style.transform=r.replace('translate(-50%','translate(calc(-50% + '+dx+'px)');
+    else if(r.indexOf('translateX(-50%)')>=0)m.style.transform='translateX(calc(-50% + '+dx+'px))';
+    else m.style.transform=(r?r+' ':'')+'translateX('+dx+'px)';
+    if(op!=null)m.style.opacity=String(op);
+  }
+  function clearShift(el){
+    if(!el)return;
+    var m=moveEl(el);
+    m.style.transform='';m.style.opacity='';m.style.transition='';
+    el.style.opacity='';el.style.transition='';
+    el.classList.remove('sw');
+    if(m!==el)m.classList.remove('sw');
+  }
+  function blockClick(el){el._swBlock=1;setTimeout(function(){el._swBlock=0},350)}
+  function dismissEl(el){
+    if(el.id==='undo'){
+      try{clearTimeout(UD.t)}catch(e){}
+      try{commitPh()}catch(e){}
+      try{UD.f=null}catch(e){}
+      el.classList.remove('s');clearShift(el);return;
+    }
+    if(el.id==='toast'){
+      try{clearTimeout(toast.h)}catch(e){}
+      el.classList.remove('s');clearShift(el);return;
+    }
+    if(el.id==='v7pop'||el.id==='v7ph'){
+      el.classList.add('out');clearShift(el);
+      setTimeout(function(){if(el&&el.parentNode)el.remove()},400);return;
+    }
+    if(el.id==='v10cel'){
+      try{clearTimeout(V10.h)}catch(e){}
+      el.classList.add('out');
+      setTimeout(function(){
+        if(el&&el.parentNode)el.remove();
+        try{V10.on=false;v10Next()}catch(e){}
+      },220);
+      return;
+    }
+    if(el.parentNode)el.remove();
+  }
+  function finish(){
+    if(!G)return;
+    var g=G,el=g.el,dx=g.dx,w=g.w||(moveEl(el).getBoundingClientRect().width||300);
+    var now=Date.now(),dur=now-g.t0,vx=g.vx||0,ov=dur>=40?dx/dur:0;
+    var flick=(Math.abs(vx)>=FLICK||Math.abs(ov)>=FLICK)&&(dx===0||vx*dx>=0||ov*dx>=0);
+    if(g.axis!=='x'){
+      if(Math.hypot(dx,g.dy||0)>TAP)blockClick(el);
+      el.classList.remove('sw');G=null;return;
+    }
+    blockClick(el);
+    var go=Math.abs(dx)>=w*FRAC||(flick&&Math.abs(dx)>40);
+    var m=moveEl(el);
+    el.classList.remove('sw');if(m!==el)m.classList.remove('sw');
+    if(go){
+      var dir=dx>0||(dx===0&&vx>=0)?1:-1,to=dir*Math.max(w*1.2,320);
+      m.style.transition='transform .22s ease, opacity .22s ease';
+      if(el.id==='v10cel')el.style.transition='opacity .22s ease';
+      shift(el,to,0);
+      setTimeout(function(){dismissEl(el)},230);
+    }else{
+      m.style.transition='transform .22s ease, opacity .22s ease';
+      if(el.id==='v10cel')el.style.transition='opacity .22s ease';
+      shift(el,0,1);
+      setTimeout(function(){clearShift(el)},240);
+    }
+    G=null;
+  }
+  document.addEventListener('click',function(ev){
+    var el=ev.target&&ev.target.closest&&ev.target.closest('#toast,#undo,.v7pop,.v7ph,#v10cel');
+    if(el&&el._swBlock){ev.preventDefault();ev.stopImmediatePropagation()}
+  },true);
+
+  function down(el,x,y,e){
+    if(!shown(el))return;
+    if(G&&G.el!==el)clearShift(G.el);
+    var box=moveEl(el).getBoundingClientRect();
+    G={el:el,x0:x,y0:y,t0:Date.now(),dx:0,dy:0,vx:0,axis:null,w:box.width,lastDx:0,lastT:Date.now(),ptr:e&&e.pointerId};
+  }
+  function move(x,y,e){
+    if(!G)return;
+    var dx=x-G.x0,dy=y-G.y0;G.dy=dy;
+    if(!G.axis){
+      if(Math.abs(dx)<TH&&Math.abs(dy)<TH)return;
+      if(Math.abs(dy)>=Math.abs(dx)){G.axis='y';return}
+      G.axis='x';G.el.classList.add('sw');
+      var m=moveEl(G.el);if(m!==G.el)m.classList.add('sw');
+      if(e&&e.preventDefault)e.preventDefault();
+    }
+    if(G.axis!=='x')return;
+    if(e&&e.preventDefault)e.preventDefault();
+    var now=Date.now(),dt=now-G.lastT;
+    if(dt>=8)G.vx=(dx-G.dx)/dt;
+    G.lastDx=G.dx;G.lastT=now;G.dx=dx;
+    shift(G.el,dx,fade(dx,G.w));
+  }
+
+  function bind(el){
+    if(!el||el._v159)return;
+    el._v159=1;
+    el.addEventListener('pointerdown',function(e){
+      if(e.pointerType==='mouse'&&e.button!==0)return;
+      el._ptr=1;down(el,e.clientX,e.clientY,e);
+    });
+    el.addEventListener('touchstart',function(e){
+      if(el._ptr)return;
+      if(e.touches&&e.touches.length===1)down(el,e.touches[0].clientX,e.touches[0].clientY,e);
+    },{passive:true});
+  }
+  document.addEventListener('pointermove',function(e){if(!G)return;if(G.ptr!=null&&e.pointerId!==G.ptr)return;move(e.clientX,e.clientY,e)},{passive:false});
+  document.addEventListener('pointerup',function(e){if(!G)return;if(G.ptr!=null&&e.pointerId!==G.ptr)return;var el=G.el;finish();if(el)el._ptr=0});
+  document.addEventListener('pointercancel',function(e){if(!G)return;if(G.ptr!=null&&e.pointerId!==G.ptr)return;G.axis=G.axis||'y';var el=G.el;finish();if(el)el._ptr=0});
+  document.addEventListener('touchmove',function(e){
+    if(!G||G.el._ptr)return;
+    if(e.touches&&e.touches.length)move(e.touches[0].clientX,e.touches[0].clientY,e);
+  },{passive:false});
+  document.addEventListener('touchend',function(e){if(!G||G.el._ptr)return;finish()},{passive:true});
+  document.addEventListener('touchcancel',function(e){if(!G||G.el._ptr)return;G.axis=G.axis||'y';finish()},{passive:true});
+
+  function scan(){['toast','undo','v7pop','v7ph','v10cel'].forEach(function(id){var el=document.getElementById(id);if(el)bind(el)})}
+  function i18nUndo(u){
+    try{if(u&&typeof LANG!=='undefined'&&LANG==='pl'){if(typeof replaceDeep==='function')replaceDeep(u,PH);if(typeof replaceExact==='function')replaceExact(u,EXACT)}}catch(e){}
+  }
+  scan();
+  try{new MutationObserver(scan).observe(document.body,{childList:true})}catch(e){}
+
+  if(typeof undoDel==='function'){var _ud=undoDel;undoDel=function(){var sG=null;try{if(typeof gSt==='function')sG=JSON.stringify(gSt())}catch(e){}var r=_ud.apply(this,arguments);if(sG!=null&&UD&&UD.f){var prev=UD.f;UD.f=function(){try{gSt.c=JSON.parse(sG);if(typeof gSave==='function')gSave()}catch(e){}return prev.apply(this,arguments)}}var u=document.getElementById('undo');if(u){bind(u);clearShift(u);i18nUndo(u)}return r}}
+  if(typeof cUndo==='function'){var _cu=cUndo;cUndo=function(){var r=_cu.apply(this,arguments);var u=document.getElementById('undo');if(u){bind(u);clearShift(u);i18nUndo(u)}return r}}
+  if(typeof toast==='function'){var _t=toast;toast=function(){var r=_t.apply(this,arguments);var t=document.getElementById('toast');if(t){bind(t);clearShift(t)}return r}}
+  if(typeof v7Toast==='function'){var _v7=v7Toast;v7Toast=function(){var r=_v7.apply(this,arguments);var o=document.getElementById('v7ph');if(o)bind(o);return r}}
+  if(typeof v10Show==='function'){var _vs=v10Show;v10Show=function(){var r=_vs.apply(this,arguments);var o=document.getElementById('v10cel');if(o)bind(o);return r}}
 })();
 </script>
 
